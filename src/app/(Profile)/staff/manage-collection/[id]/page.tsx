@@ -114,7 +114,7 @@ export default function UpdateCollectionForm({
       const filterSumitUrl = [...previewUrls, ...urls].filter((url) =>
         url.includes("/storage/v1/object/public/")
       );
-      console.log(filterSumitUrl);
+      // console.log(filterSumitUrl);
       const { name, description } = values;
       const updateValue = {
         name,

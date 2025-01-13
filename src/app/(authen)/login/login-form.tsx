@@ -53,15 +53,9 @@ export default function LoginForm() {
       if (!token) return;
       try {
         setLoading(true); 
-        const response = await fetch(
-          `https://dap-viet-be-0-0-1.onrender.com/nextrad/api/users/auth/email/verify?token=${token}`
-        );
-        if (!response.ok) {
-          throw new Error("Verification failed!");
-        }
-        const data = await response.json();
+        const result = await authApiRequest.verifyEmail(token)
         toast({
-          description: data.message || "Xác minh thành công!",
+          description: result.payload.message,
           duration: 2000,
         });
       } catch (error) {

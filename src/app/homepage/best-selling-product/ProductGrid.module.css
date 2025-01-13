@@ -4,7 +4,7 @@
     width: 100%;
     max-width: 1238px;
   }
-  .gridContainer {
+  /* .gridContainer {
     -webkit-animation: slide-in-fwd-center 1.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
             animation: slide-in-fwd-center 1.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
   }
@@ -31,7 +31,7 @@
               transform: translateZ(0);
       opacity: 1;
     }
-  }
+  } */
   
   .gridWrapper {
     display: flex;
@@ -41,7 +41,7 @@
   .gridColumn {
     display: flex;
     flex-direction: column;
-    width: 33%;
+    /* width: 33%; */
   }
   
   .productCard {
@@ -126,7 +126,7 @@
     }
     .festivalTitle {
       max-width: 100%;
-      margin-top: 40px;
+      margin-top: 10px;
       font-size: 40px;
     }
     .gridWrapper {
@@ -137,6 +137,7 @@
   
     .gridColumn {
       width: 100%;
+      z-index: 10;
     }
   
     
@@ -180,5 +181,6 @@
     }
     .productCard{
       padding: 0;
+      z-index: 10;
     }
   }

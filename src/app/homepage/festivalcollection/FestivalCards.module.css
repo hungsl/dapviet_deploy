@@ -1,15 +1,16 @@
 .cardsContainer {
     align-self: center;
     display: flex;
-    margin-top: 60px;
     align-items: start;
     color: #000;
     text-align: center;
     justify-content: start;
     flex-wrap: wrap;
+    max-width: 1238px;
     font: 500 32px Inter, sans-serif;
+    margin: 60px auto;
   }
-  .cardsContainer {
+  /* .cardsContainer {
     -webkit-animation: slide-in-fwd-center 1.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
             animation: slide-in-fwd-center 1.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
   }
@@ -36,11 +37,11 @@
               transform: translateZ(0);
       opacity: 1;
     }
-  }
+  } */
   
   .cardContainer {
     display: flex;
-    min-width: 240px;
+    width: 100%;
     flex-direction: column;
     align-items: center;
     justify-content: start;
@@ -116,7 +117,7 @@
   @media (max-width: 991px) {
     .festivalTitle {
       max-width: 100%;
-      margin-top: 40px;
+      margin-top: 10px;
       font-size: 40px;
     }
   }
@@ -136,6 +137,7 @@
     .cardsContainer {
       max-width: 100%;
       margin-top: 40px;
+      margin-bottom: 0px;
     }
   }
   @media (max-width: 428px) {

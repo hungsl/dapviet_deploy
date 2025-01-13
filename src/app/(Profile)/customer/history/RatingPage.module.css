@@ -13,6 +13,9 @@
     padding: 20px 0;
     border-bottom: 1px solid #ddd;
   }
+  .heightTable{
+    max-height: 700px;
+  }
   .statusSection {
     margin-bottom: 16px;
     font-size: 1rem;
@@ -223,6 +226,9 @@
     flex-direction: column;
     gap: 5px;
     align-items: end;
+  }
+  .heightTable{
+    max-height: 500px;
   }
   .tableRow {
     flex-direction: column; /* Chuyển về dạng cột */

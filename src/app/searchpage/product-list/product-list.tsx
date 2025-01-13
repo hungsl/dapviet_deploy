@@ -56,7 +56,7 @@ export function ProductList() {
         types: filters.categories.length > 0 ? filters.categories : undefined,
         collections: undefined,
         page: currentPage,
-        size: 20,
+        size: 15,
         direction: filters.sortOrder.toUpperCase(),
         search: filters.searchQuery || undefined,
       };

@@ -1,5 +1,6 @@
 import { Headers } from "../header/header";
 import { Footer } from "../footer/footer";
+import Chat from "../chat/chat";
 
 export default async function LayoutAuthen({
   children,
@@ -17,6 +18,7 @@ export default async function LayoutAuthen({
       <div className="flex justify-center">
         <Footer />
       </div>
+      <Chat />
     </>
   );
 }

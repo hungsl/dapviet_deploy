@@ -119,6 +119,7 @@
   
   .yAxisLabel {
     z-index: 10;
+    position: relative;
     display: flex;
     padding-left: 6px;
     flex-direction: column;
@@ -134,7 +135,6 @@
   .yAxisTitle {
     align-self: start;
     z-index: 10;
-    margin-top: 28px;
     font-size: medium;
     white-space: nowrap;
   }

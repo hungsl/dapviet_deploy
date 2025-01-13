@@ -1,5 +1,5 @@
 import React from "react";
-import { Carousel } from "./Carousel";
+// import { Carousel } from "./Carousel";
 import styles from "./ProductGrid.module.css";
 import {
   cartListDataType,
@@ -7,6 +7,7 @@ import {
 } from "@/schemaValidations/product.schema";
 import productApiRequest from "@/apiRequests/product";
 import { redirect } from "next/navigation";
+import SwiperComponent from "@/app/homepage/best-selling-product/swiper-component";
 
 export const ProductGridContainer = async ({
   data,
@@ -34,7 +35,8 @@ export const ProductGridContainer = async ({
   return (
     <div>
       <h2 className={styles.headerTitle}>Những sản phẩm liên quan</h2>
-      <Carousel products={dataList} />
+      {/* <Carousel products={dataList} /> */}
+      <SwiperComponent cards={dataList} />
     </div>
   );
 };

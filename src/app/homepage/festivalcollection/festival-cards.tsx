@@ -3,10 +3,10 @@ import React, { useEffect, useState } from "react";
 import styles from "./FestivalCards.module.css";
 // import { Carousel } from "./Carousel";
 import productApiRequest from "@/apiRequests/product";
-import dynamic from "next/dynamic";
 import { datalist, FestivalCardProps } from "./types";
+import SwiperComponent from "./swiper-festival";
 
-const Carousel = dynamic(() => import("./Carousel"), { ssr: false });
+// const Carousel = dynamic(() => import("./Carousel"), { ssr: false });
 export default function FestivalCards() {
   const [data, setData] = useState<datalist>();
 
@@ -43,7 +43,8 @@ export default function FestivalCards() {
     <>
       <h1 className={styles.festivalTitle}>Bộ Sưu Tập Lễ Hội</h1>
       <div className={styles.cardsContainer}>
-        <Carousel cards={data.cards} />
+        {/* <Carousel cards={data.cards} /> */}
+        <SwiperComponent cards={data.cards} />
       </div>
     </>
   );

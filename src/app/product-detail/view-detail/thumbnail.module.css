@@ -1,79 +1,95 @@
 /* Container styles */
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
-  }
-  
-  /* Swiper container */
-  .swiperMain {
-    height: auto;
-    width: 100%;
-    border-radius: 0.5rem; /* 8px rounded */
-    overflow: hidden;
-    background-color: #eae7dc;
-  }
-  
-  /* Slide item */
-  .slideItem {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    width: 100%;
-  }
-  
-  .slideImage {
-    height: 700px;
-    display: block; 
-    width: auto;
-    object-fit: cover;
-    object-position: center;
-    border-radius: 0.25rem; /* 4px rounded */
-  }
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
 
-  .productImage {
-    width: 100%; /* Hoặc một kích thước cụ thể ví dụ: 300px */
-    height: 500px; /* Đặt chiều cao cố định để đảm bảo đồng đều */
-    display: block; /* Đảm bảo ảnh không bị inline */
-    object-fit: cover; /* Cắt ảnh theo kích thước khung */
-    object-position: center; /* Đặt tâm ảnh trong khung */
-    border-radius: 8px; /* Thêm bo góc nếu cần */
-    overflow: hidden; 
+/* Swiper container */
+.swiperMain {
+  height: auto;
+  width: 100%;
+  border-radius: 0.5rem; /* 8px rounded */
+  overflow: hidden;
+  background-color: #e8f8ff8e;
+  margin-bottom: 0;
+}
+
+/* Slide item */
+.slideItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.slideImage {
+  height: 700px;
+  display: block;
+  width: auto;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 0.25rem; /* 4px rounded */
+}
+
+.productImage {
+  width: 100%; /* Hoặc một kích thước cụ thể ví dụ: 300px */
+  height: 500px; /* Đặt chiều cao cố định để đảm bảo đồng đều */
+  display: block; /* Đảm bảo ảnh không bị inline */
+  object-fit: cover; /* Cắt ảnh theo kích thước khung */
+  object-position: center; /* Đặt tâm ảnh trong khung */
+  border-radius: 8px; /* Thêm bo góc nếu cần */
+  overflow: hidden;
+}
+
+/* Thumbnail styles */
+.thumbs {
+  margin-top: 1rem; /* 16px */
+  height: 250px; /* 32 in Tailwind */
+  width: 100%;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  background-color: #e8f8ff;
+}
+
+.thumbItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+  background-color: #e8f8ff; /* Light gray */
+}
+
+.thumbImage {
+  display: block;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 0.25rem; /* 4px rounded */
+  transition:
+    transform 0.2s ease-in-out,
+    opacity 0.2s ease-in-out;
+}
+
+.thumbImage:hover {
+  transform: scale(1.05); /* Slight zoom on hover */
+  opacity: 0.9;
+}
+
+@media (max-width: 991px) {
+  .slideImage {
+    height: 500px;
   }
-  
-  /* Thumbnail styles */
   .thumbs {
     margin-top: 1rem; /* 16px */
-    height: 250px; /* 32 in Tailwind */
+    height: 140px; /* 32 in Tailwind */
     width: 100%;
     border-radius: 0.5rem;
     overflow: hidden;
     background-color: #eae7dc;
   }
-  
-  .thumbItem {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    width: 100%;
-    cursor: pointer;
-    background-color: #eae7dc;/* Light gray */
-  }
-  
-  .thumbImage {
-    display: block;
-    height: 100%;
-    width: auto;
-    object-fit: cover;
-    object-position: center;
-    border-radius: 0.25rem; /* 4px rounded */
-    transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
-  }
-  
-  .thumbImage:hover {
-    transform: scale(1.05); /* Slight zoom on hover */
-    opacity: 0.9;
-  }
-  
+}

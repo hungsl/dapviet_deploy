@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./Auth.module.css";
 import { BenefitItem } from "./benefit-item";
 import ButtonType from "./button";
+import { cookies } from "next/headers";
 
 const benefits = [
   {
@@ -12,7 +13,12 @@ const benefits = [
   },
 ];
 
-export const AuthSection: React.FC = () => {
+export default async function AuthSection() {
+  const cookieStore = await cookies();
+  const accessToken = cookieStore.get("accessToken");
+  if (accessToken) {
+    return;
+  }
   return (
     <div className="mt-20">
       <div className={styles.container}>
@@ -53,4 +59,4 @@ export const AuthSection: React.FC = () => {
       </div>
     </div>
   );
-};
+}

@@ -53,7 +53,7 @@ export default function RegisterForm() {
       const result = await authApiRequest.register(values);
       toast({
         description: result.payload.message,
-        duration: 2000
+        duration: 2000,
       });
       router.push("/login");
     } catch (error) {
@@ -77,26 +77,7 @@ export default function RegisterForm() {
           className="space-y-2 max-w-[800px]  flex-shrink-0 w-full "
         >
           <FormField
-            control={form.control}
-            name="name"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="!text-black font-bold">
-                  Tên người dùng
-                </FormLabel>
-                <FormControl>
-                  <Input
-                    className={styles.inputContainer}
-                    placeholder="Nhập tên người dùng..."
-                    {...field}
-                  />
-                </FormControl>
-                <FormDescription></FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
+            key={form.watch("name")}
             control={form.control}
             name="email"
             render={({ field }) => (
@@ -118,6 +99,26 @@ export default function RegisterForm() {
           />
           <FormField
             control={form.control}
+            name="name"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="!text-black font-bold">
+                  Tên người dùng
+                </FormLabel>
+                <FormControl>
+                  <Input
+                    className={styles.inputContainer}
+                    placeholder="Nhập tên người dùng..."
+                    {...field}
+                  />
+                </FormControl>
+                <FormDescription></FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
             name="password"
             render={({ field }) => (
               <FormItem>
@@ -125,7 +126,12 @@ export default function RegisterForm() {
                   Mật khẩu
                 </FormLabel>
                 <FormControl>
-                  <PasswordInput placeholder = "Nhập mật khẩu ..." field={field} classNameInput={styles.fieldInputChangePassword} classNameButton = {styles.iconEyes}/>
+                  <PasswordInput
+                    placeholder="Nhập mật khẩu ..."
+                    field={field}
+                    classNameInput={styles.fieldInputChangePassword}
+                    classNameButton={styles.iconEyes}
+                  />
                 </FormControl>
                 <FormDescription></FormDescription>
                 <FormMessage />
@@ -141,15 +147,24 @@ export default function RegisterForm() {
                   Xác nhận mật khẩu
                 </FormLabel>
                 <FormControl>
-                  <PasswordInput placeholder = "Xác nhận mật khẩu..." field={field} classNameInput={styles.fieldInputChangePassword} classNameButton = {styles.iconEyes}/>
+                  <PasswordInput
+                    placeholder="Xác nhận mật khẩu..."
+                    field={field}
+                    classNameInput={styles.fieldInputChangePassword}
+                    classNameButton={styles.iconEyes}
+                  />
                 </FormControl>
                 <FormDescription></FormDescription>
                 <FormMessage />
               </FormItem>
             )}
           />
-          <Button disabled={loading} type="submit" className={styles.loginButton}>
-          {loading && <Loader2 className="animate-spin" />}
+          <Button
+            disabled={loading}
+            type="submit"
+            className={styles.loginButton}
+          >
+            {loading && <Loader2 className="animate-spin" />}
             Đăng ký
           </Button>
         </form>

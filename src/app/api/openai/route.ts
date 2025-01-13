@@ -12,7 +12,7 @@ const openai = createOpenAI({
 export const runtime = "edge";
 export async function POST(req: Request) {
   const { messages } = await req.json();
-  console.log("messages: ", messages);
+  // console.log("messages: ", messages);
   const stream = await streamText({
     model: openai("gpt-3.5-turbo"),
     messages: [initialMessage, ...messages],

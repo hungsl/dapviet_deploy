@@ -1,24 +1,33 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import styles from "../history/RatingPage.module.css";
 import Link from "next/link";
-import { cookies } from "next/headers";
 import orderApiRequest from "@/apiRequests/order";
 import { OrdersListResType } from "@/schemaValidations/order.schema";
-import { redirect } from "next/navigation";
 
-export default async function OrderTable() {
-  const cookieStore = await cookies();
-  const accessToken = cookieStore.get("accessToken");
+export default function OrderTable() {
+  const [data, setData] = useState<OrdersListResType | null>(null); // Lưu trữ dữ liệu
 
-  let data: OrdersListResType | null = null;
-  try {
-    const result = await orderApiRequest.ordersList(accessToken?.value || "");
-    // console.log("productdetail: ", result);
-    data = result.payload;
-  } catch (error) {
-    console.log("lỗi lấy danh sách đơn: ", error)
-    redirect("/homepage");
-  }
+  useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        const result = await orderApiRequest.ordersList();
+        setData(result.payload); // Lưu kết quả trả về vào state `data`
+      } catch (err) {
+        console.log("lỗi lấy danh sách đơn: ", err);
+      }
+    };
+
+    fetchOrders();
+  }, []);
+
+  if (!data)
+    return (
+      <div className="flex justify-center items-center h-screen flex-col relative">
+        <div className="absolute">Loading</div>
+        <div className="w-16 h-16 border-4 border-t-4 border-blue-500 border-dotted rounded-full animate-spin"></div>
+      </div>
+    );
   const translateStatus = (status: string) => {
     switch (status) {
       case "PENDING":
@@ -52,7 +61,7 @@ export default async function OrderTable() {
     }
   };
   return (
-    <div className="scroll max-h-[515px] text-foreground">
+    <div className={`scroll ${styles.heightTable} text-foreground`}>
       <table className={styles.table}>
         <thead>
           <tr className={styles.tableRow}>
@@ -75,46 +84,55 @@ export default async function OrderTable() {
           </tr>
         </thead>
         <tbody>
-          {data.data.map((order) => (
-            <tr key={order.orderId} className={styles.tableRow}>
-              <td className={`${styles.tableCell} font-medium`}>
-                {" "}
-                {order.orderId.length > 10
-                  ? `${order.orderId.slice(0, 9)}…`
-                  : order.orderId}
-              </td>
-              <td className={`${styles.tableCell} ${styles.bold}`}>
-                {order.name}
-              </td>
-              <td
-                className={`${styles.tableCell} ${styles.bold} ${styles.italic}`}
-              >
-                {order.address}
-              </td>
-              {/* <td className={styles.tableCell}>{order.note}</td> */}
-              <td className={`${styles.tableCell} ${styles.textRight} text-xs`}>
-                {order.paymentMethod}
-              </td>
-              <td
-                className={`${styles.tableCell} ${styles.textRight}  `}
-              >
-                <span className={`${styles.statusValue} ${getStatusClass(order.orderStatus)}`}>
-                  {translateStatus(order.orderStatus)}
-                </span>
-              </td>
-              <td className={`${styles.tableCell} ${styles.textRight}`}>
-                đ{order.total}
-              </td>
-              <td className={`${styles.tableCell} ${styles.textCenter}`}>
-                <Link
-                  href={`/customer/order/${order.orderId}`}
-                  className={styles.top}
+          {data && data.data.length > 0 ? (
+            data.data.map((order) => (
+              <tr key={order.orderId} className={styles.tableRow}>
+                <td className={`${styles.tableCell} font-medium`}>
+                  {order.orderId.length > 10
+                    ? `${order.orderId.slice(0, 9)}…`
+                    : order.orderId}
+                </td>
+                <td className={`${styles.tableCell} ${styles.bold}`}>
+                  {order.name}
+                </td>
+                <td
+                  className={`${styles.tableCell} ${styles.bold} ${styles.italic}`}
                 >
-                  Xem chi tiết
-                </Link>
+                  {order.address}
+                </td>
+                {/* <td className={styles.tableCell}>{order.note}</td> */}
+                <td
+                  className={`${styles.tableCell} ${styles.textRight} text-xs`}
+                >
+                  {order.paymentMethod}
+                </td>
+                <td className={`${styles.tableCell} ${styles.textRight}  `}>
+                  <span
+                    className={`${styles.statusValue} ${getStatusClass(order.orderStatus)}`}
+                  >
+                    {translateStatus(order.orderStatus)}
+                  </span>
+                </td>
+                <td className={`${styles.tableCell} ${styles.textRight}`}>
+                  đ{order.total}
+                </td>
+                <td className={`${styles.tableCell} ${styles.textCenter}`}>
+                  <Link
+                    href={`/customer/order/${order.orderId}`}
+                    className={styles.top}
+                  >
+                    Xem chi tiết
+                  </Link>
+                </td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan={7} className="text-center py-4">
+                Không có đơn hàng nào để hiển thị.
               </td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
     </div>

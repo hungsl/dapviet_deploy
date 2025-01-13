@@ -5,7 +5,7 @@ import productApiRequest from "@/apiRequests/product";
 import dynamic from "next/dynamic";
 import { ProductCardProps } from "./types";
 
-const Carousel = dynamic(() => import("./Carousel"), { ssr: false });
+const SwiperComponent = dynamic(() => import("./swiper-component"), { ssr: false });
 
 export default function ProductGrid() {
   const [data, setData] = useState<ProductCardProps[]>();
@@ -35,9 +35,10 @@ export default function ProductGrid() {
     <>
       <h1 className={styles.festivalTitle}>Sản Phẩm Bán Chạy</h1>
       <div className={styles.gridContainer}>
-        <div className={styles.gridWrapper}>
-          <Carousel cards={data} />
-        </div>
+        {/* <div className={styles.gridWrapper}> */}
+          {/* <Carousel cards={data} /> */}
+          <SwiperComponent cards={data} />
+        {/* </div> */}
       </div>
     </>
   );

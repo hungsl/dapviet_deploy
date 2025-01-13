@@ -367,6 +367,7 @@
   .headerContainer {
     max-width: 100%;
     margin-right: 10px;
+    gap: 10px
   }
 
   .fieldsGrid {
@@ -400,8 +401,11 @@
   }
   .fieldContainerNoEdit {
     width: 230px;
-    margin: 15px 0;
+    margin: 5px 0;
     padding: 8px;
+  }
+  .formSection{
+    margin-top: 10px;
   }
   .fieldLabelNoEdit {
     font-size: 14px;

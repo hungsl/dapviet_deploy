@@ -9,7 +9,7 @@ import { PopupProvider } from "@/app/context/popup-provider";
 import PopupWrapper from "@/components/common/popup-wrapper";
 import { ConvexClientProvider } from "./context/convex-provider";
 import RefreshToken from "@/components/refresh-token";
-import Chat from "./chat/chat";
+// import Chat from "./chat/chat";
 
 const roboto = Roboto({ subsets: ["vietnamese"], weight: ["100", "300"] });
 
@@ -42,7 +42,6 @@ export default function RootLayout({
               <ConvexClientProvider>
                 <PopupProvider>
                   <div>{children}</div>
-                  <Chat />
                   <PopupWrapper />
                 </PopupProvider>
               </ConvexClientProvider>

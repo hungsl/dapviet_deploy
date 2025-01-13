@@ -4,14 +4,17 @@ import styles from "./ProductGrid.module.css";
 import { ProductCardProps } from "./types";
 import { formatCurrency } from "@/lib/utils";
 import Image from "next/image";
+import Link from "next/link";
 
 export const ProductCard: React.FC<ProductCardProps> = ({
+  id,
   picture,
   name,
   unitPrice,
 }) => {
   return (
-    <div className={styles.gridColumn}>
+    
+    <Link href={`/product-detail/${id}`} className={styles.gridColumn}>
       <div className={styles.productCard}>
         <div className={styles.imageContainer}>
           <Image
@@ -29,6 +32,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           <div className={styles.productPrice}>{formatCurrency(unitPrice)}</div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };

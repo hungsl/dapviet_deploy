@@ -69,6 +69,7 @@ export default function UpdateProductForm({
     // Giả lập gọi API productId lấy dữ liệu
     const fetchProductDetail = async () => {
       try {
+        setLoading(true)
         const result = await productApiRequest.productStaff(
           productId || "",
         );
@@ -104,6 +105,8 @@ export default function UpdateProductForm({
         setPreviewUrls(data.pictures);
       } catch (error) {
         console.log("fail to get Detail Product", error);
+      }finally{
+        setLoading(false)
       }
     };
     fetchProductDetail();

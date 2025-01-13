@@ -2,11 +2,11 @@ import React from "react";
 import styles from "./Revenue.module.css";
 import { RevenueProps } from "../../types";
 import { BarChart } from "./bar-chart";
+import { formatCurrency } from "@/lib/utils";
 
 const Revenue: React.FC<RevenueProps> = ({
   amount,
   percentageChange,
-  promotionPeriod,
   chartData,
 }) => {
   const months = Array.from({ length: 12 }, (_, i) =>
@@ -17,7 +17,7 @@ const Revenue: React.FC<RevenueProps> = ({
     <div className={styles.revenueContainer}>
       <div className={styles.revenueCard}>
         <h2 className={styles.revenueTitle}>Doanh thu</h2>
-        <div className={styles.revenueAmount}>{amount}</div>
+        <div className={styles.revenueAmount}>{formatCurrency(amount)}</div>
         <div className={styles.percentageChange}>
           {percentageChange < 0 ? (
             <span className={styles.arrowIconDown}>↓</span>
@@ -34,10 +34,9 @@ const Revenue: React.FC<RevenueProps> = ({
             >
               {percentageChange}%
             </span>
-            <span className={styles.changePeriod}> vs last week</span>
+            <span className={styles.changePeriod}> so với tuần trước</span>
           </div>
         </div>
-        <p className={styles.promotionPeriod}>{promotionPeriod}</p>
 
         <div className={styles.chartContainer}>
           {chartData.map((data, index) => (

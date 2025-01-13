@@ -7,21 +7,31 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js"; // Imp
 // Đăng ký các phần của Chart.js
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const customerData = [
-  {
-    percentage: "40%",
-    label: "Khách hàng cũ",
-    color: "rgb(90, 106, 207)",
-  },
-  {
-    percentage: "60%",
-    label: "Khách hàng mới",
-    color: "rgb(199, 206, 255)",
-  },
-];
 
-export const CustomerStats: React.FC = () => {
-  // Cấu hình dữ liệu cho Pie chart
+
+export default function CustomerStats({
+  totalNewUsers,
+  totalOldUsers,
+}: {
+  totalNewUsers: number;
+  totalOldUsers: number;
+}) {
+  
+  const totalUsers = totalNewUsers + totalOldUsers;
+  const newUsersPercentage = totalUsers === 0 ? 0 : (totalNewUsers / totalUsers) * 100;
+  const oldUsersPercentage = totalUsers === 0 ? 0 : (totalOldUsers / totalUsers) * 100;
+  const customerData = [
+    {
+      percentage: oldUsersPercentage.toFixed(2), 
+      label: "Khách hàng cũ",
+      color: "rgb(90, 106, 207)", 
+    },
+    {
+      percentage: newUsersPercentage.toFixed(2), 
+      label: "Khách hàng mới",
+      color: "rgb(199, 206, 255)",
+    },
+  ];
   const data = {
     labels: customerData.map((stat) => stat.label), // Danh sách nhãn
     datasets: [
@@ -47,4 +57,4 @@ export const CustomerStats: React.FC = () => {
       </div>
     </div>
   );
-};
+}

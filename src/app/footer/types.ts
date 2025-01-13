@@ -1,6 +1,7 @@
 export interface SocialMediaProps {
     src: string;
     alt: string;
+    href: string
   }
   
   export interface FooterLinkProps {

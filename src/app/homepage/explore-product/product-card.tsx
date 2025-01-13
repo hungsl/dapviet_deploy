@@ -5,6 +5,7 @@ import { ProductCardProps } from "../best-selling-product/types";
 import Link from "next/link";
 import productApiRequest from "@/apiRequests/product";
 import { formatCurrency } from "@/lib/utils";
+import Image from "next/image";
 
 export default function ProductCard() {
   const [products, setProducts] = useState<ProductCardProps[]>();
@@ -48,7 +49,9 @@ export default function ProductCard() {
           key={index}
           className={styles.productCard}
         >
-          <img
+          <Image
+            width={300}
+            height={300}
             loading="lazy"
             src={product.picture}
             alt={product.name}

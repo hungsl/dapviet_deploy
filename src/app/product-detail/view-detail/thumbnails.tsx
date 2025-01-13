@@ -25,7 +25,7 @@ export default function Thumbnail({ images }: { images: string[] }) {
           swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
         }}
         modules={[FreeMode, Navigation, Thumbs]}
-        className={styles.swiperMain}
+        className={`${styles.swiperMain} custom-main-swiper`}
       >
         {images.map((image, index) => (
           <SwiperSlide key={index}>
@@ -45,6 +45,7 @@ export default function Thumbnail({ images }: { images: string[] }) {
       </Swiper>
 
       {/* Thumbnail */}
+      {images.length > 1 && 
       <Swiper
         onSwiper={setThumbsSwiper}
         loop={true}
@@ -69,7 +70,7 @@ export default function Thumbnail({ images }: { images: string[] }) {
             </button>
           </SwiperSlide>
         ))}
-      </Swiper>
+      </Swiper>}
     </div>
   );
 }

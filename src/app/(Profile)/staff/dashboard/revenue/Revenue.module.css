@@ -128,6 +128,9 @@
     .revenueCard {
       padding: 0 20px;
     }
+    .chartContainer{
+      display: none;
+    }
     
     .chartContainer {
       gap: 20px;

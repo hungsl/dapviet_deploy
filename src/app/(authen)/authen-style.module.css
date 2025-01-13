@@ -277,8 +277,16 @@
     padding: 10px;
   }
   .loginPage{
-    padding: 0 10px 10px 10px;
-    border-radius: 2px;
+    padding: 0 20px 20px 20px;
+    border-radius: 10px;
+  }
+  .RegisterForm,
+  .loginForm{
+    width: 100%;
+  }
+
+  .boxLoginForm{
+    width: 100%;
   }
   .socialLoginButton,
   .loginButton{

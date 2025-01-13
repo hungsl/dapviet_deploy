@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Headers } from "../header/header";
 import { Footer } from "../footer/footer";
 import { Hero } from "./hero/hero";
+import Chat from "../chat/chat";
 export const metadata: Metadata = {
   title: "Tìm kiếm Việt phục",
   description:
@@ -33,6 +34,7 @@ export default async function LayoutSearchpage({
       <div className="flex justify-center">
         <Footer />
       </div>
+      <Chat/>
     </>
   );
 }

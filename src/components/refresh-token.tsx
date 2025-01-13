@@ -4,10 +4,12 @@ import { differenceInMinutes } from "date-fns";
 // import { useAppContext } from "@/app/context/app-provider";
 import authApiRequest from "@/apiRequests/auth";
 import { toast } from "@/hooks/use-toast";
+import { useAppContext } from "@/app/context/app-provider";
 // import { useLoading } from "@/app/context/loading-provider";
 
 export default function RefreshToken() {
   // const { setLoading } = useLoading();
+  const {setIsLoggedIn} = useAppContext() 
   // const [accessToken, setAccessToken] = useState<string | null>(null);
   const [refreshToken, setRefreshToken] = useState<string | null>(null);
   // const { refreshToken, accessToken, setAccessToken, setRefreshToken } =
@@ -50,9 +52,8 @@ export default function RefreshToken() {
     const refreshAccessToken = async () => {
       if (!refreshToken) return;
       try {
-        console.log("refreshToken: ", refreshToken);
+        // console.log("refreshToken: ", refreshToken);
 
-        console.log("chạy refreshtoken");
         const result = await authApiRequest.refreshToken({
           auth: refreshToken,
         });
@@ -68,6 +69,10 @@ export default function RefreshToken() {
         await fetchTokenExpireTime();
       } catch (error) {
         // eslint-disable-line @typescript-eslint/no-unused-vars
+        await authApiRequest.logoutFromNextClientToNextServer();
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("refreshToken");
+        setIsLoggedIn(false);
         console.log("lỗi khi refreshToken: ", error)
         toast({
           variant: "destructive",

@@ -5,7 +5,6 @@ import { ProductGridContainer } from "../product-relevant";
 import ProductDetail from "../view-detail/product-detail";
 import { Separator } from "@/components/ui/separator";
 import productApiRequest from "@/apiRequests/product";
-import { redirect } from "next/navigation";
 import { ProductDataType } from "@/schemaValidations/product.schema";
 import { cache } from "react";
 
@@ -19,8 +18,8 @@ type Props = {
 };
 
 export async function generateMetadata(
-  { params, searchParams }: Props,// eslint-disable-line @typescript-eslint/no-unused-vars
-  parent: ResolvingMetadata// eslint-disable-line @typescript-eslint/no-unused-vars
+  { params, searchParams }: Props, // eslint-disable-line @typescript-eslint/no-unused-vars
+  parent: ResolvingMetadata // eslint-disable-line @typescript-eslint/no-unused-vars
 ): Promise<Metadata> {
   const id = (await params).id;
   const result = await getDetail(id);
@@ -52,7 +51,7 @@ export async function generateMetadata(
 
 export default async function ProductDetailPage({
   params,
-  searchParams,// eslint-disable-line @typescript-eslint/no-unused-vars
+  searchParams, // eslint-disable-line @typescript-eslint/no-unused-vars
 }: Props) {
   const unwrappedParams = await params;
   let data: ProductDataType | null = null;
@@ -61,9 +60,16 @@ export default async function ProductDetailPage({
     // console.log("productdetail: ", result);
     data = result.payload.data;
   } catch (error) {
-    console.log("Lỗi khi lấy chi tiết sản phẩm: ",error)
-    redirect("/homepage");
+    console.log("Lỗi khi lấy chi tiết sản phẩm: ", error);
+    // redirect("/homepage");
   }
+  if (!data)
+    return (
+      <div className="flex justify-center items-center h-screen flex-col relative">
+        <div className="absolute">Loading</div>
+        <div className="w-16 h-16 border-4 border-t-4 border-blue-500 border-dotted rounded-full animate-spin"></div>
+      </div>
+    );
   return (
     <div>
       <ProductDetail data={data} />

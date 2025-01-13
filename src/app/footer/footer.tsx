@@ -10,14 +10,17 @@ export const Footer: React.FC = () => {
     {
       src: "/homepage/benefit-login/facebook.png",
       alt: "Facebook",
+      href: "https://www.facebook.com/DongQuanTram.HongNhienVu?mibextid=kFxxJD"
     },
     {
       src: "/homepage/footer/iconyoutube.png",
       alt: "YouTube",
+      href: "https://www.youtube.com/"
     },
     {
       src: "/homepage/footer/iconTiktok.png",
       alt: "Social Media Icon",
+      href: "https://www.tiktok.com/@elysian.raiment?_t=ZS-8t240NGgHWq&_r=1"
     },
   ];
 

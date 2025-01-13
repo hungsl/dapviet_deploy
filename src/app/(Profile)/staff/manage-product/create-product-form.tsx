@@ -48,6 +48,7 @@ export default function CreateProductForm() {
   useEffect(() => {
     const fetchProductDetail = async () => {
       try {
+        setLoading(true)
         const type = await productApiRequest.typeProductsStaff();
         setTypes(type.payload.data);
         const collection =
@@ -57,6 +58,8 @@ export default function CreateProductForm() {
         setSizes(size.payload.data);
       } catch (error) {
         console.log("fail to get Detail Product: ", error);
+      }finally{
+        setLoading(false)
       }
     };
     fetchProductDetail();

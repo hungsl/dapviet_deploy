@@ -49,11 +49,12 @@ export const Sidebar: React.FC = ({}) => {
   const handleLogout = async () => {
     try {
       await authApiRequest.logoutFromNextClientToNextServer();
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
       router.push("/homepage");
+      // router.push('/login')
     } catch (error) {
       handleErrorApi({ error });
-    } finally {
-      router.refresh();
     }
   };
   return (

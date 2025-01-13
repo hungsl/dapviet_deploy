@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Headers } from "../header/header";
 import { Footer } from "../footer/footer";
 import DapViet from "./dapviet/dap-viet";
+import Chat from "../chat/chat";
 
 export const metadata: Metadata = {
   title: "Đắp Việt - Cửa hàng Việt phục truyền thống",
@@ -26,6 +27,7 @@ export default async function LayoutAuthen({
       <div className="flex justify-center">
         <Footer />
       </div>
+      <Chat />
     </>
   );
 }

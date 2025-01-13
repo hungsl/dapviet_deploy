@@ -115,14 +115,12 @@ export const QrPayment: React.FC = () => {
     };
 
     fetchData();
-  }, [ shippingFee, shippingMethod]);
+  }, [shippingFee, shippingMethod]);
 
   // Tính toán phút và giây từ tổng số giây
   const minutes = Math.floor(seconds / 60);
   const remainingSeconds = seconds % 60;
-  const createNotification = useMutation(
-    api.notification.createNotification
-  );
+  const createNotification = useMutation(api.notification.createNotification);
   const handleCheckPaid = async () => {
     if (isChecking || isPaymentSuccess) return; // Nếu đang xử lý, không thực hiện thêm
 
@@ -136,44 +134,46 @@ export const QrPayment: React.FC = () => {
       });
       const data = await response.json();
       // console.log(data.data.records);
-      const lastPaid = data.data.records[data.data.records.length - 1];
+      // const lastPaid = data.data.records[data.data.records.length - 1];
+      const lastThreePaid = data.data.records.slice(-3);
+      const isValid = lastThreePaid.some(
+        (record: { amount: number; description: string }) =>
+          record.amount >= totalPrice && record.description === description
+      );
       // console.log(lastPaid);
       // console.log(lastPaid.description);
       // console.log(totalPrice)
       // console.log(description)
       // console.log(myBank.Description);
-      if (
-        lastPaid.amount >= totalPrice &&
-        lastPaid.description === description
-      ) {
+      if (isValid) {
         try {
           setIsChecking(true);
           setLoading(true);
-        //     const simulateApiCall = (delay: number) => {//tesst
-        //   return new Promise((resolve, reject) => {
-        //     setTimeout(() => {
-        //       // Giả lập thành công
-        //       resolve({ payload: { message: "API call successful" } });
-        //       // Hoặc giả lập lỗi
-        //       // reject(new Error('API call failed'));
-        //     }, delay); // Delay thời gian giả lập
-        //   });
-        // };
-        //   const result = await simulateApiCall(10000);
-        //   console.log(result);
-        //   toast({
-        //     duration: 2000,
-        //     description: (result as any).payload.message,
-        //   });
+          //     const simulateApiCall = (delay: number) => {//tesst
+          //   return new Promise((resolve, reject) => {
+          //     setTimeout(() => {
+          //       // Giả lập thành công
+          //       resolve({ payload: { message: "API call successful" } });
+          //       // Hoặc giả lập lỗi
+          //       // reject(new Error('API call failed'));
+          //     }, delay); // Delay thời gian giả lập
+          //   });
+          // };
+          //   const result = await simulateApiCall(10000);
+          //   console.log(result);
+          //   toast({
+          //     duration: 2000,
+          //     description: (result as any).payload.message,
+          //   });
           ///////////////////////////////////////
           const result = await cartApiRequest.completeOrder(
-            body as CheckoutOrderType,
+            body as CheckoutOrderType
           );
           // console.log(result);
           toast({
             description: result.payload.message,
           });
-         
+
           const notificationText = `Bạn đã thanh toán thành công, hóa đơn đặt hàng đã được gửi qua Email`;
 
           createNotification({
@@ -218,7 +218,8 @@ export const QrPayment: React.FC = () => {
             <strong>Số tiền:</strong> {formatCurrency(totalPrice)}
           </p>
           <p className="flex justify-center gap-3">
-            <strong>Nội dung:</strong> <div className="text-orange-500">{description}</div>
+            <strong>Nội dung:</strong>{" "}
+            <div className="text-orange-500">{description}</div>
           </p>
           <p>
             <strong>Người nhận:</strong> {myBank.Account_name}

@@ -9,23 +9,20 @@ import {
 } from "@/schemaValidations/order.schema";
 
 const orderApiRequest = {
-  ordersList: (accessToken: string) =>
-    http.get<OrdersListResType>("orders/current?size=100", {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    }),
-    updateOrderAddress: (id: string, data: UpdateInfoOrderType) =>
-    http.put<OrdersListResType>(`/orders/${id}/staff`,data,),
-    
+  ordersList: () =>
+    http.get<OrdersListResType>("orders/current?size=100"),
+  updateOrderAddress: (id: string, data: UpdateInfoOrderType) =>
+    http.put<OrdersListResType>(`/orders/${id}/staff`, data),
+
   ordersCompletedList: (
-    page: number ,
-    size: number ,
-    direction: string,
+    page: number,
+    size: number,
+    direction: string
     // properties: string
   ) =>
     http.get<OrdersCompletedListResType>(
-      `orders/order-details/current?page=${page}&size=${size}&direction=${direction}`),
+      `orders/order-details/current?page=${page}&size=${size}&direction=${direction}`
+    ),
   staffOrdersList: (
     search = "",
     page = 1,
@@ -49,7 +46,7 @@ const orderApiRequest = {
       },
     }),
   staffOrderCancel: (id: string) =>
-    http.delete<OrderDetailsResType>(`/orders/${id}/staff`,{}),
+    http.delete<OrderDetailsResType>(`/orders/${id}/staff`, {}),
   staffNextStatusOrderDetail: (id: string, accessToken: string) =>
     http.put<OrderDetailsResType>(
       `/orders/${id}/next-status/staff`,
@@ -70,11 +67,7 @@ const orderApiRequest = {
         },
       }
     ),
-  transactionsList: (accessToken: string) =>
-    http.get<TransactionsListResType>(`orders/transactions/current`, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    }),
+  transactionsList: () =>
+    http.get<TransactionsListResType>(`orders/transactions/current`),
 };
 export default orderApiRequest;

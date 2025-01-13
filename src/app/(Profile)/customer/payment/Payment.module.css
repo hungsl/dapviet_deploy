@@ -81,4 +81,7 @@
   .container{
     padding: 15px;
   }
+  .outline{
+    height: 500px;
+  }
 }

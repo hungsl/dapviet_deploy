@@ -29,6 +29,7 @@ export interface LegendItemProps {
 export interface BarProps {
   height: number;
   color: string;
+  label: number;
 }
 
 export interface YAxisLabelProps {
@@ -48,9 +49,8 @@ export interface BarChartDataPoint {
 }
 
 export interface RevenueProps {
-  amount: string;
+  amount: number;
   percentageChange: number;
-  promotionPeriod: string;
   chartData: BarChartDataPoint[];
 }
 
@@ -70,9 +70,22 @@ export type ProductCollection = {
 
 export type CollectionsType = ProductCollection[];
 
-
 export type Types = ProductType[];
 
 export type SizeQuantities = {
   [key: string]: number;
+};
+
+export type dataDashboard = {
+  totalNewUsers: number;
+  totalOldUsers: number;
+  totalPendingOrders: number;
+  totalAwaitingPickupOrders: number;
+  totalAwaitingDeliveryOrders: number;
+  totalInTransitOrders: number;
+  totalDeliveredOrders: number;
+  totalCanceledOrders: number;
+  totalSell: number;
+  totalRevenueThisWeek: number;
+  totalRevenueLastWeek: number;
 };

@@ -186,6 +186,12 @@
     .statsContainer {
       flex-direction: column;
     }
+    .chart img{
+      height: 100px;
+    }
+    .pieimg{
+      justify-content: start;
+    }
     
     .chartsContainer {
       flex-direction: column;

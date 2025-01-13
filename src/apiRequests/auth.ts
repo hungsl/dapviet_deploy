@@ -12,9 +12,11 @@ import {
   resetPasswordBodyType,
   resetPasswordResType,
 } from "@/schemaValidations/auth.schema";
+import { CartResType } from "@/schemaValidations/cart";
 import { MessageResType } from "@/schemaValidations/common.schema";
 
 const authApiRequest = {
+  verifyEmail: (token: string) => http.get<CartResType>(`/users/auth/email/verify?token=${token}`),
   loginByGoogle: (body: LoginGoogleBodyType) =>
     http.post<LoginResType>("users/auth/login/google", body),
   login: (body: LoginBodyType) =>

@@ -4,8 +4,8 @@ import styles from "./Contact.module.css";
 import { ContactInfo } from "./contact-info";
 
 const contactInfo = [
-  { icon: "/about/EMAILcontact.png", text: "SaulDesign@gmail.com" },
-  { icon: "/about/phone.png", text: "+123 456 789" },
+  { icon: "/about/EMAILcontact.png", text: "nextrad.dapviet@gmail.com" },
+  { icon: "/about/phone.png", text: "0846 533 850" },
   {
     icon: "/about/location.png",
     text: "Đường D1, Đ. D1, Long Thạnh Mỹ, Thủ Đức, Hồ Chí Minh",
@@ -35,7 +35,7 @@ export default function ContactPage() {
             {/* Thêm icon mạng xã hội */}
             <div className={styles.socialIcons}>
               <a
-                href="https://facebook.com"
+                href="https://www.facebook.com/DongQuanTram.HongNhienVu?mibextid=kFxxJD"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.iconLink}

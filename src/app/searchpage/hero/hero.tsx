@@ -11,7 +11,7 @@ export const Hero: React.FC<HeroProps> = ({ backgroundImageUrl, content }) => {
       <Image
         width={1000}
         height={1000}
-        quality={100}
+        quality={75}
         priority
         src={backgroundImageUrl}
         className={styles.backgroundImage}

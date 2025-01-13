@@ -174,7 +174,7 @@ export default function RegisterForm() {
         </div>
         <SocialLoginButton
           provider="Google"
-          icon="/login/google.png "
+          icon="/login/google.png"
           message="Đăng ký bằng"
         />
         {/* <SocialLoginButton

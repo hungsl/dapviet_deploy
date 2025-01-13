@@ -471,12 +471,13 @@
 
 
 .svgWrapper {
-  background-color: rgba(0, 0, 0, 0.7); /* Nền đen với độ mờ */
+  background-color: rgba(211, 211, 211, 0.8); /* Màu xám nhạt với độ mờ */
   display: flex;
   height: 100%;
   justify-content: center;
   align-items: center;
 }
+
 
 .noProductsMessage {
   grid-column: span 3; /* Tạo ra một dòng chiếm hết chiều rộng */

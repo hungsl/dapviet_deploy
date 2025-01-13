@@ -14,18 +14,22 @@ export default function ProductGrid() {
     const fetchProducts = async () => {
       try {
         const result = await productApiRequest.topProducts();
-        setData(result.payload.data)
+        setData(result.payload.data);
       } catch (error) {
         console.error("Failed to fetch products:", error);
       }
     };
-    fetchProducts()
+    fetchProducts();
   }, []);
   if (!data)
     return (
-      <div className="flex justify-center items-center h-screen">
-        <div className="w-16 h-16 border-4 border-t-4 border-blue-500 border-dotted rounded-full animate-spin"></div>
-      </div>
+      <>
+        <h1 className={styles.festivalTitle}>Sản Phẩm Bán Chạy</h1>
+        <div className="flex justify-center items-center h-screen flex-col relative">
+          <div className="absolute">Loading</div>
+          <div className="w-16 h-16 border-4 border-t-4 border-blue-500 border-dotted rounded-full animate-spin"></div>
+        </div>
+      </>
     );
   return (
     <>

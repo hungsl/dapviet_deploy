@@ -41,7 +41,7 @@ export default function RefreshToken() {
         new Date(expiresAt.getTime()),
         now
       );
-      console.log("Còn lại:", remainingTime, "phút");
+      // console.log("Còn lại:", remainingTime, "phút");
       if (remainingTime < 10) {
         // console.log("refreshToken do hết thời gian");
         await refreshAccessToken();
@@ -94,7 +94,7 @@ export default function RefreshToken() {
 
     const initializeExpireTime = async () => {
       // Nếu chưa có accessToken, làm mới token trước
-      console.log("Kiểm tra thời gian hết hạn");
+      // console.log("Kiểm tra thời gian hết hạn");
       await fetchTokenExpireTime();
     };
     initializeExpireTime();

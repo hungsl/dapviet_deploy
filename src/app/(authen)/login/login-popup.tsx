@@ -13,7 +13,7 @@ export default function LoginPopup() {
               <Image
                 width={300}
                 height={300}
-                loading="lazy"
+                priority
                 src="/login/Vector.png"
                 alt="Viet Phuc Logo"
                 className={styles.logo}
@@ -43,7 +43,7 @@ export default function LoginPopup() {
               width={500}
               height={500}
               quality={100}
-              loading="lazy"
+              priority
               src="/login/vietphuclogin.jpg"
               alt="Traditional Vietnamese clothing showcase"
               className={styles.showcaseImage}

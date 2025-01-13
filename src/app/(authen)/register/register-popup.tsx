@@ -13,7 +13,7 @@ export default function RegisterPopup() {
               <Image
                 width={300}
                 height={300}
-                loading="lazy"
+                priority
                 src="/login/Vector.png"
                 alt="Viet Phuc Logo"
                 className={styles.logo}

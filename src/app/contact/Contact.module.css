@@ -1,0 +1,210 @@
+.contactForm {
+    border-radius: 24px;
+    background: rgba(232, 246, 255, 1);
+    padding: 54px 64px;
+    overflow: hidden;
+    margin: 0 60px;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
+  }
+  .header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    border-radius: 8px; /* Bo góc mềm mại */
+  }
+  
+  .title {
+    font-size: 50px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .description  {
+    font-size: 18px;
+    line-height: 1.5;
+  }
+  
+  .formContainer {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .leftSection {
+    width: 42%;
+  }
+  
+  .formTitle {
+    font: 700 48px Poppins, sans-serif;
+    color: #000;
+  }
+  
+  .contactInfoContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 91px;
+  }
+  
+  .contactInfoItem {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 24px;
+    color: #000;
+    border-radius: 16px;
+    font: 500 20px Poppins, sans-serif;
+  }
+  
+  .contactIcon {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+  }
+  
+  .decorativeImage {
+    width: 228px;
+    margin: 233px 0 0 24px;
+  }
+  
+  .rightSection {
+    width: 58%;
+  }
+  
+  .formWrapper {
+    background: #fff;
+    border-radius: 24px;
+    padding: 48px;
+    font: 500 20px Poppins, sans-serif;
+  }
+  
+  .interestSection {
+    text-align: center;
+  }
+  
+  .interestTitle {
+    color: rgba(46, 2, 73, 1);
+    margin-bottom: 24px;
+  }
+  
+  .interestGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    color: #000;
+  }
+  
+  .interestButton {
+    border-radius: 8px;
+    padding: 16px;
+    border: 2px solid rgba(46, 2, 73, 0.3);
+    min-width: 137px;
+  }
+  
+  .activeInterest {
+    background: rgba(84, 189, 255, 1);
+    color: rgba(242, 250, 255, 1);
+    border: none;
+  }
+  .interestButton:hover{
+    background-color:rgba(84, 189, 255, 0.527); 
+    cursor: pointer;
+  }
+  
+  .formGroup {
+    margin-top: 64px;
+  }
+  
+  .formLabel {
+    color: rgba(46, 2, 73, 1);
+    width: 100%;
+    font-size: 20px;
+  }
+  
+  .inputUnderline {
+    height: 3px;
+    margin-top: 8px;
+    background: rgba(46, 2, 73, 0.3);
+    border: none;
+  }
+  
+  .submitButton {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: rgba(84, 189, 255, 1);
+    border-radius: 16px;
+    padding: 24px 64px;
+    border: none;
+    margin-top: 90px;
+    cursor: pointer;
+    font: inherit;
+  }
+  
+  .submitIcon {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .socialIcons {
+    display: flex;
+    gap: 15px;
+    margin-top: 40px;
+    justify-content: center;
+  }
+  
+  .iconLink img {
+    width: 32px;
+    height: 32px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  
+  .iconLink:hover img {
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+  @media (max-width: 991px) {
+    .contactForm {
+      padding: 20px 20px;
+      margin: 0;
+      width: 100%;
+    }
+    .contactInfoItem{
+      padding: 10px;
+    }
+    .interestGrid{
+      display: flex;
+      justify-content: space-between;
+    }
+    .formContainer {
+      flex-direction: column;
+    }
+  
+    .leftSection,
+    .rightSection {
+      width: 100%;
+    }
+  
+    .formTitle {
+      font-size: 40px;
+    }
+  
+    .contactInfoContainer {
+      margin-top: 40px;
+    }
+  
+    .decorativeImage {
+      margin: 40px 0 0 10px;
+    }
+  
+    .formWrapper {
+      margin-top: 40px;
+    }
+  
+    .submitButton {
+      margin-top: 40px;
+    }
+  }

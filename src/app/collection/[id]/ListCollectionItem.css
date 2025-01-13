@@ -1,0 +1,60 @@
+.swiper {
+  padding: 30px 0;
+}
+
+.swiper-wrapper {
+  left: 0px;
+}
+.headingss {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #222;
+  text-align: center;
+  margin: 40px 0;
+  border-bottom: 4px solid #ff5722; /* Đường viền dưới màu cam */
+  padding-bottom: 10px; /* Khoảng cách với viền */
+}
+
+img {
+  width: 100%; /* Hoặc một kích thước cụ thể ví dụ: 300px */
+  height: 500px; /* Đặt chiều cao cố định để đảm bảo đồng đều */
+  display: block; /* Đảm bảo ảnh không bị inline */
+  object-fit: cover; /* Cắt ảnh theo kích thước khung */
+  object-position: center; /* Đặt tâm ảnh trong khung */
+  overflow: hidden;
+}
+
+.card {
+  width: 300px;
+  padding: 10px;
+  padding: 0 0 0 0;
+  background-color: #e0f7fa; /* Màu pastel nhẹ nhàng */
+  border-radius: 5px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+.product-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 0;
+}
+
+@media (max-width: 428px) {
+    .swiper {
+        overflow: visible;
+      }
+  .img {
+    width: 100%;
+    max-width: 100%; /* Đảm bảo không vượt kích thước cha */
+    height: 200px; /* Điều chỉnh chiều cao động */
+    display: block;
+  }
+  .headingss{
+    font-size: 24px;
+  }
+  .card {
+    min-width: 100px;
+      padding: 0px;
+      font-size: 8px;
+  }
+}

@@ -1,0 +1,127 @@
+.container {
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    width: 40%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    height: 80%;
+    padding: 27px 80px;
+  }
+  .countdown {
+    font-size: 24px; /* Điều chỉnh kích thước chữ */
+    font-weight: bold; /* Làm cho chữ đậm hơn */
+    color: #ff0000; /* Màu chữ đỏ để thu hút sự chú ý */
+    text-align: center; /* Canh giữa chữ */
+    transition: font-size 0.3s ease-in-out; /* Thêm hiệu ứng thay đổi kích thước nếu cần */
+  }
+  .backButton {
+    border: 0.5px solid #e4e4e4;
+    padding: 8px 14px;
+    color: #000;
+  }
+  .backButton:hover{
+    transform: scale(1.05);
+  }
+  @media (max-width: 991px) {
+    .container {
+      max-width: 100%;
+      padding: 0 20px;
+    }
+  }
+  
+  .wrapper {
+    display: flex;
+    width: 100%;
+    max-width: 712px;
+    max-height: 90%;
+    flex-direction: column;
+  }
+  
+  @media (max-width: 991px) {
+    .wrapper {
+      max-width: 100%;
+    }
+  }
+  
+  .title {
+    margin: 0 49px 0 61px;
+    text-align: center;
+    font: 700 32px Montserrat, -apple-system, Roboto, Helvetica, sans-serif;
+  }
+  
+  @media (max-width: 991px) {
+    .title {
+      max-width: 100%;
+      margin-right: 10px;
+    }
+  }
+  
+  .description {
+    text-align: center;
+    color: red;
+    margin-top: 10px;
+  }
+  
+  @media (max-width: 991px) {
+    .description {
+      max-width: 100%;
+    }
+    .warningMessage {
+      background-color: rgba(255, 0, 0, 0.7); /* Màu nền đỏ nhạt */
+      color: white; /* Màu chữ trắng */
+      padding: 10px 20px; /* Khoảng cách bên trong */
+      border-radius: 5px; /* Góc bo tròn */
+      position: fixed; /* Đảm bảo thông báo luôn xuất hiện trên màn hình */
+      bottom: 5%; /* Vị trí thông báo từ trên xuống */
+      left: 50%; /* Căn giữa theo chiều ngang */
+      transform: translateX(-50%); /* Căn giữa hoàn hảo */
+      font-weight: bold; /* In đậm chữ */
+      font-size: 14px; /* Kích thước chữ */
+      z-index: 1000; /* Đảm bảo thông báo luôn hiển thị trên các thành phần khác */
+    }
+  }
+  
+  .qrCode {
+    object-fit: contain;
+    object-position: center;
+    width: 469px;
+    align-self: center;
+    max-width: 100%;
+    aspect-ratio: 0.95;
+  }
+  .warningMessage {
+    background-color: rgba(255, 0, 0, 0.7); /* Màu nền đỏ nhạt */
+    color: white; /* Màu chữ trắng */
+    padding: 10px 20px; /* Khoảng cách bên trong */
+    border-radius: 5px; /* Góc bo tròn */
+    position: fixed; /* Đảm bảo thông báo luôn xuất hiện trên màn hình */
+    bottom: 10px; /* Vị trí thông báo từ trên xuống */
+    left: 50%; /* Căn giữa theo chiều ngang */
+    transform: translateX(-50%); /* Căn giữa hoàn hảo */
+    font-weight: bold; /* In đậm chữ */
+    font-size: 16px; /* Kích thước chữ */
+    z-index: 1000; /* Đảm bảo thông báo luôn hiển thị trên các thành phần khác */
+  }
+  .paymentInfo {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 18px;
+    color: #333;
+
+  }
+  
+  @media (max-width: 791px) {
+    .title{
+      margin: 0px;
+    }
+    .container{
+      width: 100%;
+      padding: 50px 20px;
+      margin-bottom: 100px;
+    }
+    .warningMessage{
+      width: 100%;
+    }
+  }

@@ -1,0 +1,84 @@
+.container {
+  padding: 2rem;
+  background-color: #e3f2fd; /* Màu xanh da trời nhạt */
+  border: 2px solid #0288d1; /* Viền xanh dương đậm */
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 600px; /* Đặt chiều rộng tối đa để giữ giao diện đẹp */
+  margin: 0 auto; /* Canh giữa phần tử */
+  margin-bottom: 20px;
+}
+.outline{
+  height: 680px;
+}
+.titleOrder{
+  color:#f57c00 !important;
+}
+.infoItem {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+.unpaid {
+  color: red !important;
+}
+.infoValue {
+  margin-left: 10px;
+  color: #212121;
+  font-weight: normal;
+}
+.feeShip{
+  color: #388e3c !important; 
+  font-weight: bold;
+}
+.parent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sectionTitle {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-top: 2rem;
+  text-align: center;
+  color: #333;
+}
+
+.totalAmount {
+  margin-top: 2rem;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #4caf50;
+  text-align: center;
+}
+
+/* Tạo khoảng cách giữa các phần tử thông qua padding */
+.infoItem strong {
+  font-weight: bold;
+  color: #333;
+}
+
+.infoValue {
+  color: #666;
+  font-size: 1rem;
+}
+.infoSection{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+@media (max-width: 791px) {
+  .infoItem,
+  .infoValue{
+    font-size: 14px;
+  }
+  .totalAmount{
+    font-size: 16px;
+  }
+  .container{
+    padding: 15px;
+  }
+}

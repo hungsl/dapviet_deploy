@@ -1,0 +1,330 @@
+/* RatingPage.module.css */
+.container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+  }
+  
+  .productInfo {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+    border-bottom: 1px solid #ddd;
+  }
+  .statusSection {
+    margin-bottom: 16px;
+    font-size: 1rem;
+  }
+  
+  .statusValue {
+    font-weight: bold;
+    padding: 0.5rem;
+    border-radius: 8px;
+    display: inline-block;
+  }
+  
+  .statusPending {
+    color: #f39c12;
+    background-color: #fef5e7;
+  }
+  
+  .statusAwaitingPickup {
+    color: #3498db;
+    background-color: #eaf6fc;
+  }
+  
+  .statusAwaitingDelivery {
+    color: #9b59b6;
+    background-color: #f4eafc;
+  }
+  
+  .statusInTransit {
+    color: #e67e22;
+    background-color: #fcf3e4;
+  }
+  
+  .statusDelivered {
+    color: #27ae60;
+    background-color: #eafaf1;
+  }
+  
+  .statusCancel {
+    color: rgb(255, 69, 69); /* Giữ màu chữ đỏ tươi */
+  background-color: #ffebee; /* Nền sáng với sắc hồng nhạt */
+  }
+  
+  .statusUnknown {
+    color: #95a5a6;
+    background-color: #ecf0f1;
+  }
+  
+  .productInfo img {
+    max-width: 100px;
+    border-radius: 8px;
+  }
+  
+  .productDetails {
+    flex-grow: 1;
+    padding-left: 20px;
+  }
+  
+  .productName {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .productDescription {
+    display: -webkit-box;
+    -webkit-line-clamp: 5; /* Giới hạn 3 dòng */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .searchFilter{
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  .rating{
+    margin-top: 20px;
+    display: flex;
+    align-items: center; /* Căn giữa theo chiều ngang */
+    justify-content: start; /* Căn giữa theo chiều dọc */
+    text-align: center; /* Căn giữa nội dung text (nếu có) */
+  }
+  .ratingSection {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .ratingLabel {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .starRating {
+    display: flex;
+    justify-content: start;
+  }
+  
+  .star {
+    font-size: 30px;
+    color: #ffd700;
+    cursor: pointer;
+    margin-right: 5px;
+  }
+  
+  .star:hover {
+    transform: scale(1.1);
+  }
+  
+  .commentSection {
+    margin-top: 30px;
+  }
+  
+  .commentInput {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    min-height: 100px;
+    margin-bottom: 20px;
+  }
+  
+  .submitButton {
+    background-color: #0057b3bb;
+    color: white;
+    padding: 12px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  .submitButton:hover {
+    background-color: #0056b3;
+  }
+
+
+/* Bảng chính */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.tableCaption {
+  text-align: left;
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.tableRow {
+  border-bottom: 1px solid #ddd;
+}
+
+.tableRow:hover {
+  background-color: #f9f9f9; /* Hiệu ứng hover cho hàng */
+}
+
+.tableHead {
+  text-align: left;
+  font-weight: bold;
+  padding: 10px;
+  background-color: #f3f3f3;
+}
+
+.tableCell {
+  padding: 10px;
+  text-align: left;
+}
+
+.textRight {
+  text-align: right;
+}
+
+.textCenter {
+  text-align: center;
+}
+.textCenter a{
+  padding: 8px 16px; /* px-4: padding-left, padding-right = 16px; py-2: padding-top, padding-bottom = 8px */
+  background-color: #3b82f6; /* bg-blue-500 */
+  color: #fff; /* text-white */
+  border-radius: 4px; /* rounded */
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+.button:hover {
+  background-color: #2563eb; /* bg-blue-600 */
+}
+.textCenter .top {
+  margin-right: 10px;
+  background-color: white;
+  color: black;
+  padding: 6px;
+  border: 1px solid #0056b3;;
+}
+ 
+/* Media query cho màn hình nhỏ (360px) */
+@media (max-width: 760px) {
+  .searchFilter{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: end;
+  }
+  .tableRow {
+    flex-direction: column; /* Chuyển về dạng cột */
+    padding: 15px;
+  }
+  .italic{
+    font-style: italic;
+  }
+  .bold{
+    font-weight: bold;
+  }
+
+  .Imgage {
+    align-self: flex-start;
+  }
+
+  .textRight {
+    font-size: 10px;
+    font-weight: 600;
+  }
+  .table thead {
+    display: none;
+  }
+  .submitButton{
+    font-size: 16px;
+  }
+  /* Tối ưu hóa từng hàng (row) thành một ô hình chữ nhật */
+  .tableRow {
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+  
+  /* Cấu hình cột hình ảnh */
+  .Imgage img {
+    width: 60px; /* Hình nhỏ lại */
+    height: 60px;
+    border-radius: 4px;
+    object-fit: cover;
+    margin-right: 10px;
+  }
+  
+  /* Vùng nội dung bên cạnh hình ảnh */
+  .tableCell {
+    flex: 1;
+    padding: 5px;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  /* Tên sản phẩm */
+  .font-medium {
+    font-weight: 600;
+    font-size: 16px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  
+  /* Phương thức thanh toán và tiền vận chuyển */
+  .tableCell:nth-child(3),
+  .tableCell:nth-child(4) {
+    font-size: 12px; /* Chữ nhỏ hơn */
+    color: #666;
+    margin: 0;
+  }
+  
+  /* Tổng tiền */
+  .textRight {
+    font-weight: bold;
+    font-size: 14px;
+    text-align: right;
+  }
+  .textCenter .top {
+    margin-right: 10px;
+    background-color: white;
+    color: black;
+    padding: 6px;
+    border: 1px solid #0056b3;;
+  }
+  /* Nút đánh giá */
+  .textCenter  {
+    display: inline-block;
+    font-size: 14px;
+    border-radius: 4px;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    margin-bottom: 10px;
+  }
+  
+  .tableRow{
+    padding-bottom: 0px;
+  }
+  .textCenter :hover {
+    background-color: #0056b3;
+  }
+}

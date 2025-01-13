@@ -1,0 +1,318 @@
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.bodyLogin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #f5f5f5;
+}
+.loginPage {
+  border-radius: 54px;
+  background-color: #fff;
+  padding: 0 38px 34px 0;
+  z-index: 20;
+  width: 70%;
+}
+
+.contentWrapper {
+  display: flex;
+  gap: 20px;
+}
+
+.loginSection {
+  width: 43%;
+  display: flex;
+  flex-direction: column;
+}
+
+.brandSection {
+  display: flex;
+  width: 100%;
+}
+
+.logoContainer {
+  width: 25%;
+}
+
+.logo {
+  border-radius: 50px 0px 0 0;
+
+  aspect-ratio: 0.99;
+  object-fit: contain;
+  width: 117px;
+}
+
+.brandContent {
+  width: 75%;
+  margin-left: 20px;
+  margin-top: 95px;
+  color: #1c1c1c;
+}
+
+.brandTitle {
+  font: 700 80px "Smooch Sans", sans-serif;
+  margin: 0;
+}
+.brandTitle .link:hover {
+  cursor: pointer; /* Đổi con trỏ thành dạng bàn tay */
+  color: #696969;
+  transition: transform 0.2s ease, color 0.2s ease; 
+}
+
+.brandDescription {
+  margin: 21px 13px 0 15px;
+  font: 400 14px Poppins, sans-serif;
+}
+.boxLoginForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.loginForm {
+  width: 80%;
+  max-width: 100%;
+  font: 12px Poppins, sans-serif;
+  background-color: #fff; /* Tùy chỉnh nếu cần */
+  padding: 40px 20px 0px 20px;
+  margin: 10px 0 0 50px;
+  border-radius: 8px;
+}
+.RegisterForm {
+  width: 80%;
+  max-width: 100%;
+  font: 12px Poppins, sans-serif;
+  background-color: #fff; /* Tùy chỉnh nếu cần */
+  padding: 15px 20px 0px 20px;
+  margin: 0px 0 0 50px;
+  border-radius: 8px;
+}
+
+.inputContainer {
+  border-radius: 13px;
+  background-color: #f2f2f2;
+  display: flex;
+  gap: 6px;
+  padding: 14px 18px;
+  margin-bottom: 24px;
+}
+.fieldInputChangePassword{
+  padding-right: 2.5rem; /* pr-10 */
+  width: 100%; /* w-full */
+  border-radius: 13px;
+  display: flex;
+  gap: 6px;
+  padding: 12px 18px;
+  background-color: #f2f2f2;
+  border-width: 1px;
+}
+
+.inputIcon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.inputField {
+  flex-grow: 1;
+  border: none;
+  background: transparent;
+  font: inherit;
+  color: #1c1c1c;
+}
+
+.loginButton {
+  width: 100%;
+  height: 50px;
+  border-radius: 13px;
+  background-color: #1c1c1c;
+  color: #fff;
+  font-weight: 700;
+  padding: 17px;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.registerPrompt {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  color: #000;
+  font-weight: 700;
+}
+
+.registerLink {
+  color: #1723ff;
+  font-weight: 300;
+  text-decoration: none;
+}
+.registerLink:hover{
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.socialLoginSection {
+  text-align: center;
+}
+
+
+.socialLoginTitle {
+  color: #1c1c1c;
+  font-size: 16px;
+  margin: 17px 0;
+}
+
+.socialLoginButton {
+  width: 100%;
+  border-radius: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 37px;
+  border: 1px solid #1c1c1c;
+  background: transparent;
+  margin-bottom: 21px;
+  cursor: pointer;
+}
+.socialLoginButton:hover {
+  background-color: #f1f1f1; /* Màu nền khi hover */
+  transform: scale(1.02); /* Phóng to nhẹ khi hover */
+  border-color: #0073e6; /* Đổi màu viền khi hover */
+}
+.socialLoginTitleContainer {
+  display: flex;
+  align-items: center;
+  gap: 16px; /* Khoảng cách giữa chữ và đường kẻ */
+}
+
+.socialLoginTitleContainer::before,
+.socialLoginTitleContainer::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background-color: #ccc; /* Màu của đường kẻ */
+}
+
+.socialIcon {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+
+.imageSection {
+  width: 57%;
+}
+
+.imageWrapper {
+  position: relative;
+  border-radius: 40px;
+  min-height: 700px;
+  margin-top: 34px;
+}
+
+.showcaseImage {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 40px;
+}
+
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  border-radius: 40px;
+  background-color: rgba(71, 95, 252, 0.1);
+}
+@media (max-width: 760px) {
+  .brandContent,
+  .logoContainer{
+    margin: 0px 0;
+  }
+  .logo{
+    display: none;
+  }
+  .brandContent{
+    margin: 10px 0;
+  }
+  .socialLoginTitle{
+    display: none;
+  }
+  .link{
+    font-size: 25px;
+  }
+  .loginButton{
+    padding: 0px;
+  }
+  .registerPrompt,
+  .registerLink,
+  .loginButton,
+  .inputContainer,
+  .brandDescription{
+    font-size: 12px;
+  }
+  .RegisterForm,
+  .loginForm{
+    padding: 0;
+    margin-left: 0px;
+  }
+  .boxLoginForm{
+    display: flex;
+    justify-content: center;
+  }
+  .socialLoginButton{
+    padding: 10px;
+  }
+  .loginPage{
+    padding: 0 10px 10px 10px;
+    border-radius: 2px;
+  }
+  .socialLoginButton,
+  .loginButton{
+    height: 40px;
+    margin-top: 10px;
+  }
+  
+}
+@media (max-width: 991px) {
+  
+
+  .contentWrapper {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .loginSection{
+    width: 100%;
+  }
+  .imageSection {
+    display: none;
+  }
+
+  .brandTitle {
+    font-size: 40px;
+  }
+
+  .brandDescription {
+    display: none;
+  }
+
+  
+
+  .imageWrapper {
+    margin-top: 40px;
+  }
+}

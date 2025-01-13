@@ -1,0 +1,64 @@
+.card {
+    justify-content: space-between;
+    align-items: start;
+    border: 1px solid var(--gray, #e4e4e4);
+    display: flex;
+    width: 100%;
+    padding: 16px 24px;
+  }.card:hover{
+    background-color: #ebebebce;
+    cursor: pointer;
+  }
+  
+  .cardSelected {
+    background-color: #c8c9c9;
+  }
+  
+  .content {
+    display: flex;
+    min-width: 240px;
+    align-items: start;
+    gap: 16px;
+    font-weight: 400;
+  }
+  
+  .radio {
+    border-radius: 50px;
+    border: 1px solid var(--black, #000);
+    width: 20px;
+    height: 20px;
+    display: flex;
+  }
+  
+  .radioSelected {
+    border: 5px solid var(--primary, #7c3fff);
+  }
+  
+  .details {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .title {
+    font-size: 16px;
+  }
+  
+  .description {
+    font-size: 12px;
+    margin-top: 8px;
+  }
+  
+  .price {
+    font-size: 16px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  
+  @media (max-width: 991px) {
+    .card {
+      max-width: 100%;
+      padding: 10px 20px;
+      height: 70px;
+    }
+    
+  }

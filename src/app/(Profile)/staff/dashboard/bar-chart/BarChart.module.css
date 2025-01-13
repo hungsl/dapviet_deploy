@@ -1,0 +1,209 @@
+.charts {
+    display: flex;
+    min-width: 328px;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+  }
+  
+  .chartContainer {
+    display: flex;
+    min-width: 328px;
+    width: 100%;
+    flex-direction: column;
+    justify-content: start;
+  }
+  
+  .chartWrapper {
+    border-radius: 8px;
+    background-color: #fff;
+    display: flex;
+    min-width: 328px;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .chartHeader {
+    border-bottom: 1px solid #e1e7ec;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: start;
+    color: var(--Color-Grey-800, #222529);
+    white-space: nowrap;
+    justify-content: center;
+    padding: 0 24px 12px;
+    font: 700 18px/1 Inter, sans-serif;
+  }
+  
+  .chartTitle {
+    gap: 10px;
+  }
+  
+  .chartContent {
+    position: relative;
+    display: flex;
+    margin-top: 32px;
+    width: 100%;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    padding: 0 16px;
+  }
+  
+  .gridLine {
+    aspect-ratio: 500;
+    object-fit: contain;
+    object-position: center;
+    width: 468px;
+    position: absolute;
+    z-index: 0;
+    max-width: 100%;
+    left: 69px;
+    right: 21px;
+    top: -1px;
+    bottom: 102px;
+  }
+  
+  .barContainer {
+    align-self: stretch;
+    z-index: 0;
+    display: flex;
+    width: 100%;
+    padding-right: 16px;
+    align-items: end;
+    gap: 16px;
+    justify-content: start;
+    flex-wrap: wrap;
+  }
+  
+  .yAxis {
+    display: flex;
+    flex-direction: column;
+    color: var(--Color-Grey-400, #b8c4ce);
+    text-align: right;
+    font: 400 10px/1.2 DM Sans, -apple-system, Roboto, Helvetica, sans-serif;
+  }
+  .dotPending {
+    background-color: #62B2FD;
+    width: 10px;
+    border-radius: 50px;
+    /* Các style khác cho icon Pending */
+  }
+  
+  .dotProcessed {
+    background-color: #9BDFC4;
+    width: 10px;
+    border-radius: 50px;
+    /* Các style khác cho icon Processed */
+  }
+  
+  .dotShipping {
+    background-color: #F99BAB;
+    width: 10px;
+    border-radius: 50px;
+    /* Các style khác cho icon Shipping */
+  }
+  .legendIconWrapper {
+    display: flex;             /* Đặt icon và label trên cùng một hàng */
+    align-items: center;       /* Căn chỉnh theo chiều dọc (ngang hàng) */
+    gap: 8px;                  /* Khoảng cách giữa icon và label */
+  }
+  .dotComplete {
+    background-color: #FFB44F;
+    border-radius: 50px;
+    width: 10px;
+    /* Các style khác cho icon Completed */
+  }
+  
+  .yAxisLabel {
+    z-index: 10;
+    display: flex;
+    padding-left: 6px;
+    flex-direction: column;
+    align-items: start;
+    white-space: nowrap;
+    font-size: small;
+  }
+  .label{
+    font-size: large;
+    font-weight: normal;
+  }
+  
+  .yAxisTitle {
+    align-self: start;
+    z-index: 10;
+    margin-top: 28px;
+    font-size: medium;
+    white-space: nowrap;
+  }
+  
+  .barGroup {
+    display: flex;
+    min-width: 240px;
+    min-height: 100px;
+    align-items: end;
+    gap: 12px;
+    justify-content: start;
+    flex: 1;
+    flex-basis: 0%;
+  }
+  
+  .bar {
+    border-radius: 2px 2px 0 0;
+    display: flex;
+    width: 83px;
+    flex: 1;
+    flex-basis: 0%;
+  }
+  
+  .legendContainer {
+    display: flex;
+    margin-top: 32px;
+    width: 100%;
+    align-items: start;
+    gap: 16px;
+    color: var(--Color-Grey-500, #8c97a7);
+    white-space: nowrap;
+    justify-content: start;
+    flex-wrap: wrap;
+    padding: 0 16px;
+    font: 400 10px/1.2 DM Sans, -apple-system, Roboto, Helvetica, sans-serif;
+  }
+  
+  .legendItem {
+    display: flex;
+    gap: 8px;
+    overflow: hidden;
+    justify-content: space-around;
+  }
+  
+  .legendIcon {
+    aspect-ratio: 1;
+    object-fit: contain;
+    object-position: center;
+    width: 8px;
+    align-self: stretch;
+    margin: auto 0;
+  }
+  
+  @media (max-width: 991px) {
+    .chartContainer,
+    .chartWrapper,
+    .chartHeader,
+    .chartTitle,
+    .chartContent,
+    .barContainer,
+    .yAxisLabel,
+    .barGroup,
+    .legendContainer,
+    .legendItem {
+      max-width: 100%;
+      white-space: initial;
+    }
+    
+    .chartHeader {
+      padding: 0 20px;
+    }
+  }

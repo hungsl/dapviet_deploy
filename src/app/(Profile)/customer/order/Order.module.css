@@ -1,0 +1,226 @@
+/* OrderDetail.module.css */
+.container {
+  padding: 16px 34px;
+  border: 1px solid #e5e7eb; /* màu xám sáng */
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+.parent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.title {
+  font-size: 1.125rem; /* 18px */
+  font-weight: 600;
+}
+.tableOrder{
+  max-height: 200px;
+}
+.sectionTitle {
+  font-weight: 600;
+  margin-top: 10px;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+}
+.actionButtons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px; /* Khoảng cách giữa các nút */
+  margin: 20px 0; /* Khoảng cách phía trên */
+}
+
+.actionButtons button {
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.actionButtons button:first-child {
+  background-color: #f5f5f5;
+  color: #333;
+  border: 1px solid #ccc;
+}
+
+.actionButtons button:first-child:hover {
+  background-color: #e0e0e0;
+}
+
+.actionButtons button:last-child {
+  background-color: #007bff;
+  color: white;
+  border: none;
+}
+
+.actionButtons button:last-child:hover {
+  background-color: #0056b3;
+}
+
+.table {
+  min-width: 100%;
+  margin-top: 16px;
+  height: 100px;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 8px 16px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.table th {
+  text-align: left;
+}
+
+.totalAmount {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+  font-weight: 600;
+  font-size: 20px;
+}
+/* OrderDetail.module.css */
+.infoSection {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+  gap: 15px;
+}
+
+.infoItem {
+  margin-bottom: 12px;
+  font-size: 1rem; /* Cỡ chữ thông thường */
+}
+
+.infoItem strong {
+  font-weight: 600; /* Đậm cho tiêu đề */
+  color: #333; /* Màu chữ tiêu đề */
+}
+
+.infoValue {
+  margin-left: 8px;
+  color: #555; /* Màu chữ thông tin */
+}
+.statusSection {
+  /* margin-bottom: 16px; */
+  font-size: 1rem;
+}
+
+.statusValue {
+  font-weight: bold;
+  padding: 0.5rem;
+  border-radius: 8px;
+  display: inline-block;
+}
+
+.statusPending {
+  color: #f39c12;
+  background-color: #fef5e7;
+}
+
+.statusAwaitingPickup {
+  color: #3498db;
+  background-color: #eaf6fc;
+}
+
+.statusAwaitingDelivery {
+  color: #9b59b6;
+  background-color: #f4eafc;
+}
+
+.statusInTransit {
+  color: #e67e22;
+  background-color: #fcf3e4;
+}
+
+.statusDelivered {
+  color: #27ae60;
+  background-color: #eafaf1;
+}
+
+.statusUnknown {
+  color: #95a5a6;
+  background-color: #ecf0f1;
+}
+
+@media (max-width: 760px) {
+  .container {
+    padding: 12px;
+    margin: 0 20px;
+    max-width: 290px;
+  }
+
+  .text-center h1 {
+    font-size: 20px;
+    line-height: 1.2;
+  }
+
+  .infoSection {
+    gap: 2px;
+  }
+
+  .table th,
+  .table td {
+    padding: 6px;
+    font-size: 12px;
+  }
+
+  .sectionTitle {
+    font-size: 16px;
+  }
+  .actionButtons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px; /* Khoảng cách giữa các nút */
+    margin-top: 20px; /* Khoảng cách phía trên */
+  }
+
+  .totalAmount p {
+    margin-top: 10px;
+    font-size: 14px;
+  }
+  .infoSection {
+    font-size: 0.9rem; /* Giảm kích thước chữ của toàn bộ thông tin người nhận */
+  }
+
+  .infoSection strong {
+    font-size: 1rem; /* Tăng chút độ nổi bật cho tiêu đề */
+  }
+
+  .infoSection .infoValue {
+    font-size: 0.85rem; /* Nhỏ hơn một chút để tiết kiệm không gian */
+  }
+
+  .statusSection {
+    font-size: 1rem;
+  }
+
+  .statusValue {
+    font-size: 0.95rem;
+  }
+
+  .tableOrder {
+    font-size: 0.85rem; /* Giảm kích thước chữ trong bảng */
+    overflow-x: auto; /* Đảm bảo bảng có thể cuộn ngang nếu cần */
+  }
+
+  .table th, .table td {
+    font-size: 0.8rem; /* Kích thước chữ nhỏ hơn */
+    padding: 8px; /* Điều chỉnh khoảng cách */
+  }
+
+  .sectionTitle {
+    font-size: 1rem; /* Làm nổi bật tiêu đề của phần sản phẩm */
+  }
+
+  .totalAmount {
+    font-size: 1rem; /* Giữ chữ của tổng tiền dễ nhìn */
+  }
+}

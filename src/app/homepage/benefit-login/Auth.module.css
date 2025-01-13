@@ -1,0 +1,214 @@
+.container {
+    background-color: rgb(242, 250, 255);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    align-items: center;
+    padding: 0 70px;
+  }
+  
+  .wrapper {
+    margin-left: 13px;
+    width: 100%;
+    max-width: 1209px;
+  }
+  
+  .content {
+    gap: 20px;
+    display: flex;
+  }
+  
+  .leftColumn {
+    display: flex;
+    flex-direction: column;
+    width: 55%;
+  }
+  
+  .titleSection {
+    display: flex;
+    flex-grow: 1;
+    gap: 28px;
+    font-family: Inter, sans-serif;
+    font-weight: 600;
+    text-align: center;
+    flex-wrap: wrap;
+  }
+  
+  .heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    flex-grow: 1;
+    flex-basis: 0;
+    width: fit-content;
+    margin: auto 0;
+  }
+  
+  .title {
+    color: #000;
+    font-size: 48px;
+    margin: 0;
+  }
+  
+  .benefitsContainer {
+    display: flex;
+    margin-top: 60px;
+    flex-direction: column;
+    font-size: 24px;
+    color: #000;
+    justify-content: start;
+  }
+  
+  .benefitWrapper {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    justify-content: start;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+  
+  .benefitIcon {
+    aspect-ratio: 1;
+    object-fit: contain;
+    object-position: center;
+    width: 30px;
+    align-self: stretch;
+    margin: auto 0;
+  }
+  
+  .divider {
+    width: 1px;
+    height: 582px;
+    border: 1px solid #000;
+  }
+  
+  .rightColumn {
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    margin-left: 20px;
+  }
+  
+  .authContainer {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    color: #000;
+    margin: auto 0;
+    font: 400 20px Inter, sans-serif;
+  }
+  
+  .buttonGroup {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .authButton {
+    border-radius: 20px;
+    background-color: #fff;
+    padding: 12px 30px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font: inherit;
+  }
+  .authButton:hover {
+    background-color: #f0f0f0; /* Thay đổi nhẹ màu nền */
+    transform: translateY(-2px); /* Nhấc nhẹ nút lên */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Thêm bóng mềm mại */
+}
+  
+  .separator {
+    display: flex;
+    margin-top: 22px;
+    align-items: center;
+    gap: 11px;
+    font-size: 16px;
+    text-align: center;
+    justify-content: center;
+  }
+  
+  .separatorLine {
+    width: 211px;
+    height: 1px;
+    border: 1px solid #000;
+  }
+  
+  .socialAuth {
+    display: flex;
+    margin-top: 23px;
+    width: 100%;
+    padding-left: 56px;
+    flex-direction: column;
+    align-items: start;
+    gap: 23px;
+  }
+  
+  .authIcon {
+    aspect-ratio: 1;
+    object-fit: contain;
+    object-position: center;
+    width: 30px;
+  }
+  
+  @media (max-width: 991px) {
+    .container {
+      padding: 0 20px;
+    }
+  
+    .wrapper {
+      max-width: 100%;
+    }
+  
+    .content {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+    }
+  
+    .leftColumn, .rightColumn {
+      width: 100%;
+      margin-left: 0;
+    }
+  
+    .titleSection {
+      max-width: 100%;
+      margin-top: 40px;
+    }
+  
+    .heading {
+      max-width: 100%;
+    }
+  
+    .title {
+      font-size: 40px;
+    }
+  
+    .benefitsContainer {
+      max-width: 100%;
+      margin-top: 40px;
+    }
+  
+    .authContainer {
+      max-width: 100%;
+      margin-top: 40px;
+    }
+  
+    .buttonGroup {
+      max-width: 100%;
+      margin-right: 8px;
+    }
+  
+    .authButton {
+      padding: 0 20px;
+    }
+  
+    .socialAuth {
+      max-width: 100%;
+      padding-left: 20px;
+    }
+  }

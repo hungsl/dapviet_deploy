@@ -1,0 +1,74 @@
+.container {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px; /* Thêm khoảng cách để giao diện không sát mép trên mobile */
+  }
+  
+  .gridWrapper {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+  }
+  .productImageProd {
+    max-height: 550px;       /* Giới hạn chiều cao */
+    max-width: 100%;         /* Giới hạn chiều rộng không vượt quá chiều rộng của container */
+    object-fit: contain;     /* Đảm bảo hình ảnh sẽ co giãn theo tỷ lệ và không bị biến dạng */
+  }
+  .button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #e5e7eb; /* Gray-200 */
+    padding: 8px 16px;
+    border-radius: 9999px;
+  }
+  
+  .button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  .prevButton {
+    left: 8px;
+    color: black;
+  }
+  
+  .nextButton {
+    right: 8px;
+    color: black;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .gridWrapper {
+      gap: 8px; /* Giảm khoảng cách giữa các phần tử */
+    }
+  
+    .button {
+      padding: 6px 12px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .gridWrapper {
+      display: flex;
+      gap: 5px;
+      justify-content: center;
+    }
+    .prevButton,
+    .nextButton{
+      top: 40%
+    }
+    
+    .button {
+      font-size: 10px;
+      height: 20px;
+      padding: 0 12px;
+    }
+    .container{
+      padding: 0;
+    }
+  }
+  

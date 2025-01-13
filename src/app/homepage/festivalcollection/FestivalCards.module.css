@@ -1,0 +1,141 @@
+.cardsContainer {
+    align-self: center;
+    display: flex;
+    margin-top: 60px;
+    align-items: start;
+    color: #000;
+    text-align: center;
+    justify-content: start;
+    flex-wrap: wrap;
+    font: 500 32px Inter, sans-serif;
+  }
+  
+  .cardContainer {
+    display: flex;
+    min-width: 240px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    background-color: white;
+    border-radius: 10px;
+  }
+  .cardImage {
+    width: 100%; /* Hoặc một kích thước cụ thể ví dụ: 300px */
+    height: 500px; /* Đặt chiều cao cố định để đảm bảo đồng đều */
+    display: block; /* Đảm bảo ảnh không bị inline */
+    object-fit: cover; /* Cắt ảnh theo kích thước khung */
+    object-position: center; /* Đặt tâm ảnh trong khung */
+    border-radius: 8px; /* Thêm bo góc nếu cần */
+    overflow: hidden; /* Giữ nội dung bên trong khung */
+  }
+  .festivalTitle {
+    /* color: #000; */
+    text-align: center;
+    align-self: center;
+    margin-top: 50px;
+    font: 600 48px Inter, sans-serif;
+  }
+  .actionButton {
+    align-self: stretch;
+    border-radius: 20px;
+    background-color: rgba(242, 250, 255, 1);
+    gap: 10px;
+    padding: 12px 30px;
+    cursor: pointer;
+    border: none;
+    font: 400 20px Inter, sans-serif;
+  }
+  .preReleButton{
+    position: absolute;
+    display: flex;
+    justify-content: end;
+    top: 50%;
+    left: 0;
+  }
+  .nextReleButton{
+    position: absolute;
+    display: flex;
+    justify-content: end;
+    top: 50%;
+    right: 0;
+  }
+  @media (max-width: 991px) {
+    .actionButton {
+      padding: 0 20px;
+    }
+  }
+  
+  .buttonContainer {
+    align-self: center;
+    display: flex;
+    margin-top: 36px;
+    width: 100%;
+    max-width: 998px;
+    gap: 20px;
+    color: #000;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  @media (max-width: 991px) {
+    .buttonContainer {
+      max-width: 100%;
+    }
+    .disable{
+      display: none;
+    }
+  }
+  @media (max-width: 991px) {
+    .festivalTitle {
+      max-width: 100%;
+      margin-top: 40px;
+      font-size: 40px;
+    }
+  }
+  .standardImage {
+    width: 397px;
+  }
+  
+  .wideImage {
+    width: 398px;
+  }
+  
+  .cardTitle {
+    margin-top: 26px;
+  }
+  
+  @media (max-width: 991px) {
+    .cardsContainer {
+      max-width: 100%;
+      margin-top: 40px;
+    }
+  }
+  @media (max-width: 428px) {
+    .festivalTitle{
+      font-size: 16px;
+    }
+    .cardContainer{
+      min-width: 100px;
+      padding: 0px;
+      font-size: 8px;
+    }
+    .cardImage {
+      width: 100%;
+      max-width: 100%; /* Đảm bảo không vượt kích thước cha */
+      height: 200px; /* Điều chỉnh chiều cao động */
+      display: block;
+    }
+    
+    .actionButton{
+      font-size: 10px;
+      padding: 2px;
+      margin: 0;
+      border-radius: 5px;
+    }
+    .title{
+      font-size: 10px;
+    }
+    .cardsContainer{
+      margin-top: 10px;
+    }
+  }

@@ -1,0 +1,145 @@
+.reviewContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 30px;
+    max-width: 800px;
+    margin: 0 auto; /* Canh giữa màn hình */
+  }
+  
+  .reviewCard {
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+  }
+  
+  .productName {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 12px;
+    color: #333;
+  }
+  
+  .rating {
+    font-size: 20px;
+    color: #444;
+    margin-bottom: 10px;
+  }
+  
+  .reviewDate {
+    font-size: 16px;
+    color: #777;
+    margin-bottom: 15px;
+  }
+  
+  .productImage {
+    width: 150px; /* Tăng kích thước ảnh */
+    height: 150px;
+    object-fit: contain;
+    border-radius: 8px;
+    margin-top: 15px;
+  }
+  
+  .boxFeed{
+    display: flex;
+    justify-content: space-around;
+  }
+  .reviewButton {
+    display: inline-block;
+    font-size: 18px; /* Kích thước chữ lớn hơn để dễ nhìn */
+    font-weight: bold; /* Chữ đậm để tạo điểm nhấn */
+    color: #ffffff; /* Màu chữ trắng */
+    background-color: #3b82f6; /* Màu xanh dương nổi bật */
+    border: none;
+    border-radius: 8px; /* Góc bo tròn mềm mại */
+    padding: 12px 20px; /* Khoảng cách chữ thoáng hơn */
+    text-align: center;
+    text-decoration: none; /* Bỏ gạch chân */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Tạo bóng nhẹ */
+  }
+  
+  .reviewButton:hover {
+    background-color: #2563eb; /* Đổi màu khi hover */
+    transform: scale(1.05); /* Tăng nhẹ kích thước khi hover */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Bóng đậm hơn khi hover */
+  }
+  
+  .reviewButton:active {
+    background-color: #1d4ed8; /* Màu đậm hơn khi click */
+    transform: scale(0.95); /* Nhấn xuống nhẹ khi click */
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1); /* Giảm bóng khi nhấn */
+  }
+  .boxButton{
+    display: flex;
+    justify-content: end;
+  }
+  .star {
+    font-size: 24px; /* Kích thước ngôi sao */
+    margin-right: 4px; /* Khoảng cách giữa các ngôi sao */
+    cursor: pointer; /* Hiệu ứng chuột */
+    transition: color 0.3s ease; /* Chuyển đổi màu sắc mượt mà */
+  }
+
+@media (max-width: 760px) {
+.reviewContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+  }
+  .star {
+    font-size: 16px; /* Kích thước ngôi sao */
+    margin-right: 4px; /* Khoảng cách giữa các ngôi sao */
+    cursor: pointer; /* Hiệu ứng chuột */
+    transition: color 0.3s ease; /* Chuyển đổi màu sắc mượt mà */
+  }
+  .boxFeed{
+    display: flex;
+    gap: 10px
+  }
+  .reviewCard {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .productName {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #333;
+    
+  }
+  .description{
+    font-size: 14px;
+  }
+  .rating {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 8px;
+  }
+  
+  .reviewDate {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 10px;
+  }
+  .reviewButton{
+    font-size: 14px;
+    padding: 8px 13px
+  }
+  
+  .productImage {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    border-radius: 4px;
+    margin-top: 10px;
+  }
+}

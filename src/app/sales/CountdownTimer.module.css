@@ -1,0 +1,66 @@
+/* CountdownTimer.module.css */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0 80px 0;
+  }
+  .container {
+    -webkit-animation: container 1s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+            animation: container 1s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+  }
+  
+  @-webkit-keyframes container {
+    0% {
+      -webkit-transform: rotateX(0deg);
+              transform: rotateX(0deg);
+    }
+    100% {
+      -webkit-transform: rotateX(360deg); /* Quay một vòng hoàn chỉnh */
+              transform: rotateX(360deg);
+    }
+  }
+  
+  @keyframes container {
+    0% {
+      -webkit-transform: rotateX(0deg);
+              transform: rotateX(0deg);
+    }
+    100% {
+      -webkit-transform: rotateX(360deg); /* Quay một vòng hoàn chỉnh */
+              transform: rotateX(360deg);
+    }
+  }
+  
+  
+  .timerWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .timerUnit {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+  
+  .numberCountdown {
+    /* background-color: rgb(255, 255, 255); */
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+    border-radius: 0.5rem;
+    font-size: 1.875rem; /* Text size: 3xl */
+    margin: 0 0.5rem;
+    position: relative;
+  }
+  
+  .unitLabel {
+    font-size: 1.125rem; /* Text size: lg */
+  }
+  

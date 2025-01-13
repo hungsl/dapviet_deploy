@@ -1,0 +1,87 @@
+.commitmentSection {
+    background: #F2FAFF;
+    padding: 74px 80px 189px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+  }
+  
+  .container {
+    max-width: 1350px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .heading {
+    text-align: center;
+    /* font: 400 48px Inter, sans-serif; */
+    font-size: 50px;
+    font-weight: bolder;
+    color: #000;
+    margin-bottom: 100px;
+  }
+  
+  .itemsGrid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .commitmentItem {
+    display: flex;
+    min-width: 240px;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  
+  .numberBadge {
+    font: 600 120px Gilroy, sans-serif;
+    color: #000;
+  }
+  
+  .contentWrapper {
+    display: flex;
+    flex-direction: column;
+    width: 322px;
+    font-family: Inter, sans-serif;
+  }
+  
+  .itemTitle {
+    font-size: 36px;
+    font-weight: 400;
+    color: #000;
+    margin: 0;
+  }
+  
+  .itemDescription {
+    font-size: 16px;
+    line-height: 24px;
+    margin-top: 12px;
+    color: #000;
+  }
+  
+  @media (max-width: 991px) {
+    .commitmentSection {
+      padding: 0 20px 100px;
+    }
+  
+    .heading {
+      font-size: 40px;
+      margin-bottom: 40px;
+    }
+  
+    .numberBadge {
+      font-size: 40px;
+    }
+  
+    .itemsGrid {
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .commitmentItem {
+      max-width: 100%;
+    }
+  }

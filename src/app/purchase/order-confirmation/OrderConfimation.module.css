@@ -1,0 +1,126 @@
+.container {
+    display: flex;
+    max-width: 890px;
+    flex-direction: column;
+    background-color: white;
+    padding: 50px;
+  }
+  
+  .confirmationImage {
+    aspect-ratio: 1.15;
+    object-fit: contain;
+    object-position: center;
+    width: 180px;
+    align-self: center;
+    max-width: 100%;
+  }
+  
+  .contentWrapper {
+    display: flex;
+    margin-top: 49px;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    color: #000;
+    justify-content: start;
+  }
+
+  
+  .title {
+    font: 700 32px Montserrat, -apple-system, Roboto, Helvetica, sans-serif;
+  }
+  
+  .description {
+    text-align: center;
+    margin-top: 24px;
+    width: 100%;
+    font: 400 14px Poppins, sans-serif;
+  }
+  
+  .buttonContainer {
+    display: flex;
+    margin-top: 46px;
+    width: 100%;
+    align-items: start;
+    gap: 40px 100px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    font: 400 14px Poppins, sans-serif;
+  }
+  .button {
+    align-self: stretch;
+    gap: 10px;
+    overflow: hidden;
+    padding: 16px 21px;
+  }
+  
+  .primary {
+    background: var(--primary, #7c3fff);
+    color: var(--white, #fff);
+  }
+  
+  .secondary {
+    border: 1px solid var(--gray, #e4e4e4);
+    color: #000;
+  }
+  .highlight {
+    font-weight: bold;
+    color: #28a745; /* Màu xanh lá cây thể hiện thành công */
+    margin-top: 40px;
+    display: flex;
+    gap: 20px;
+  }
+  .linkButton {
+    display: inline-block;
+    padding: 10px 10px;
+    background-color: #007bff; /* Màu nền xanh dương */
+    color: #fff; /* Màu chữ trắng */
+    text-decoration: none; /* Loại bỏ gạch chân */
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s ease; /* Hiệu ứng hover mượt */
+  }
+  
+  .linkButton:hover {
+    background-color: #0056b3; /* Màu nền khi hover */
+    color: #e6e6e6; /* Màu chữ khi hover */
+  }
+  
+  @media (max-width: 991px) {
+    .button {
+      padding: 0 20px;
+    }
+  }
+  
+  @media (max-width: 991px) {
+    .contentWrapper {
+      max-width: 100%;
+      margin-top: 40px;
+    }
+    
+    .title {
+      max-width: 100%;
+      font-size: larger;
+      font-weight: 700;
+    }
+    
+    .description {
+      max-width: 100%;
+      max-width: 100%;
+      font-size: 12px;
+      font-weight: 400;
+    }
+    
+    .buttonContainer {
+      max-width: 100%;
+      margin-top: 40px;
+    }
+    .highlight{
+      display: flex;
+      flex-direction: column;
+      font-size: small;
+      white-space: nowrap;
+    }
+  }

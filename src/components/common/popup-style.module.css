@@ -1,0 +1,54 @@
+.popupOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 90;
+  }
+  
+  .popupContent {
+    width: 100%;
+    display: flex;
+    z-index: 100;
+    justify-content: center;
+  }
+  
+  .closeButton {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    background-color: red; /* Màu nền vòng tròn */
+    color: white; /* Màu chữ */
+    width: 40px; /* Độ rộng của vòng tròn */
+    height: 30px; /* Độ cao của vòng tròn */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    cursor: pointer;
+    border: none; /* Không có viền */
+}
+
+.closeButton:hover {
+    background-color: darkred; /* Màu nền khi hover */
+}
+.passwordIconEyes{
+  position: absolute;
+  top: 4px; /* Đặt khoảng cách từ trên xuống */
+  bottom: 4px; /* Đặt khoảng cách từ dưới lên */
+  right: 8px; /* Vị trí bên phải */
+  display: flex;
+  align-items: center;
+  color: #4b5563; /* Màu text (gray-600) */
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+.passwordIconEyes:hover {
+  color: #1f2937; /* Màu text khi hover (gray-800) */
+}
+

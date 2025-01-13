@@ -1,0 +1,286 @@
+/* ProductDetail.module.css */
+
+.productContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    max-width: 550px;  /* Giới hạn chiều rộng */
+    padding: 10px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+  }
+  
+  .productHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px;
+    
+  }
+  
+  .productName {
+    font-size: 20px;  /* Kích thước font hợp lý */
+    font-weight: bolder;
+    text-align: center;
+    margin-bottom: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .productImage {
+    width: 100%;
+    position: relative;
+    border-radius: 8px;
+    background-color: #f0f0f0; /* Tạo màu nền để tránh vùng trống bị trắng */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .productInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    padding: 12px 12px 0 12px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    flex: 2;
+    box-sizing: border-box;
+    overflow-y: auto;
+  }
+  
+  .productStatus,
+  .productQuantity,
+  .productAttributes,
+  .productPrice {
+    margin-bottom: 10px;  /* Giảm margin để tiết kiệm không gian */
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  
+.sizes ul,
+.colors ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+  margin: 0;
+}
+
+.sizes li,
+.colors li {
+  margin: 5px;
+  font-size: 12px;
+  text-align: center;
+  cursor: pointer;
+  padding: 8px 12px;  /* Cung cấp không gian cho các phần tử */
+  border-radius: 5px;
+  transition: all 0.3s ease; /* Thêm hiệu ứng khi hover */
+}
+
+
+.box {
+  border: 1px solid #e0e0e0; /* Border nhẹ cho box */
+  padding: 12px;
+  border-radius: 8px;
+  background-color: #fff; /* Màu nền sáng cho box */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Đổ bóng cho box */
+  margin-bottom: 10px;
+}
+
+.sizes{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.sizes,
+.colors strong {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.sizes,
+.colors ul {
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+  margin: 0;
+}
+
+.sizes,
+.colors li {
+  background-color: #f9f9f9;  /* Màu nền cho các size */
+  font-weight: bold;
+  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 10px 15px;
+  transition: all 0.3s ease;
+}
+
+
+  
+  .productPrice {
+    font-size: 26px;  /* Tăng kích thước giá cho dễ đọc */
+    font-weight: bold;
+    color: #6ac0fa;
+    white-space: nowrap;
+    display: flex;
+  }
+
+  .productPage {
+    display: flex;
+    flex-direction: row; /* Đặt container và mô tả cạnh nhau */
+    align-items: flex-start;
+    gap: 20px; /* Khoảng cách giữa các phần */
+  }
+  
+  .productContainer {
+    flex: 1;
+    max-width: 60%; /* Giới hạn chiều rộng cho phần container */
+  }
+  .edit{
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+  }
+  .productDescription {
+    padding: 20px;
+    width: 500px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow-y: scroll;
+    height: 330px;
+    position: relative;
+  }
+  .productDescription::-webkit-scrollbar {
+    width: 3px; /* Chiều rộng scrollbar */
+  }
+  .productDescription::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2); /* Màu của con trỏ scrollbar */
+    border-radius: 10px; /* Góc bo tròn cho con trỏ */
+  }
+  
+  .productDescription::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1); /* Màu nền của scrollbar */
+    border-radius: 10px;
+  }
+  
+  .description {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #555;
+  }
+  .flexColum{
+    display: flex;
+  }
+  @media (max-width: 768px) {
+    /* Điều chỉnh layout cho màn hình nhỏ */
+    .productContainer {
+      width: 100%;
+      height: auto;
+      max-width: 100%;
+      padding: 8px;
+    }
+  
+   
+  
+    .productInfo {
+      padding: 10px;
+    }
+  }
+  @media (max-width: 360px) {
+    .productContainer {
+      padding: 10px;
+    }
+  
+    .productHeader {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  
+    .productName {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+  
+  
+    .productInfo {
+      width: 100%;
+      padding: 10px;
+    }
+  
+    .productStatus,
+    .productQuantity {
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+  
+    .productAttributes {
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    .sizes ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      justify-content: center;
+      margin-top: 5px;
+    }
+  
+    .box {
+      font-size: 12px;
+      padding: 4px 6px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+  
+    .colors {
+      flex-direction: column;
+      gap: 5px;
+      margin-top: 10px;
+    }
+  
+    .productPrice {
+      font-size: 16px;
+      margin-top: 10px;
+    }
+  
+    .productDescription {
+      margin-top: 20px;
+      font-size: 14px;
+      width: auto;
+      height: auto;
+      top: 0
+    }
+    .flexColum{
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .description {
+      font-size: 12px;
+    }
+  
+    .productDescription p {
+      margin-bottom: 5px;
+    }
+  
+    .edit{
+      position: absolute;
+      bottom: -10px;
+      right: 20px;
+    }
+  }
+  

@@ -1,0 +1,123 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.historicalSection {
+  display: flex;
+  align-items: center;
+  padding: 134px 80px 83px;
+}
+
+.content {
+  width: 100%;
+  max-width: 1573px;
+  margin: 0 auto;
+}
+/* .sectionTitleTHOIKY {
+  font-size: 50px;
+  font-weight: bolder;
+  text-align: center;
+  margin-bottom: 32px;
+} */
+
+.sectionTitle {
+  font-size: 60px; /* Tăng kích thước chữ */
+  font-weight: 900; /* Đậm hơn */
+  text-align: center;
+  margin-bottom: 30px; /* Tăng khoảng cách dưới */
+  text-transform: uppercase; /* Viết hoa toàn bộ */
+  letter-spacing: 2px; /* Tăng khoảng cách giữa các chữ cái */
+  padding: 10px 0; /* Tăng khoảng cách trên dưới của tiêu đề */
+}
+
+.sectionDescription {
+  /* font: 400 20px Inter, sans-serif; */
+  font-size: 16px;
+  font-weight: normal;
+  text-align: center;
+  margin: 0 65px;
+}
+
+.imageGallery {
+  display: flex;
+  margin-top: 56px;
+  gap: 53px;
+  justify-content: center;
+}
+
+.historicalImage {
+  aspect-ratio: 0.79;
+  object-fit: contain;
+  width: 489px;
+  min-width: 240px;
+}
+
+.modernSection {
+  padding: 79px 80px 166px;
+}
+
+.twoColumnLayout {
+  display: flex;
+  gap: 20px;
+  max-width: 1573px;
+  margin: 0 auto;
+}
+
+.textColumn {
+  width: 64%;
+}
+
+.imageColumn {
+  width: 36%;
+  margin-top: 30px;
+}
+
+.modernImage {
+  aspect-ratio: 1.34;
+  object-fit: contain;
+  width: 100%;
+}
+
+@media (max-width: 991px) {
+  .historicalSection {
+    padding: 100px 20px 0;
+  }
+
+  .sectionTitle {
+    font-size: 40px;
+  }
+
+  .sectionDescription {
+    margin: 0 10px;
+  }
+
+  .imageGallery {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Căn giữa các phần tử bên trong */
+    gap: 15px; /* Khoảng cách giữa các ảnh */
+    padding: 10px; /* Khoảng cách xung quanh gallery */
+  }
+
+  .historicalImage {
+    max-width: 500px;
+  }
+
+  .modernSection {
+    padding: 0 20px 100px;
+  }
+
+  .twoColumnLayout {
+    flex-direction: column;
+  }
+
+  .textColumn,
+  .imageColumn {
+    width: 100%;
+  }
+
+  .modernImage {
+    margin-top: 40px;
+  }
+}

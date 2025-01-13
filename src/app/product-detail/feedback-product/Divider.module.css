@@ -1,0 +1,12 @@
+.divider {
+    background-color: #e4e4e4;
+    margin-top: 144px;
+    height: 1px;
+    border: 1px solid rgba(228, 228, 228, 1);
+  }
+  
+  @media (max-width: 991px) {
+    .divider {
+      margin-top: 40px;
+    }
+  }

@@ -1,0 +1,70 @@
+.cardWrapper {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    aspect-ratio: 1.182;
+    align-items: flex-start;
+    gap: 34px;
+    padding: 232px 0 0 8px;
+  }
+  
+  .backgroundImage {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  
+  .contentBox {
+    position: relative;
+    border-radius: 5px;
+    background-color: #fff;
+    align-self: start;
+    display: flex;
+    flex-direction: column;
+    font-family: Inter, sans-serif;
+    color: #000;
+    font-weight: 400;
+    flex-grow: 1;
+    flex-basis: 0;
+    width: fit-content;
+    padding: 10px 18px 4px 2px;
+  }
+  
+  .title {
+    font-size: 32px;
+    border: 1px solid #000;
+  }
+  
+  .description {
+    font-size: 16px;
+    margin-top: 4px;
+  }
+  
+  .iconWrapper {
+    position: relative;
+    align-self: end;
+    display: flex;
+    margin-top: 49px;
+    flex-direction: column;
+    justify-content: start;
+  }
+  
+  .icon {
+    aspect-ratio: 1.05;
+    object-fit: contain;
+    object-position: center;
+    width: 58px;
+  }
+  
+  @media (max-width: 991px) {
+    .cardWrapper {
+      padding-top: 100px;
+    }
+    
+    .iconWrapper {
+      margin-top: 40px;
+    }
+  }

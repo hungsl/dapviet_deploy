@@ -1,0 +1,179 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 20px 20px 20px;
+}
+
+.heroSection {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 700px;
+  margin-bottom: 40px;
+  overflow: hidden;
+  background-color: #272727;
+}
+
+.heroImages {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.heroImage {
+  width: 100%; /* Hoặc một kích thước cụ thể ví dụ: 300px */
+  height: 800px; /* Đặt chiều cao cố định để đảm bảo đồng đều */
+  display: block; /* Đảm bảo ảnh không bị inline */
+  object-fit: cover; /* Cắt ảnh theo kích thước khung */
+  object-position: center; /* Đặt tâm ảnh trong khung */
+  overflow: hidden;
+  
+}
+
+.heroOverlay {
+  position: absolute;
+  text-align: center;
+  color: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #8ebefc00;
+  bottom: 20%;
+}
+.bgDescript{
+  background-color: #958efcb9;
+}
+
+.heroTitle {
+  font-size: 3rem; /* Kích thước lớn cho tiêu đề */
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7); 
+}
+.heroTitle {
+	-webkit-animation: text-shadow-pop-left 0.6s both;
+	        animation: text-shadow-pop-left 0.6s both;
+}@-webkit-keyframes text-shadow-pop-left {
+  0% {
+    text-shadow: 0 0 #555555, 0 0 #555555, 0 0 #555555, 0 0 #555555, 0 0 #555555, 0 0 #555555, 0 0 #555555, 0 0 #555555;
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+  100% {
+    text-shadow: -1px 0 #555555, -2px 0 #555555, -3px 0 #555555, -4px 0 #555555, -5px 0 #555555, -6px 0 #555555, -7px 0 #555555, -8px 0 #555555;
+    -webkit-transform: translateX(8px);
+            transform: translateX(8px);
+  }
+}
+@keyframes text-shadow-pop-left {
+  0% {
+    text-shadow: 0 0 #555555, 0 0 #555555, 0 0 #555555, 0 0 #555555, 0 0 #555555, 0 0 #555555, 0 0 #555555, 0 0 #555555;
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+  100% {
+    text-shadow: -1px 0 #555555, -2px 0 #555555, -3px 0 #555555, -4px 0 #555555, -5px 0 #555555, -6px 0 #555555, -7px 0 #555555, -8px 0 #555555;
+    -webkit-transform: translateX(8px);
+            transform: translateX(8px);
+  }
+}
+
+.heroDescription {
+  font-size: 1.3rem; /* Kích thước chữ mô tả */
+  line-height: 1.8;
+  max-width: 800px;
+  margin: 0 auto;
+  text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.5); 
+}
+.heroDescription {
+	-webkit-animation: text-shadow-drop-bl 0.6s both;
+	        animation: text-shadow-drop-bl 0.6s both;
+}
+@-webkit-keyframes text-shadow-drop-bl {
+  0% {
+    text-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  }
+  100% {
+    text-shadow: -6px 6px 18px rgba(0, 0, 0, 0.35);
+  }
+}
+@keyframes text-shadow-drop-bl {
+  0% {
+    text-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  }
+  100% {
+    text-shadow: -6px 6px 18px rgba(0, 0, 0, 0.35);
+  }
+}
+
+
+.productList {
+  width: 100%;
+  max-width: 1200px;
+  text-align: center;
+}
+
+.heading {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.productCard {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.productImage {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.productName {
+  font-size: 1.2rem;
+  margin: 10px 0;
+}
+
+.productPrice {
+  color: #007bff;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+/* Hero Section for Mobile */
+@media (max-width: 480px) {
+  .heroSection {
+    height: auto; /* Để chiều cao tự động */
+  }
+
+  .heroImage {
+    height: 200px; /* Chiều cao nhỏ hơn cho ảnh */
+    width: 100%; /* Chiếm toàn bộ chiều rộng */
+    object-fit: cover; /* Giữ tỷ lệ khung hình */
+  }
+
+  .heroTitle {
+    font-size: 14px; /* Giảm kích thước chữ */
+    margin-bottom: 5px;
+  }
+
+  .heroDescription {
+    font-size: 10px; /* Giảm kích thước chữ mô tả */
+    line-height: 1.5; /* Cải thiện khoảng cách dòng */
+  }
+}
+

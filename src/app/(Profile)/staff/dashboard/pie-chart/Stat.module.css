@@ -1,0 +1,93 @@
+.statContainer {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  
+  .statRow {
+    display: flex;
+    gap: 8px;
+    font-weight: 500;
+  }
+  
+  .indicator {
+    border-radius: 50%;
+    display: flex;
+    width: 10px;
+    height: 8px;
+    margin: auto 0;
+  }
+  
+  .percentage {
+    font-weight: 400;
+    align-self: start;
+    margin: 7px 0 0 18px;
+  }
+  
+  .label {
+    flex-grow: 1;
+    width: 103px;
+  }
+  .container {
+    border-radius: 0;
+    display: flex;
+    max-width: 365px;
+    flex-direction: column;
+    font-family: Poppins, sans-serif;
+    letter-spacing: 0.5px;
+  }
+  
+  .card {
+    border-radius: 8px;
+    background-color: #fff;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    padding: 11px 0 18px;
+  }
+  
+  .content {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: start;
+    color: #000;
+    font-weight: 400;
+    padding: 0 73px 0 27px;
+  }
+  
+  .title {
+    font-size: 17px;
+    font-weight: bold;
+  }
+  
+  .dateRange {
+    font-size: 13px;
+    line-height: 2;
+    margin-top: 12px;
+  }
+  
+  .chart {
+    width: 100%;      /* Chiếm 100% chiều rộng của phần tử cha */
+    height: 300px;    /* Chiều cao bạn muốn cho biểu đồ */
+    margin: 0 auto;   /* Căn giữa biểu đồ */
+  }
+  .pieimg {
+    display: flex;
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center;     /* Căn giữa theo chiều dọc */
+    width: 500px;             /* Đảm bảo phần tử chiếm toàn bộ chiều rộng */
+  }
+  
+  .statsContainer {
+    align-self: center;
+    display: flex;
+    margin-top: 52px;
+    width: 100%;
+    max-width: 294px;
+    align-items: start;
+    gap: 40px 55px;
+    font-size: 12px;
+    color: #121212;
+    line-height: 1;
+  }

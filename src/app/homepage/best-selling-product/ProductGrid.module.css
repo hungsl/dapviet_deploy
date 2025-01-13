@@ -1,0 +1,156 @@
+.gridContainer {
+    align-self: center;
+    margin: 60px auto;
+    width: 100%;
+    max-width: 1238px;
+  }
+  
+  .gridWrapper {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .gridColumn {
+    display: flex;
+    flex-direction: column;
+    width: 33%;
+  }
+  
+  .productCard {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    font-family: Inter, sans-serif;
+    /* color: #000; */
+    font-weight: 400;
+    padding: 8px;
+  }
+  .productCard:hover {
+    transform: translateY(-1px);
+    cursor: pointer;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  .imageContainer {
+    position: relative;
+    width: 100%;
+  }
+  
+  .productImage {
+    width: 100%; /* Hoặc một kích thước cụ thể ví dụ: 300px */
+    height: 500px; /* Đặt chiều cao cố định để đảm bảo đồng đều */
+    display: block; /* Đảm bảo ảnh không bị inline */
+    object-fit: cover; /* Cắt ảnh theo kích thước khung */
+    object-position: center; /* Đặt tâm ảnh trong khung */
+    border-radius: 8px; /* Thêm bo góc nếu cần */
+    overflow: hidden; 
+  }
+  
+  .saleTagContainer {
+    position: absolute;
+    top: 218px;
+    right: 70px;
+    display: flex;
+    align-items: start;
+    gap: 12px;
+    padding: 10px;
+  }
+  
+  .saleTag {
+    aspect-ratio: 0.63;
+    object-fit: contain;
+    object-position: center;
+    width: 26px;
+    border-radius: 2px;
+  }
+  
+  .productInfo {
+    align-self: center;
+    display: flex;
+    margin-top: 14px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .productTitle {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .productPrice {
+    font-size: 14px;
+    margin-top: 4px;
+  }
+  .festivalTitle {
+    /* color: #000; */
+    text-align: center;
+    align-self: center;
+    margin-top: 60px;
+    font: 600 48px Inter, sans-serif;
+  }
+  
+  @media (max-width: 991px) {
+    .gridContainer {
+      max-width: 100%;
+      margin-top: 40px;
+    }
+    .festivalTitle {
+      max-width: 100%;
+      margin-top: 40px;
+      font-size: 40px;
+    }
+    .gridWrapper {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+    }
+  
+    .gridColumn {
+      width: 100%;
+    }
+  
+    
+  
+    .saleTagContainer {
+      padding: 100px 0 100px 20px;
+      margin-bottom: 10px;
+    }
+  }
+  @media (max-width: 428px) {
+    .festivalTitle{
+      font-size: 16px;
+    }
+    .cardContainer{
+      min-width: 100px;
+      padding: 0px;
+      font-size: 8px;
+    }
+    .productImage {
+      width: 100%;
+      max-width: 100%; /* Đảm bảo không vượt kích thước cha */
+      height: 200px; /* Điều chỉnh chiều cao động */
+      display: block;
+    }
+    .standardImage,
+    .wideImage{
+      width: 150px;
+    }
+    .actionButton{
+      font-size: 10px;
+      padding: 2px;
+      margin: 0;
+      border-radius: 5px;
+    }
+    .productPrice,
+    .productTitle{
+      font-size: 10px;
+    }
+    .gridContainer{
+      margin-top: 10px;
+    }
+    .productCard{
+      padding: 0;
+    }
+  }

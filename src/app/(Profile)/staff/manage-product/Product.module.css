@@ -1,0 +1,110 @@
+/* styles/ProductTable.module.css */
+.right,
+.left{
+  width: 350px;
+}
+.createForm{
+  background-color: white;
+  padding: 30px;
+  width: 800px;
+  border-radius:10px ;
+}
+.wrapbox{
+  display: flex;
+  justify-content: space-around;
+}
+.sizeBox {
+  display: flex;         /* Sử dụng flexbox */
+  flex-wrap: wrap;       /* Cho phép nội dung xuống dòng */
+  gap: 10px;  
+  width: 250px;             /* Khoảng cách giữa các item */
+}
+.selectItem {
+  color: #000; /* Đặt màu chữ rõ ràng */
+  background-color: #fff; /* Đặt nền sáng */
+ 
+}
+
+.selectContent {
+  overflow: auto;
+  visibility: visible;
+  z-index: 110;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 14px;
+  }
+  
+ .header{
+    position: relative;
+ }
+  .editBtn, .deleteBtn {
+    margin: 0 5px;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  .activateBtn {
+    background-color: #4caf50; /* Xanh lá */
+    margin: 0 5px;
+    padding: 5px 10px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .activateBtn:hover {
+    background-color: #45a049;
+  }
+  .createBtn{
+    padding: 5px 10px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  .createBtn:hover{
+    transform: scale(1.005);
+    background-color:#007bffc4 ;
+  }
+  
+  .deleteBtn {
+    background-color: #dc3545;
+    border-radius: 5px;
+  }
+  
+  .editBtn:hover, .deleteBtn:hover {
+    opacity: 0.8;
+  }
+  
+  @media (max-width: 768px) {
+    .wrapbox {
+      flex-direction: column; /* Chuyển sang layout dọc */
+    }
+    .createForm{
+      overflow-y: scroll;
+      max-height: 850px;
+    }
+    .left, .right {
+      width: 100%; /* Chiều rộng 100% */
+      padding: 8px;
+    }
+    .createForm form {
+      padding: 16px;
+    }
+    .createBtn{
+      top: -40px
+    }
+  }

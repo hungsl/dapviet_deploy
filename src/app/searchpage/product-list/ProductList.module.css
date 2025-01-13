@@ -1,0 +1,494 @@
+.container {
+  margin-left: 49px;
+  width: 97%;
+}
+
+.content {
+  margin-top: 30px;
+  display: flex;
+  gap: 60px;
+}
+
+.sidebar {
+  /* Cố định vị trí khi cuộn */
+  position: sticky;
+  top: 100px; /* Khoảng cách từ trên màn hình (hoặc từ header) */
+  height:  calc(100vh - 100px);
+  overflow-y: auto; /* Cho phép cuộn trong sidebar */
+  max-width: 300px;
+  font-family: Poppins, sans-serif;
+}
+.sidebar::-webkit-scrollbar {
+  display: none;
+}
+
+.filterHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--gray, #e4e4e4);
+}
+
+.filterTitle {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.resetButton {
+  color: #009dfe;
+  font-size: 14px;
+  font-weight: 400;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.filterSection {
+  margin-top: 24px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--gray, #e4e4e4);
+}
+
+.filterSectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 600;
+  /* color: #000; */
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+}
+
+.filterList {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap; /* Thêm cái này để phần tử xuống dòng khi không đủ chỗ */
+  gap: 20px;
+  max-width: 100%;
+}
+
+.filterItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.filterCheckbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.checkbox {
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--gray, #e4e4e4);
+  border-radius: 3px;
+}
+
+.checkbox.selected {
+  background-color: #009dfe;
+  border-color: #009dfe;
+}
+
+.filterLabel {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.filterCount {
+  font-size: 12px;
+  /* color: #000; */
+}
+
+.sizeGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 24px;
+}
+
+.sizeBox {
+  width: 58px;
+  padding: 8px 0;
+  text-align: center;
+  border: 0.5px solid var(--gray, #e4e4e4);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.sizeBox.selected {
+  border-color: #009dfe;
+  color: #009dfe;
+}
+
+.priceRangeInputs {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 24px;
+}
+
+.priceInput {
+  width: 115px;
+  padding: 12px 8px;
+  border: 1px solid var(--gray, #e4e4e4);
+  font-size: 14px;
+}
+
+.priceSeparator {
+  width: 10px;
+  height: 1px;
+  background-color: #000;
+}
+
+.saveButton {
+  width: 100%;
+  margin-top: 16px;
+  padding: 10px 0;
+  border: 1px solid #009dfe;
+  color: #009dfe;
+  background: none;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.priceRangeList {
+  margin-top: 24px;
+}
+
+.mainContent {
+  width: 74%;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  position: sticky; /* Giúp toolbar di chuyển theo khi cuộn */
+  top: 95px; /* Cố định ở trên đầu màn hình */
+  z-index: 1; /* Đảm bảo toolbar luôn hiển thị trên các phần tử khác */
+  /* background: white;  */
+  padding: 10px; 
+  border-radius: 4px;
+}
+
+.searchContainer {
+  position: relative;
+  width: 167px;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 7px 16px;
+  padding-right: 40px;
+  background: rgba(217, 217, 217, 0.35);
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+.searchIcon {
+  position: absolute;
+  right: -30px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.searchIcon:hover{
+  cursor: pointer;
+}
+
+.sortContainer {
+  width: 240px;
+}
+
+.sortSelect {
+  border-radius: 3px;
+  width: 100%;
+  padding: 3px 16px;
+  border: 0.5px solid var(--gray, #e4e4e4);
+  font-size: 14px;
+  appearance: none;
+}
+
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.productCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.productCard:hover {
+  transform: scale(1.02); /* Tăng kích thước nhẹ khi hover */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Thêm bóng nhẹ để tạo hiệu ứng nổi */
+}
+
+.productImage {
+  width: 100%;
+  aspect-ratio: 0.85;
+  object-fit: cover;
+}
+
+.productInfo {
+  margin-top: 18px;
+  text-align: center;
+}
+
+.productTitle {
+  font-size: 16px;
+  font-weight: 600;
+  /* color: #000; */
+}
+
+.productPrice {
+  margin: 8px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #009dfe;
+}
+
+.selectedFilters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.filterTag {
+  display: flex;
+  align-items: center;
+  background-color: #e7f3ff;
+  color: #007bff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  border: 1px solid #007bff;
+}
+
+.removeButton {
+  margin-left: 8px;
+  background: none;
+  border: none;
+  color: #007bff;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.removeButton:hover {
+  color: #ff0000;
+}
+.noWrapText {
+  white-space: nowrap;
+  margin-right: 10px;
+  color: black;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+.mobileOpenButton{
+  display: none;
+}
+
+.disabled{
+  pointer-events: none;
+  color: #ccc; /* Màu chữ nhạt để thể hiện bị vô hiệu hóa */
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+@media (max-width: 991px) {
+  .container {
+    margin-left: 0;
+    max-width: 100%;
+    padding: 0 20px;
+  }
+  .searchIcon {
+    position: absolute;
+    right: 13px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .sortSelect{
+    width: 100px;
+    padding: 3px 5px
+  }
+  .filterList {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap; /* Thêm cái này để phần tử xuống dòng khi không đủ chỗ */
+    gap: 20px;
+    max-width: 100%;
+  }
+  .sizeBox{
+    padding: 4px 0;
+  }
+  .priceInput{
+    padding: 6px 4px;
+  }
+
+  .content {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .sidebar,
+  .mainContent {
+    width: 100%;
+  }
+  .sidebar {
+    position: static; /* Bỏ cố định sidebar trên mobile */
+    height: auto; /* Không cần chiều cao 100vh nữa */
+    max-width: 100%; /* Chiều rộng của sidebar là 100% trên mobile */
+    margin-top: 0; /* Không có khoảng cách trên nữa */
+  }
+  .productGrid {
+    /* grid-template-columns: repeat(2, 1fr); */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .container{
+    padding: 0;
+  }
+  .sortSelect,
+  .toolbar{
+    font-size: 13px;
+  }
+  .toolbar{
+    margin-bottom: 10px;
+  }
+  .filterHeader{
+    padding-bottom: 10px;
+  }
+  .filterSection{
+    margin-top: 10px;
+    padding-bottom: 10px;
+  }
+  .selectedFilters{
+    margin-bottom: 10px;
+  }
+  .sizeGrid{
+    gap: 10px;
+    margin-top: 10px;
+  }
+  .priceRangeList,
+  .priceRangeInputs{
+    margin-top: 10px;
+  }
+  .priceRangeInputs{
+    gap: 5px
+  }
+  .productPrice{
+    margin-top: 0;
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .productTitle{
+    font-size: 14px;
+  }
+  .productCard{
+    padding: 5px;
+    border-radius: 3px;
+  }
+  
+  .mobileOpenButton {
+    padding: 5px;
+    display: flex; /* Hiện nút mở sidebar */
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 10%;
+    right: 22px;
+    border-radius: 3px;/* Bo tròn nút */
+    z-index: 11;
+    background-color: #ffffff;/* Hiệu ứng màu gradient */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06); /* Đổ bóng */
+    font-size: 18px;
+    cursor: pointer; /* Hiển thị con trỏ dạng tay khi hover */
+    transition: all 0.3s ease; /* Hiệu ứng chuyển đổi khi hover */
+  }
+  
+  .toolbar{
+    top: 99px
+  }
+  .sidebar {
+    width: 100%; /* Sidebar phủ toàn màn hình trên mobile */
+  }
+
+  .sidebar {
+    display: none;
+    position: fixed;
+    inset: auto 20px 10px auto;
+    border-radius: 3px;
+    padding: 15px 15px 45px 15px;
+    width: 300px;
+    height: auto;
+    background-color: #fff;
+    z-index: 10;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  /* Hiện sidebar khi mở */
+  .sidebar.open {
+    display: block;
+    transform: translateX(0);
+  }
+  
+  
+  
+  .mobileOpenButton img {
+    width: 30px;
+    height: 30px;
+  }
+  
+  /* Nút đóng sidebar */
+  .closeButton {
+    background-color: transparent;
+    border: none;
+    font-size: 16px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+  }
+}
+
+
+.svgWrapper {
+  background-color: rgba(0, 0, 0, 0.7); /* Nền đen với độ mờ */
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.noProductsMessage {
+  grid-column: span 3; /* Tạo ra một dòng chiếm hết chiều rộng */
+  text-align: center;
+  padding: 20px;
+  background-color: #f8d7da; /* Màu nền nhẹ nhàng */
+  color: #721c24; /* Màu chữ */
+  border: 1px solid #f5c6cb;
+  border-radius: 8px;
+  font-size: 18px;
+}
+.svg {
+  height: 150px;
+  width: 150px;
+}

@@ -1,0 +1,164 @@
+/* .heroImage {
+    aspect-ratio: 3.38;
+    object-fit: contain;
+    object-position: center;
+    width: 100%;
+  } */
+  .heroImage {
+    width: 100%; /* Chiều rộng đầy đủ */
+    height: 400px; /* Hoặc chiều cao mong muốn */
+    object-fit: cover; /* Crop ảnh để lấp đầy chiều ngang và dọc */
+    object-position: center 45%; /* Crop từ chính giữa ảnh */
+    display: block; /* Loại bỏ khoảng trống bên dưới ảnh */
+    transform: scaleX(-1);
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    align-items: end;
+    padding: 125px 80px 10px;
+  }
+  
+  .wrapper {
+    display: flex;
+    width: 100%;
+    max-width: 1428px;
+    flex-direction: column;
+  }
+  
+  .content {
+    display: flex;
+    position: relative;
+    width: 1290px;
+    max-width: 100%;
+    flex-direction: column;
+    font-family: Inter, sans-serif;
+  }
+  
+  .title {
+    font-size: 48px;
+    font-weight: 700;
+    text-align: center;
+  }
+  
+  .faqSection {
+    margin-top: 80px;
+    font-size: 18px;
+    height: 600px;
+  }
+  .faqSection {
+    overflow-y: auto;  
+    scrollbar-width: thin; 
+    scrollbar-color: rgba(179, 179, 179, 0.185) rgba(255, 255, 255, 0.274);
+  }
+  .faqSection::-webkit-scrollbar {
+    width: 2px; /* Chiều rộng scrollbar */
+    height: 20px;
+  }
+  .faqSection::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2); /* Màu của con trỏ scrollbar */
+    border-radius: 20px; /* Góc bo tròn cho con trỏ */
+  }
+  
+  .faqList {
+    display: flex;
+    align-items: start;
+    gap: 39px;
+    height: 100%;
+    overflow: visible;
+  }
+  
+  .verticalLine {
+    border-radius: 10px 0 0 10px;
+    background-color: #000;
+    width: 3px;
+    position: absolute;
+    left:-10px;
+    height: 600px;
+  }
+  
+  .faqItems {
+    display: flex;
+    min-width: 240px;
+    flex-direction: column;
+    justify-content: center;
+    width: 1157px;
+  }
+  
+  .faqItem {
+    margin-bottom: 39px;
+  }
+  
+  .question {
+    font-weight: 700;
+    line-height: 1;
+  }
+  
+  .answer {
+    font-weight: 400;
+    line-height: 23px;
+    margin-top: 30px;
+  }
+  
+  .contactSection {
+    display: flex;
+    margin-top: 115px;
+    align-items: start;
+    gap: 24px;
+    flex-wrap: wrap;
+    font: 500 20px Poppins, sans-serif;
+  }
+  
+  .contactItem {
+    border-radius: 16px;
+    display: flex;
+    min-width: 240px;
+    align-items: center;
+    gap: 16px;
+    padding: 24px;
+  }
+  
+  .contactIcon {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+  }
+  
+  .contactText {
+    align-self: stretch;
+    margin: auto 0;
+  }
+  
+  @media (max-width: 991px) {
+    .container {
+      padding: 100px 20px;
+    }
+  
+    .wrapper {
+      max-width: 100%;
+    }
+  
+    .title {
+      max-width: 100%;
+      font-size: 40px;
+    }
+  
+    .faqSection {
+      max-width: 100%;
+      margin: 40px 10px 0 0;
+    }
+  
+    .faqList {
+      max-width: 100%;
+    }
+  
+    .faqItems {
+      max-width: 100%;
+    }
+  
+    .contactSection {
+      max-width: 100%;
+      margin-top: 40px;
+    }
+  }

@@ -1,0 +1,443 @@
+.profileContainer {
+  border-radius: 16px;
+  /* background-color: rgb(249, 249, 251); */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  align-items: start;
+  font-family: Poppins, sans-serif;
+  padding: 24px 24px 24px;
+  position: relative;
+  min-height: 800px;
+}
+
+.profileWrapper {
+  /* background-color: rgb(249, 249, 251); */
+  width: 100%;
+}
+
+.headerImage {
+  aspect-ratio: 12.66;
+  object-fit: contain;
+  width: 100%;
+  height: auto;
+}
+
+.headerContainer {
+  display: flex;
+  width: 100%;
+  max-width: 1340px;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 31px 30px 0;
+}
+
+.userInfo {
+  display: flex;
+  gap: 22px;
+  color: rgb(0, 0, 0);
+}
+
+.userDetails {
+  display: flex;
+  flex-direction: column;
+  margin: auto 0;
+}
+
+.userName {
+  font-size: 19px;
+  font-weight: 500;
+}
+
+.userEmail {
+  font-size: 15px;
+  margin-top: 20px;
+  color: rgb(236, 108, 108);
+}
+
+.actionButtons {
+  display: flex;
+  gap: 29px;
+  font-size: 15px;
+  color: rgb(255, 255, 255);
+  margin: auto 0;
+}
+
+.passwordButton {
+  border-radius: 7px;
+  background: rgba(255, 0, 0, 0.651);
+  padding: 13px;
+  border: none;
+  cursor: pointer;
+}
+
+.editButton {
+  border-radius: 7px;
+  background-color: rgb(0, 157, 254);
+  padding: 10px 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.formContainer {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.formSection {
+  margin-top: 30px;
+}
+
+.sectionTitle {
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.fieldsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.fieldContainer {
+  background-color: rgb(249, 249, 249);
+  border-radius: 7px;
+  padding: 12px 19px;
+}
+
+.fieldLabel {
+  font-size: 15px;
+  color: rgb(0, 0, 0);
+  display: block;
+  margin-bottom: 8px;
+  margin-top: 20px;
+}
+
+.fieldValue {
+  font-size: 15px;
+  color: rgb(0, 0, 0);
+  width: 555px;
+}
+
+.emailIcon {
+  aspect-ratio: 1;
+  width: 46px;
+  background-color: rgb(65, 130, 249);
+  border-radius: 50%;
+}
+
+.formActions {
+  display: flex;
+  gap: 40px;
+  margin-top: 30px;
+  justify-content: end;
+  max-width: 1340px;
+}
+
+.cancelButton {
+  border-radius: 7px;
+  background-color: rgb(28, 28, 28);
+  color: white;
+  padding: 9px 17px;
+  border: none;
+  cursor: pointer;
+}
+
+.saveButton {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: rgb(0, 157, 254);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.emailSection {
+  position: absolute;
+  bottom: 0;
+}
+.emailContainer {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 10px;
+}
+/*================ No edit ===================== */
+.fieldContainerNoEdit {
+  display: flex;
+  margin-bottom: 1.5rem;
+  gap: 20px;
+  background-color: rgb(245, 251, 255); /* Màu nền nhẹ nhàng */
+  padding: 1rem;
+  border: 1px solid #e0e0e0; /* Đường viền mảnh */
+  border-radius: 8px; /* Góc bo tròn */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Đổ bóng nhẹ */
+  width: 555.11px;
+  margin-top: 20px;
+  justify-content: space-between;
+}
+
+.fieldLabelNoEdit {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333; /* Màu chữ đậm */
+  margin-bottom: 0.5rem;
+}
+
+.fieldValueNoEdit {
+  font-size: 0.95rem;
+  color: #555; /* Màu chữ nhạt hơn */
+  word-wrap: break-word; /* Đảm bảo nội dung dài được xuống dòng */
+}
+
+.flexContainer {
+  display: flex;
+  justify-content: space-around;
+  gap: 2rem; /* Khoảng cách giữa các cột */
+  flex-wrap: wrap; /* Tự động xuống dòng nếu thiếu không gian */
+}
+
+.column {
+  flex: 1;
+  min-width: 250px; /* Đảm bảo cột không quá nhỏ */
+}
+/* css anh  */
+.imageContainer {
+  position: relative;
+  width: 120px; /* Tùy chỉnh kích thước */
+  height: 120px;
+  overflow: hidden;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.profileImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s;
+  border-radius: 50%;
+}
+
+.imageContainer:hover .overlay {
+  opacity: 1;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.modalContent {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.closeButton {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background: rgba(255, 0, 0, 0.651);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+/* thay doi mat khau */
+.changepasswordcontainer {
+  width: 30%; /* max-w-md */
+  margin: 2.5rem auto; /* mx-auto and mt-10 */
+  padding: 1.5rem; /* p-6 */
+  background-color: #ffffff; /* bg-white */
+  border-radius: 0.375rem; /* rounded-md */
+  box-shadow:
+    0 4px 6px rgba(0, 0, 0, 0.1),
+    0 1px 3px rgba(0, 0, 0, 0.06); /* shadow */
+}
+.textpassword {
+  font-size: 1.5rem; /* text-2xl */
+  font-weight: 600; /* font-semibold */
+  margin-bottom: 1.5rem; /* mb-6 */
+  text-align: center; /* text-center */
+}
+.fieldLabelChangePassword {
+  display: block;
+  font-size: 1rem; /* text-base */
+  font-weight: 500; /* font-medium */
+  color: #374151; /* text-gray-700 */
+  margin-bottom: 0.5rem; /* mb-2 */
+  transition: color 0.2s ease-in-out;
+  margin-top: 20px;
+}
+.iconEmail {
+  width: 24px;
+  height: 24px;
+  object-fit: cover;
+  margin-top: 20px;
+}
+.fieldInputChangePassword {
+  padding-right: 2.5rem; /* pr-10 */
+  width: 100%; /* w-full */
+  border: 1px solid #d1d5db; /* border-gray-300 */
+  border-radius: 0.375rem; /* rounded-md */
+  padding: 0.5rem 0.75rem; /* py-2 px-3 */
+  outline: none; /* focus:outline-none */
+  transition: box-shadow 0.2s ease-in-out; /* smooth focus effect */
+}
+.fieldInputChangePassword:focus {
+  box-shadow: 0 0 0 2px #3b82f6; /* focus:ring-2 focus:ring-blue-500 */
+}
+.iconEyes {
+  position: absolute; /* absolute */
+  top: 0; /* inset-y-0 */
+  bottom: 0;
+  right: 0.5rem; /* right-2 */
+  display: flex; /* flex */
+  align-items: center; /* items-center */
+  color: #4b5563; /* text-gray-600 */
+  cursor: pointer; /* hover */
+  transition: color 0.2s ease-in-out;
+}
+
+.iconEyes:hover {
+  color: #1f2937; /* hover:text-gray-800 */
+}
+.formF{
+  display: flex;
+  justify-content: space-around;
+}
+.imagePreviewContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.imagePreview {
+  max-width: 100%;
+  max-height: 200px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+@media (max-width: 1391px) {
+  .fieldContainerNoEdit {
+    width: 400px;
+  }
+  .fieldValue {
+    width: 400px;
+  }
+}
+@media (max-width: 991px) {
+  .profileContainer {
+    padding: 0 20px;
+  }
+  .fieldContainerNoEdit {
+    width: 200px;
+  }
+  .fieldValue {
+    width: 200px;
+  }
+  .headerContainer {
+    max-width: 100%;
+    margin-right: 10px;
+  }
+
+  .fieldsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .emailSection {
+    margin-top: 40px;
+  }
+}
+.hedform{
+  display: flex;
+  justify-content: space-around;
+}
+@media (max-width: 761px) {
+  .Noeditfield {
+    display: flex;
+    flex-direction: column;
+  }
+  .changepasswordcontainer{
+    width: 100%;
+  }
+  .sectionTitle {
+    font-size: 15px;
+  }
+  .hedform{
+    display: none;
+  }
+  .formActions{
+    margin: 0;
+  }
+  .fieldContainerNoEdit {
+    width: 230px;
+    margin: 15px 0;
+    padding: 8px;
+  }
+  .fieldLabelNoEdit {
+    font-size: 14px;
+    white-space: nowrap;
+  }
+  .editButton,
+  .passwordButton {
+    font-size: 13px;
+  }
+  .fieldValueNoEdit {
+    font-size: 12px;
+  }
+  .headerContainer {
+    margin: 0;
+  }
+  .userInfo {
+    display: flex;
+    flex-direction: column;
+  }
+  .actionButtons {
+    gap: 10px;
+  }
+  .formF{
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+  }
+  .formEdit {
+    display: flex;
+    flex-direction: column;
+  }
+  .fieldLabel{
+    margin: 0;
+  }
+  .fieldValue{
+    width: 100px;
+    font-size: 12px;
+  }
+}

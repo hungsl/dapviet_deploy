@@ -1,0 +1,128 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .container {
+    display: flex;
+    width: 100%;
+    padding-top: 272px;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  
+  .background {
+    background-color: rgb(242, 250, 255);
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 70px 99px;
+  }
+  
+  .contentWrapper {
+    /* background-color: rgb(255, 255, 255); */
+    z-index: 1;
+    margin-top: -262px;
+    width: 1514px;
+    max-width: 100%;
+    padding: 79px 66px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
+    border-radius: 12px;
+  }
+  
+  .grid {
+    gap: 20px;
+    display: flex;
+  }
+  
+  .textColumn {
+    display: flex;
+    flex-direction: column;
+    line-height: normal;
+    width: 50%;
+    margin-left: 0;
+    /* color: rgb(0, 0, 0); */
+    font: 400 18px/24px Inter, -apple-system, Roboto, Helvetica, sans-serif;
+  }
+  
+  .contentTitle {
+    font-size: 24px;
+    font-weight: bolder;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+  
+  .contentDescription {
+    margin-top: 23px;
+  }
+  
+  .tagline {
+    font-weight: 700;
+    line-height: 1;
+    align-self: start;
+    margin-top: 77px;
+  }
+  
+  .imageColumn {
+    display: flex;
+    flex-direction: column;
+    line-height: normal;
+    width: 50%;
+    margin-left: 20px;
+  }
+  
+  .image {
+    aspect-ratio: 1.82;
+    object-fit: contain;
+    object-position: center;
+    width: 100%;
+    margin-top: 11px;
+  }
+  
+  @media (max-width: 991px) {
+    .container {
+      max-width: 100%;
+      padding-top: 100px;
+    }
+  
+    .background {
+      max-width: 100%;
+      padding: 0 20px;
+    }
+  
+    .contentWrapper {
+      margin-top: -120px;
+      padding: 0 20px;
+    }
+  
+    .grid {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+    }
+  
+    .textColumn {
+      width: 100%;
+      margin-top: 40px;
+    }
+  
+    .contentTitle,
+    .contentDescription,
+    .tagline {
+      max-width: 100%;
+    }
+  
+    .tagline {
+      margin-top: 40px;
+    }
+  
+    .imageColumn {
+      width: 100%;
+    }
+  
+    .image {
+      max-width: 100%;
+      margin-top: 40px;
+    }
+  }

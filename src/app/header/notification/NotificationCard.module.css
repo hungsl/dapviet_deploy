@@ -1,0 +1,93 @@
+
+
+/* NotificationPopover.module.css */
+
+.socialIconNotify {
+  position: relative;
+}
+
+.notificationCount {
+  position: absolute;
+  top: -4px; /* Điều chỉnh vị trí */
+  right: -4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 16px;
+  width: 16px;
+  border-radius: 9999px; /* Hình tròn */
+  background-color: #dc2626; /* Màu đỏ */
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.popoverContent {
+  width: 400px;
+  left: 0;
+  top: 0;
+}
+
+.notificationHeader {
+  padding: 8px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.notificationList {
+  padding: 16px;
+  gap: 16px;
+  height: 400px;
+}
+
+.notificationItem {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  gap: 16px;
+}
+
+.notificationText {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+
+
+.notificationTime {
+  font-size: 12px;
+  font-weight: 300;
+}
+
+@media (max-width: 768px){
+.popoverContent {
+  width: 350px;
+  left: 0;
+  top: 0;
+}
+
+.notificationHeader {
+  padding: 2px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.notificationList {
+  padding: 16px;
+  gap: 5px;
+  height: 200px;
+}
+
+.notificationItem {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  gap: 10px;
+}
+
+.notificationText {
+  font-size: 12px;
+  font-weight: 600;
+}
+}

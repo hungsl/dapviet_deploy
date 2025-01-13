@@ -41,10 +41,10 @@ export default function Chat() {
   } = useChat({ api: "/api/openai" });
   const scrollRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    if (isLoading) {
-      console.log("call api");
-    }
-  }, [isLoading]);
+    console.log("input: ",input)
+    console.log("messages: ",messages)
+    console.log("error: ",error)
+  }, [messages,error,input]);
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 200) {

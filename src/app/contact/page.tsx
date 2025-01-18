@@ -2,6 +2,7 @@ import React from "react";
 import ContactForm from "./contact-form";
 import styles from "./Contact.module.css";
 import { ContactInfo } from "./contact-info";
+import Image from "next/image";
 
 const contactInfo = [
   { icon: "/about/EMAILcontact.png", text: "nextrad.dapviet@gmail.com" },
@@ -40,15 +41,16 @@ export default function ContactPage() {
                 rel="noopener noreferrer"
                 className={styles.iconLink}
               >
-                <img src="/login/facebook.png" alt="Facebook" />
+                <Image width={100} height={100} className={styles.facebookIcon} src="/login/facebook.png" alt="Facebook" />
               </a>
+
               <a
                 href="https://tiktok.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.iconLink}
               >
-                <img src="/login/TikTokIcon.png" alt="TikTok" />
+                <Image width={100} height={100} className={styles.titokIcon}  src="/login/TikTokIcon.png" alt="TikTok" />
               </a>
             </div>
           </section>

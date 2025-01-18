@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./DiscountedProducts.module.css";
-import ProductList from "./product-list";
+import ProductList, { ProductProps } from "./product-list";
 import {
   Card,
   CardContent,
@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
-const products = [
+const products : ProductProps[]= [
   // {
   //   id: "PD1",
   //   name: "Sản phẩm 1",

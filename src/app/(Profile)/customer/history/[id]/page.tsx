@@ -1,12 +1,12 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import styles from "../RatingPage.module.css";
-import Link from "next/link";
 import FeedbackForm from "./feedback-form";
 import { useRouter, useSearchParams } from "next/navigation";
 import productApiRequest from "@/apiRequests/product";
 import { productDetailFeedback } from "../../types";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 export default function CreateFeedbackForm({
   params,
@@ -37,13 +37,6 @@ export default function CreateFeedbackForm({
   const handleBack = () => {
     router.back()
   }
-  if (!product)
-    return (
-      <div className="flex justify-center items-center h-screen flex-col relative">
-        <div className="absolute">Loading</div>
-        <div className="w-16 h-16 border-4 border-t-4 border-blue-500 border-dotted rounded-full animate-spin"></div>
-      </div>
-    );
   return (
     <>
       <div className={styles.container}>
@@ -72,10 +65,10 @@ export default function CreateFeedbackForm({
           Đánh giá sản phẩm
         </h1>
         <div className={styles.productInfo}>
-          <img src="/productDetail/relevant.png" alt="Sản phẩm" />
+           <Image width={300} height={300} priority src={product?.pictures[0] || "/images/default-product.jpg"} alt="Sản phẩm" />
           <div className={styles.productDetails}>
-            <h2 className={styles.productName}>{product.name}</h2>
-            <p className={styles.productDescription}>{product.description}</p>
+            <h2 className={styles.productName}>{product?.name}</h2>
+            <p className={styles.productDescription}>{product?.description}</p>
           </div>
         </div>
         <FeedbackForm id={unwrappedParams.id} />

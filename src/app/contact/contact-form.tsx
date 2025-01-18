@@ -12,7 +12,11 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@mui/material";
-import { ContactBody, ContactBodyType } from "@/schemaValidations/contact.schema";
+import {
+  ContactBody,
+  ContactBodyType,
+} from "@/schemaValidations/contact.schema";
+import Image from "next/image";
 
 export default function ContactForm() {
   const [interest, setInterest] = useState<string>("");
@@ -51,7 +55,11 @@ export default function ContactForm() {
         </div>
         <div className={styles.inputsContainer}>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit, error => console.log(error))}>
+            <form
+              onSubmit={form.handleSubmit(onSubmit, (error) =>
+                console.log(error)
+              )}
+            >
               <div className={styles.formGroup}>
                 <FormField
                   control={form.control}
@@ -107,8 +115,10 @@ export default function ContactForm() {
                 />
               </div>
               <button type="submit" className={styles.submitButton}>
-                <img
-                  loading="lazy"
+                <Image
+                  width={200}
+                  height={200}
+                  priority
                   src="/about/sendmess.png"
                   alt=""
                   className={styles.submitIcon}

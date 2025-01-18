@@ -7,7 +7,7 @@ import LoginGoogle from "./login-google";
 import styles from './google.module.css'
 export default async function page() {
   const accountGoogle = await auth();
-  console.log(accountGoogle)
+  // console.log(accountGoogle)
   return (
     <div className={`${styles.background} bg-background `}>
        {!accountGoogle &&<LoginGoogle />}

@@ -1,5 +1,5 @@
 import React from "react";
-import ProductReviews from "../feedback-product/product-reviews";
+// import ProductReviews from "../feedback-product/product-reviews";
 import Reviews from "../reviews-feedback/reivews";
 import { ProductGridContainer } from "../product-relevant";
 import ProductDetail from "../view-detail/product-detail";

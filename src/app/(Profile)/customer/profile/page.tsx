@@ -14,7 +14,7 @@ export default async function UserProfile() {
             height={500}
             priority
             src="/profilebackground.png"
-            alt=""
+            alt="background"
             className={styles.headerImage}
           />
           <ProfileHeader />

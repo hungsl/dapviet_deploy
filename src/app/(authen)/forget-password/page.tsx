@@ -1,5 +1,4 @@
 "use client";
-
 import { useForm } from "react-hook-form";
 import styles from "./ForgetPassword.module.css";
 import { zodResolver } from "@hookform/resolvers/zod";

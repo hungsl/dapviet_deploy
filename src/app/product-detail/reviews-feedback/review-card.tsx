@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./Reviews.module.css";
 import { ReviewCardProps } from "./types";
-import Image from "next/image";
 import { formatDate } from "@/lib/utils";
 import { TiStarFullOutline } from "react-icons/ti";
 

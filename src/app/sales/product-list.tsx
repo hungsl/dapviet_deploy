@@ -4,7 +4,7 @@ import styles from "./DiscountedProducts.module.css";
 import { ProductCard } from "./product-card";
 import dynamic from "next/dynamic";
 
-interface ProductProps {
+export interface ProductProps {
   id: string;
   name: string;
   imageUrl: string;
@@ -12,7 +12,7 @@ interface ProductProps {
   price: number;
 }
 
-interface Props {
+export interface Props {
   products: ProductProps[];
 }
 const CountdownTimer = dynamic(() => import('./coutdown'), { ssr: false })

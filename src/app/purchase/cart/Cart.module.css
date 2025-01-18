@@ -6,6 +6,7 @@
   border-radius: 10px;
   margin: 54px auto 0;
   color: #000;
+  height: 80vh;
 }
 
 .cartLayout {
@@ -37,7 +38,7 @@
   flex-direction: column;
   gap: 24px;
   overflow-y: scroll;
-  height: 700px;
+  height: 70vh;
   background-color: #ffffff;
   border-radius: 3px;
   padding: 10px 0;
@@ -70,6 +71,7 @@
   aspect-ratio: 0.89;
   object-fit: contain;
   width: 222px;
+  height: auto;
 }
 
 .productDetails {
@@ -102,7 +104,7 @@
 }
 
 .productOptions {
-  margin-top: 99px;
+  margin-top: 59px;
   font-family: Poppins, sans-serif;
   font-size: 14px;
 }

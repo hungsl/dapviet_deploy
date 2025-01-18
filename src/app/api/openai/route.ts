@@ -26,7 +26,7 @@ export async function POST(req: Request) {
       messages: [initialMessage, ...messages],
       temperature: 1,
     });
-    console.log(messages)
+    // console.log(messages)
     return stream?.toDataStreamResponse();
   } catch (error) {
     console.error("Error:", error); // In chi tiết lỗi ra console

@@ -37,7 +37,7 @@ export default function ProductList({ products }: Props) {
 
   const startIndex = (currentPage - 1) * itemsPerPage;
   const currentProducts = products.slice(startIndex, startIndex + itemsPerPage);
-
+  
   return (
     <>
       <CountdownTimer />

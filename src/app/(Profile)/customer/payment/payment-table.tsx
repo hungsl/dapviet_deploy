@@ -3,9 +3,20 @@ import React, { useEffect, useState } from "react";
 import styles from "./Payment.module.css";
 import { TransactionItemList } from "@/schemaValidations/order.schema";
 import orderApiRequest from "@/apiRequests/order";
-import { formatCurrency } from "@/lib/utils";
+import { formatCurrency, formatDate } from "@/lib/utils";
+import { CreditCard } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { useRouter } from "next/navigation";
 
 export default function PaymentTable() {
+  const router = useRouter()
   const [payments, setPayments] = useState<TransactionItemList | null>(null);
   useEffect(() => {
     const fetchTransactions = async () => {
@@ -43,16 +54,14 @@ export default function PaymentTable() {
                   <strong>Ngày tạo đơn hàng:</strong>
                   <span className={styles.infoValue}>
                     {
-                      new Date(payment.orderCreatedDate)
-                        .toISOString()
-                        .split("T")[0]
+                      formatDate(payment.orderCreatedDate)
                     }
                   </span>
                 </div>
                 <div className={styles.infoItem}>
                   <strong>Ngày thanh toán:</strong>
                   <span className={styles.infoValue}>
-                    {new Date(payment.paymentDate).toISOString().split("T")[0]}
+                    {formatDate(payment.paymentDate)}
                   </span>
                 </div>
 
@@ -88,8 +97,32 @@ export default function PaymentTable() {
           </div>
         ))
       ) : (
-        <div className="text-center p-4">
-          Không có giao dịch nào để hiển thị.
+        <div className="flex flex-col items-center justify-center text-center">
+          <Card className="flex flex-col items-center justify-center text-center max-w-[700px]">
+            <CardHeader>
+              <CardTitle className="text-2xl font-bold">
+                Không có giao dịch
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="flex flex-col items-center space-y-4">
+                <CreditCard className="h-20 w-20 text-muted-foreground" />
+                <p className="text-muted-foreground">
+                  Hiện tại không có giao dịch nào để hiển thị. Lịch sử giao dịch
+                  của bạn sẽ xuất hiện ở đây khi bạn bắt đầu mua sắm hoặc nhận
+                  thanh toán.
+                </p>
+              </div>
+            </CardContent>
+            <CardFooter>
+              <Button
+                variant="outline"
+                onClick={() => router.push("/searchpage")}
+              >
+                Bắt đầu mua sắm
+              </Button>
+            </CardFooter>
+          </Card>
         </div>
       )}
     </div>

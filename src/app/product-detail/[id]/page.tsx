@@ -59,6 +59,7 @@ export default async function ProductDetailPage({
     const result = await getDetail(unwrappedParams.id);
     // console.log("productdetail: ", result);
     data = result.payload.data;
+    // console.log(data)
   } catch (error) {
     console.log("Lỗi khi lấy chi tiết sản phẩm: ", error);
     // redirect("/homepage");
@@ -74,8 +75,7 @@ export default async function ProductDetailPage({
     <div>
       <ProductDetail data={data} />
       <Separator className="mt-20" />
-      <ProductReviews />
-      <Reviews />
+      <Reviews avgRating ={data.avgRating} productId = {data.id}/>
       <Separator className="mt-20" />
       <ProductGridContainer data={data} />
     </div>

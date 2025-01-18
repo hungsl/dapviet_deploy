@@ -40,11 +40,11 @@ export default function Chat() {
     reload,
   } = useChat({ api: "/api/openai" });
   const scrollRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    console.log("input: ",input)
-    console.log("messages: ",messages)
-    console.log("error: ",error)
-  }, [messages,error,input]);
+  // useEffect(() => {
+  //   console.log("input: ",input)
+  //   console.log("messages: ",messages)
+  //   console.log("error: ",error)
+  // }, [messages,error,input]);
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 200) {
@@ -69,8 +69,8 @@ export default function Chat() {
       setIschatOpen(true);
       closeTimeout = setTimeout(() => {
         setIschatOpen(false);
-      }, 3000);
-    }, 10000);
+      }, 1000);
+    }, 20000);
     return () => {
       if (openTimeout) clearTimeout(openTimeout);
       if (closeTimeout) clearTimeout(closeTimeout);

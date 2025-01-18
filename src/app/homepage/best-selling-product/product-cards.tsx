@@ -37,7 +37,7 @@ export default function ProductGrid() {
       <div className={styles.gridContainer}>
         {/* <div className={styles.gridWrapper}> */}
           {/* <Carousel cards={data} /> */}
-          <SwiperComponent cards={data} />
+          <SwiperComponent/>
         {/* </div> */}
       </div>
     </>

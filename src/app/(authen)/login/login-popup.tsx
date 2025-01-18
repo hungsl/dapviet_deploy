@@ -19,15 +19,15 @@ export default function LoginPopup() {
                 className={styles.logo}
               />
             </div>
-            <div className={styles.brandContent}>
-              <h1 className={styles.brandTitle}>
-                <a href="/homepage" className={styles.link}>
-                  Đắp Việt
-                </a>
-              </h1>
-              <p className={styles.brandDescription}>
-                Nơi lưu giữ nét đẹp dân tộc, hân hạnh đón bạn
-              </p>
+              <div className={styles.brandContent}>
+                <h1 className={styles.brandTitle}>
+                  <a href="/homepage" className={styles.link}>
+                    Đắp Việt
+                  </a>
+                </h1>
+                <p className={styles.brandDescription}>
+                  Nơi lưu giữ nét đẹp dân tộc, hân hạnh đón bạn
+                </p>
             </div>
           </div>
 

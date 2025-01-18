@@ -6,7 +6,9 @@
     align-items: center;
     justify-content: center;
     color: black;
-    height: 80%;
+    /* height: 80%; */
+    height: 92vh;
+    
     padding: 27px 80px;
   }
   .countdown {
@@ -119,7 +121,7 @@
     .container{
       width: 100%;
       padding: 50px 20px;
-      margin-bottom: 100px;
+      margin-bottom: 107px;
     }
     .warningMessage{
       width: 100%;

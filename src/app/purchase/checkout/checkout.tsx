@@ -6,7 +6,7 @@ import CheckoutForm from "./checkout-form";
 
 export const Checkout: React.FC = () => {
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} scroll`}>
       <div className={styles.content}>
         <div className={styles.formColumn}>
           <div className={styles.stepIndicators}>

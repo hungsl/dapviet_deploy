@@ -184,7 +184,8 @@ const ProductData = z.object({
   status: z.enum(["IN_STOCK", "OUT_OF_STOCK"]), 
   collectionName: z.string().nullable(),
   typeName: z.string(),  
-  sizeQuantities: z.record(SizeQuantityRes), 
+  sizeQuantities: z.record(SizeQuantityRes),
+  avgRating: z.number(), 
 });
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const ProductRes = z.object({

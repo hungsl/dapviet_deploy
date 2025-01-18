@@ -1,0 +1,15 @@
+.swiper-wrapper {
+    margin-bottom: 40px; /* Tăng khoảng cách giữa nội dung và pagination */
+  }
+  .swiper-slide{
+    z-index: 10;
+  }
+  @media (max-width: 428px) {
+    .swiper {
+      margin-bottom: 40px; /* Tăng khoảng cách giữa nội dung và pagination */
+    }
+  }
+  .custom-main-swiper .swiper-wrapper {
+    margin-bottom: 0; /* Đảm bảo không bị ảnh hưởng bởi các Swiper khác */
+  }
+  

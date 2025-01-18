@@ -1,10 +1,16 @@
 "use client";
 import React, { useState } from "react";
 import styles from "./ProductReviews.module.css";
-
-export default function SortButton({options} : {options: string[];}) {
+export default function SortButton({
+  options,
+  selectedSort,
+  setSelectedSort,
+}: {
+  options: string[];
+  setSelectedSort: (selectedSort: string) => void;
+  selectedSort: string;
+}) {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedSort, setSelectedSort] = useState("Mới nhất");
   const [selectedOption, setSelectedOption] = useState(
     selectedSort || options[0]
   );
@@ -41,5 +47,4 @@ export default function SortButton({options} : {options: string[];}) {
       )}
     </div>
   );
-};
-
+}

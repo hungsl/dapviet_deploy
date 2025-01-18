@@ -1,31 +1,56 @@
-'use client'
+"use client";
 import React, { useState } from "react";
 import styles from "../../history/RatingPage.module.css";
 import { toast } from "@/hooks/use-toast";
+import { useRouter } from "next/navigation";
+import feedbackApiRequest from "@/apiRequests/feedback";
+import LoadingAnimation from "@/components/common/LoadingAnimation";
 
-export default function RefeedbackForm() {
+export default function RefeedbackForm({ id }: { id: string }) {
   const [rating, setRating] = useState(0);
-  const [comment, setComment] = useState("");
-
+  const [content, setContent] = useState("");
+  const [loading, setLoading] = useState<boolean>(false);
+  const router = useRouter();
   const handleRating = (star: number) => {
     setRating(star);
   };
 
   const handleCommentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setComment(e.target.value);
+    setContent(e.target.value);
   };
 
-  const handleSubmit = () => {
-    // Xử lý gửi đánh giá, có thể gửi data đến server
-    toast({
-      description: "Đánh giá đã được gửi!",
-      duration: 3000,
-    });
+  const handleSubmit = async() => {
+    try {
+      setLoading(true);
+      if(!content || !rating) {
+        toast({
+          variant: "destructive",
+          description: "Bạn không được để trống!",
+          duration: 3000
+        })
+        return
+      }
+      const body = {
+        content,
+        rating,
+      };
+      const result = await feedbackApiRequest.giveFeedBack(id, body);
+      toast({
+        description: result.payload.message,
+        duration: 3000,
+      });
+      router.push("/customer/history");
+    } catch (error) {
+      console.log("lỗi đánh giá sản phẩm: ", error);
+    } finally {
+      setLoading(false);
+    }
   };
   return (
     <>
       <div className={styles.ratingSection}>
         <label className={styles.ratingLabel}>Sửa đánh giá:</label>
+        {loading && <LoadingAnimation />}
         <div className={styles.starRating}>
           {[1, 2, 3, 4, 5].map((star) => (
             <span
@@ -39,19 +64,18 @@ export default function RefeedbackForm() {
           ))}
         </div>
       </div>
-
       <div className={styles.commentSection}>
         <label className={styles.ratingLabel}>Nhận xét của bạn:</label>
         <textarea
           className={styles.commentInput}
-          value={comment}
+          value={content}
           onChange={handleCommentChange}
           placeholder="Hãy chia sẻ cảm nhận của bạn về sản phẩm này."
         />
       </div>
 
       <button className={styles.submitButton} onClick={handleSubmit}>
-        Gửi Đánh Giá
+        Gửi lại Đánh Giá
       </button>
     </>
   );

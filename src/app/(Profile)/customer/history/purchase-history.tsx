@@ -12,14 +12,25 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { ShoppingBag } from "lucide-react";
 import orderApiRequest from "@/apiRequests/order";
 // import { useAppContext } from "@/app/context/app-provider";
 import { OrdersCompletedListResType } from "@/schemaValidations/order.schema";
+import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
 export default function PurchaseHistoryTable() {
   const [data, setData] = useState<OrdersCompletedListResType | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [direction, setDirection] = useState("ASC");
+  const router = useRouter();
   // const [properties, setProperties] = useState("email");
   const [totalPages, setTotalPages] = useState(1);
   // const { accessToken } = useAppContext();
@@ -27,7 +38,7 @@ export default function PurchaseHistoryTable() {
     try {
       const result = await orderApiRequest.ordersCompletedList(
         currentPage,
-        3,
+        5,
         direction
         // properties
       );
@@ -79,7 +90,12 @@ export default function PurchaseHistoryTable() {
             <th className={styles.tableHead}>Hình ảnh</th>
             <th className={styles.tableHead}>Tên sản phẩm</th>
             <th className={styles.tableHead}>Phương thức thanh toán</th>
-            <th className={styles.tableHead}>Số sản phẩm</th>
+            <th className={`${styles.tableHead} ${styles.textRight}`}>
+              Kích cỡ
+            </th>
+            <th className={`${styles.tableHead} ${styles.textRight}`}>
+              Số sản phẩm
+            </th>
             <th className={`${styles.tableHead} ${styles.textRight}`}>Giá</th>
             <th className={`${styles.tableHead} ${styles.textRight}`}>
               Tổng thanh toán
@@ -89,13 +105,14 @@ export default function PurchaseHistoryTable() {
             </th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="scroll">
           {data && data.data.length > 0 ? (
             data.data.map((item) => (
               <tr key={item.orderDetailId} className={styles.tableRow}>
                 <td className={styles.Imgage}>
                   <Image
                     src={item.image}
+                    loading="lazy"
                     width={100}
                     height={100}
                     alt={item.name}
@@ -104,7 +121,12 @@ export default function PurchaseHistoryTable() {
                 <td className={`${styles.tableCell} font-medium`}>
                   {item.name}
                 </td>
-                <td className={styles.tableCell}>{item.paymentMethod}</td>
+                <td className={`${styles.tableCell} ${styles.textCenter}`}>
+                  {item.paymentMethod}
+                </td>
+                <td className={`${styles.tableCell} ${styles.textRight}`}>
+                  {item.size}
+                </td>
                 <td className={`${styles.tableCell} ${styles.textRight}`}>
                   x{item.quantity}
                 </td>
@@ -114,124 +136,140 @@ export default function PurchaseHistoryTable() {
                 <td className={`${styles.tableCell} ${styles.textRight}`}>
                   đ{item.unitPrice * item.quantity}
                 </td>
-                <td className={`${styles.tableCell} ${styles.textCenter}`}>
-                  <Link
-                    href={`/customer/feedback/view/${item.orderDetailId}`}
-                    className={styles.top}
-                  >
-                    Xem Đánh Giá
-                  </Link>
-                  <Link
-                    href={`/customer/history/${item.orderDetailId}`}
-                    className={styles.buttom}
-                  >
-                    Đánh Giá
-                  </Link>
+                <td
+                  className={`${styles.tableCell} ${styles.textCenter} ${styles.Colum}`}
+                >
+                  {item.feedback ? (
+                    <>
+                      <Link
+                        href={`/customer/feedback/view/${item.orderDetailId}`}
+                        className={styles.top}
+                      >
+                        Xem Đánh Giá
+                      </Link>
+                    </>
+                  ) : (
+                    <Link
+                      href={{
+                        pathname: `/customer/history/${item.orderDetailId}`,
+                        query: { product: item.productId },
+                      }}
+                      className={styles.buttom}
+                    >
+                      Đánh Giá
+                    </Link>
+                  )}
                 </td>
               </tr>
             ))
           ) : (
-            <tr>
-              <td colSpan={7} className="text-center p-4">
-                <div className="scenebox">
-                  <div className="shadowbox"></div>
-                  <div className="jumperbox">
-                    <div className="spinnerbox">
-                      <div className="scalerbox">
-                        <div className="loaderbox">
-                          <div className="cuboidbox">
-                            <div className="cuboid__sidebox"></div>
-                            <div className="cuboid__sidebox"></div>
-                            <div className="cuboid__sidebox"></div>
-                            <div className="cuboid__sidebox"></div>
-                            <div className="cuboid__sidebox"></div>
-                            <div className="cuboid__sidebox"></div>
-                          </div>
-                        </div>
-                      </div>
+            <tr className="flex flex-col items-center justify-center text-center mt-10">
+              <td colSpan={8}>
+                <Card className="flex flex-col items-center justify-center text-center">
+                  <CardHeader>
+                    <CardTitle className="text-2xl font-bold">
+                      Không có lịch sử mua hàng
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex flex-col items-center space-y-4">
+                      <ShoppingBag className="h-20 w-20 text-muted-foreground" />
+                      <p className="text-muted-foreground">
+                        Bạn chưa có giao dịch mua hàng nào. Hãy bắt đầu mua sắm
+                        để xem lịch sử giao dịch của bạn!
+                      </p>
                     </div>
-                  </div>
-                </div>
-                Không có lịch sử mua hàng nào.
+                  </CardContent>
+                  <CardFooter>
+                    <Button
+                      variant="outline"
+                      onClick={() => router.push("/searchpage")}
+                    >
+                      Bắt đầu mua sắm
+                    </Button>
+                  </CardFooter>
+                </Card>
               </td>
             </tr>
           )}
         </tbody>
       </table>
       {/* Pagination */}
-      <Pagination className="mt-10 mb-10">
-        <PaginationContent>
-          {/* Nút Previous */}
-          <PaginationItem>
-            <PaginationPrevious
-              href="#"
-              onClick={() => handlePageChange(currentPage - 1)}
-              className={currentPage === 1 ? "disabled" : ""}
-            />
-          </PaginationItem>
+      {totalPages > 1 && (
+        <Pagination className="mt-10 mb-10">
+          <PaginationContent>
+            {/* Nút Previous */}
+            <PaginationItem>
+              <PaginationPrevious
+                href="#"
+                onClick={() => handlePageChange(currentPage - 1)}
+                className={currentPage === 1 ? "disabled" : ""}
+              />
+            </PaginationItem>
 
-          {/* Hiển thị trang đầu tiên và dấu ... nếu cần */}
-          {currentPage > 3 && (
-            <>
-              <PaginationItem>
-                <PaginationLink
-                  href="#"
-                  isActive={currentPage === 1}
-                  onClick={() => handlePageChange(1)}
-                >
-                  1
-                </PaginationLink>
-              </PaginationItem>
-              <PaginationItem>
-                <PaginationEllipsis />
-              </PaginationItem>
-            </>
-          )}
+            {/* Hiển thị trang đầu tiên và dấu ... nếu cần */}
+            {currentPage > 3 && (
+              <>
+                <PaginationItem>
+                  <PaginationLink
+                    href="#"
+                    isActive={currentPage === 1}
+                    onClick={() => handlePageChange(1)}
+                  >
+                    1
+                  </PaginationLink>
+                </PaginationItem>
+                <PaginationItem>
+                  <PaginationEllipsis />
+                </PaginationItem>
+              </>
+            )}
 
-          {/* Hiển thị các trang xung quanh trang hiện tại */}
-          {Array.from({ length: 5 })
-            .map((_, index) => currentPage - 2 + index) // Tạo dãy trang xung quanh
-            .filter((page) => page >= 1 && page <= totalPages) // Lọc bỏ trang đầu tiên và trang cuối
-            .map((page) => (
-              <PaginationItem key={page}>
-                <PaginationLink
-                  href="#"
-                  isActive={currentPage === page}
-                  onClick={() => handlePageChange(page)}
-                >
-                  {page}
-                </PaginationLink>
-              </PaginationItem>
-            ))}
+            {/* Hiển thị các trang xung quanh trang hiện tại */}
+            {Array.from({ length: 5 })
+              .map((_, index) => currentPage - 2 + index) // Tạo dãy trang xung quanh
+              .filter((page) => page >= 1 && page <= totalPages) // Lọc bỏ trang đầu tiên và trang cuối
+              .map((page) => (
+                <PaginationItem key={page}>
+                  <PaginationLink
+                    href="#"
+                    isActive={currentPage === page}
+                    onClick={() => handlePageChange(page)}
+                  >
+                    {page}
+                  </PaginationLink>
+                </PaginationItem>
+              ))}
 
-          {/* Hiển thị trang cuối cùng và dấu ... nếu cần */}
-          {currentPage < totalPages - 2 && (
-            <>
-              <PaginationItem>
-                <PaginationEllipsis />
-              </PaginationItem>
-              <PaginationItem>
-                <PaginationLink
-                  href="#"
-                  isActive={currentPage === totalPages}
-                  onClick={() => handlePageChange(totalPages)}
-                >
-                  {totalPages}
-                </PaginationLink>
-              </PaginationItem>
-            </>
-          )}
+            {/* Hiển thị trang cuối cùng và dấu ... nếu cần */}
+            {currentPage < totalPages - 2 && (
+              <>
+                <PaginationItem>
+                  <PaginationEllipsis />
+                </PaginationItem>
+                <PaginationItem>
+                  <PaginationLink
+                    href="#"
+                    isActive={currentPage === totalPages}
+                    onClick={() => handlePageChange(totalPages)}
+                  >
+                    {totalPages}
+                  </PaginationLink>
+                </PaginationItem>
+              </>
+            )}
 
-          {/* Nút Next */}
-          <PaginationItem>
-            <PaginationNext
-              href="#"
-              onClick={() => handlePageChange(currentPage + 1)}
-              className={currentPage === totalPages ? "disabled" : ""}
-            />
-          </PaginationItem>
-        </PaginationContent>
-      </Pagination>
+            {/* Nút Next */}
+            <PaginationItem>
+              <PaginationNext
+                href="#"
+                onClick={() => handlePageChange(currentPage + 1)}
+                className={currentPage === totalPages ? "disabled" : ""}
+              />
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination>
+      )}
     </div>
   );
 }

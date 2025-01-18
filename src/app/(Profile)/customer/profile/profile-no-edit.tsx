@@ -6,7 +6,7 @@ export const ProfileNoEdit: React.FC<ProfileFormProps> = ({
   userData,
 }) => {
   return (
-    <div className={`${styles.formContainer}`}>
+    <div className={`${styles.formContainers}`}>
       <div className={styles.formSection}>
         <div className="flex justify-around">
           <h2 className={`${styles.sectionTitle} text-foreground`}>Thông tin cá nhân</h2>

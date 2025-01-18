@@ -1,19 +1,27 @@
 export interface ReviewData {
-    id: string;
-    authorName: string;
-    date: string;
-    rating: number;
-    content: string;
-    helpfulCount: number;
-    authorImage: string;
-  }
-  
-  export interface RatingBarProps {
-    stars: number;
-    count: number;
-    total: number;
-  }
-  
-  export interface ReviewCardProps {
-    review: ReviewData;
-  }
+  feedbackId: string;
+  content: string;
+  createdAt: string;
+  rating: number;
+  username: string;
+  avatar: string;
+}
+
+export interface RatingBarProps {
+  stars: number;
+  count: number;
+  total: number;
+}
+
+export interface ReviewCardProps {
+  review: ReviewData;
+}
+
+export interface summaryFeedbackData {
+  totalReviews: number;
+  total5Star: number;
+  total4Star: number;
+  total3Star: number;
+  total2Star: number;
+  total1Star: number;
+}

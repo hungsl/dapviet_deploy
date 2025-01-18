@@ -132,7 +132,7 @@ const request = async <Response>(
         } finally {
           localStorage.removeItem("accessToken");
           localStorage.removeItem("refreshToken");
-          location.href = "/login";
+          location.href = "/homepage";
         }
       } else {
         const sessionToken = (options?.headers as any).Authorization.split(

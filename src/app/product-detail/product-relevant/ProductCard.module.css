@@ -1,57 +1,50 @@
 .card {
-    display: flex;
-    min-width: 240px;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    width: 270px;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.productImage {
+  width: 100%; /* Hoặc một kích thước cụ thể ví dụ: 300px */
+  height: 500px; /* Đặt chiều cao cố định để đảm bảo đồng đều */
+  display: block; /* Đảm bảo ảnh không bị inline */
+  object-fit: cover; /* Cắt ảnh theo kích thước khung */
+  object-position: center; /* Đặt tâm ảnh trong khung */
+  border-radius: 8px; /* Thêm bo góc nếu cần */
+  overflow: hidden;
+}
+
+.productInfo {
+  display: flex;
+  margin-top: 16px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  font:
+    600 16px Poppins,
+    sans-serif;
+}
+
+.price {
+  color: #009dfe;
+  margin-top: 8px;
+}
+
+@media (max-width: 991px) {
   .imageContainer {
-    display: flex;
-    flex-direction: column;
-    border-radius: 5px;
-    position: relative;
-    aspect-ratio: 0.894;
-    width: 270px;
-    max-width: 100%;
-    overflow: hidden;
-    align-items: center;
-    justify-content: center;
-    padding: 144px 27px;
+    padding: 100px 20px;
   }
-  
+  .title{
+    font-size: 12px;
+  }
+  .badgeIcon {
+    margin-bottom: 10px;
+  }
   .productImage {
-    position: absolute;
-    inset: 0;
-    height: 100%;
     width: 100%;
-    object-fit: cover;
-    object-position: center;
+    max-width: 100%; /* Đảm bảo không vượt kích thước cha */
+    height: 200px; /* Điều chỉnh chiều cao động */
+    display: block;
   }
-  
- 
-  
-  .productInfo {
-    display: flex;
-    margin-top: 16px;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    font: 600 16px Poppins, sans-serif;
-  }
-  
-  .price {
-    color: #009dfe;
-    margin-top: 8px;
-  }
-  
-  @media (max-width: 991px) {
-    .imageContainer {
-      padding: 100px 20px;
-    }
-    
-    .badgeIcon {
-      margin-bottom: 10px;
-    }
-  }
+}

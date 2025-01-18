@@ -30,13 +30,13 @@ import { districtResType, provinceResType } from "@/schemaValidations/viettel";
 import viettelApiRequest from "@/apiRequests/viettel";
 import accountApiRequest from "@/apiRequests/account";
 import { data } from "@/app/(Profile)/customer/profile/types";
-import { useLoading } from "@/app/context/loading-provider";
 import { toast } from "@/hooks/use-toast";
+import LoadingAnimation from "@/components/common/LoadingAnimation";
 
 export default function CheckoutForm() {
-  const {setShippingDetails } = useAppContext();
+  const { setShippingDetails } = useAppContext();
   // const accessToken = localStorage.getItem("accessToken")
-  const { setLoading } = useLoading();
+  const [loading, setLoading] = useState<boolean>(true);
   const [user, setUser] = useState<data>();
   const [provinces, setProvinces] = useState<provinceResType>();
   const [selectedProvinceId, setSelectedProvinceId] = useState<
@@ -61,26 +61,30 @@ export default function CheckoutForm() {
   });
   useEffect(() => {
     const fetchUser = async () => {
-      setLoading(true)
-      const result = await accountApiRequest.meClient();
-      const allowedKeys = [
-        "name",
-        "province",
-        "district",
-        "phone",
-        "address",
-        "dob",
-        "gender",
-      ];
-      const filteredData = Object.fromEntries(
-        Object.entries(result.payload.data).filter(([key]) =>
-          allowedKeys.includes(key)
-        )
-      );
-      form.reset(filteredData);
-      setUser(result.payload.data);
+      try {
+        setLoading(true);
+        const result = await accountApiRequest.meClient();
+        const allowedKeys = [
+          "name",
+          "province",
+          "district",
+          "phone",
+          "address",
+          "dob",
+          "gender",
+        ];
+        const filteredData = Object.fromEntries(
+          Object.entries(result.payload.data).filter(([key]) =>
+            allowedKeys.includes(key)
+          )
+        );
+        form.reset(filteredData);
+        setUser(result.payload.data);
+      } catch (error) {
+        console.log("loi khi lay user: ", error);
+        setLoading(false);
+      }
     };
-    setLoading(false)
     fetchUser();
   }, []);
 
@@ -88,7 +92,6 @@ export default function CheckoutForm() {
     // Fetch danh sách tỉnh/thành phố
     const fetchProvinces = async () => {
       try {
-        setLoading(true)
         const result = await viettelApiRequest.provinces();
         setProvinces(result.payload); // Lưu danh sách tỉnh/thành phố
 
@@ -104,8 +107,7 @@ export default function CheckoutForm() {
         }
       } catch (error) {
         console.error("Error fetching provinces:", error);
-      }finally{
-        setLoading(false)
+        setLoading(false);
       }
     };
 
@@ -118,10 +120,7 @@ export default function CheckoutForm() {
 
     const fetchDistricts = async () => {
       try {
-        setLoading(true)
-        const result = await viettelApiRequest.districts(
-          selectedProvinceId,
-        );
+        const result = await viettelApiRequest.districts(selectedProvinceId);
         setDistricts(result.payload);
         // Đặt selectedDistrictId nếu userData.district đã có
         if (user?.district) {
@@ -135,8 +134,8 @@ export default function CheckoutForm() {
         }
       } catch (error) {
         console.error("Error fetching districts:", error);
-      }finally{
-        setLoading(false)
+      } finally {
+        setLoading(false);
       }
     };
     fetchDistricts();
@@ -164,6 +163,7 @@ export default function CheckoutForm() {
 
   return (
     <div className={styles.holdForm}>
+      {loading && <LoadingAnimation/>}
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit, (error) => console.log(error))}

@@ -83,3 +83,8 @@ export const truncateText = (text: string, wordLimit: number) => {
     ? words.slice(0, wordLimit).join(" ") + "..."
     : text;
 };
+
+export function formatDate(dateString: string): string {
+  const date = new Date(dateString);
+  return date.toISOString().split("T")[0];
+}

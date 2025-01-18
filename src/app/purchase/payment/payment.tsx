@@ -11,7 +11,7 @@ export const PaymentPage = () => {
   ];
 
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} scroll`}>
       <div className={styles.content}>
         <div className={styles.formColumn}>
           <div className={styles.stepIndicators}>

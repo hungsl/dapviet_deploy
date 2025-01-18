@@ -9,6 +9,8 @@ import { api } from "../../../../../convex/_generated/api";
 import cartApiRequest from "@/apiRequests/cart";
 import { toast } from "@/hooks/use-toast";
 
+import { Loader2 } from "lucide-react";
+
 const sizes = ["XXS", "XS", "S", "M", "L", "XL", "XXL", "XXXL"];
 type SizeQuantityResType = Record<string, { size: string; quantity: number }>;
 
@@ -50,6 +52,7 @@ export default function SizeButton({
     // Tìm productQuantityId
     if (selectedSize === "") {
       toast({
+        variant: "destructive",
         title: "Hãy chọn kích thước",
         description: "không thể thêm sản phẩm",
         duration: 3000,
@@ -131,17 +134,19 @@ export default function SizeButton({
   // console.log("selectedSize: " , selectedSize)
   // console.log("quantity: " , quantity)
   const handleIncrease = () => {
-    console.log("increase")
+    console.log("increase");
     if (selectedSize === "") {
-      console.log('select')
+      console.log("select");
       toast({
+        variant: "destructive",
         title: "Hãy chọn kích cỡ",
         duration: 3000,
       });
       return;
     }
-    if(quantity >= maxQuantity){
+    if (quantity >= maxQuantity) {
       toast({
+        variant: "destructive",
         title: "Rất tiếc",
         description: "Sản phẩm không còn đủ số lượng!",
         duration: 3000,
@@ -158,9 +163,9 @@ export default function SizeButton({
       });
       return;
     }
-    console.log(quantity,maxQuantity)
-    
-    setQuantity((prev) => Math.max(1, prev - 1))
+    console.log(quantity, maxQuantity);
+
+    setQuantity((prev) => Math.max(1, prev - 1));
   };
   return (
     <>
@@ -220,7 +225,8 @@ export default function SizeButton({
           className={styles.buyButton}
           onClick={handleAddToCart}
         >
-          Thêm vào giỏ hàng
+          {loading ? <div className="flex justify-center"><Loader2 className="animate-spin " /> </div>: <>Thêm vào giỏ hàng</>}
+          
         </button>
       </div>
     </>

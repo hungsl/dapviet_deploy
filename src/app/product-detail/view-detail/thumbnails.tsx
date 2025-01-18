@@ -62,7 +62,7 @@ export default function Thumbnail({ images }: { images: string[] }) {
               <Image
                 width={300}
                 height={300}
-                loading="lazy"
+                priority
                 src={image}
                 alt={image}
                 className={styles.thumbImage}

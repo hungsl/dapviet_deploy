@@ -1,30 +1,29 @@
-import React from 'react';
-import styles from './ProductCard.module.css';
-import { ProductCardProps } from './types';
-import Link from 'next/link';
-import Image from 'next/image';
+import React from "react";
+import styles from "./ProductCard.module.css";
+import { ProductCardProps } from "./types";
+import Link from "next/link";
+import Image from "next/image";
+import { formatCurrency } from "@/lib/utils";
 
 export const ProductCard: React.FC<ProductCardProps> = ({
   id,
-  imageUrl,
-  title,
-  price
+  picture,
+  name,
+  unitPrice,
 }) => {
   return (
     <Link href={`/product-detail/${id}`} prefetch className={styles.card}>
-      <div className={styles.imageContainer}>
-        <Image
-          width={300}
-          height={300}
-          loading="lazy"
-          src={imageUrl}
-          className={styles.productImage}
-          alt={title}
-        />
-      </div>
+      <Image
+        width={500}
+        height={500}
+        loading="lazy"
+        src={picture}
+        className={styles.productImage}
+        alt={name}
+      />
       <div className={styles.productInfo}>
-        <div className={styles.title}>{title}</div>
-        <div className={styles.price}>{price} VND</div>
+        <div className={styles.title}>{name}</div>
+        <div className={styles.price}>{formatCurrency(unitPrice)}</div>
       </div>
     </Link>
   );

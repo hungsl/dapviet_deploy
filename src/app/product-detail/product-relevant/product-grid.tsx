@@ -1,9 +1,7 @@
 import React from "react";
 import styles from "./ProductGrid.module.css";
-// import { ProductGridProps } from './types';
 import { ProductCard } from "./product-card";
 import { cartListDataType } from "@/schemaValidations/product.schema";
-import { formatCurrency } from "@/lib/utils";
 
 export default function ProductGrid({
   products,
@@ -16,9 +14,10 @@ export default function ProductGrid({
         <ProductCard
           key={index}
           id={product.id}
-          imageUrl={product.picture}
-          title={product.name}
-          price={formatCurrency(product.unitPrice)}
+          picture={product.picture}
+          name={product.name}
+          unitPrice={(product.unitPrice)}
+          rating={product.rating}
         />
       ))}
     </div>

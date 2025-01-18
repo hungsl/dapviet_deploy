@@ -31,6 +31,8 @@ export const OrdersCompletedListRes = z.object({
       size: z.string(),
       quantity: z.number(),
       unitPrice: z.number(),
+      feedback: z.boolean(),
+      productId: z.string()
     })
   ),
   size: z.number(),

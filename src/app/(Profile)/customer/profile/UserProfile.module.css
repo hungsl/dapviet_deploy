@@ -17,20 +17,22 @@
 }
 
 .headerImage {
-  aspect-ratio: 12.66;
   object-fit: contain;
   width: 100%;
   height: auto;
+  position: absolute;
+}
+.boxheader{
+  position: relative;
 }
 
 .headerContainer {
   display: flex;
+  position: absolute;
   width: 100%;
-  max-width: 1340px;
-  gap: 20px;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin: 31px 30px 0;
+  padding: 31px 40px 40px;
 }
 
 .userInfo {
@@ -52,7 +54,7 @@
 
 .userEmail {
   font-size: 15px;
-  margin-top: 20px;
+  margin-top: 5px;
   color: rgb(236, 108, 108);
 }
 
@@ -83,6 +85,11 @@
 .formContainer {
   width: 100%;
   border-radius: 5px;
+}
+.formContainers{
+  width: 100%;
+  border-radius: 5px;
+  padding-top: 150px;  
 }
 
 .formSection {
@@ -300,7 +307,7 @@
   width: 24px;
   height: 24px;
   object-fit: cover;
-  margin-top: 20px;
+  margin-top: 5px;
 }
 .fieldInputChangePassword {
   padding-right: 2.5rem; /* pr-10 */
@@ -332,6 +339,12 @@
 .formF{
   display: flex;
   justify-content: space-around;
+  padding-top: 140px;  
+}
+.formContainers{
+  width: 100%;
+  border-radius: 5px;
+  padding-top: 150px;  
 }
 .imagePreviewContainer {
   display: flex;

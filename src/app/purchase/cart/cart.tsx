@@ -7,6 +7,7 @@ import cartApiRequest from "@/apiRequests/cart";
 import { CartListResType } from "@/schemaValidations/cart";
 import { toast } from "@/hooks/use-toast";
 import { formatCurrency } from "@/lib/utils";
+import LoadingAnimation from "@/components/common/LoadingAnimation";
 
 export const Cart: React.FC = () => {
   const [cartItems, setCartItems] = useState<CartListResType>();
@@ -16,6 +17,7 @@ export const Cart: React.FC = () => {
   const [totalPrice, setTotalPrice] = useState<number>(0)
   useEffect(() => {
     try {
+      setLoadings(true)
       const getItemCart = async () => {
         const result = await cartApiRequest.getListItemCart();
         setCartItems(result.payload);
@@ -28,6 +30,8 @@ export const Cart: React.FC = () => {
       getItemCart();
     } catch (error) {
       console.log("lỗi khi lấy cart: ", error)
+    }finally{
+      setLoadings(false)
     }
   }, [isDelete]);
 
@@ -72,6 +76,7 @@ export const Cart: React.FC = () => {
 
   return (
     <div className={styles.cartContainer}>
+      {loadings && <LoadingAnimation/>}
       <div className={styles.cartLayout}>
         <div className={styles.cartItemsColumn}>
           <div className={styles.cartItemsList}>

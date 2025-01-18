@@ -4,8 +4,20 @@ import styles from "../history/RatingPage.module.css";
 import Link from "next/link";
 import orderApiRequest from "@/apiRequests/order";
 import { OrdersListResType } from "@/schemaValidations/order.schema";
+import { PackageOpen } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { useRouter } from "next/navigation";
 
 export default function OrderTable() {
+  const router = useRouter()
   const [data, setData] = useState<OrdersListResType | null>(null); // Lưu trữ dữ liệu
 
   useEffect(() => {
@@ -127,9 +139,32 @@ export default function OrderTable() {
               </tr>
             ))
           ) : (
-            <tr>
+            <tr className="flex flex-col items-center justify-center text-center mt-10">
               <td colSpan={7} className="text-center py-4">
-                Không có đơn hàng nào để hiển thị.
+                <Card className="flex flex-col items-center justify-center text-center">
+                  <CardHeader>
+                    <CardTitle className="text-2xl font-bold">
+                      Không tìm thấy đơn hàng
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex flex-col items-center space-y-4">
+                      <PackageOpen className="h-20 w-20 text-muted-foreground" />
+                      <p className="text-muted-foreground">
+                        Hiện tại không có đơn hàng nào trong hệ thống. Các đơn
+                        hàng sẽ xuất hiện ở đây sau khi được tạo.
+                      </p>
+                    </div>
+                  </CardContent>
+                  <CardFooter>
+                    <Button
+                      variant="outline"
+                      onClick={() => router.push("/searchpage")}
+                    >
+                      Bắt đầu mua sắm
+                    </Button>
+                  </CardFooter>
+                </Card>
               </td>
             </tr>
           )}

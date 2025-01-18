@@ -2,8 +2,10 @@ import React from "react";
 import styles from "./Reviews.module.css";
 import { ReviewCardProps } from "./types";
 import Image from "next/image";
+import { formatDate } from "@/lib/utils";
+import { TiStarFullOutline } from "react-icons/ti";
 
-const ReviewCard: React.FC<ReviewCardProps> = ({ review }) => {
+export default function ReviewCard({ review }: ReviewCardProps) {
   const getRatingText = (rating: number) => {
     if (rating >= 5) return "Tuyệt vời";
     if (rating === 4) return "Rất tốt";
@@ -16,15 +18,17 @@ const ReviewCard: React.FC<ReviewCardProps> = ({ review }) => {
       <div className={styles.reviewCard}>
         <img
           loading="lazy"
-          src={review.authorImage}
-          alt={`${review.authorName}'s profile`}
+          src={review.avatar || "/userProfile.png"}
+          alt={`${review.username}'s profile`}
           className={styles.authorImage}
         />
         <div className={styles.reviewContent}>
           <div className={styles.reviewHeader}>
             <div className={styles.reviewMeta}>
-              <div className={styles.authorName}>{review.authorName}</div>
-              <div className={styles.reviewDate}>{review.date}</div>
+              <div className={styles.authorName}>{review.username}</div>
+              <div className={styles.reviewDate}>
+                {formatDate(review.createdAt)}
+              </div>
             </div>
             <div className={styles.verifiedIcon}>...</div>
           </div>
@@ -36,14 +40,15 @@ const ReviewCard: React.FC<ReviewCardProps> = ({ review }) => {
                   index < review.rating ? styles.filledStar : styles.emptyStar
                 }
               >
-                <Image
+                {/* <Image
                   width={300}
                   height={300}
                   loading="lazy"
                   src="/productDetail/star2.png"
                   alt={`${review.rating} star rating`}
                   className={styles.ratingImage}
-                />
+                /> */}
+                <TiStarFullOutline color="#FFA500" size={17} />
               </span>
             ))}
             <div className={styles.ratingText}>
@@ -59,6 +64,4 @@ const ReviewCard: React.FC<ReviewCardProps> = ({ review }) => {
       <div className={styles.reviewDivider} />
     </>
   );
-};
-
-export default ReviewCard;
+}

@@ -136,7 +136,7 @@ export default function LoginForm() {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="!text-black font-bold">
+                <FormLabel className="!text-black font-bold mb-2">
                   {" "}
                   Địa chỉ Email
                 </FormLabel>

@@ -1,81 +1,81 @@
 /* DiscountedProducts.module.css */
 .container {
-    padding: 20px;
-  }
-  
-  .title {
-    text-align: center;
-    font-size: 54px;
-    font-weight: 400;
-    margin-bottom: 60px;
-  }
-  
-  .productGrid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 50px;
-  }
-  
-  .productCard {
-    border: 1px solid #ddd;
-    padding: 15px;
-    text-align: center;
-    border-radius: 8px;
-  }
-  .productCard:hover{
-    transform: translateY(-5px);
-    box-shadow: 0 4px 10px rgba(130, 218, 245, 0.356);
-    border-color: #78eefd9a;
-    cursor: pointer;
-  }
-  
-  .oldPrice {
-    font-size: 14px;
-    color: #aaa;
-    text-decoration: line-through;
-    margin-top: 5px;
-  }
-  
-  .productImage {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-  }
-  
-  .productName {
-    font-size: 18px;
-    margin-top: 10px;
-  }
-  
-  .productPrice {
-    font-size: 16px;
-    color: #e74c3c;
-    margin-top: 5px;
-  }
-  
-  .pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 140px;
-  }
-  
-  .pagination button {
-    padding: 10px;
-    margin: 0 10px;
-    background-color: #3498db;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .pagination button:disabled {
-    background-color: #bdc3c7;
-    cursor: not-allowed;
-  }
-  
-  /* .hero {
+  padding: 20px;
+}
+
+.title {
+  text-align: center;
+  font-size: 54px;
+  font-weight: 400;
+  margin-bottom: 60px;
+}
+
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 50px;
+}
+
+.productCard {
+  border: 1px solid #ddd;
+  padding: 15px;
+  text-align: center;
+  border-radius: 8px;
+}
+.productCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(130, 218, 245, 0.356);
+  border-color: #78eefd9a;
+  cursor: pointer;
+}
+
+.oldPrice {
+  font-size: 14px;
+  color: #aaa;
+  text-decoration: line-through;
+  margin-top: 5px;
+}
+
+.productImage {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.productName {
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.productPrice {
+  font-size: 16px;
+  color: #e74c3c;
+  margin-top: 5px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 140px;
+}
+
+.pagination button {
+  padding: 10px;
+  margin: 0 10px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.pagination button:disabled {
+  background-color: #bdc3c7;
+  cursor: not-allowed;
+}
+
+/* .hero {
     background: linear-gradient(45deg, #007bff, #00c6ff); 
     color: white;
     text-align: center;
@@ -98,96 +98,122 @@
   .heroSubtitle {
     font-size: 1.2rem;
   } */
-  .hero {
-    background: url('/searchpage/giamgiabg.jpg') center 20%/cover no-repeat;
-    color: rgb(255, 255, 255);
-    text-align: center;
-    padding: 100px 20px;
-    margin-bottom: 20px;
-    position: relative;
-    overflow: hidden; /* Đảm bảo các đường không tràn ra ngoài */
+.hero {
+  background: url("/searchpage/giamgiabg.jpg") center 20% / cover no-repeat;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  padding: 100px 20px;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden; /* Đảm bảo các đường không tràn ra ngoài */
+}
+
+.hero::before,
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero::before {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 123, 255, 0.5) 25%,
+    rgba(0, 198, 255, 0.3) 75%
+  );
+  mix-blend-mode: overlay; /* Hiệu ứng hòa trộn */
+}
+
+.hero::after {
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.2) 10px,
+    transparent 10px,
+    transparent 20px
+  );
+  opacity: 0.5;
+  z-index: 2;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+}
+
+.heroTitle {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.heroTitle {
+  animation: heroTitle 0.6s both;
+}
+@keyframes heroTitle {
+  0% {
+    text-shadow:
+      0 0 #555555,
+      0 0 #555555,
+      0 0 #555555,
+      0 0 #555555,
+      0 0 #555555,
+      0 0 #555555,
+      0 0 #555555,
+      0 0 #555555;
+    transform: translateX(0) translateY(0);
   }
+  100% {
+    text-shadow:
+      1px 1px #555555,
+      2px 2px #555555,
+      3px 3px #555555,
+      4px 4px #555555,
+      5px 5px #555555,
+      6px 6px #555555,
+      7px 7px #555555,
+      8px 8px #555555;
+    transform: translateX(-8px) translateY(-8px);
+  }
+}
+
+.heroSubtitle {
+  font-size: 1.2rem;
+  color: white; /* Màu chữ bên trong */
+  text-shadow:
+    1px 1px 0 black,
+    /* Viền bên dưới phải */ -1px 1px 0 black,
+    /* Viền bên dưới trái */ 1px -1px 0 black,
+    /* Viền trên phải */ -1px -1px 0 black;
   
-  .hero::before, .hero::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    pointer-events: none;
+}
+.heroSubtitle {
+  animation: heroSubtitle 0.6s both;
+}
+@keyframes heroSubtitle {
+  0% {
+    text-shadow: 0 0 0 rgba(0, 0, 0, 0);
   }
-  
-  .hero::before {
-    background: linear-gradient(135deg, rgba(0, 123, 255, 0.5) 25%, rgba(0, 198, 255, 0.3) 75%);
-    mix-blend-mode: overlay; /* Hiệu ứng hòa trộn */
+  100% {
+    text-shadow: 6px 6px 18px rgba(0, 0, 0, 0.35);
   }
-  
-  .hero::after {
-    background: repeating-linear-gradient(
-      45deg,
-      rgba(255, 255, 255, 0.2),
-      rgba(255, 255, 255, 0.2) 10px,
-      transparent 10px,
-      transparent 20px
-    );
-    opacity: 0.5;
-    z-index: 2;
-  }
-  
-  
-  .hero::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5); 
-    border-radius: 10px;
-  }
-  
-  .heroContent {
-    position: relative;
-    z-index: 1;
-  }
-  
-  
-  .heroTitle {
-    font-size: 2.5rem;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  .heroTitle {
-    animation: heroTitle 0.6s both;
-  }
-  @keyframes heroTitle {
-    0% {
-      text-shadow: 0 0 #555555, 0 0 #555555, 0 0 #555555, 0 0 #555555, 0 0 #555555, 0 0 #555555, 0 0 #555555, 0 0 #555555;
-      transform: translateX(0) translateY(0);
-    }
-    100% {
-      text-shadow: 1px 1px #555555, 2px 2px #555555, 3px 3px #555555, 4px 4px #555555, 5px 5px #555555, 6px 6px #555555, 7px 7px #555555, 8px 8px #555555;
-      transform: translateX(-8px) translateY(-8px);
-    }
-  }
-  
-  .heroSubtitle {
-    font-size: 1.2rem;
-  }
-  .heroSubtitle {
-    animation: heroSubtitle 0.6s both;
-  }
-  @keyframes heroSubtitle {
-    0% {
-      text-shadow: 0 0 0 rgba(0, 0, 0, 0);
-    }
-    100% {
-      text-shadow: 6px 6px 18px rgba(0, 0, 0, 0.35);
-    }
-  }
-  /* CSS cho mobile */
+}
+/* CSS cho mobile */
 @media only screen and (max-width: 768px) {
   /* Hero section */
   .hero {

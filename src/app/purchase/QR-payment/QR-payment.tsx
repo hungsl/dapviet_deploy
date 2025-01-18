@@ -197,12 +197,12 @@ export const QrPayment: React.FC = () => {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} scroll`}>
       <div className={styles.wrapper}>
         <h1 className={styles.title}>Quét mã để thanh toán</h1>
         <p className={styles.description}>
           <strong>
-            không thay đổi số tiền và nội dung để chúng tôi có thể xác nhận
+            không thay đổi số tiền và nội dung để tránh sai xót
             thanh toán
           </strong>
         </p>
@@ -217,10 +217,10 @@ export const QrPayment: React.FC = () => {
           <p>
             <strong>Số tiền:</strong> {formatCurrency(totalPrice)}
           </p>
-          <p className="flex justify-center gap-3">
+          <div className="flex justify-center gap-3">
             <strong>Nội dung:</strong>{" "}
             <div className="text-orange-500">{description}</div>
-          </p>
+          </div>
           <p>
             <strong>Người nhận:</strong> {myBank.Account_name}
           </p>
@@ -232,7 +232,7 @@ export const QrPayment: React.FC = () => {
         </p>
       </div>
       <div className={styles.warningMessage}>
-        Vui lòng không rời hoặc tải lại trang khi đang giao dịch
+        Vui lòng không rời hoặc tải lại trang khi đang trong quá trình giao dịch
       </div>
       <ButtonCancel />
     </div>

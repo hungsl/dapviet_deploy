@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './Reviews.module.css';
 import { RatingBarProps } from './types';
+import { TiStarFullOutline } from 'react-icons/ti';
 
 const RatingBar: React.FC<RatingBarProps> = ({ stars, count, total }) => {
   const width = (count / total) * 100;
@@ -8,12 +9,13 @@ const RatingBar: React.FC<RatingBarProps> = ({ stars, count, total }) => {
   return (
     <div className={styles.ratingRow}>
       <div className={styles.ratingStars}>
-        <img
+        {/* <img
           loading="lazy"
           src="/productDetail/star.png"
           alt=""
           className={styles.starIcon}
-        />
+        /> */}
+        <TiStarFullOutline color="#FFD700" size={27}/>
         <div>{stars}</div>
       </div>
       <div className={styles.ratingBar}>

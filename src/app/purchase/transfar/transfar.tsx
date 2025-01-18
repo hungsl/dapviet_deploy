@@ -65,7 +65,7 @@ export const Transfer = ({ method }: { method: string | undefined }) => {
   }, [totalPrice, totalWeight, method, shippingDetails]);
 
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} scroll`}>
       <div className={styles.content}>
         <div className={styles.formColumn}>
           <div className={styles.stepIndicators}>

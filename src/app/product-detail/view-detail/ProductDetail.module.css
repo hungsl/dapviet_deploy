@@ -73,6 +73,7 @@
   .productInfo {
     width: 100%;
     max-width: 400px;
+    margin-top: 20px;
   }
   
   .productTitle {
@@ -208,7 +209,19 @@
   .actionButtons {
     margin-top: 21px;
   }
-  
+  .checkmark {
+    color: #32cd32; /* Màu xanh lá cây bóng loáng */
+    font-size: 48px; /* Kích thước biểu tượng */
+    filter: drop-shadow(0 0 6px #32cd32); /* Hiệu ứng ánh sáng */
+    transition: transform 0.3s ease, filter 0.3s ease;
+  }
+  .cross {
+    color: #ff0000; /* Màu đỏ */
+    font-size: 48px; /* Kích thước biểu tượng */
+    filter: drop-shadow(0 0 6px #ff0000); /* Hiệu ứng ánh sáng đỏ */
+    transition: transform 0.3s ease, filter 0.3s ease;
+  }
+    
   .buyButton {
     width: 100%;
     padding: 22px;

@@ -123,9 +123,9 @@
 .contentWrapper {
   border-radius: 0 0 16px 16px;
   /* background: #f9f9fb; */
-  min-height: 1106px;
   padding: 24px 20px;
   color: #000000;
+  height: 100vh;
 }
 
 .sidebar.collapsed {

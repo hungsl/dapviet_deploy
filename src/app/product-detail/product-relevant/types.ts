@@ -1,8 +1,8 @@
 export interface ProductCardProps {
-    id: string;
-    imageUrl: string;
-    badgeUrl?: string;
-    title: string;
-    price: string | undefined;
+  id: string;
+  name: string;
+  unitPrice: number;
+  picture: string;
+  rating: number;
   }
   

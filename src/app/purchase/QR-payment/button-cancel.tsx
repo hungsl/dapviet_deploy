@@ -26,7 +26,7 @@ export default function ButtonCancel() {
         Hủy
       </button>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Không rời khỏi trang này khi đang thực hiện giao dịch</DialogTitle>
+        <DialogTitle>Không rời khỏi trang này khi đang trong quá trình thực hiện giao dịch</DialogTitle>
         <DialogContent>
           <Alert severity="warning">
             Bạn có chắc muốn rời khỏi?

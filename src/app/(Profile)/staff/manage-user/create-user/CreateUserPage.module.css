@@ -1,0 +1,122 @@
+.formContainer {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .formSection {
+    margin-bottom: 20px;
+  }
+  
+  .hedform {
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .avatarUpload {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .avatarPreview {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+  }
+  
+  .fieldValue {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  
+  
+  .sectionTitle {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+  }
+  
+  .formEdit {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .formF {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  
+  .fieldLabel {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 8px;
+  }
+  
+  .fieldValue {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+  }
+  
+  .fieldValue:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.3);
+  }
+  
+  .selectContent {
+    max-height: 200px;
+    overflow-y: auto;
+  }
+  
+  .selectItem {
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .selectItem:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .formActions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+  
+  .saveButton {
+    background-color: #007bff;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .saveButton:hover {
+    background-color: #0056b3;
+  }
+  
+  .saveButton:focus {
+    outline: none;
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.6);
+  }
+  

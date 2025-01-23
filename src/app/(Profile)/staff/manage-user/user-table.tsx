@@ -11,7 +11,6 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import { useLoading } from "@/app/context/loading-provider";
 import accountApiRequest from "@/apiRequests/account";
 import { UsersListResType } from "@/schemaValidations/account.schema";
 import ButtonDelete from "./ButtonDelete";
@@ -23,10 +22,8 @@ export default function UserTable() {
   const [direction, setDirection] = useState("ASC");
   const [properties, setProperties] = useState("name");
   const [totalPages, setTotalPages] = useState(1);
-  const { setLoading } = useLoading();
   const fetchUsers = async () => {
     try {
-      setLoading(true);
       const result = await accountApiRequest.getUsersList(
         search,
         currentPage,
@@ -39,8 +36,6 @@ export default function UserTable() {
       setTotalPages(result.payload.totalPage);
     } catch (error) {
       console.error("Error fetching products:", error);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -54,45 +49,49 @@ export default function UserTable() {
       setCurrentPage(newPage);
     }
   };
-
+  if (!data)
+    return (
+      <div className="flex justify-center items-center h-screen flex-col relative">
+        <div className="absolute">Loading</div>
+        <div className="w-16 h-16 border-4 border-t-4 border-blue-500 border-dotted rounded-full animate-spin"></div>
+      </div>
+    );
   return (
     <>
+      <div className={styles.searchFilter}>
+        <input
+          type="text"
+          placeholder="Tìm kiếm..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="border border-gray-300 rounded px-2 py-1 mr-2"
+        />
+        <select
+          value={properties}
+          onChange={(e) => setProperties(e.target.value)}
+          className="border border-gray-300 rounded px-2 py-1 mr-2"
+        >
+          <option value="id">Id</option>
+          <option value="name">Tên người dùng</option>
+          <option value="email">Email</option>
+          <option value="status">Trạng thái</option>
+        </select>
+        <select
+          value={direction}
+          onChange={(e) => setDirection(e.target.value)}
+          className="border border-gray-300 rounded px-2 py-1 mr-2"
+        >
+          <option value="ASC">Tăng dần</option>
+          <option value="DESC">Giảm dần</option>
+        </select>
+        <button
+          onClick={fetchUsers}
+          className="bg-blue-500 text-white px-4 py-1 rounded ml-2"
+        >
+          Áp dụng
+        </button>
+      </div>
       <div className="scroll max-h-[650px] text-foreground">
-        {/* Search and Filters */}
-        <div className={styles.searchFilter}>
-          <input
-            type="text"
-            placeholder="Tìm kiếm..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="border border-gray-300 rounded px-2 py-1 mr-2"
-          />
-          <select
-            value={properties}
-            onChange={(e) => setProperties(e.target.value)}
-            className="border border-gray-300 rounded px-2 py-1 mr-2"
-          >
-            <option value="id">Id</option>
-            <option value="name">Tên người dùng</option>
-            <option value="email">Email</option>
-            <option value="status">Trạng thái</option>
-          </select>
-          <select
-            value={direction}
-            onChange={(e) => setDirection(e.target.value)}
-            className="border border-gray-300 rounded px-2 py-1 mr-2"
-          >
-            <option value="ASC">Tăng dần</option>
-            <option value="DESC">Giảm dần</option>
-          </select>
-          <button
-            onClick={fetchUsers}
-            className="bg-blue-500 text-white px-4 py-1 rounded ml-2"
-          >
-            Áp dụng
-          </button>
-        </div>
-
         <table className={styles.table}>
           <thead>
             <tr className={styles.tableRow}>
@@ -106,7 +105,7 @@ export default function UserTable() {
             </tr>
           </thead>
           <tbody>
-            {data?.data.map((staff) => (
+            {data.data.map((staff) => (
               <tr key={staff.id} className={styles.tableRow}>
                 <td className={styles.image}>
                   <img
@@ -123,16 +122,16 @@ export default function UserTable() {
                     className={`${
                       staff.status === "VERIFIED"
                         ? "text-green-500"
-                        : staff.status === "UNVERIFIED" ? "text-gray-500" : "text-red-500"
+                        : staff.status === "UNVERIFIED"
+                          ? "text-gray-500"
+                          : "text-red-500"
                     }`}
                   >
                     {staff.status}
                   </span>
                 </td>
                 <td className={`${styles.tableCell} ${styles.textCenter}`}>
-                  <ButtonDelete
-                    staffId={staff.id}
-                  />
+                  <ButtonDelete staffId={staff.id} />
                   <Link
                     href={`/staff/manage-user/${staff.id}`}
                     className={styles.top}
@@ -144,8 +143,8 @@ export default function UserTable() {
             ))}
           </tbody>
         </table>
-
-        {/* Pagination */}
+      </div>
+      {totalPages > 1 && (
         <Pagination className="mt-10">
           <PaginationContent>
             {/* Nút Previous */}
@@ -219,7 +218,7 @@ export default function UserTable() {
             </PaginationItem>
           </PaginationContent>
         </Pagination>
-      </div>
+      )}
     </>
   );
 }

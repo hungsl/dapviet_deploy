@@ -9,6 +9,7 @@ import { Button } from "@mui/material";
 import styles from "../manage-product/Product.module.css";
 import { toast } from "@/hooks/use-toast";
 import typesApiRequest from "@/apiRequests/type";
+import { useLoading } from "@/app/context/loading-provider";
 
 export default function ButtonDelete({
   categoryId,
@@ -23,12 +24,14 @@ export default function ButtonDelete({
 }) {
   const [open, setOpen] = useState(false);
   const handleClose = () => setOpen(false);
+  const {setLoading} = useLoading()
   const handleOpen = () => {
     setOpen(true); 
   };
 
   const handleDelete = async () => {
     try {
+      setLoading(true)
       const result = await typesApiRequest.deleteType(categoryId);
       toast({
         description: result.payload.message,
@@ -40,11 +43,13 @@ export default function ButtonDelete({
     } finally {
       setDeleted(!deleted)
       setOpen(false);
+      setLoading(false)
     }
   };
   
   const handleActive = async () => {
     try {
+      setLoading(true)
       const result = await typesApiRequest.activeType(categoryId);
       toast({
         description: result.payload.message,
@@ -53,6 +58,7 @@ export default function ButtonDelete({
     } catch (error) {
       console.log("lỗi khi Kích hoạt loại sản phẩm: ", error);
     } finally {
+      setLoading(false)
       setDeleted(!deleted)
       setOpen(false);
     }

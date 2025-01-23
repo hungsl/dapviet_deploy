@@ -13,6 +13,11 @@
   display: flex;
   justify-content: space-around;
 }
+.heightTable{
+  max-height: 80%;
+  display: flex;
+  flex-direction: column;
+}
 .sizeBox {
   display: flex;         /* Sử dụng flexbox */
   flex-wrap: wrap;       /* Cho phép nội dung xuống dòng */
@@ -95,11 +100,16 @@
     }
     .createForm{
       overflow-y: scroll;
-      max-height: 850px;
+      height: 100vh;
+      border-radius: 0px;
     }
     .left, .right {
       width: 100%; /* Chiều rộng 100% */
       padding: 8px;
+    }
+    .heightTable{
+      height: 700px;
+      margin-bottom: 20px;
     }
     .createForm form {
       padding: 16px;

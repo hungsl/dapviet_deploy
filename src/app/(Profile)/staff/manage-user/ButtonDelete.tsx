@@ -8,8 +8,8 @@ import Alert from "@mui/material/Alert";
 import { Button } from "@mui/material";
 import styles from "../manage-product/Product.module.css";
 import { toast } from "@/hooks/use-toast";
-import { useRouter } from "next/navigation";
 import accountApiRequest from "@/apiRequests/account";
+import { useAppContext } from "@/app/context/app-provider";
 
 export default function ButtonDelete({
   staffId,
@@ -17,8 +17,8 @@ export default function ButtonDelete({
   staffId: string;
 }) {
   const [open, setOpen] = useState(false);
+  const {isRefresh, setIsRefresh} = useAppContext()
   const handleClose = () => setOpen(false);
-  const router = useRouter();
   const handleOpen = () => {
     setOpen(true); // Mở Dialog
   };
@@ -34,8 +34,8 @@ export default function ButtonDelete({
     } catch (error) {
       console.log("fail to delete product: ", error);
     } finally {
+      setIsRefresh(!isRefresh)
       setOpen(false);
-      router.refresh();
     }
   };
   // const handleActive = async () => {

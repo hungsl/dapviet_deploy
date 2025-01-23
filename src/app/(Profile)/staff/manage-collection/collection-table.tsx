@@ -1,27 +1,39 @@
+'use client'
 import Link from "next/link";
 import styles from "../../customer/history/RatingPage.module.css";
-import { cookies } from "next/headers";
 import typesApiRequest from "@/apiRequests/type";
 import { collectionListResType } from "@/schemaValidations/type.schema";
-import { redirect } from "next/navigation";
 import ButtonDelete from "./button-delete";
 import Image from "next/image";
 import { truncateText } from "@/lib/utils";
+import { useEffect, useState } from "react";
+import { useAppContext } from "@/app/context/app-provider";
 
-export default async function CollectionTable() {
-  const cookieStore = await cookies();
-  const accessToken = cookieStore.get("accessToken");
+export default function CollectionTable() {
+  // const cookieStore = await cookies();
+  // const accessToken = cookieStore.get("accessToken");
+  const [data, setData] = useState<collectionListResType>();
+  const {isRefresh} = useAppContext()
+  const [deleted, setDeleted] = useState(false);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await typesApiRequest.collectionsList();
+        setData(result.payload);
+      } catch (error) {
+        console.log("Lỗi lấy bộ sưu tập: ", error);
+      }
+    };
 
-  let data: collectionListResType | null = null;
-  try {
-    const result = await typesApiRequest.collectionsList(
-      accessToken?.value || ""
+    fetchData(); // Gọi hàm lấy dữ liệu
+  }, [deleted,isRefresh]);
+  if (!data)
+    return (
+      <div className="flex justify-center items-center h-screen flex-col relative">
+        <div className="absolute">Loading</div>
+        <div className="w-16 h-16 border-4 border-t-4 border-blue-500 border-dotted rounded-full animate-spin"></div>
+      </div>
     );
-    data = result.payload;
-  } catch (error) {
-    console.log("lỗi lấy bộ sưu tập: ", error)
-    redirect("/homepage");
-  }
 
   return (
     <div className="scroll max-h-[600px] text-foreground">
@@ -86,8 +98,9 @@ export default async function CollectionTable() {
               <td className={`${styles.tableCell} ${styles.textCenter}`}>
                 <ButtonDelete
                   collectionId={collection.id}
-                  accessToken={accessToken?.value || ""}
                   isDelete={collection.deleted}
+                  deleted={deleted}
+                  setDeleted={setDeleted}
                 />
                 {!collection.deleted && (
                   <Link

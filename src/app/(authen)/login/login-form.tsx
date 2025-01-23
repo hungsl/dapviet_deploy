@@ -30,7 +30,7 @@ import { useAppContext } from "@/app/context/app-provider";
 
 export default function LoginForm() {
   const [loadings, setLoadings] = useState(false);
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const path = usePathname();
   const { setContent, closePopup } = usePopup();
   const searchParams = useSearchParams();
@@ -38,9 +38,9 @@ export default function LoginForm() {
   const token = searchParams.get("token");
   const { toast } = useToast();
   const router = useRouter();
-  const {setIsLoggedIn} = useAppContext();
+  const { setIsLoggedIn } = useAppContext();
   // const { setAccessToken, setRefreshToken } = useAppContext();
-  
+
   const form = useForm<LoginBodyType>({
     resolver: zodResolver(LoginBody),
     defaultValues: {
@@ -52,8 +52,8 @@ export default function LoginForm() {
     const callVerify = async () => {
       if (!token) return;
       try {
-        setLoading(true); 
-        const result = await authApiRequest.verifyEmail(token)
+        setLoading(true);
+        const result = await authApiRequest.verifyEmail(token);
         toast({
           description: result.payload.message,
           duration: 2000,
@@ -61,7 +61,8 @@ export default function LoginForm() {
       } catch (error) {
         console.error("Verification error:", error);
         toast({
-          description: "Đã xảy ra lỗi trong quá trình xác minh. Vui lòng thử lại.",
+          description:
+            "Đã xảy ra lỗi trong quá trình xác minh. Vui lòng thử lại.",
           duration: 2000,
         });
       } finally {
@@ -81,12 +82,12 @@ export default function LoginForm() {
       });
     }
   }, [redirectFrom]);
-  
+
   async function onSubmit(values: LoginBodyType) {
     try {
       if (loadings) return;
       setLoadings(true);
-      setLoading(true)
+      setLoading(true);
       const result = await authApiRequest.login(values);
       // console.log("result login: ", result);
       await authApiRequest.auth({
@@ -99,14 +100,27 @@ export default function LoginForm() {
       });
       // setAccessToken(result.payload.data.accessToken);
       // setRefreshToken(result.payload.data.refreshToken);
-      localStorage.setItem('accessToken', result.payload.data.accessToken)
-      localStorage.setItem('refreshToken', result.payload.data.refreshToken)
-      if(path !=="/login"){
+      localStorage.setItem("accessToken", result.payload.data.accessToken);
+      localStorage.setItem("refreshToken", result.payload.data.refreshToken);
+      if (path !== "/login") {
         // router.refresh()
-        setIsLoggedIn(true)
+        if (
+          result.payload.message ===
+          "Bạn đã đăng nhập thành công trang cho Staff"
+        ) {
+          router.push("/staff/dashboard");
+        }
+        setIsLoggedIn(true);
         closePopup();
-      }else{
-        router.push("/homepage");
+      } else {
+        if (
+          result.payload.message ===
+          "Bạn đã đăng nhập thành công trang cho Staff"
+        ) {
+          router.push("/staff/dashboard");
+        } else {
+          router.push("/homepage");
+        }
       }
     } catch (error) {
       handleErrorApi({
@@ -115,7 +129,7 @@ export default function LoginForm() {
         duration: 2000,
       });
     } finally {
-      setLoading(false)
+      setLoading(false);
       setLoadings(false);
     }
   }
@@ -128,7 +142,7 @@ export default function LoginForm() {
   };
   return (
     <div className={styles.loginForm}>
-      {loading && <LoadingAnimation/>}
+      {loading && <LoadingAnimation />}
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <FormField

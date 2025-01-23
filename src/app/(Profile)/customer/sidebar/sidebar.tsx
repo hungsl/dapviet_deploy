@@ -15,30 +15,35 @@ export const Sidebar: React.FC = ({}) => {
   const [activeItem, setActiveItem] = useState<string>(path);
   const menuItems = [
     {
-      icon: "/sidebar/profile.png",
+      // icon: "/sidebar/profile.png",
+      icon: "profile",
       id: "/customer/profile",
       label: "Thông tin cá nhân",
     },
     {
-      icon: "/sidebar/iconlichsumuahang.png",
+      // icon: "/sidebar/iconlichsumuahang.png",
+      icon: "history",
       id: "/customer/history",
       label: "Lịch sử mua hàng",
     },
     // { icon: "/sidebar/loveicon.png", id: '/customer/favorites', label: "Sản phẩm yêu thích" },
     // { icon: "/sidebar/feedbackicon.png", id: '/customer/feedback', label: "Đánh giá sản phẩm" },
     {
-      icon: "/sidebar/donhangicon.png",
+      // icon: "/sidebar/donhangicon.png",
+      icon: "order",
       id: "/customer/order",
       label: "Đơn hàng",
     },
     {
-      icon: "/sidebar/thanhtoan2.png",
+      // icon: "/sidebar/thanhtoan2.png",
+      icon: "payment",
       id: "/customer/payment",
       label: "Thanh toán",
     },
   ];
   const bottomMenuItems = [
-    { icon: "/sidebar/dangxuaticon.png", id: "/logout", label: "Đăng xuất" },
+    // { icon: "/sidebar/dangxuaticon.png", id: "/logout", label: "Đăng xuất" },
+    { icon: "logout", id: "/logout", label: "Đăng xuất" },
   ];
   useEffect(() => {
     setActiveItem(path);

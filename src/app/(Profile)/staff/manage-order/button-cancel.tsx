@@ -9,6 +9,8 @@ import { Button } from "@mui/material";
 import styles from "../manage-product/Product.module.css";
 import { toast } from "@/hooks/use-toast";
 import orderApiRequest from "@/apiRequests/order";
+import { useAppContext } from "@/app/context/app-provider";
+import { useLoading } from "@/app/context/loading-provider";
 
 export default function ButtonCancel({
   orderId,
@@ -17,12 +19,15 @@ export default function ButtonCancel({
 }) {
   const [open, setOpen] = useState(false);
   const handleClose = () => setOpen(false);
+  const {setLoading}  = useLoading()
+  const {isRefresh, setIsRefresh} = useAppContext()
   const handleOpen = () => {
     setOpen(true);
   };
 
   const handleCancal = async () => {
     try {
+      setLoading(true)
       const result = await orderApiRequest.staffOrderCancel(orderId);
       toast({
         description: result.payload.message,
@@ -36,6 +41,8 @@ export default function ButtonCancel({
         description: "Đơn hàng đã rời kho"
       })
     } finally {
+      setLoading(false)
+      setIsRefresh(!isRefresh)
       setOpen(false);
     }
   };

@@ -11,15 +11,15 @@ import { converBlobUrlToFile } from "@/lib/utils";
 import styles from "../manage-product/Product.module.css";
 import { CreateCollectionBody, CreateCollectionBodyType } from "@/schemaValidations/type.schema";
 import { usePopup } from "@/app/context/popup-provider";
-import { useRouter } from "next/navigation";
 import typesApiRequest from "@/apiRequests/type";
 import { toast } from "@/hooks/use-toast";
+import { useAppContext } from "@/app/context/app-provider";
 
 export default function CreateCollectionForm() {
+  const {setIsRefresh, isRefresh} = useAppContext()
   const { loading, setLoading } = useLoading();
   const imageInputRef = useRef<HTMLInputElement>(null);
   const {closePopup} = usePopup();
-  const router = useRouter()
   const [previewUrls, setPreviewUrls] = useState<string[]>([]);
   const form = useForm<CreateCollectionBodyType>({
     resolver: zodResolver(CreateCollectionBody),
@@ -64,9 +64,9 @@ export default function CreateCollectionForm() {
     } catch (error) {
       console.error("Error uploading data:", error);
     } finally {
+      setIsRefresh(!isRefresh)
       setLoading(false);
-      closePopup()
-      router.refresh()
+      closePopup();
     }
   }
 

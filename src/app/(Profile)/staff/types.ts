@@ -85,7 +85,44 @@ export type dataDashboard = {
   totalInTransitOrders: number;
   totalDeliveredOrders: number;
   totalCanceledOrders: number;
-  totalSell: number;
+  totalProductSell: number;
   totalRevenueThisWeek: number;
   totalRevenueLastWeek: number;
+};
+
+export type dataUserDetail = {
+  id: string; // id là kiểu string (UUID)
+  name: string;
+  dob: string; // dob là kiểu string để phù hợp với định dạng ngày tháng ISO 8601
+  gender: "OTHER" | "MALE" | "FEMALE"; // Giả sử giới tính chỉ có những giá trị này
+  email: string;
+  province: string;
+  district: string;
+  address: string;
+  phone: string;
+  avatar: string;
+  role: string; // Giả sử các giá trị này cho role
+  status: string; // Giả sử các giá trị này cho status
+  createdBy: string;
+  createdDate: string; // createdDate là kiểu string để phù hợp với định dạng ngày tháng ISO 8601
+  updatedBy: string;
+  updatedDate: string; // updatedDate là kiểu string để phù hợp với định dạng ngày tháng ISO 8601
+};
+export type UploadImageResponse = {
+  success: boolean;
+  files: {
+    data: {
+      key: string;
+      url: string;
+      appUrl: string;
+      name: string;
+      size: number;
+      type: string;
+    };
+    error: null | string;
+  }[];
+};
+export type DeleteImagesResponse = {
+  success: boolean;
+  messages: string;
 };

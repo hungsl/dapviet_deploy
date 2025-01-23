@@ -19,13 +19,13 @@ import {
 import typesApiRequest from "@/apiRequests/type";
 import { toast } from "@/hooks/use-toast";
 import { useLoading } from "@/app/context/loading-provider";
-import { useRouter } from "next/navigation";
 import { usePopup } from "@/app/context/popup-provider";
+import { useAppContext } from "@/app/context/app-provider";
 
 export default function CreateCateForm() {
   const { loading, setLoading } = useLoading();
   const {closePopup} = usePopup()
-  const router = useRouter()
+  const {isRefresh, setIsRefresh} = useAppContext()
   const form = useForm<CreateCategoryBodyType>({
     resolver: zodResolver(CreateCategoryBody),
     defaultValues: {
@@ -47,7 +47,7 @@ export default function CreateCateForm() {
     } finally {
       setLoading(false);
       closePopup()
-      router.refresh()
+      setIsRefresh(!isRefresh)
     }
   }
 

@@ -2,7 +2,7 @@ import ButtonAdd from "./ButtonAdd";
 import ProductTable from "./product-table";
 import styles from "./Product.module.css";
 
-const IndexPage: React.FC = () => {
+export default function  IndexPage () {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -16,4 +16,3 @@ const IndexPage: React.FC = () => {
   );
 };
 
-export default IndexPage;

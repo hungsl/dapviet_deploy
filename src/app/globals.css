@@ -8,6 +8,12 @@ body {
 
 @layer base {
   :root {
+    --chart-1: 39 89% 57%;
+    --chart-2: 240 60% 50%;
+    --chart-3: 200 65% 45%;
+    --chart-4: 120 60% 45%;
+    --chart-5: 145 45% 55%;
+    --chart-6: 0 70% 55%;
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
@@ -35,6 +41,12 @@ body {
     --chart-5: 27 87% 67%;
   }
   .dark {
+    --chart-1: 39 80% 50%; /* Vàng tối */
+    --chart-2: 240 50% 60%; /* Xanh dương tối */
+    --chart-3: 200 55% 50%; /* Xanh biển tối */
+    --chart-4: 120 50% 50%; /* Xanh lá tối */
+    --chart-5: 145 40% 50%; /* Xanh lá nhạt tối */
+    --chart-6: 0 60% 50%; /* Đỏ tối */
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
     --card: 222.2 84% 4.9%;
@@ -89,7 +101,8 @@ body {
     height: 4px;
     border-radius: 50%;
     color: #25b09b;
-    box-shadow: calc(1 * var(--d)) calc(0 * var(--d)) 0 0,
+    box-shadow:
+      calc(1 * var(--d)) calc(0 * var(--d)) 0 0,
       calc(0.707 * var(--d)) calc(0.707 * var(--d)) 0 1px,
       calc(0 * var(--d)) calc(1 * var(--d)) 0 2px,
       calc(-0.707 * var(--d)) calc(0.707 * var(--d)) 0 3px,
@@ -131,21 +144,21 @@ body {
     scrollbar-width: thin; /* Làm scrollbar mỏng hơn */
     scrollbar-color: rgba(119, 116, 116, 0.103) rgba(0, 0, 0, 0.041); /* Màu mờ hơn */
   }
-  
+
   .scroll::-webkit-scrollbar {
     width: 2px; /* Chiều rộng scrollbar nhỏ hơn */
   }
-  
+
   .scroll::-webkit-scrollbar-thumb {
     background-color: rgba(0, 0, 0, 0.02); /* Màu con trỏ scrollbar (rất mờ) */
     border-radius: 10px; /* Góc bo tròn */
   }
-  
+
   .scroll::-webkit-scrollbar-track {
     background: rgba(0, 0, 0, 0.01); /* Màu nền của scrollbar (rất nhẹ) */
     border-radius: 10px;
   }
-  
+
   .disabled {
     cursor: not-allowed;
     background-color: #d1d5db; /* Màu xám nhạt */

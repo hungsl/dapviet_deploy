@@ -15,8 +15,8 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import { useLoading } from "@/app/context/loading-provider";
 import ButtonCancel from "./button-cancel";
+import { useAppContext } from "@/app/context/app-provider";
 
 export default function OrderTable() {
   const [data, setData] = useState<StaffOrdersListResType | null>(null);
@@ -25,11 +25,10 @@ export default function OrderTable() {
   const [direction, setDirection] = useState("ASC");
   const [properties, setProperties] = useState("email");
   const [totalPages, setTotalPages] = useState(1);
+  const {isRefresh} = useAppContext()
   // const { accessToken } = useAppContext();
-  const { setLoading } = useLoading();
   const fetchOrders = async () => {
     try {
-      setLoading(true);
       const result = await orderApiRequest.staffOrdersList(
         search,
         currentPage,
@@ -42,14 +41,12 @@ export default function OrderTable() {
       setTotalPages(result.payload.totalPage);
     } catch (error) {
       console.error("Error fetching orders:", error);
-    } finally {
-      setLoading(false);
-    }
+    } 
   };
 
   useEffect(() => {
     fetchOrders();
-  }, [currentPage]);
+  }, [currentPage,isRefresh]);
 
   const handlePageChange = (newPage: number) => {
     if (newPage >= 1 && newPage <= totalPages) {
@@ -92,44 +89,53 @@ export default function OrderTable() {
         return styles.statusUnknown;
     }
   };
+  if (!data)
+    return (
+    <div className="flex justify-center items-center h-screen flex-col relative">
+        <div className="absolute">Loading</div>
+        <div className="w-16 h-16 border-4 border-t-4 border-blue-500 border-dotted rounded-full animate-spin">
+        </div>
+      </div>
+    );
   return (
     <>
-      <div className="scroll max-h-[650px] text-foreground">
+      <div className={styles.searchFilter}>
+        <input
+          type="text"
+          placeholder="Tìm kiếm..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="border border-gray-300 rounded px-2 py-1 mr-2"
+        />
+        <select
+          value={properties}
+          onChange={(e) => setProperties(e.target.value)}
+          className="border border-gray-300 rounded px-2 py-1 mr-2"
+        >
+          <option value="id">ID</option>
+          <option value="email">Email</option>
+          <option value="shippingFee">Phí vận chuyển</option>
+          <option value="shippingMethod">Phương thức vận chuyển</option>
+          <option value="paymentMethod">Phương thức thanh toán</option>
+        </select>
+        <select
+          value={direction}
+          onChange={(e) => setDirection(e.target.value)}
+          className="border border-gray-300 rounded px-2 py-1 mr-2"
+        >
+          <option value="ASC">Tăng dần</option>
+          <option value="DESC">Giảm dần</option>
+        </select>
+        <button
+          onClick={fetchOrders}
+          className="bg-blue-500 text-white px-4 py-1 rounded"
+        >
+          Áp dụng
+        </button>
+      </div>
+      <div className={`scroll ${styles.heightTable} text-foreground`}>
         {/* Search and Filters */}
-        <div className={styles.searchFilter}>
-          <input
-            type="text"
-            placeholder="Tìm kiếm..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="border border-gray-300 rounded px-2 py-1 mr-2"
-          />
-          <select
-            value={properties}
-            onChange={(e) => setProperties(e.target.value)}
-            className="border border-gray-300 rounded px-2 py-1 mr-2"
-          >
-            <option value="id">ID</option>
-            <option value="email">Email</option>
-            <option value="shippingFee">Phí vận chuyển</option>
-            <option value="shippingMethod">Phương thức vận chuyển</option>
-            <option value="paymentMethod">Phương thức thanh toán</option>
-          </select>
-          <select
-            value={direction}
-            onChange={(e) => setDirection(e.target.value)}
-            className="border border-gray-300 rounded px-2 py-1 mr-2"
-          >
-            <option value="ASC">Tăng dần</option>
-            <option value="DESC">Giảm dần</option>
-          </select>
-          <button
-            onClick={fetchOrders}
-            className="bg-blue-500 text-white px-4 py-1 rounded"
-          >
-            Áp dụng
-          </button>
-        </div>
+
         <table className={styles.table}>
           <thead>
             <tr className={styles.tableRow}>
@@ -144,10 +150,10 @@ export default function OrderTable() {
               <th className={`${styles.tableHead} ${styles.textRight}`}>
                 Phương thức vận chuyển
               </th>
-              <th className={`${styles.tableHead} ${styles.textRight}`}>
+              {/* <th className={`${styles.tableHead} ${styles.textRight}`}>
                 Phương thức thanh toán
-              </th>
-              <th className={`${styles.tableHead} ${styles.textRight}`}>
+              </th> */}
+              <th className={`${styles.tableHead} ${styles.textCenter}`}>
                 Trạng thái
               </th>
               <th className={`${styles.tableHead} ${styles.textCenter}`}>
@@ -156,12 +162,12 @@ export default function OrderTable() {
             </tr>
           </thead>
           <tbody>
-            {data?.data.map((order) => (
+            {data.data.map((order) => (
               <tr key={order.id} className={styles.tableRow}>
                 <td className={`${styles.tableCell} font-medium`}>
                   {order.id.length > 10 ? `${order.id.slice(0, 9)}…` : order.id}
                 </td>
-                <td className={styles.tableCell}>{order.email}</td>
+                <td className={styles.tableCell}>{order.email.length > 22 ? `${order.email.slice(0,22)}...`: order.email}</td>
                 <td className={`${styles.tableCell} ${styles.textRight}`}>
                   {formatCurrency(order.productTotal)}
                 </td>
@@ -171,10 +177,10 @@ export default function OrderTable() {
                 <td className={`${styles.tableCell} ${styles.textRight}`}>
                   {order.shippingMethod}
                 </td>
-                <td className={`${styles.tableCell} ${styles.textRight}`}>
+                {/* <td className={`${styles.tableCell} ${styles.textRight}`}>
                   {order.paymentMethod}
-                </td>
-                <td className={`${styles.tableCell} ${styles.textRight}  `}>
+                </td> */}
+                <td className={`${styles.tableCell} ${styles.textCenter}  `}>
                   <span
                     className={`${styles.statusValue} ${getStatusClass(order.status)}`}
                   >
@@ -196,7 +202,8 @@ export default function OrderTable() {
             ))}
           </tbody>
         </table>
-        {/* Pagination */}
+      </div>
+      {totalPages > 1 && (
         <Pagination className="mt-10">
           <PaginationContent>
             {/* Nút Previous */}
@@ -270,7 +277,7 @@ export default function OrderTable() {
             </PaginationItem>
           </PaginationContent>
         </Pagination>
-      </div>
+      )}
     </>
   );
 }

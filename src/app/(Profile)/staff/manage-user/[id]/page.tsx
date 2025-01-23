@@ -1,33 +1,49 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import styles from "./UserDetail.module.css";
 import Link from "next/link";
-import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 import accountApiRequest from "@/apiRequests/account";
 import { Separator } from "@/components/ui/separator";
+import { dataUserDetail } from "../../types";
 
-export default async function UserDetail({
+export default function UserDetail({
   params,
 }: {
   params: Promise<{ id: string }>;
 }) {
-  const cookieStore = await cookies();
-  const accessToken = cookieStore.get("accessToken");
-  const unwrappedParams = await params;
+  const unwrappedParams = React.use(params);
+  const [userData, setUserData] = useState<dataUserDetail>();
+  // let userData;
+  // try {
+  //   const result = await accountApiRequest.userDetail(
+  //     unwrappedParams.id,
+  //     accessToken?.value || ""
+  //   );
+  //   // console.log("userDetail: ", result);
+  //   userData = result.payload.data;
+  // } catch (error) {
+  //   console.log("lỗi lấy chi tiết người dùng: ", error)
+  //   redirect("/homepage");
+  // }
+  useEffect(() => {
+    const fetchUserDetail = async () => {
+      try {
+        const result = await accountApiRequest.userDetail(unwrappedParams.id);
+        setUserData(result.payload.data); // Lưu thông tin người dùng vào state
+      } catch (error) {
+        console.log("Lỗi lấy chi tiết người dùng: ", error);
+      }
+    };
 
-  let userData;
-  try {
-    const result = await accountApiRequest.userDetail(
-      unwrappedParams.id,
-      accessToken?.value || ""
+    fetchUserDetail(); // Gọi hàm lấy chi tiết người dùng
+  }, [unwrappedParams.id]);
+  if (!userData)
+    return (
+      <div className="flex justify-center items-center h-screen flex-col relative">
+        <div className="absolute">Loading</div>
+        <div className="w-16 h-16 border-4 border-t-4 border-blue-500 border-dotted rounded-full animate-spin"></div>
+      </div>
     );
-    // console.log("userDetail: ", result);
-    userData = result.payload.data;
-  } catch (error) {
-    console.log("lỗi lấy chi tiết người dùng: ", error)
-    redirect("/homepage");
-  }
-
   return (
     <div className={styles.productContainer}>
       <Link
@@ -103,7 +119,6 @@ export default async function UserDetail({
               <strong>Vai trò: </strong>
               {userData.role}
             </p>
-
             <p>
               <strong>Ngày tạo: </strong>
               {new Date(userData.createdDate).toLocaleString()}

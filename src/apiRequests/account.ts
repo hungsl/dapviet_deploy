@@ -1,3 +1,4 @@
+import { StaffCheckAPIUserType } from "@/app/(Profile)/staff/manage-user/create-user/create-user";
 import http from "@/lib/http";
 import {
   AccountResType,
@@ -16,6 +17,8 @@ const accountApiRequest = {
     http.get<AccountResType>("users/current"),
   updateMe: (body: UpdateProfileInfoType) =>
     http.put<AccountResType>("users/current", body),
+  staffCreateUser: (body: StaffCheckAPIUserType) =>
+    http.post<AccountResType>("/users/staff", body),
   updateImg: (body: { avatar: string }) =>
     http.put<AccountResType>("users/current/avatar", body),
   getUsersList: (
@@ -29,12 +32,8 @@ const accountApiRequest = {
       `/users/staff?search=${search}&page=${page}&size=${size}&direction=${direction}&properties=${properties}`,
      
     ),
-  userDetail: (id : string, accessToken: string) =>
-    http.get<AccountResType>(`/users/${id}/staff`, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    }),
+  userDetail: (id : string) =>
+    http.get<AccountResType>(`/users/${id}/staff`),
   userDelete: (id : string) =>
     http.delete<AccountResType>(`/users/${id}/staff`,{}),
 };

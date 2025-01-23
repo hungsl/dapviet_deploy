@@ -44,9 +44,10 @@ export const ProfileHeader = () => {
         role: data.role,
       };
       setUserData(Data);
+      console.log(data)
     }
     fetchData();
-  }, []);
+  }, [isEditing]);
 
   const handleCancel = () => {
     setIsEditing(false); // Đóng ProfileForm

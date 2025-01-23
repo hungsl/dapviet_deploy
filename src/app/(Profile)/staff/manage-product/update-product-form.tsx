@@ -27,22 +27,24 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { deleteImage, uploadImage } from "@/supabase/storage/client";
 import { converBlobUrlToFile } from "@/lib/utils";
 import { useLoading } from "@/app/context/loading-provider";
 import productApiRequest from "@/apiRequests/product";
 import { CollectionsType, SizeQuantities, Types } from "../types";
 import { toast } from "@/hooks/use-toast";
 import { usePopup } from "@/app/context/popup-provider";
+import imageApiRequest from "@/apiRequests/image";
+import { useAppContext } from "@/app/context/app-provider";
 
 export default function UpdateProductForm({
   productId,
 }: {
   productId: string | undefined;
 }) {
+  const { isRefresh, setIsRefresh } = useAppContext();
   const imageInputRef = useRef<HTMLInputElement>(null);
   // const { accessToken } = useAppContext();
-  const {closePopup} = usePopup();
+  const { closePopup } = usePopup();
   const { loading, setLoading } = useLoading();
   const [previewUrls, setPreviewUrls] = useState<string[]>([]);
   const [deletedImg, setDeletedImg] = useState<string[]>([]);
@@ -67,87 +69,195 @@ export default function UpdateProductForm({
 
   useEffect(() => {
     // Giả lập gọi API productId lấy dữ liệu
-    const fetchProductDetail = async () => {
-      try {
-        setLoading(true)
-        const result = await productApiRequest.productStaff(
-          productId || "",
-        );
-        console.log("productdetail: ", result);
-        const data = result.payload.data;
-        const type = await productApiRequest.typeProductsStaff();
-        setTypes(type.payload.data);
-        const collection =
-          await productApiRequest.collectionProductsStaff();
-        setCollections(collection.payload.data);
-        const size = await productApiRequest.sizeProductsStaff();
-        setSizes(size.payload.data);
-        const fetchedProduct = {
-          id: data.id,
-          name: data.name,
-          pictures: [],
-          status: data.status,
-          weight: 120,
-          sizes: Object.keys(data.sizeQuantities).map((sizeId) => ({
-            size: data.sizeQuantities[sizeId].size,
-            quantity: data.sizeQuantities[sizeId].quantity,
-          })),
-          collectionId: collection.payload.data.find(collection => collection.name === data.collectionName)?.id,
-          typeId: type.payload.data.find(type => type.name === data.typeName)?.id,
-          unitPrice: data.unitPrice,
-          description: data.description,
-        };
+    // if (productId) {
+    //   const fetchProductDetail = async () => {
+    //     try {
+    //       setLoading(true);
+    //       const result = await productApiRequest.productStaff(productId);
+    //       console.log("productdetail: ", result);
+    //       const data = result.payload.data;
+    //       const type = await productApiRequest.typeProductsStaff();
+    //       setTypes(type.payload.data);
+    //       const collection = await productApiRequest.collectionProductsStaff();
+    //       setCollections(collection.payload.data);
+    //       const size = await productApiRequest.sizeProductsStaff();
+    //       setSizes(size.payload.data);
+    //       const fetchedProduct = {
+    //         id: data.id,
+    //         name: data.name,
+    //         pictures: [],
+    //         status: data.status,
+    //         weight: 120,
+    //         sizes: Object.keys(data.sizeQuantities).map((sizeId) => ({
+    //           size: data.sizeQuantities[sizeId].size,
+    //           quantity: data.sizeQuantities[sizeId].quantity,
+    //         })),
+    //         collectionId: collection.payload.data.find(
+    //           (collection) => collection.name === data.collectionName
+    //         )?.id,
+    //         typeId: type.payload.data.find(
+    //           (type) => type.name === data.typeName
+    //         )?.id,
+    //         unitPrice: data.unitPrice,
+    //         description: data.description,
+    //       };
 
-        // setProduct(fetchedProduct);
-        form.reset({
-          ...fetchedProduct,
-        });
-        setPreviewUrls(data.pictures);
-      } catch (error) {
-        console.log("fail to get Detail Product", error);
-      }finally{
-        setLoading(false)
-      }
-    };
-    fetchProductDetail();
-  }, []);
+    //       // setProduct(fetchedProduct);
+    //       setPreviewUrls(data.pictures);
+    //       form.reset({
+    //         ...fetchedProduct,
+    //       });
+    //     } catch (error) {
+    //       console.log("fail to get Detail Product", error);
+    //     } finally {
+    //       setLoading(false);
+    //     }
+    //   };
+    //   fetchProductDetail();
+    // }
+    if (productId) {
+      const fetchProductDetail = async () => {
+        try {
+          setLoading(true);
+  
+          // Gọi API song song để giảm thời gian chờ
+          const [
+            productResult,
+            typeResult,
+            collectionResult,
+            sizeResult
+          ] = await Promise.all([
+            productApiRequest.productStaff(productId),
+            productApiRequest.typeProductsStaff(),
+            productApiRequest.collectionProductsStaff(),
+            productApiRequest.sizeProductsStaff()
+          ]);
+  
+          console.log("productDetail:", productResult);
+  
+          // Dữ liệu API
+          const data = productResult.payload.data;
+          const types = typeResult.payload.data;
+          const collections = collectionResult.payload.data;
+          const sizes = sizeResult.payload.data;
+  
+          // Lưu các collection và type vào Map để tìm kiếm nhanh hơn
+          const collectionMap = new Map(
+            collections.map((collection) => [collection.name, collection.id])
+          );
+          const typeMap = new Map(
+            types.map((type) => [type.name, type.id])
+          );
+  
+          // Xử lý product data
+          const fetchedProduct = {
+            id: data.id,
+            name: data.name,
+            pictures: [],
+            status: data.status,
+            weight: data.weight || 120,
+            sizes: Object.keys(data.sizeQuantities).map((sizeId) => ({
+              size: data.sizeQuantities[sizeId].size,
+              quantity: data.sizeQuantities[sizeId].quantity
+            })),
+            collectionId: collectionMap.get(data.collectionName || "") || "",
+            typeId: typeMap.get(data.typeName) || "",
+            unitPrice: data.unitPrice,
+            description: data.description
+          };
+  
+          // Set state
+          setTypes(types);
+          setCollections(collections);
+          setSizes(sizes);
+          setPreviewUrls(data.pictures || []);
+          form.reset({
+            ...fetchedProduct
+          });
+        } catch (error) {
+          console.error("Failed to fetch product detail:", error);
+        } finally {
+          setLoading(false);
+        }
+      };
+  
+      fetchProductDetail();
+    }
+  }, [productId]);
 
   async function onSubmit(values: UpdateProductBodyType) {
+    if (loading) return;
+    if (previewUrls.length == 0) {
+      toast({
+        variant: "destructive",
+        title: "lỗi hình ảnh",
+        description: "Ảnh không thể để trống",
+        duration: 3000,
+      });
+      return;
+    }
     try {
-      if (loading) return;
       setLoading(true);
-      const urls = [];
-      const filterUrl = previewUrls.filter(
-        (url) => !url.includes("/storage/v1/object/public/")
-      );
-      for (const url of filterUrl) {
-        const imageFile = await converBlobUrlToFile(url);
-        const { imageUrl, error } = await uploadImage({
-          file: imageFile,
-          bucket: "hung-pics",
-        });
-        if (error) {
-          console.error(error);
-          return;
+      const urls: string[] = [];
+      const filterUrl = previewUrls.filter((url) => !url.includes("utfs.io/f"));
+      const uploadTask = (async () => {
+        if (filterUrl && filterUrl.length > 0) {
+          const formData = new FormData();
+          for (const url of filterUrl) {
+            const imageFile = await converBlobUrlToFile(url);
+            formData.append("files", imageFile);
+            // const { imageUrl, error } = await uploadImage({
+            //   file: imageFile,
+            //   bucket: "hung-pics",
+            // });
+            // if (error) {
+            //   console.error(error);
+            //   return;
+            // }
+            // urls.push(imageUrl);
+          }
+          const ImageDataArray = await imageApiRequest.uploadImage(formData);
+          const uploadedUrls = ImageDataArray.payload.files.map(
+            (item) => item.data.url
+          );
+          urls.push(...uploadedUrls);
         }
-        urls.push(imageUrl);
-      }
+      })();
       // console.log("previewUrls ", previewUrls);
       // console.log("filterUrl ", filterUrl);
       // console.log("urls ", urls);
-      for (const url of deletedImg) {
-        const { data, error } = await deleteImage(url);
-        if (error) {
-          console.error(`Lỗi khi xóa URL: ${url}`, error);
-        } else {
-          console.log(`Đã xóa URL: ${url}`, data);
+      // let deleteImages = [];
+      // for (const url of deletedImg) {
+      //   console.log("url delete: ", url);
+      //   const deleteImage = await converBlobUrlToFile(url);
+      //   // const { data, error } = await deleteImage(url);
+      //   // if (error) {
+      //   //   console.error(`Lỗi khi xóa URL: ${url}`, error);
+      //   // } else {
+      //   //   console.log(`Đã xóa URL: ${url}`, data);
+      //   // }
+      //   deleteImages.push(deleteImage);
+      // }
+      const deleteTask = (async () => {
+        if (deletedImg.length > 0) {
+          const filterDeleteUrl = deletedImg.map((url) =>
+            url.split("/").pop()
+          ) as string[];
+          if (filterDeleteUrl.length > 0) {
+            console.log(filterDeleteUrl);
+            const body = {
+              imageKeys: filterDeleteUrl,
+            };
+            const ResultDeleteImage = await imageApiRequest.deleteImage(body);
+            console.log("delete Info:", ResultDeleteImage.payload.messages);
+          }
         }
-      }
-      
-      const filterSumitUrl = [...previewUrls, ...urls].filter(
-        (url) => url.includes("/storage/v1/object/public/")
+      })();
+      await Promise.all([uploadTask, deleteTask]);
+      const filterSumitUrl = [...previewUrls, ...urls].filter((url) =>
+        url.includes("utfs.io/f")
       );
-      console.log(filterSumitUrl)
+      console.log(filterSumitUrl);
       // console.log("Form Data:", values);
 
       const sizeQuantities: SizeQuantities = {};
@@ -160,7 +270,7 @@ export default function UpdateProductForm({
           sizeQuantities[matchingSize.id] = sizeData.quantity;
         }
       });
-      const body : UpdateApiProductBodyType = {
+      const body: UpdateApiProductBodyType = {
         name: values.name,
         description: values.description,
         unitPrice: values.unitPrice,
@@ -169,19 +279,23 @@ export default function UpdateProductForm({
         status: values.status,
         collectionId: values.collectionId,
         typeId: values.typeId,
-        sizeQuantities: sizeQuantities
-      }
+        sizeQuantities: sizeQuantities,
+      };
       console.log(body);
-      const result = await productApiRequest.updateProductStaff(values.id, body)
+      const result = await productApiRequest.updateProductStaff(
+        values.id,
+        body
+      );
       toast({
         duration: 3000,
-        description: result.payload.message
-      })
+        description: result.payload.message,
+      });
     } catch (error) {
       console.log("Lỗi khi cập nhật sản phẩm :", error);
     } finally {
+      setIsRefresh(!isRefresh);
       setLoading(false);
-      closePopup()
+      closePopup();
     }
   }
 
@@ -194,7 +308,8 @@ export default function UpdateProductForm({
       field.onChange([]);
     }
     setPreviewUrls((prevUrls) => prevUrls.filter((_, i) => i !== index));
-    if (url.includes("/storage/v1/object/public/")) {
+    if (url.includes("utfs.io/f")) {
+      // if (url.includes("/storage/v1/object/public/")) {
       // const { data, error } = await deleteImage(url);
       // console.log(data);
       // console.log(error);

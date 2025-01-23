@@ -10,7 +10,7 @@ export const StatisticsRes = z.object({
     totalInTransitOrders: z.number(),
     totalDeliveredOrders: z.number(),
     totalCanceledOrders: z.number(),
-    totalSell: z.number(),
+    totalProductSell: z.number(),
     totalRevenueThisWeek: z.number(),
     totalRevenueLastWeek: z.number(),
   }),

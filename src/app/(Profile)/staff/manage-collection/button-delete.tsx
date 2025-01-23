@@ -9,27 +9,30 @@ import { Button } from "@mui/material";
 import styles from "../manage-product/Product.module.css";
 import { toast } from "@/hooks/use-toast";
 import typesApiRequest from "@/apiRequests/type";
-import { useRouter } from "next/navigation";
+import { useLoading } from "@/app/context/loading-provider";
 
 export default function ButtonDelete({
   collectionId,
-  accessToken,
   isDelete,
+  deleted,
+  setDeleted,
 }: {
   collectionId: string;
-  accessToken: string;
   isDelete: boolean;
+  deleted: boolean;
+  setDeleted: (deleted: boolean) => void
 }) {
   const [open, setOpen] = useState(false);
   const handleClose = () => setOpen(false);
-  const router = useRouter()
+  const {setLoading} = useLoading()
   const handleOpen = () => {
     setOpen(true); // Mở Dialog
   };
 
   const handleDelete = async () => {
     try {
-      const result = await typesApiRequest.deleteCollection(collectionId, accessToken);
+      setLoading(true)
+      const result = await typesApiRequest.deleteCollection(collectionId);
       toast({
         description: result.payload.message,
         duration: 2000,
@@ -37,22 +40,25 @@ export default function ButtonDelete({
     } catch (error) {
       console.log("lỗi khi xóa doanh mục: ", error);
     } finally {
-      router.refresh();
+      setLoading(false)
+      setDeleted(!deleted)
       setOpen(false);
     }
   };
   const handleActive = async () => {
     try {
-      const result = await typesApiRequest.activeCollection(collectionId, accessToken);
+      setLoading(true)
+      const result = await typesApiRequest.activeCollection(collectionId);
       toast({
         description: result.payload.message,
         duration: 2000,
       });
-      router.refresh();
     } catch (error) {
       console.log("lỗi khi Kích hoạt kích thước: ", error);
     } finally {
       setOpen(false);
+      setDeleted(!deleted)
+      setLoading(false)
     }
   }
 

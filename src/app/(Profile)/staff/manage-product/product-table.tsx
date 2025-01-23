@@ -18,7 +18,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import { useLoading } from "@/app/context/loading-provider";
+import { useAppContext } from "@/app/context/app-provider";
 
 export default function ProductTable() {
   const [data, setData] = useState<ProductListResType | null>(null);
@@ -30,20 +30,19 @@ export default function ProductTable() {
   const [properties, setProperties] = useState("unitPrice");
   const [totalPages, setTotalPages] = useState(1);
   // const { accessToken } = useAppContext();
-  const { setLoading } = useLoading();
+  const { isRefresh } = useAppContext();
   const fetchProducts = async () => {
     try {
-      setLoading(true);
       const result = await productApiRequest.productsStaff(
         {
           search,
           page: currentPage,
-          size: 7,
+          size: 10,
           direction,
           properties,
           minPrice: minPrice ? parseInt(minPrice) : undefined,
           maxPrice: maxPrice ? parseInt(maxPrice) : undefined,
-        },
+        }
         // accessToken
       );
       setData(result.payload);
@@ -52,13 +51,12 @@ export default function ProductTable() {
     } catch (error) {
       console.error("Error fetching products:", error);
     } finally {
-      setLoading(false);
     }
   };
 
   useEffect(() => {
     fetchProducts();
-  }, [currentPage, properties]);
+  }, [currentPage, properties, isRefresh]);
 
   const handlePageChange = (newPage: number) => {
     if (newPage >= 1 && newPage <= totalPages) {
@@ -66,57 +64,66 @@ export default function ProductTable() {
       setCurrentPage(newPage);
     }
   };
+  if (!data)
+    return (
+    <div className="flex justify-center items-center h-screen flex-col relative">
+        <div className="absolute">Loading</div>
+        <div className="w-16 h-16 border-4 border-t-4 border-blue-500 border-dotted rounded-full animate-spin">
+        </div>
+      </div>
+    );
 
   return (
     <>
-      <div className="scroll max-h-[650px] text-foreground">
+      <div className={styles.searchFilter}>
+        <input
+          type="text"
+          placeholder="Tìm kiếm..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="border border-gray-300 rounded px-2 py-1 mr-2"
+        />
+        <select
+          value={properties}
+          onChange={(e) => setProperties(e.target.value)}
+          className="border border-gray-300 rounded px-2 py-1 mr-2"
+        >
+          <option value="name">Tên sản phẩm</option>
+          <option value="unitPrice">Giá sản phẩm</option>
+          <option value="createdDate">Ngày tạo</option>
+        </select>
+        <select
+          value={direction}
+          onChange={(e) => setDirection(e.target.value)}
+          className="border border-gray-300 rounded px-2 py-1 mr-2"
+        >
+          <option value="ASC">Tăng dần</option>
+          <option value="DESC">Giảm dần</option>
+        </select>
+        <input
+          type="number"
+          placeholder="Giá tối thiểu"
+          value={minPrice}
+          onChange={(e) => setMinPrice(e.target.value)}
+          className="border border-gray-300 rounded px-2 py-1"
+        />
+        <input
+          type="number"
+          placeholder="Giá tối đa"
+          value={maxPrice}
+          onChange={(e) => setMaxPrice(e.target.value)}
+          className="border border-gray-300 rounded px-2 py-1 ml-2"
+        />
+        <button
+          onClick={fetchProducts}
+          className="bg-blue-500 text-white px-4 py-1 rounded ml-2"
+        >
+          Áp dụng
+        </button>
+      </div>
+      <div className={`scroll  ${styles.heightTable} text-foreground`}>
         {/* Search and Filters */}
-        <div className={styles.searchFilter}>
-          <input
-            type="text"
-            placeholder="Tìm kiếm..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="border border-gray-300 rounded px-2 py-1 mr-2"
-          />
-          <select
-            value={properties}
-            onChange={(e) => setProperties(e.target.value)}
-            className="border border-gray-300 rounded px-2 py-1 mr-2"
-          >
-            <option value="name">Tên sản phẩm</option>
-            <option value="unitPrice">Giá sản phẩm</option>
-            <option value="createdDate">Ngày tạo</option>
-          </select>
-          <select
-            value={direction}
-            onChange={(e) => setDirection(e.target.value)}
-            className="border border-gray-300 rounded px-2 py-1 mr-2"
-          >
-            <option value="ASC">Tăng dần</option>
-            <option value="DESC">Giảm dần</option>
-          </select>
-          <input
-            type="number"
-            placeholder="Giá tối thiểu"
-            value={minPrice}
-            onChange={(e) => setMinPrice(e.target.value)}
-            className="border border-gray-300 rounded px-2 py-1"
-          />
-          <input
-            type="number"
-            placeholder="Giá tối đa"
-            value={maxPrice}
-            onChange={(e) => setMaxPrice(e.target.value)}
-            className="border border-gray-300 rounded px-2 py-1 ml-2"
-          />
-          <button
-            onClick={fetchProducts}
-            className="bg-blue-500 text-white px-4 py-1 rounded ml-2"
-          >
-            Áp dụng
-          </button>
-        </div>
+
         <table className={styles.table}>
           <thead>
             <tr className={styles.tableRow}>
@@ -171,8 +178,8 @@ export default function ProductTable() {
             ))}
           </tbody>
         </table>
-
-        {/* Pagination */}
+      </div>
+      {totalPages > 1 && (
         <Pagination className="mt-10">
           <PaginationContent>
             {/* Nút Previous */}
@@ -246,7 +253,7 @@ export default function ProductTable() {
             </PaginationItem>
           </PaginationContent>
         </Pagination>
-      </div>
+      )}
     </>
   );
 }

@@ -14,54 +14,63 @@ export const SidebarStaff: React.FC = ({}) => {
   const [activeItem, setActiveItem] = useState<string>(path);
   const menuItems = [
     {
-      icon: "/sidebar/dashboard.png",
+      // icon: "/sidebar/dashboard.png",
+      icon: "dashboard",
       id: "/staff/dashboard",
       label: "Thống kê",
     },
     {
-      icon: "/sidebar/quanlysanpham.png",
+      // icon: "/sidebar/quanlysanpham.png",
+      icon: "manage-product",
       id: "/staff/manage-product",
       label: "Quản lý sản phẩm",
     },
     {
-      icon: "/sidebar/quanlydanhmucsanpham.png",
+      // icon: "/sidebar/quanlydanhmucsanpham.png",
+      icon: "manage-category",
       id: "/staff/manage-category",
       label: "Danh mục sản phẩm",
     },
     {
-      icon: "/sidebar/quanlysodo.png",
+      // icon: "/sidebar/quanlysodo.png",
+      icon: "manage-size",
       id: "/staff/manage-size",
       label: "Quản lý số đo",
     },
     {
-      icon: "/sidebar/quanlybosuutap.png",
+      // icon: "/sidebar/quanlybosuutap.png",
+      icon: "manage-collection",
       id: "/staff/manage-collection",
       label: "Quản lý bộ sưu tập",
     },
     {
-      icon: "/sidebar/quanlydonhang.png",
+      // icon: "/sidebar/quanlydonhang.png",
+      icon: "manage-order",
       id: "/staff/manage-order",
       label: "Quản lý đơn hàng",
     },
     {
-      icon: "/sidebar/quanlydanhthu.png",
+      // icon: "/sidebar/quanlydanhthu.png",
+      icon: "manage-revenue",
       id: "/staff/manage-revenue",
       label: "Báo cáo doanh thu",
     },
     {
-      icon: "/sidebar/quanlynguoidung.png",
+      // icon: "/sidebar/quanlynguoidung.png",
+      icon: "manage-user",
       id: "/staff/manage-user",
       label: "Quản lý người dùng",
     },
     {
-      icon: "/sidebar/quanlythanhtoan.png",
+      icon: "manage-payment",
+      // icon: "/sidebar/quanlythanhtoan.png",
       id: "/staff/manage-payment",
       label: "Quản lý thanh toán",
     },
   ];
 
   const bottomMenuItems = [
-    { icon: "/sidebar/dangxuaticon.png", id: "/logout", label: "Đăng xuất" },
+    { icon: "logout", id: "/logout", label: "Đăng xuất" },
   ];
   useEffect(() => {
     setActiveItem(path);

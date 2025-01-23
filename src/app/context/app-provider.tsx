@@ -3,6 +3,7 @@ import React, { createContext, useContext, useState } from "react";
 
 const AppContext = createContext({
   isLoggedIn: false,
+  isRefresh: false,
   // refreshToken: "",
   shippingDetails: {
     provinceId: 0,
@@ -17,6 +18,7 @@ const AppContext = createContext({
     districtId: number;
   }) => {},
   setShippingFee: (fee: number) => {},// eslint-disable-line @typescript-eslint/no-unused-vars
+  setIsRefresh: (isRefresh: boolean) => {},// eslint-disable-line @typescript-eslint/no-unused-vars
   setShippingMethod: (method: string) => {},// eslint-disable-line @typescript-eslint/no-unused-vars
 });
 
@@ -44,17 +46,20 @@ export default function AppProvider({
     districtId: 515,
   });
   const [shippingFee, setShippingFee] = useState(0);
+  const [isRefresh, setIsRefresh] = useState(false);
   const [shippingMethod, setShippingMethod] = useState("");
 
   return (
     <AppContext.Provider
       value={{
         isLoggedIn,
+        isRefresh,
         // refreshToken,
         shippingDetails,
         shippingFee,
         shippingMethod,
         setIsLoggedIn,
+        setIsRefresh,
         // setRefreshToken,
         setShippingDetails,
         setShippingFee,

@@ -19,6 +19,7 @@ import {
   UpdateApiProductBodyType,
 } from "@/schemaValidations/product.schema";
 import { Textarea } from "@/components/ui/textarea";
+
 import { Checkbox } from "@/components/ui/checkbox";
 import {
   Select,
@@ -27,39 +28,40 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { uploadImage } from "@/supabase/storage/client";
+// import { uploadImage } from "@/supabase/storage/client";
 import { useLoading } from "@/app/context/loading-provider";
 import { converBlobUrlToFile } from "@/lib/utils";
 import { CollectionsType, SizeQuantities, Types } from "../types";
 import productApiRequest from "@/apiRequests/product";
 import { toast } from "@/hooks/use-toast";
 import { usePopup } from "@/app/context/popup-provider";
+import imageApiRequest from "@/apiRequests/image";
+import { useAppContext } from "@/app/context/app-provider";
 
 export default function CreateProductForm() {
   const { loading, setLoading } = useLoading();
   // const { accessToken } = useAppContext();
-  const {closePopup} = usePopup();
+  const { closePopup } = usePopup();
   const imageInputRef = useRef<HTMLInputElement>(null);
   const [previewUrls, setPreviewUrls] = useState<string[]>([]);
   const [types, setTypes] = useState<Types>([]);
   const [collections, setCollections] = useState<CollectionsType>([]);
   const [sizes, setSizes] = useState<Types>([]);
-
+  const {isRefresh, setIsRefresh} = useAppContext()
   useEffect(() => {
     const fetchProductDetail = async () => {
       try {
-        setLoading(true)
+        setLoading(true);
         const type = await productApiRequest.typeProductsStaff();
         setTypes(type.payload.data);
-        const collection =
-          await productApiRequest.collectionProductsStaff();
+        const collection = await productApiRequest.collectionProductsStaff();
         setCollections(collection.payload.data);
         const size = await productApiRequest.sizeProductsStaff();
         setSizes(size.payload.data);
       } catch (error) {
         console.log("fail to get Detail Product: ", error);
-      }finally{
-        setLoading(false)
+      } finally {
+        setLoading(false);
       }
     };
     fetchProductDetail();
@@ -84,18 +86,27 @@ export default function CreateProductForm() {
       if (loading) return;
       setLoading(true);
       const urls = [];
+      const formData = new FormData();
       for (const url of previewUrls) {
         const imageFile = await converBlobUrlToFile(url);
-        const { imageUrl, error } = await uploadImage({
-          file: imageFile,
-          bucket: "hung-pics",
-        });
-        if (error) {
-          console.error(error);
-          return;
-        }
-        urls.push(imageUrl);
+        formData.append("files", imageFile);
+        // const { imageUrl, error } = await uploadImage({//code cu
+        //   file: imageFile,
+        //   bucket: "hung-pics",
+        // });
+        // if (error) {
+        //   console.error(error);
+        //   return;
+        // }
+        // urls.push(imageUrl);
       }
+    
+      const ImageDataArray = await imageApiRequest.uploadImage(formData);
+      // console.log(ImageDataArray)
+      const uploadedUrls = ImageDataArray.payload.files.map(
+        (item) => item.data.url
+      );
+      urls.push(...uploadedUrls);
       // console.log("previewUrls ", previewUrls);
       // console.log("urls ", urls);
       // console.log("Form Data:", values);
@@ -121,17 +132,18 @@ export default function CreateProductForm() {
         typeId: values.typeId,
         sizeQuantities: sizeQuantities,
       };
-      console.log(body);
-      const result = await productApiRequest.createProductStaff( body)
+      // console.log(body);
+      const result = await productApiRequest.createProductStaff(body);
       toast({
         duration: 3000,
-        description: result.payload.message
-      })
+        description: result.payload.message,
+      });
     } catch (error) {
       console.log("lỗi tạo sản phẩm: ", error);
     } finally {
       setLoading(false);
-      closePopup()
+      closePopup();
+      setIsRefresh(!isRefresh);
     }
   }
   const handleDelete = async (

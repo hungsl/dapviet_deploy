@@ -1,8 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import styles from "./UserProfile.module.css";
-import { ProfileFormProps } from "./types";
 import { useForm } from "react-hook-form";
+import styles from "./CreateUserPage.module.css";
 import {
   Select,
   SelectContent,
@@ -23,61 +22,73 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import {
-  UpdateProfileInfo,
-  UpdateProfileInfoType,
+  StaffCreateUser,
+  StaffCreateUserType,
 } from "@/schemaValidations/account.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import viettelApiRequest from "@/apiRequests/viettel";
 // import { useAppContext } from "@/app/context/app-provider";
 import { districtResType, provinceResType } from "@/schemaValidations/viettel";
+import { useLoading } from "@/app/context/loading-provider";
+import { toast } from "@/hooks/use-toast";
+import accountApiRequest from "@/apiRequests/account";
+import { uploadImage } from "@/supabase/storage/client";
+import { useRouter } from "next/navigation";
 
-export default function ProfileForm({
-  userData,
-  onCancel,
-  onSave,
-}: ProfileFormProps) {
-  // const { accessToken } = useAppContext();
+export type StaffCheckAPIUserType = {
+  status: "VERIFIED" | "UNVERIFIED";
+  name: string;
+  gender: "MALE" | "FEMALE" | "OTHER";
+  email: string;
+  password: string;
+  phone: string;
+  avatar: string;
+  role: "STAFF" | "CUSTOMER";
+  dob?: string | undefined;
+  province?: string | undefined;
+  district?: string | undefined;
+  address?: string | undefined;
+};
+
+export default function CreateUser() {
+    const router = useRouter()
   const [provinces, setProvinces] = useState<provinceResType>();
   const [selectedProvinceId, setSelectedProvinceId] = useState<
     number | undefined
   >();
+  const { setLoading } = useLoading();
   const [districts, setDistricts] = useState<districtResType>();
-  const form = useForm<UpdateProfileInfoType>({
-    resolver: zodResolver(UpdateProfileInfo),
+  const form = useForm<StaffCreateUserType>({
+    resolver: zodResolver(StaffCreateUser),
     defaultValues: {
-      name: userData.name,
-      gender: userData.gender,
-      dob: userData.dob,
-      address: userData.address,
-      province: userData.province,
-      district: userData.district,
-      phone: userData.phone,
+      name: "",
+      gender: "MALE",
+      dob: "",
+      email: "",
+      password: "",
+      address: "",
+      province: "",
+      district: "",
+      phone: "",
+      avatar: undefined,
+      role: "STAFF",
+      status: "VERIFIED",
     },
   });
+
   useEffect(() => {
     // Fetch danh sách tỉnh/thành phố
     const fetchProvinces = async () => {
       try {
         const result = await viettelApiRequest.provinces();
         setProvinces(result.payload); // Lưu danh sách tỉnh/thành phố
-
-        // Đặt selectedProvinceId nếu userData.province đã có
-        if (userData.province) {
-          const selectedProvince = result.payload?.data.find(
-            (province) => province.PROVINCE_NAME === userData.province
-          );
-          const provinceId = selectedProvince?.PROVINCE_ID || undefined;
-          if (provinceId !== selectedProvinceId) {
-            setSelectedProvinceId(provinceId);
-          }
-        }
       } catch (error) {
         console.error("Error fetching provinces:", error);
       }
     };
 
     fetchProvinces();
-  }, [userData.province]);
+  }, []);
 
   useEffect(() => {
     // Fetch danh sách quận/huyện dựa trên selectedProvinceId
@@ -95,9 +106,47 @@ export default function ProfileForm({
     fetchDistricts();
   }, [selectedProvinceId]);
 
-  function onSubmit(values: UpdateProfileInfoType) {
-    if (onSave) {
-      onSave(values); // Gọi hàm onSave khi form submit thành công
+  async function onSubmit(value: StaffCreateUserType) {
+    console.log(value);
+    setLoading(true);
+    try {
+      const { imageUrl, error } = await uploadImage({
+        file: value.avatar,
+        bucket: "hung-pics",
+      });
+      if (error) {
+        console.error(error);
+        setLoading(false); // Đặt loading = false nếu có lỗi
+        return;
+      }
+      console.log("Uploading file:", imageUrl);
+
+      const body = {
+        ...value,
+        avatar: imageUrl,
+      };
+
+      const result = await accountApiRequest.staffCreateUser(body);
+      if (result?.payload?.message) {
+        toast({
+          description: result.payload.message,
+          duration: 2000,
+        });
+      } else {
+        toast({
+          description: "Cập nhật thành công!",
+          duration: 2000,
+        });
+      }
+    } catch (error) {
+      console.error("Error updating profile:", error);
+      toast({
+        description: "Có lỗi xảy ra khi cập nhật. Vui lòng thử lại.",
+        duration: 2000,
+      });
+    } finally {
+        router.push("/staff/manage-user")
+      setLoading(false);
     }
   }
   return (
@@ -111,11 +160,74 @@ export default function ProfileForm({
         </div>
         <Form {...form}>
           <form
-            onSubmit={form.handleSubmit(onSubmit)}
+            onSubmit={form.handleSubmit(onSubmit, (error) => {
+              console.log(error);
+            })}
             className={styles.formEdit}
           >
             <div className={styles.formF}>
               <div>
+                <FormField
+                  control={form.control}
+                  name="avatar"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className={styles.fieldLabel}>
+                        Avatar
+                      </FormLabel>
+                      <FormControl>
+                        <div className={styles.avatarUpload}>
+                          {/* Hiển thị preview ảnh */}
+                          {field.value && (
+                            <img
+                              src={URL.createObjectURL(field.value)} // Tạo URL tạm cho file
+                              alt="Preview Avatar"
+                              className={styles.avatarPreview}
+                            />
+                          )}
+
+                          {/* Input file */}
+                          <Input
+                            type="file"
+                            accept="image/*"
+                            onChange={(e) => {
+                              const file = e.target.files?.[0];
+                              if (file) {
+                                field.onChange(file); // Lưu file vào field
+                              }
+                            }}
+                            className={`${styles.fieldValue} bg-[rgb(249,249,251)]`}
+                          />
+                        </div>
+                      </FormControl>
+                      <FormDescription>
+                        Vui lòng tải lên một ảnh đại diện.
+                      </FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className={styles.fieldLabel}>
+                        {" "}
+                        Địa chỉ Email
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="example@gmail.com"
+                          {...field}
+                          className={`${styles.fieldValue} bg-[rgb(249,249,251)]`}
+                        />
+                      </FormControl>
+                      <FormDescription></FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
                 <FormField
                   control={form.control}
                   name="name"
@@ -136,7 +248,27 @@ export default function ProfileForm({
                     </FormItem>
                   )}
                 />
-
+                <FormField
+                  control={form.control}
+                  name="password"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className={styles.fieldLabel}>
+                        Mật khẩu
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          type="password"
+                          placeholder="Mật khẩu"
+                          {...field}
+                          className={`${styles.fieldValue} bg-[rgb(249,249,251)]`}
+                        />
+                      </FormControl>
+                      <FormDescription />
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
                 <FormField
                   control={form.control}
                   name="dob"
@@ -240,7 +372,6 @@ export default function ProfileForm({
                             setSelectedProvinceId(
                               selectedProvince?.PROVINCE_ID || undefined
                             ); // Lưu ID tỉnh đã chọn
-                            
                             // Reset district field when province changes
                             form.setValue("district", "");
                           }}
@@ -328,17 +459,74 @@ export default function ProfileForm({
                     </FormItem>
                   )}
                 />
+                <FormField
+                  control={form.control}
+                  name="role"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className={styles.fieldLabel}>
+                        Vai trò
+                      </FormLabel>
+                      <FormControl>
+                        <Select
+                          key={field.value || "default"}
+                          onValueChange={(value) => field.onChange(value)}
+                          value={field.value || ""}
+                        >
+                          <SelectTrigger className="bg-[rgb(249,249,251)] text-black">
+                            <SelectValue placeholder="Chọn vai trò" />
+                          </SelectTrigger>
+                          <SelectContent
+                            className={`${styles.selectContent} bg-[rgb(249,249,251)] text-black`}
+                          >
+                            <SelectItem value="STAFF">Quản trị</SelectItem>
+                            <SelectItem value="USER">Người dùng</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </FormControl>
+                      <FormDescription />
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="status"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className={styles.fieldLabel}>
+                        Trạng thái
+                      </FormLabel>
+                      <FormControl>
+                        <Select
+                          key={field.value || "default"}
+                          onValueChange={(value) => field.onChange(value)}
+                          value={field.value || ""}
+                        >
+                          <SelectTrigger className="bg-[rgb(249,249,251)] text-black">
+                            <SelectValue placeholder="Chọn trạng thái" />
+                          </SelectTrigger>
+                          <SelectContent
+                            className={`${styles.selectContent} bg-[rgb(249,249,251)] text-black`}
+                          >
+                            <SelectItem value="VERIFIED">
+                              Đã xác minh
+                            </SelectItem>
+                            <SelectItem value="UNVERIFIED">
+                              Chưa xác minh
+                            </SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </FormControl>
+                      <FormDescription />
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
               </div>
             </div>
             <div className={styles.formActions}>
-              <button
-                type="button"
-                className={styles.closeButton}
-                onClick={onCancel}
-                tabIndex={0}
-              >
-                Hủy
-              </button>
               <button type="submit" className={styles.saveButton} tabIndex={0}>
                 Lưu
               </button>

@@ -6,7 +6,6 @@ import typesApiRequest from "@/apiRequests/type";
 import { TypesListResType } from "@/schemaValidations/type.schema";
 import { useEffect, useState } from "react";
 // import { useAppContext } from "@/app/context/app-provider";
-import { useLoading } from "@/app/context/loading-provider";
 import {
   Pagination,
   PaginationContent,
@@ -24,11 +23,9 @@ export default function CategoryTable() {
   const [deleted, setDeleted] = useState(false);
   const [direction, setDirection] = useState("ASC");
   // const { accessToken } = useAppContext();
-  const { setLoading } = useLoading();
   const search =""
   const fetchProductDetail = async () => {
     try {
-      setLoading(true); // Nếu có state loading
       const result = await typesApiRequest.typesList(
         currentPage,
         7,
@@ -41,7 +38,6 @@ export default function CategoryTable() {
     } catch (error) {
       console.error("Error fetching product detail:", error);
     } finally {
-      setLoading(false);
     }
   };
 
@@ -56,6 +52,15 @@ export default function CategoryTable() {
     }
   };
 
+  if (!data)
+    return (
+    <div className="flex justify-center items-center h-screen flex-col relative">
+        <div className="absolute">Loading</div>
+        <div className="w-16 h-16 border-4 border-t-4 border-blue-500 border-dotted rounded-full animate-spin">
+        </div>
+      </div>
+    );
+    
   return (
     <div className="scroll max-h-[600px] text-foreground">
       <div className={styles.searchFilter}>

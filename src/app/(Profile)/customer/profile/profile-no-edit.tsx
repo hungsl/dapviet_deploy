@@ -5,6 +5,18 @@ import { ProfileField } from "./profile-field";
 export const ProfileNoEdit: React.FC<ProfileFormProps> = ({
   userData,
 }) => {
+  const translateGender = (gender :string) => {
+    switch (gender) {
+      case "MALE":
+        return "Nam";
+      case "FEMALE":
+        return "Nữ";
+      case "OTHER":
+        return "Khác";
+      default:
+        return ""; // Trả về chuỗi rỗng nếu không có giá trị
+    }
+  };
   return (
     <div className={`${styles.formContainers}`}>
       <div className={styles.formSection}>
@@ -16,7 +28,7 @@ export const ProfileNoEdit: React.FC<ProfileFormProps> = ({
           <div>
             <ProfileField label="Họ và tên" value={userData.name} />
             <ProfileField label="Ngày sinh" value={new Date(userData.dob).toLocaleDateString('vi-VN')} />
-            <ProfileField label="Giới tính" value={userData.gender} />
+            <ProfileField label="Giới tính" value={translateGender(userData.gender)} />
           </div>
           <div>
             <ProfileField label="Số điện thoại" value={userData.phone} />

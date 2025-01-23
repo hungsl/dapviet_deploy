@@ -39,7 +39,7 @@ export default function CarouselProductDetail({
             alt={`Preview ${index}`}
             width={500} // Cung cấp chiều rộng
             height={300}
-            priority={index === 0}
+            priority
             style={{ width: '100%', height: '400px' }}
           />
         ))}

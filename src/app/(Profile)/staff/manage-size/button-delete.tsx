@@ -10,17 +10,19 @@ import styles from "../manage-product/Product.module.css";
 import { toast } from "@/hooks/use-toast";
 import typesApiRequest from "@/apiRequests/type";
 import { useRouter } from "next/navigation";
+import { useAppContext } from "@/app/context/app-provider";
+import { useLoading } from "@/app/context/loading-provider";
 
 export default function ButtonDelete({
   sizeId,
-  accessToken,
   isDelete,
 }: {
   sizeId: string;
-  accessToken: string;
   isDelete: boolean;
 }) {
   const [open, setOpen] = useState(false);
+  const {isRefresh, setIsRefresh} = useAppContext()
+  const {setLoading} = useLoading()
   const handleClose = () => setOpen(false);
   const router = useRouter();
   const handleOpen = () => {
@@ -29,7 +31,8 @@ export default function ButtonDelete({
 
   const handleDelete = async () => {
     try {
-      const result = await typesApiRequest.deleteSize(sizeId, accessToken);
+      setLoading(true)
+      const result = await typesApiRequest.deleteSize(sizeId);
       toast({
         description: result.payload.message,
         duration: 2000,
@@ -38,13 +41,16 @@ export default function ButtonDelete({
     } catch (error) {
       console.log("lỗi khi xóa kích thước: ", error);
     } finally {
+      setLoading(false)
+      setIsRefresh(!isRefresh)
       setOpen(false);
     }
   };
 
   const handleActive = async () => {
     try {
-      const result = await typesApiRequest.activeSize(sizeId, accessToken);
+      setLoading(true)
+      const result = await typesApiRequest.activeSize(sizeId);
       toast({
         description: result.payload.message,
         duration: 2000,
@@ -53,6 +59,8 @@ export default function ButtonDelete({
     } catch (error) {
       console.log("lỗi khi Kích hoạt kích thước: ", error);
     } finally {
+      setLoading(false)
+      setIsRefresh(!isRefresh)
       setOpen(false);
     }
   }

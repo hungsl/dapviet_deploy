@@ -25,7 +25,7 @@ export default async function OrderDetail({
       accessToken?.value || ""
     );
     order = result.payload.data;
-    // console.log(order);
+    console.log(order);
   } catch (error) {
     console.log("lỗi lấy chi tiết đơn hàng: ", error)
     redirect("/homepage");

@@ -417,6 +417,10 @@
     margin: 5px 0;
     padding: 8px;
   }
+  .formF,
+  .formContainers{
+    padding-top: 300px;  
+  }
   .formSection{
     margin-top: 10px;
   }
@@ -426,6 +430,7 @@
   }
   .editButton,
   .passwordButton {
+    white-space: nowrap;
     font-size: 13px;
   }
   .fieldValueNoEdit {

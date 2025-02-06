@@ -8,6 +8,8 @@ import { ProductDataType } from "@/schemaValidations/product.schema";
 import { RxCross1 } from "react-icons/rx";
 import { IoMdCheckmark } from "react-icons/io";
 import Thumbnail from "./thumbnails";
+
+
 export default async function ProductDetail({
   data,
 }: {

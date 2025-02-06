@@ -3,7 +3,7 @@ import { usePopup } from '@/app/context/popup-provider';
 import React from 'react'
 import Popup from './popup';
 import { Checkout } from '@/app/purchase/checkout/checkout';
-import { Cart } from '@/app/purchase/cart/cart';
+import Cart  from '@/app/purchase/cart/cart';
 import LoginPopup from '@/app/(authen)/login/login-popup';
 import RegisterPopup from '@/app/(authen)/register/register-popup';
 import { Transfer } from '@/app/purchase/transfar/transfar';

@@ -64,16 +64,16 @@ export default function Chat() {
 /* eslint-disable prefer-const */
   useEffect(() => {
     let openTimeout: NodeJS.Timeout;
-    let closeTimeout: NodeJS.Timeout;
+    // let closeTimeout: NodeJS.Timeout;
     openTimeout = setTimeout(() => {
       setIschatOpen(true);
-      closeTimeout = setTimeout(() => {
-        setIschatOpen(false);
-      }, 1000);
+      // closeTimeout = setTimeout(() => {
+      //   setIschatOpen(false);
+      // }, 1000);
     }, 20000);
     return () => {
       if (openTimeout) clearTimeout(openTimeout);
-      if (closeTimeout) clearTimeout(closeTimeout);
+      // if (closeTimeout) clearTimeout(closeTimeout);
     };
   }, []);
 

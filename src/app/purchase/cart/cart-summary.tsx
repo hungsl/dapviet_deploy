@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./Cart.module.css";
 import { CartSummaryProps } from "./types";
 import { usePopup } from "@/app/context/popup-provider";
+import { toast } from "@/hooks/use-toast";
 
 export const CartSummary: React.FC<CartSummaryProps> = ({
   number,
@@ -9,10 +10,19 @@ export const CartSummary: React.FC<CartSummaryProps> = ({
   shipping,
   total,
   loadings,
+  isMaxItem,
 }) => {
   const { setContent } = usePopup();
 
   const goToCheckout = () => {
+    if (isMaxItem){
+      toast({
+        title: "Xin lỗi, một số sản phẩm trong giỏ hàng có số lượng vượt quá tồn kho. Vui lòng kiểm tra lại.",
+        variant: "destructive",
+        duration: 10000
+      })
+      return;
+    }
     setContent("checkout");
   };
   return (
@@ -60,13 +70,14 @@ export const CartSummary: React.FC<CartSummaryProps> = ({
         <span className={styles.totalLabel}>Tổng Cộng: </span>
         <span className={styles.totalAmount}>{total}</span>
       </div>
+      {number !== 0 &&
       <button
         disabled={number === 0 || loadings}
         onClick={goToCheckout}
-        className={`${styles.checkoutButton} ${number === 0 || loadings && styles.disable}`}
+        className={`${styles.checkoutButton} ${number === 0 || (loadings && styles.disable)}`}
       >
         Tiến Đến Thanh Toán
-      </button>
+      </button>}
     </div>
   );
 };

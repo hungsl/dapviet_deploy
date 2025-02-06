@@ -6,12 +6,20 @@ import { MenuItem } from "../customer/sidebar/menu-item";
 import Link from "next/link";
 import authApiRequest from "@/apiRequests/auth";
 import { handleErrorApi } from "@/lib/utils";
+import { ChevronDown, ChevronRight } from "lucide-react"; // Icon mở rộng nhóm
+import Image from "next/image";
+import { useLoading } from "@/app/context/loading-provider";
 
-export const SidebarStaff: React.FC = ({}) => {
+export default function SidebarStaff() {
   const path = usePathname();
   const router = useRouter();
+  const {setLoading} = useLoading()
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false); // Quản lý trạng thái thu hẹp
   const [activeItem, setActiveItem] = useState<string>(path);
+  const [expandedGroups, setExpandedGroups] = useState<{
+    [key: string]: boolean;
+  }>({}); // Trạng thái mở rộng nhóm
+
   const menuItems = [
     {
       // icon: "/sidebar/dashboard.png",
@@ -19,23 +27,45 @@ export const SidebarStaff: React.FC = ({}) => {
       id: "/staff/dashboard",
       label: "Thống kê",
     },
+    // {
+    //   // icon: "/sidebar/quanlysanpham.png",
+    //   icon: "manage-product",
+    //   id: "/staff/manage-product",
+    //   label: "Quản lý sản phẩm",
+    // },
+    // {
+    //   // icon: "/sidebar/quanlydanhmucsanpham.png",
+    //   icon: "manage-category",
+    //   id: "/staff/manage-category",
+    //   label: "Danh mục sản phẩm",
+    // },
+    // {
+    //   // icon: "/sidebar/quanlysodo.png",
+    //   icon: "manage-size",
+    //   id: "/staff/manage-size",
+    //   label: "Quản lý số đo",
+    // },
     {
-      // icon: "/sidebar/quanlysanpham.png",
       icon: "manage-product",
-      id: "/staff/manage-product",
-      label: "Quản lý sản phẩm",
-    },
-    {
-      // icon: "/sidebar/quanlydanhmucsanpham.png",
-      icon: "manage-category",
-      id: "/staff/manage-category",
-      label: "Danh mục sản phẩm",
-    },
-    {
-      // icon: "/sidebar/quanlysodo.png",
-      icon: "manage-size",
-      id: "/staff/manage-size",
-      label: "Quản lý số đo",
+      label: "Sản phẩm",
+      groupId: "products",
+      children: [
+        {
+          id: "/staff/manage-product",
+          label: "Quản lý sản phẩm",
+          icon: "manage-product",
+        },
+        {
+          id: "/staff/manage-category",
+          label: "Danh mục sản phẩm",
+          icon: "manage-category",
+        },
+        {
+          id: "/staff/manage-size",
+          label: "Quản lý số đo",
+          icon: "manage-size",
+        },
+      ],
     },
     {
       // icon: "/sidebar/quanlybosuutap.png",
@@ -49,24 +79,24 @@ export const SidebarStaff: React.FC = ({}) => {
       id: "/staff/manage-order",
       label: "Quản lý đơn hàng",
     },
-    {
-      // icon: "/sidebar/quanlydanhthu.png",
-      icon: "manage-revenue",
-      id: "/staff/manage-revenue",
-      label: "Báo cáo doanh thu",
-    },
+    // {
+    //   // icon: "/sidebar/quanlydanhthu.png",
+    //   icon: "manage-revenue",
+    //   id: "/staff/manage-revenue",
+    //   label: "Báo cáo doanh thu",
+    // },
     {
       // icon: "/sidebar/quanlynguoidung.png",
       icon: "manage-user",
       id: "/staff/manage-user",
       label: "Quản lý người dùng",
     },
-    {
-      icon: "manage-payment",
-      // icon: "/sidebar/quanlythanhtoan.png",
-      id: "/staff/manage-payment",
-      label: "Quản lý thanh toán",
-    },
+    // {
+    //   icon: "manage-payment",
+    //   // icon: "/sidebar/quanlythanhtoan.png",
+    //   id: "/staff/manage-payment",
+    //   label: "Quản lý thanh toán",
+    // },
   ];
 
   const bottomMenuItems = [
@@ -75,17 +105,34 @@ export const SidebarStaff: React.FC = ({}) => {
   useEffect(() => {
     setActiveItem(path);
   }, [path]);
+
+  const isGroupActive = (groupId: string) => {
+    const group = menuItems.find((item) => item.groupId === groupId);
+    if (!group || !group.children) return false;
+    return group.children.some((child) => path.startsWith(child.id));
+  };
+
+  const toggleGroup = (groupId: string) => {
+    setExpandedGroups((prev) => ({
+      ...prev,
+      [groupId]: !prev[groupId],
+    }));
+  };
+
   const handleToggleSidebar = () => {
     setIsSidebarCollapsed((prev) => !prev); // Chuyển đổi trạng thái
   };
   const handleLogout = async () => {
     try {
+      setLoading(true);
       await authApiRequest.logoutFromNextClientToNextServer();
       localStorage.removeItem("accessToken");
       localStorage.removeItem("refreshToken");
-      router.push("/login");
+      router.push("/homepage");
     } catch (error) {
       handleErrorApi({ error });
+    }finally{
+      setLoading(false);
     }
   };
   return (
@@ -99,8 +146,10 @@ export const SidebarStaff: React.FC = ({}) => {
             aria-label="Toggle menu"
             onClick={handleToggleSidebar}
           >
-            <img
-              loading="lazy"
+            <Image
+              width={300}
+              priority
+              height={300}
               src="/sidebar/iconsidebar.png"
               className={styles.menuToggleIcon}
               alt=""
@@ -110,8 +159,10 @@ export const SidebarStaff: React.FC = ({}) => {
             className={`${styles.logoWrapper} ${isSidebarCollapsed ? styles.collapsed : ""}`}
           >
             <div className={`${styles.logoText} cu no-pointer`}>Đắp Việt</div>
-            <img
-              loading="lazy"
+            <Image
+              width={300}
+              height={300}
+              priority
               src="/logo.png"
               className={styles.logoImage}
               alt={`Đắp Việt logo`}
@@ -122,13 +173,54 @@ export const SidebarStaff: React.FC = ({}) => {
         <nav className={styles.navigation}>
           <div className={styles.mainMenu}>
             {menuItems.map((item, index) => (
-              <Link prefetch href={item.id} key={index}>
-                <MenuItem
-                  {...item}
-                  activeItem={activeItem}
-                  isSidebarCollapsed={isSidebarCollapsed}
-                />
-              </Link>
+              <React.Fragment key={index}>
+                {item.children ? (
+                  <div>
+                    <div
+                      className={`${styles.groupItem} ${
+                        isGroupActive(item.groupId) ? styles.activeGroup : ""
+                      } ${expandedGroups[item.groupId] && styles.expandedGroup}`}
+                      onClick={() => toggleGroup(item.groupId)}
+                    >
+                      <MenuItem
+                        icon={item.icon}
+                        id={item.id || ""}
+                        label={item.label}
+                        activeItem={activeItem}
+                        isSidebarCollapsed={isSidebarCollapsed}
+                      />
+                      {expandedGroups[item.groupId] ? (
+                        <ChevronDown />
+                      ) : (
+                        <ChevronRight />
+                      )}
+                    </div>
+                    {expandedGroups[item.groupId] && (
+                      <div className={`${styles.subMenu}`}>
+                        <div className={styles.borderSubMenu}>
+                          {item.children.map((subItem) => (
+                            <Link prefetch href={subItem.id} key={subItem.id}>
+                              <MenuItem
+                                {...subItem}
+                                activeItem={activeItem}
+                                isSidebarCollapsed={isSidebarCollapsed}
+                              />
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <Link prefetch href={item.id} key={item.id}>
+                    <MenuItem
+                      {...item}
+                      activeItem={activeItem}
+                      isSidebarCollapsed={isSidebarCollapsed}
+                    />
+                  </Link>
+                )}
+              </React.Fragment>
             ))}
           </div>
 
@@ -147,4 +239,4 @@ export const SidebarStaff: React.FC = ({}) => {
       </div>
     </div>
   );
-};
+}

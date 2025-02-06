@@ -31,7 +31,7 @@ export default function RegisterPopup() {
             </div>
           </div>
 
-          <div className={styles.boxLoginForm}>
+          <div className={styles.boxRegisterForm}>
             <RegisterForm />
           </div>
         </div>

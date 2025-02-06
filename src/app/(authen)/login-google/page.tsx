@@ -4,12 +4,12 @@ import UeGoogleLogin from "@/app/header/useGoogleLogin";
 import {auth} from "@/auth"
 import LoginGoogle from "./login-google";
 
-import styles from './google.module.css'
+
 export default async function page() {
   const accountGoogle = await auth();
   // console.log(accountGoogle)
   return (
-    <div className={`${styles.background} bg-background `}>
+    <div>
        {!accountGoogle &&<LoginGoogle />}
       <LoadingAnimation />
       {accountGoogle && <UeGoogleLogin accountGoogle = {accountGoogle} />}

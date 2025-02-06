@@ -38,7 +38,8 @@
 .notificationList {
   padding: 16px;
   gap: 16px;
-  height: 400px;
+  height: auto;
+  min-height: 100px;
 }
 
 .notificationItem {

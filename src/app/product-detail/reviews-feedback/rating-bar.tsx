@@ -4,8 +4,8 @@ import { RatingBarProps } from './types';
 import { TiStarFullOutline } from 'react-icons/ti';
 
 const RatingBar: React.FC<RatingBarProps> = ({ stars, count, total }) => {
-  const width = (count / total) * 100;
   
+  const width = (count / total) * 100;
   return (
     <div className={styles.ratingRow}>
       <div className={styles.ratingStars}>
@@ -21,7 +21,7 @@ const RatingBar: React.FC<RatingBarProps> = ({ stars, count, total }) => {
       <div className={styles.ratingBar}>
         <div 
           className={styles.ratingFill}
-          style={{ width: `${width}%` }}
+          style={{ width: `${total == 0 ? 0 : width}%` }}
         />
       </div>
       <div className={styles.ratingCount}>{count}</div>

@@ -11,6 +11,16 @@ import { useMutation } from "convex/react";
 import { api } from "../../../../convex/_generated/api";
 import { toast } from "@/hooks/use-toast";
 import { formatCurrency } from "@/lib/utils";
+import authApiRequest from "@/apiRequests/auth";
+
+export interface TransactionsResponse {
+  transactions: Record[]; // Giả sử payload sẽ chứa mảng transactions
+}
+
+interface Record {
+  amount_in: number;
+  transaction_content: string;
+}
 
 export const QrPayment: React.FC = () => {
   const { setContent } = usePopup();
@@ -33,7 +43,7 @@ export const QrPayment: React.FC = () => {
     if (isPaymentSuccess) return;
     const interval = setInterval(() => {
       handleCheckPaid();
-    }, 1000);
+    }, 2000);
     return () => clearInterval(interval);
   }, [description, totalPrice, isPaymentSuccess, isChecking]);
 
@@ -123,73 +133,82 @@ export const QrPayment: React.FC = () => {
   const createNotification = useMutation(api.notification.createNotification);
   const handleCheckPaid = async () => {
     if (isChecking || isPaymentSuccess) return; // Nếu đang xử lý, không thực hiện thêm
-
     try {
-      const response = await fetch("https://oauth.casso.vn/v2/transactions", {
-        method: "GET",
-        headers: {
-          Authorization: `Apikey ${process.env.NEXT_PUBLIC_API_KEY}`,
-          "Content-Type": "application/json",
-        },
-      });
-      const data = await response.json();
-      // console.log(data.data.records);
+      // const response = await fetch("https://oauth.casso.vn/v2/transactions", {
+      //   method: "GET",
+      //   headers: {
+      //     Authorization: `Apikey ${process.env.NEXT_PUBLIC_API_KEY}`,
+      //     "Content-Type": "application/json",
+      //   },
+      // });
+      const data: { status: number; payload: TransactionsResponse } =
+        await authApiRequest.QRpayment();
+      console.log(data.payload.transactions);
       // const lastPaid = data.data.records[data.data.records.length - 1];
-      const lastThreePaid = data.data.records.slice(-3);
-      const isValid = lastThreePaid.some(
-        (record: { amount: number; description: string }) =>
-          record.amount >= totalPrice && record.description === description
-      );
-      // console.log(lastPaid);
-      // console.log(lastPaid.description);
-      // console.log(totalPrice)
-      // console.log(description)
-      // console.log(myBank.Description);
-      if (isValid) {
-        try {
-          setIsChecking(true);
-          setLoading(true);
-          //     const simulateApiCall = (delay: number) => {//tesst
-          //   return new Promise((resolve, reject) => {
-          //     setTimeout(() => {
-          //       // Giả lập thành công
-          //       resolve({ payload: { message: "API call successful" } });
-          //       // Hoặc giả lập lỗi
-          //       // reject(new Error('API call failed'));
-          //     }, delay); // Delay thời gian giả lập
-          //   });
-          // };
-          //   const result = await simulateApiCall(10000);
-          //   console.log(result);
-          //   toast({
-          //     duration: 2000,
-          //     description: (result as any).payload.message,
-          //   });
-          ///////////////////////////////////////
-          const result = await cartApiRequest.completeOrder(
-            body as CheckoutOrderType
-          );
-          // console.log(result);
-          toast({
-            description: result.payload.message,
-          });
+      // const lastThreePaid = data.data.records.slice(-3);
+      // const isValid = lastThreePaid.some(
+      //   (record: { amount: number; description: string }) =>
+      //     record.amount >= totalPrice && record.description === description
+      // );
+      if (data && data.payload && data.payload) {
+        const lastThreePaid = data.payload.transactions.slice(-3);
+        const isValid = lastThreePaid.some(
+          (record: { amount_in: number; transaction_content: string }) =>
+            Math.floor(record.amount_in) >= totalPrice &&
+            record.transaction_content === description
+        );
+        // console.log(lastPaid);
+        // console.log(lastThreePaid);
+        // console.log(totalPrice)
+        // console.log(description)
+        // console.log(myBank.Description);
+        if (isValid) {
+          try {
+            setIsChecking(true);
+            setLoading(true);
+            //     const simulateApiCall = (delay: number) => {//tesst
+            //   return new Promise((resolve, reject) => {
+            //     setTimeout(() => {
+            //       // Giả lập thành công
+            //       resolve({ payload: { message: "API call successful" } });
+            //       // Hoặc giả lập lỗi
+            //       // reject(new Error('API call failed'));
+            //     }, delay); // Delay thời gian giả lập
+            //   });
+            // };
+            //   const result = await simulateApiCall(10000);
+            //   console.log(result);
+            //   toast({
+            //     duration: 2000,
+            //     description: (result as any).payload.message,
+            //   });
+            ///////////////////////////////////////
+            console.log(body)
+            const result = await cartApiRequest.completeOrder(
+              body as CheckoutOrderType
+            );
+            // console.log(result);
+            toast({
+              description: result.payload.message,
+            });
 
-          const notificationText = `Bạn đã thanh toán thành công, hóa đơn đặt hàng đã được gửi qua Email`;
+            const notificationText = `Bạn đã thanh toán thành công, hóa đơn đặt hàng đã được gửi qua Email`;
 
-          createNotification({
-            text: notificationText,
-            token: userId,
-          });
-          setIsPaymentSuccess(true);
-        } catch (error) {
-          console.error("Error while completing the order:", error);
-        } finally {
-          setContent("success");
-          setLoading(false);
-          setIsChecking(false);
+            createNotification({
+              text: notificationText,
+              token: userId,
+            });
+            setIsPaymentSuccess(true);
+          } catch (error) {
+            console.error("Error while completing the order:", error);
+          } finally {
+            setContent("success");
+            setLoading(false);
+            setIsChecking(false);
+          }
+        } else {
+          console.log("khong co giao dich tuong ung");
         }
-      } else {
-        // console.log("khong co giao dich tuong ung");
       }
     } catch (error) {
       console.error("Error while checking payment:", error);
@@ -202,15 +221,18 @@ export const QrPayment: React.FC = () => {
         <h1 className={styles.title}>Quét mã để thanh toán</h1>
         <p className={styles.description}>
           <strong>
-            không thay đổi số tiền và nội dung để tránh sai xót
-            thanh toán
+            không thay đổi số tiền và nội dung để tránh sai xót thanh toán
           </strong>
         </p>
-        <img
+        {/* <img
           loading="lazy"
           src={`https://img.vietqr.io/image/${myBank.BANK_ID}-${myBank.ACCOUNT_NO}-qr_only.png?amount=${totalPrice}&addInfo=${description}&accountName=${myBank.Account_name}`}
           alt="QR Code for payment completion"
           className={styles.qrCode}
+        /> */}
+        <img
+          className={styles.imageQR}
+          src={`https://qr.sepay.vn/img?acc=${myBank.ACCOUNT_NO}&bank=${myBank.BANK_ID}&amount=${totalPrice}&des=${description}&download=DOWNLOAD`}
         />
         {/* Hiển thị số tiền và nội dung thanh toán */}
         <div className={styles.paymentInfo}>

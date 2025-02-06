@@ -10,6 +10,7 @@ export interface CartItemProps {
   loadings: boolean;
   onDelete: (productQuantityId: string, quantity: number) => void;
   onUpdateCartItems: () => void;
+  setIsMaxItem: (loadings: boolean) => void
   setLoadings: (loadings: boolean) => void
 }
 
@@ -21,4 +22,5 @@ export interface CartSummaryProps {
   tax?: string;
   shipping: string;
   total: string|undefined;
+  isMaxItem: boolean;
 }

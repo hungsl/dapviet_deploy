@@ -13,6 +13,9 @@
   display: flex;
   gap: 20px;
 }
+.alertText{
+  color: red;
+}
 
 .cartItemsColumn {
   width: 50%;

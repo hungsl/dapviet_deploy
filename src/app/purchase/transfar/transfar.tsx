@@ -22,7 +22,6 @@ export const Transfer = ({ method }: { method: string | undefined }) => {
     try {
       const getItemCart = async () => {
         const result = await cartApiRequest.getListItemCart();
-        setCartItems(result.payload);
         // console.log(result.payload);
         const totalPrice = result.payload?.data?.reduce((total, item) => {
           return total + item.unitPrice * item.quantity;
@@ -30,6 +29,7 @@ export const Transfer = ({ method }: { method: string | undefined }) => {
         const totalWeight = result.payload?.data?.reduce((total, item) => {
           return total + item.weight;
         }, 0);
+        setCartItems(result.payload);
         setTotalWeight(totalWeight);
         setTotalPrice(totalPrice);
       };
@@ -40,6 +40,7 @@ export const Transfer = ({ method }: { method: string | undefined }) => {
   }, []);
 
   useEffect(() => {
+    if(!cartItems) return
     const fetchShippingService = async () => {
       try {
         const body = {

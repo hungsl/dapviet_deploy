@@ -3,10 +3,10 @@ import React, { useEffect, useState } from "react";
 import { useProductFilters } from "./hooks/useProductFilters";
 import { SIZES, PRICE_RANGES } from "./constants";
 import styles from "./ProductList.module.css";
-import { PriceInput } from "./components/price-input";
-import { PriceRange } from "./components/price-range";
-import { SizeFilter } from "./components/size-filter";
-import { FilterItem } from "./components/filter-item";
+// import { PriceInput } from "./components/price-input";
+// import { PriceRange } from "./components/price-range";
+// import { SizeFilter } from "./components/size-filter";
+// import { FilterItem } from "./components/filter-item";
 import productApiRequest from "@/apiRequests/product";
 import { MdDeleteOutline } from "react-icons/md";
 import { CategoryType, ProductCardType } from "../types";
@@ -21,12 +21,25 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import ContentMain from "./content-main";
+// import ContentMain from "./content-main";
+import dynamic from "next/dynamic";
 // import LoadingAnimation from "@/components/common/LoadingAnimation";
 // import ContentMain from "./content-main";
 
+const FilterItem = dynamic(() => import("./components/filter-item").then(mod => mod.FilterItem), { ssr: false });
+const PriceInput = dynamic(() => import("./components/price-input").then(mod => mod.PriceInput), { ssr: false });
+const PriceRange = dynamic(() => import("./components/price-range").then(mod => mod.PriceRange), { ssr: false });
+const SizeFilter = dynamic(() => import("./components/size-filter").then(mod => mod.SizeFilter), { ssr: false });
+const ContentMain = dynamic(() => import("./content-main"), { ssr: false });
+// const Pagination = dynamic(() => import("@/components/ui/pagination").then(mod => mod.Pagination), { ssr: false });
+// const PaginationContent = dynamic(() => import("@/components/ui/pagination").then(mod => mod.PaginationContent), { ssr: false });
+// const PaginationEllipsis = dynamic(() => import("@/components/ui/pagination").then(mod => mod.PaginationEllipsis), { ssr: false });
+// const PaginationItem = dynamic(() => import("@/components/ui/pagination").then(mod => mod.PaginationItem), { ssr: false });
+// const PaginationLink = dynamic(() => import("@/components/ui/pagination").then(mod => mod.PaginationLink), { ssr: false });
+// const PaginationNext = dynamic(() => import("@/components/ui/pagination").then(mod => mod.PaginationNext), { ssr: false });
+// const PaginationPrevious = dynamic(() => import("@/components/ui/pagination").then(mod => mod.PaginationPrevious), { ssr: false });
 
-export function ProductList() {
+export default function ProductList() {
   const {
     filters,
     toggleCategory,

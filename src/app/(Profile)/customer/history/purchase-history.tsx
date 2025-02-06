@@ -137,7 +137,7 @@ export default function PurchaseHistoryTable() {
                   đ{item.unitPrice * item.quantity}
                 </td>
                 <td
-                  className={`${styles.tableCell} ${styles.textCenter} ${styles.Colum}`}
+                  className={`${styles.tableCell} ${styles.textCenter}`}
                 >
                   {item.feedback ? (
                     <>

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../../history/RatingPage.module.css";
 import { toast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
@@ -14,6 +14,18 @@ export default function RefeedbackForm({ id }: { id: string }) {
   const handleRating = (star: number) => {
     setRating(star);
   };
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const result = await feedbackApiRequest.getOrderFeedback(id);
+        setRating(result.payload.data.rating)
+        setContent(result.payload.data.content)
+      } catch (error) {
+        console.error("Failed to fetch reviews:", error);
+      }
+    };
+    fetchReviews();
+  }, [id]);
 
   const handleCommentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setContent(e.target.value);
@@ -26,7 +38,7 @@ export default function RefeedbackForm({ id }: { id: string }) {
         toast({
           variant: "destructive",
           description: "Bạn không được để trống!",
-          duration: 3000
+          duration: 4000
         })
         return
       }
@@ -37,7 +49,7 @@ export default function RefeedbackForm({ id }: { id: string }) {
       const result = await feedbackApiRequest.giveFeedBack(id, body);
       toast({
         description: result.payload.message,
-        duration: 3000,
+        duration: 4000,
       });
       router.push("/customer/history");
     } catch (error) {

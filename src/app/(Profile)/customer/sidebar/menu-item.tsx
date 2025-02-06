@@ -2,7 +2,6 @@ import React from "react";
 import styles from "../UserProfile.module.css";
 import { MenuItemProps } from "./types";
 import {
-  Home,
   Package,
   Tag,
   Sliders,
@@ -15,12 +14,13 @@ import {
   History,
   ClipboardList,
   Wallet,
-  LogOut
+  LogOut,
+  ChartLine
 } from "lucide-react"; // Import các icon từ Lucide
 
 // Tạo map giữa ID và các icon tương ứng
 const iconMap: Record<string, React.ReactNode> = {
-  dashboard: <Home className={`${styles.menuIcon}`} />,
+  dashboard: <ChartLine className={`${styles.menuIcon}`} />,
   "manage-product": <Package className={`${styles.menuIcon}`} />,
   "manage-category": <Tag className={`${styles.menuIcon}`} />,
   "manage-size": <Sliders className={`${styles.menuIcon}`} />,

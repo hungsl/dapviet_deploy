@@ -35,9 +35,9 @@ export default function ProductCard() {
   if (!products)
     return (
       <div className="flex justify-center items-center h-screen flex-col relative">
-        <div className="absolute">Loading</div>
         <div className="w-16 h-16 border-4 border-t-4 border-blue-500 border-dotted rounded-full animate-spin">
         </div>
+          <p className="mt-4 text-gray-500">Đang tải dữ liệu...</p>
       </div>
     );
   return (

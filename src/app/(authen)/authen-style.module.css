@@ -33,7 +33,6 @@
 
 .loginSection {
   width: 43%;
-  height: 80vh;
   display: flex;
   flex-direction: column;
 }
@@ -83,13 +82,22 @@
   margin: 21px 13px 0 15px;
   font: 400 14px Poppins, sans-serif;
 }
-.boxLoginForm {
+.boxRegisterForm{
   display: flex;
   justify-content: center;
   align-items: center;
   align-self: center;
   min-width: 70%;
   height: 80%;
+  margin-bottom: 20px;
+}
+.boxLoginForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  min-width: 70%;
+  height: 65%;
 }
 .loginForm {
   width: 100%;
@@ -193,7 +201,7 @@
   padding: 11px 37px;
   border: 1px solid #1c1c1c;
   background: transparent;
-  margin-bottom: 21px;
+  
   cursor: pointer;
 }
 .socialLoginButton:hover {
@@ -238,7 +246,7 @@
   top:0%;
   width: 100%;
   object-fit: cover;
-  min-height: 600px;
+  min-height: 650px;
   aspect-ratio:  16 / 15;
   border-radius: 40px;
 }
@@ -293,6 +301,7 @@
   .loginPage{
     padding: 0 20px 20px 20px;
     border-radius: 10px;
+    height: auto;
   }
   .RegisterForm,
   .loginForm{

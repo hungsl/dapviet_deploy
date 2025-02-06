@@ -33,7 +33,7 @@ export default function EmailForm() {
     },
   });
   const onSubmit = async (data: forgetPasswordType) => {
-    console.log("Data:", data);
+    // console.log("Data:", data);
     try {
       if (loading) return;
       setLoading(true);
@@ -41,12 +41,13 @@ export default function EmailForm() {
       console.log(result);
       toast({
         description: result.payload.message,
+        duration: 4000
       });
     } catch (error) {
       handleErrorApi({
         error,
         setError: form.setError,
-        duration: 2000,
+        duration: 4000,
       });
     } finally {
       setLoading(false);

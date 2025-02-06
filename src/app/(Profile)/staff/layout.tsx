@@ -1,4 +1,4 @@
-import { SidebarStaff } from './sidebar';
+import  SidebarStaff  from './sidebar';
 import styles from '../customer/UserProfile.module.css'; // Import styles cho Layout
 import type { Metadata } from "next";
 

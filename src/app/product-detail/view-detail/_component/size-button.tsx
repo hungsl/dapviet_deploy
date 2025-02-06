@@ -1,7 +1,7 @@
 "use client";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import styles from "../ProductDetail.module.css";
-import IntroductionSize from "./introduction-size";
+// import IntroductionSize from "./introduction-size";
 import accountApiRequest from "@/apiRequests/account";
 // import { useAppContext } from "@/app/context/app-provider";
 import { useMutation } from "convex/react";
@@ -9,7 +9,13 @@ import { api } from "../../../../../convex/_generated/api";
 import cartApiRequest from "@/apiRequests/cart";
 import { toast } from "@/hooks/use-toast";
 
-import { Loader2 } from "lucide-react";
+// import { Loader2 } from "lucide-react";
+import dynamic from "next/dynamic";
+
+
+
+const IntroductionSize = dynamic(() => import("./introduction-size"), { ssr: false });
+const Loader2 = dynamic(() => import("lucide-react").then(mod => mod.Loader2), { ssr: false });
 
 const sizes = ["XXS", "XS", "S", "M", "L", "XL", "XXL", "XXXL"];
 type SizeQuantityResType = Record<string, { size: string; quantity: number }>;
@@ -55,7 +61,7 @@ export default function SizeButton({
         variant: "destructive",
         title: "Hãy chọn kích thước",
         description: "không thể thêm sản phẩm",
-        duration: 3000,
+        duration: 4000,
       });
       return;
     }
@@ -78,8 +84,8 @@ export default function SizeButton({
 
         const response = await cartApiRequest.addToCart(cartPayload);
         toast({
-          description: response.payload.message,
-          duration: 3000,
+          title: response.payload.message,
+          duration: 4000,
         });
         // Tạo thông báo sau khi thêm giỏ hàng thành công
         const notificationText = `Sản phẩm ${productName} (${selectedSize}, ${quantity} chiếc) đã được thêm vào giỏ hàng.`;
@@ -92,7 +98,7 @@ export default function SizeButton({
         toast({
           variant: "destructive",
           description: "Lỗi khi thêm vào giỏ hàng.",
-          duration: 3000,
+          duration: 4000,
         });
       } finally {
         setLoading(false);
@@ -101,7 +107,7 @@ export default function SizeButton({
       toast({
         variant: "destructive",
         description: "Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng.",
-        duration: 3000,
+        duration: 4000,
       });
     }
   };
@@ -140,7 +146,7 @@ export default function SizeButton({
       toast({
         variant: "destructive",
         title: "Hãy chọn kích cỡ",
-        duration: 3000,
+        duration: 4000,
       });
       return;
     }
@@ -149,7 +155,7 @@ export default function SizeButton({
         variant: "destructive",
         title: "Rất tiếc",
         description: "Sản phẩm không còn đủ số lượng!",
-        duration: 3000,
+        duration: 4000,
       });
       return;
     }
@@ -158,8 +164,9 @@ export default function SizeButton({
   const handleDecrease = () => {
     if (selectedSize === "") {
       toast({
+        variant: "destructive",
         title: "Hãy chọn kích cỡ",
-        duration: 3000,
+        duration: 4000,
       });
       return;
     }

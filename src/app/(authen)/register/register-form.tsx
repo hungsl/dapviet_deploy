@@ -53,14 +53,14 @@ export default function RegisterForm() {
       const result = await authApiRequest.register(values);
       toast({
         description: result.payload.message,
-        duration: 2000,
+        duration: 4000,
       });
       router.push("/login");
     } catch (error) {
       handleErrorApi({
         error,
         setError: form.setError,
-        duration: 2000,
+        duration: 4000,
       });
     } finally {
       setLoading(false);
@@ -77,13 +77,15 @@ export default function RegisterForm() {
           className="space-y-2 max-w-[800px]  flex-shrink-0 w-full "
         >
           <FormField
-            key={form.watch("name")}
             control={form.control}
             name="email"
             render={({ field }) => (
               <FormItem>
                 <FormLabel className="!text-black font-bold">
                   Địa chỉ Email
+                </FormLabel>
+                <FormLabel  className="hidden">
+                  Tên người dùng
                 </FormLabel>
                 <FormControl>
                   <Input

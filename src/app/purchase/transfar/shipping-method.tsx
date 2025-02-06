@@ -37,8 +37,8 @@ export const ShippingMethod = ({
   const handleBackToInfor = () => {
     setContent("payment");
   };
-  console.log("options: ",options);
-  console.log("feeShip: ", feeShip);
+  // console.log("options: ",options);
+  // console.log("feeShip: ", feeShip);
 
   const createNotification = useMutation(api.notification.createNotification);
   const handleNextToPayment = async () => {
@@ -135,7 +135,7 @@ export const ShippingMethod = ({
             onClick={handleNextToPayment}
             className={styles.continueButton}
           >
-            Thanh Toán
+            {method === "cod" ? "Đặt Hàng":"Thanh Toán"}
           </button>
         </div>
       </div>

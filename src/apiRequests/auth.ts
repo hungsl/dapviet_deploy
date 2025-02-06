@@ -1,3 +1,4 @@
+import {  TransactionsResponse } from "@/app/purchase/QR-payment/QR-payment";
 import http from "@/lib/http";
 import {
   changePasswordBodyType,
@@ -25,6 +26,8 @@ const authApiRequest = {
     http.post<RegisterResType>("/users/auth/register", body),
   auth: (body: { accessToken: string; refreshToken: string }) =>
     http.post("api/authen", body, { baseUrl: "" }),
+  QRpayment: () =>
+    http.get<TransactionsResponse>("api/QR-api",{ baseUrl: "" }),
   logoutFromNextServerToServer: (body: {
     accessToken: string | undefined;
     refreshToken: string | undefined;

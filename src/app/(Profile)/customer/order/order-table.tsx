@@ -17,7 +17,7 @@ import {
 import { useRouter } from "next/navigation";
 
 export default function OrderTable() {
-  const router = useRouter()
+  const router = useRouter();
   const [data, setData] = useState<OrdersListResType | null>(null); // Lưu trữ dữ liệu
 
   useEffect(() => {
@@ -25,6 +25,7 @@ export default function OrderTable() {
       try {
         const result = await orderApiRequest.ordersList();
         setData(result.payload); // Lưu kết quả trả về vào state `data`
+        console.log(result.payload);
       } catch (err) {
         console.log("lỗi lấy danh sách đơn: ", err);
       }
@@ -52,6 +53,8 @@ export default function OrderTable() {
         return "Đang vận chuyển";
       case "DELIVERED":
         return "Đã nhận";
+      case "CANCELED":
+        return "Đã hủy";
       default:
         return "Không xác định";
     }
@@ -68,6 +71,8 @@ export default function OrderTable() {
         return styles.statusInTransit;
       case "DELIVERED":
         return styles.statusDelivered;
+      case "CANCELED":
+        return styles.statusCancel;
       default:
         return styles.statusUnknown;
     }

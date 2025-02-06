@@ -26,6 +26,8 @@ export default async function OrderDetail({
         return "Đang vận chuyển";
       case "DELIVERED":
         return "Đã nhận";
+      case "CANCELED":
+        return "Đã hủy";
       default:
         return "Không xác định";
     }
@@ -42,6 +44,8 @@ export default async function OrderDetail({
         return styles.statusInTransit;
       case "DELIVERED":
         return styles.statusDelivered;
+      case "CANCELED":
+        return styles.statusCancel;
       default:
         return styles.statusUnknown;
     }
@@ -55,11 +59,11 @@ export default async function OrderDetail({
     // console.log("productdetail: ", result);
     order = result.payload.data;
   } catch (error) {
-    console.log("lỗi lấy chi tiết đơn hàng: ", error)
+    console.log("lỗi lấy chi tiết đơn hàng: ", error);
     redirect("/homepage");
   }
   return (
-    <div className={styles.parent}>
+    <div className={`${styles.parent} scroll`}>
       <div className={styles.container}>
         {/* Header */}
         <div className="text-center my-4">

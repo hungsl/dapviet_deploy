@@ -26,12 +26,14 @@ export default function NotificationView() {
   // const { accessToken } = useAppContext();
   const { setContent, openPopup } = usePopup();
   const [userId, setUserId] = useState("");
+  const [isStaff, setIsStaff] = useState(false);
   const router = useRouter();
   useEffect(() => {
     const CallUser = async () => {
       try {
         const result = await accountApiRequest.meClient();
         setUserId(result.payload.data.id);
+        setIsStaff(result.payload.data.role === 'STAFF')
         // console.log(result);
       } catch (error) {
         // setLoading(true)
@@ -45,6 +47,11 @@ export default function NotificationView() {
     };
     CallUser();
   }, []);
+  useEffect(() => {
+    if(isStaff){
+      router.push("/staff/dashboard");
+    }
+  },[isStaff])
   const handleOpencart = () => {
     setContent("cart");
     openPopup();

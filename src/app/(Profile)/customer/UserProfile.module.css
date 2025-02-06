@@ -73,7 +73,11 @@
   flex-direction: column;
   flex: 1;
   color: #3a383f;
-  font: 400 16px/1.6 Roboto, -apple-system, Helvetica, sans-serif;
+  font:
+    400 16px/1.6 Roboto,
+    -apple-system,
+    Helvetica,
+    sans-serif;
 }
 
 .mainMenu {
@@ -95,9 +99,13 @@
 .menuItem:hover {
   background-color: rgba(188, 229, 255, 0.301);
 }
-
+.activeGroup,
 .menuItem.active {
-  background-color: rgb(198, 233, 255); /* Màu nền đậm hơn cho mục đang được chọn */
+  background-color: rgb(
+    198,
+    233,
+    255
+  ) !important; /* Màu nền đậm hơn cho mục đang được chọn */
 }
 
 .menuIcon {
@@ -118,7 +126,6 @@
   height: 100vh;
 }
 
-
 .contentWrapper {
   border-radius: 0 0 16px 16px;
   /* background: #f9f9fb; */
@@ -128,7 +135,7 @@
 }
 
 .sidebar.collapsed {
-  width: 90px; 
+  width: 90px;
 }
 .menuToggle {
   background: none;
@@ -141,10 +148,10 @@
   height: 24px;
 }
 
-.logoWrapper.collapsed{
+.logoWrapper.collapsed {
   display: none;
 }
-.menuLabel.collapsed{
+.menuLabel.collapsed {
   display: none;
 }
 
@@ -171,34 +178,69 @@
   background-color: #005bb5;
 }
 
+.groupItem {
+  display: flex;
+  justify-content: space-between;
+  min-height: 60px;
+  align-items: center;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+.expandedGroup {
+  background-color: #e3f2fd7e;
+}
+
+.groupItem:hover {
+  background-color: rgba(188, 229, 255, 0.301);
+  .menuItem{
+    background-color: rgba(188, 229, 255, 0) !important;
+  }
+}
+.borderSubMenu{
+  border-left: 1px solid rgba(188, 229, 255, 0.301);
+  border-right: 1px solid rgba(188, 229, 255, 0.301);
+}
+.subMenu {
+  padding-left: 20px;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+}
+
+.subMenu .menuItem {
+}
+
+.subMenu .menuItem:hover {
+  background-color: #e3f2fd;
+}
+
 @media (max-width: 791px) {
   .mainContent,
   .contentWrapper {
     max-width: 100%;
   }
-  .menuLabel{
+  .menuLabel {
     display: none;
   }
-  .sidebar{
+  .sidebar {
     width: 50px;
     padding: 0;
   }
-  .logoWrapper{
+  .logoWrapper {
     display: none;
   }
-  .menuItem{
+  .menuItem {
     padding: 0;
     justify-content: center;
   }
-  .mainContent{
+  .mainContent {
     padding: 0;
   }
-  .contentWrapper{
+  .contentWrapper {
     overflow-y: scroll;
   }
-  
+  .groupItem{
+    gap: 0;
+    justify-content: center;
+  }
 }
-
-
-  
-

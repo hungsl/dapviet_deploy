@@ -42,8 +42,8 @@ export default function UeGoogleLogin({ accountGoogle }: HeaderProps) {
         localStorage.setItem("refreshToken", result.payload.data.refreshToken);
         setIsLoggedIn(true);
         toast({
-          description: result.payload.message,
-          duration: 2000,
+          title: result.payload.message || "",
+          duration: 4000,
         });
       } catch (error) {
         console.log(error);

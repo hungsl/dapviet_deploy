@@ -51,12 +51,13 @@ export default function ResetPasswordForm({
       // console.log(result);
       toast({
         description: result.payload.message,
+        duration: 4000
       });
     } catch (error) {
       handleErrorApi({
         error,
         setError: form.setError,
-        duration: 2000,
+        duration: 4000,
       });
     } finally {
       setLoading(false);

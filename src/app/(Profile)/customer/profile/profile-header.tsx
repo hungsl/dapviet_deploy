@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import styles from "./UserProfile.module.css";
-import ProfileImage from "./profile-image";
+// import ProfileImage from "./profile-image";
 import { ProfileNoEdit } from "./profile-no-edit";
 // import { ProfileForm } from "./profile-form";
 import { usePopup } from "@/app/context/popup-provider";
@@ -11,11 +11,14 @@ import accountApiRequest from "@/apiRequests/account";
 import { UpdateProfileInfoType } from "@/schemaValidations/account.schema";
 import { toast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
-import { MdEmail } from "react-icons/md";
+// import { MdEmail } from "react-icons/md";
 import { useLoading } from "@/app/context/loading-provider";
 import dynamic from "next/dynamic";
 
+
+const MdEmail = dynamic(() => import("react-icons/md").then((mod) => mod.MdEmail), { ssr: false });
 const ProfileFormLazy = dynamic(() => import('./profile-form'), { ssr: false })
+const ProfileImage = dynamic(() => import('./profile-image'), { ssr: false })
 
 export const ProfileHeader = () => {
   const [userData, setUserData] = useState<dataInfo>();
@@ -44,7 +47,7 @@ export const ProfileHeader = () => {
         role: data.role,
       };
       setUserData(Data);
-      console.log(data)
+      // console.log(data)
     }
     fetchData();
   }, [isEditing]);
@@ -61,12 +64,12 @@ export const ProfileHeader = () => {
       if (result?.payload?.message) {
         toast({
           description: result.payload.message,
-          duration: 2000,
+          duration: 4000,
         });
       } else {
         toast({
           description: "Cập nhật thành công!",
-          duration: 2000,
+          duration: 4000,
         });
       }
       router.refresh();
@@ -74,7 +77,7 @@ export const ProfileHeader = () => {
       console.error("Error updating profile:", error);
       toast({
         description: "Có lỗi xảy ra khi cập nhật. Vui lòng thử lại.",
-        duration: 2000,
+        duration: 4000,
       });
     } finally {
       setLoading(false);

@@ -56,7 +56,7 @@ export default function ProductTable() {
 
   useEffect(() => {
     fetchProducts();
-  }, [currentPage, properties, isRefresh]);
+  }, [currentPage, isRefresh]);
 
   const handlePageChange = (newPage: number) => {
     if (newPage >= 1 && newPage <= totalPages) {

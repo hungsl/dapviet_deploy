@@ -17,7 +17,10 @@ import {
 } from "@/components/ui/pagination";
 import dynamic from "next/dynamic";
 
-const ProductReviews = dynamic(() => import("../feedback-product/product-reviews"),{ loading: () => <p>Loading...</p>, ssr: false})
+const ProductReviews = dynamic(
+  () => import("../feedback-product/product-reviews"),
+  { loading: () => <p>Loading...</p>, ssr: false }
+);
 
 export default function Reviews({
   avgRating,
@@ -31,8 +34,8 @@ export default function Reviews({
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [summaryFeedback, setSummaryFeedback] = useState<summaryFeedbackData>()
-  const [recommendedCount, setRecommendedCount] = useState(0)
+  const [summaryFeedback, setSummaryFeedback] = useState<summaryFeedbackData>();
+  const [recommendedCount, setRecommendedCount] = useState(0);
   // const totalReviews = 32;
   // const recommendedCount = 30;
   // const averageRating = 4.9;
@@ -83,7 +86,7 @@ export default function Reviews({
         const result = await feedbackApiRequest.getSummaryFeedback(productId);
         const data = result.payload.data;
         setSummaryFeedback(data);
-        setRecommendedCount(data.total4Star + data.total5Star)
+        setRecommendedCount(data.total4Star + data.total5Star);
       } catch (error) {
         console.log("Lỗi lấy tổng feedback: ", error);
       }
@@ -116,6 +119,11 @@ export default function Reviews({
                 <div className="absolute">Loading</div>
                 <div className="w-16 h-16 border-4 border-t-4 border-blue-500 border-dotted rounded-full animate-spin"></div>
               </div>
+            ) : feedback.length === 0 ? (
+              <div className="text-center text-gray-500">
+                Hãy là người đầu tiên chia sẻ cảm nhận của mình để giúp shop cải
+                thiện dịch vụ!
+              </div>
             ) : (
               feedback.map((review) => (
                 <ReviewCard key={review.feedbackId} review={review} />
@@ -134,13 +142,16 @@ export default function Reviews({
                     alt=""
                     className={styles.ratingIcon}
                   /> */}
-                 <TiStarFullOutline color="#FFD700"/>
+                  <TiStarFullOutline color="#FFD700" />
                   <div className={styles.ratingNumber}>{avgRating}</div>
                 </div>
                 <div className={styles.recommendedStats}>
                   <div className={styles.recommendedCount}>
                     {recommendedCount} trên {summaryFeedback.totalReviews} (
-                    {Math.round((recommendedCount / summaryFeedback.totalReviews) * 100)}%)
+                    {Math.round(
+                      (recommendedCount / summaryFeedback.totalReviews) * 100
+                    )}
+                    %)
                   </div>
                   <div className={styles.recommendedText}>
                     khách hàng đã đề xuất sản phẩm này.
@@ -150,11 +161,31 @@ export default function Reviews({
             </div>
 
             <div className={styles.ratingBreakdown}>
-              <RatingBar stars={5} count={summaryFeedback.total5Star} total={summaryFeedback.totalReviews} />
-              <RatingBar stars={4} count={summaryFeedback.total4Star} total={summaryFeedback.totalReviews} />
-              <RatingBar stars={3} count={summaryFeedback.total3Star} total={summaryFeedback.totalReviews} />
-              <RatingBar stars={2} count={summaryFeedback.total2Star} total={summaryFeedback.totalReviews} />
-              <RatingBar stars={1} count={summaryFeedback.total1Star} total={summaryFeedback.totalReviews} />
+              <RatingBar
+                stars={5}
+                count={summaryFeedback.total5Star}
+                total={summaryFeedback.totalReviews}
+              />
+              <RatingBar
+                stars={4}
+                count={summaryFeedback.total4Star}
+                total={summaryFeedback.totalReviews}
+              />
+              <RatingBar
+                stars={3}
+                count={summaryFeedback.total3Star}
+                total={summaryFeedback.totalReviews}
+              />
+              <RatingBar
+                stars={2}
+                count={summaryFeedback.total2Star}
+                total={summaryFeedback.totalReviews}
+              />
+              <RatingBar
+                stars={1}
+                count={summaryFeedback.total1Star}
+                total={summaryFeedback.totalReviews}
+              />
             </div>
           </div>
         </div>

@@ -1,3 +1,4 @@
+'use client'
 import React from "react";
 import styles from "./ProductList.module.css";
 import { Input } from "@/components/ui/input";

@@ -59,11 +59,73 @@ export default function CheckoutForm() {
       address: "",
     },
   });
+  // useEffect(() => {
+  //   const fetchUser = async () => {
+  //     try {
+  //       setLoading(true);
+  //       const result = await accountApiRequest.meClient();
+  //       const allowedKeys = [
+  //         "name",
+  //         "province",
+  //         "district",
+  //         "phone",
+  //         "address",
+  //         "dob",
+  //         "gender",
+  //       ];
+  //       const filteredData = Object.fromEntries(
+  //         Object.entries(result.payload.data).filter(([key]) =>
+  //           allowedKeys.includes(key)
+  //         )
+  //       );
+  //       form.reset(filteredData);
+  //       setUser(result.payload.data);
+  //     } catch (error) {
+  //       console.log("loi khi lay user: ", error);
+  //       setLoading(false);
+  //     }
+  //   };
+  //   fetchUser();
+  // }, []);
+
+  // useEffect(() => {
+  //   // Fetch danh sách tỉnh/thành phố
+  //   const fetchProvinces = async () => {
+  //     try {
+  //       const result = await viettelApiRequest.provinces();
+  //       setProvinces(result.payload); // Lưu danh sách tỉnh/thành phố
+
+  //       // Đặt selectedProvinceId nếu userData.province đã có
+  //       if (user?.province) {
+  //         const selectedProvince = result.payload?.data.find(
+  //           (province) => province.PROVINCE_NAME === user.province
+  //         );
+  //         const provinceId = selectedProvince?.PROVINCE_ID || undefined;
+  //         if (provinceId !== selectedProvinceId) {
+  //           setSelectedProvinceId(provinceId);
+  //         }
+  //       }
+  //     } catch (error) {
+  //       console.error("Error fetching provinces:", error);
+  //       setLoading(false);
+  //     }
+  //   };
+
+  //   fetchProvinces();
+  // }, [user?.province]);
+
   useEffect(() => {
-    const fetchUser = async () => {
+    const fetchData = async () => {
       try {
         setLoading(true);
-        const result = await accountApiRequest.meClient();
+  
+        // Chạy cả hai API cùng lúc với Promise.all
+        const [userResult, provincesResult] = await Promise.all([
+          accountApiRequest.meClient(),
+          viettelApiRequest.provinces(),
+        ]);
+  
+        // Xử lý dữ liệu người dùng
         const allowedKeys = [
           "name",
           "province",
@@ -74,31 +136,20 @@ export default function CheckoutForm() {
           "gender",
         ];
         const filteredData = Object.fromEntries(
-          Object.entries(result.payload.data).filter(([key]) =>
+          Object.entries(userResult.payload.data).filter(([key]) =>
             allowedKeys.includes(key)
           )
         );
         form.reset(filteredData);
-        setUser(result.payload.data);
-      } catch (error) {
-        console.log("loi khi lay user: ", error);
-        setLoading(false);
-      }
-    };
-    fetchUser();
-  }, []);
-
-  useEffect(() => {
-    // Fetch danh sách tỉnh/thành phố
-    const fetchProvinces = async () => {
-      try {
-        const result = await viettelApiRequest.provinces();
-        setProvinces(result.payload); // Lưu danh sách tỉnh/thành phố
-
+        setUser(userResult.payload.data);
+  
+        // Xử lý dữ liệu tỉnh/thành phố
+        setProvinces(provincesResult.payload); // Lưu danh sách tỉnh/thành phố
+  
         // Đặt selectedProvinceId nếu userData.province đã có
-        if (user?.province) {
-          const selectedProvince = result.payload?.data.find(
-            (province) => province.PROVINCE_NAME === user.province
+        if (userResult.payload.data.province) {
+          const selectedProvince = provincesResult.payload?.data.find(
+            (province) => province.PROVINCE_NAME === userResult.payload.data.province
           );
           const provinceId = selectedProvince?.PROVINCE_ID || undefined;
           if (provinceId !== selectedProvinceId) {
@@ -106,13 +157,14 @@ export default function CheckoutForm() {
           }
         }
       } catch (error) {
-        console.error("Error fetching provinces:", error);
-        setLoading(false);
+        console.log("Error fetching data: ", error);
+      } finally {
       }
     };
-
-    fetchProvinces();
-  }, [user?.province]);
+  
+    fetchData();
+  }, []); // Thêm dependency nếu cần
+  
 
   useEffect(() => {
     // Fetch danh sách quận/huyện dựa trên selectedProvinceId

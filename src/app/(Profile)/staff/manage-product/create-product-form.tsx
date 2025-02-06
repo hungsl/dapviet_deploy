@@ -47,17 +47,33 @@ export default function CreateProductForm() {
   const [types, setTypes] = useState<Types>([]);
   const [collections, setCollections] = useState<CollectionsType>([]);
   const [sizes, setSizes] = useState<Types>([]);
-  const {isRefresh, setIsRefresh} = useAppContext()
+  const { isRefresh, setIsRefresh } = useAppContext();
   useEffect(() => {
     const fetchProductDetail = async () => {
+      // try {
+      //   setLoading(true);
+      //   const type = await productApiRequest.typeProductsStaff();
+      //   setTypes(type.payload.data);
+      //   const collection = await productApiRequest.collectionProductsStaff();
+      //   setCollections(collection.payload.data);
+      //   const size = await productApiRequest.sizeProductsStaff();
+      //   setSizes(size.payload.data);
+      // } catch (error) {
+      //   console.log("fail to get Detail Product: ", error);
+      // } finally {
+      //   setLoading(false);
+      // }
       try {
         setLoading(true);
-        const type = await productApiRequest.typeProductsStaff();
-        setTypes(type.payload.data);
-        const collection = await productApiRequest.collectionProductsStaff();
-        setCollections(collection.payload.data);
-        const size = await productApiRequest.sizeProductsStaff();
-        setSizes(size.payload.data);
+        const [typeResponse, collectionResponse, sizeResponse] =
+          await Promise.all([
+            productApiRequest.typeProductsStaff(),
+            productApiRequest.collectionProductsStaff(),
+            productApiRequest.sizeProductsStaff(),
+          ]);
+        setTypes(typeResponse.payload.data);
+        setCollections(collectionResponse.payload.data);
+        setSizes(sizeResponse.payload.data);
       } catch (error) {
         console.log("fail to get Detail Product: ", error);
       } finally {
@@ -100,7 +116,7 @@ export default function CreateProductForm() {
         // }
         // urls.push(imageUrl);
       }
-    
+
       const ImageDataArray = await imageApiRequest.uploadImage(formData);
       // console.log(ImageDataArray)
       const uploadedUrls = ImageDataArray.payload.files.map(

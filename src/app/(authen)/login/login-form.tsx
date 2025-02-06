@@ -55,15 +55,17 @@ export default function LoginForm() {
         setLoading(true);
         const result = await authApiRequest.verifyEmail(token);
         toast({
+          title: "Thành công",
           description: result.payload.message,
-          duration: 2000,
+          duration: 10000,
         });
       } catch (error) {
         console.error("Verification error:", error);
         toast({
+          title: "Thất bại",
           description:
             "Đã xảy ra lỗi trong quá trình xác minh. Vui lòng thử lại.",
-          duration: 2000,
+          variant: "destructive",
         });
       } finally {
         setLoading(false);
@@ -78,7 +80,7 @@ export default function LoginForm() {
     if (redirectFrom === "/logout") {
       toast({
         title: "Đăng xuất thành công.",
-        duration: 2000,
+        duration: 4000,
       });
     }
   }, [redirectFrom]);
@@ -96,7 +98,7 @@ export default function LoginForm() {
       });
       toast({
         description: result.payload.message,
-        duration: 2000,
+        duration: 4000,
       });
       // setAccessToken(result.payload.data.accessToken);
       // setRefreshToken(result.payload.data.refreshToken);
@@ -126,7 +128,7 @@ export default function LoginForm() {
       handleErrorApi({
         error,
         setError: form.setError,
-        duration: 2000,
+        duration: 4000,
       });
     } finally {
       setLoading(false);

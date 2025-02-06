@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Cart.module.css";
 import cartApiRequest from "@/apiRequests/cart";
 // import { useAppContext } from "@/app/context/app-provider";
@@ -18,12 +18,19 @@ export const CartItem: React.FC<CartItemProps> = ({
   onDelete,
   onUpdateCartItems,
   setLoadings,
+  setIsMaxItem,
   loadings,
 }) => {
   // const { accessToken } = useAppContext();
   const [newQuantity, setNewQuantity] = useState<number>(quantity);
   const handleAddQuantityChange = async (index: number) => {
-    if (newQuantity >= maxQuantity || loadings) {
+    if(loadings) return
+    if (newQuantity >= maxQuantity) {
+      toast({
+        variant:'destructive',
+        description:"Sản phẩm đã đạt số lượng tối đa",
+        duration: 2000
+      })
       return;
     }
     setNewQuantity(index);
@@ -33,10 +40,10 @@ export const CartItem: React.FC<CartItemProps> = ({
         productQuantityId,
         quantity: 1,
       };
-      console.log(body);
-      const result = await cartApiRequest.addToCart(body);
+      // console.log(body);
+      await cartApiRequest.addToCart(body);
       onUpdateCartItems();
-      console.log(result);
+      // console.log(result);
     } catch (error) {
       console.log("Lỗi khi thêm vào cart: ", error);
       toast({
@@ -49,7 +56,9 @@ export const CartItem: React.FC<CartItemProps> = ({
     }
   };
   const handleSubtractQuantityChange = async (index: number) => {
-    if (index < 1 || loadings) {
+    if(loadings) return
+    if (index < 1) {
+      onDelete(productQuantityId, quantity)
       return;
     }
     setNewQuantity(index);
@@ -59,10 +68,10 @@ export const CartItem: React.FC<CartItemProps> = ({
         productQuantityId,
         quantity: 1,
       };
-      console.log(body);
-      const result = await cartApiRequest.removefromCart(body);
+      // console.log(body);
+      await cartApiRequest.removefromCart(body);
       onUpdateCartItems();
-      console.log(result);
+      // console.log(result);
     } catch (error) {
       console.log("Lỗi khi xóa khỏi cart: ", error);
       toast({
@@ -74,6 +83,13 @@ export const CartItem: React.FC<CartItemProps> = ({
       setLoadings(false);
     }
   };
+  useEffect(() => {
+    if (maxQuantity < newQuantity) {
+      setIsMaxItem(true);
+    } else {
+      setIsMaxItem(false);
+    }
+  }, [newQuantity, maxQuantity]);
 
   return (
     <div className={styles.cartItem}>
@@ -91,7 +107,9 @@ export const CartItem: React.FC<CartItemProps> = ({
           </span>
         </div>
         <div className={styles.productOptions}>
-          <div className={styles.quality}>
+          <div
+            className={`${styles.quality} ${maxQuantity < newQuantity && styles.alertText}`}
+          >
             <span>{`số lượng còn lại: ${maxQuantity}`}</span>
             <span>
               {`${size} `}/{` x${newQuantity}`}
@@ -100,10 +118,10 @@ export const CartItem: React.FC<CartItemProps> = ({
           <div className={styles.quantityControls}>
             <div className={styles.quantityWrapper}>
               <button
-                className={`${styles.quantityButton} ${newQuantity <= 1 && styles.disable}`}
+                className={`${styles.quantityButton}`}
                 onClick={() => handleSubtractQuantityChange(newQuantity - 1)}
                 aria-label="Decrease quantity"
-                disabled={newQuantity <= 1 || loadings}
+                // disabled={newQuantity <= 1 || loadings}
               >
                 -
               </button>
@@ -112,7 +130,7 @@ export const CartItem: React.FC<CartItemProps> = ({
                 className={styles.quantityButton}
                 onClick={() => handleAddQuantityChange(newQuantity + 1)}
                 aria-label="Increase quantity"
-                disabled={quantity >= maxQuantity || loadings}
+                // disabled={quantity >= maxQuantity || loadings}
               >
                 +
               </button>
@@ -123,7 +141,7 @@ export const CartItem: React.FC<CartItemProps> = ({
               disabled={loadings}
               aria-label="Remove item"
             >
-              <MdDeleteOutline size={25}/>
+              <MdDeleteOutline size={25} />
             </button>
           </div>
         </div>

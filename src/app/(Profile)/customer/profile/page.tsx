@@ -7,12 +7,10 @@ export default async function UserProfile() {
   return (
     <div className={`${styles.profileContainer}`}>
       <div className={styles.profileWrapper}>
-        
         <div className={styles.boxheader}>
           <Image
             width={500}
             height={500}
-            priority
             src="/profilebackground.png"
             alt="background"
             className={styles.headerImage}

@@ -7,9 +7,11 @@ import Link from "next/link";
 import authApiRequest from "@/apiRequests/auth";
 import { handleErrorApi } from "@/lib/utils";
 import Image from "next/image";
+import { useLoading } from "@/app/context/loading-provider";
 
 export const Sidebar: React.FC = ({}) => {
   const path = usePathname();
+  const { setLoading } = useLoading();
   const router = useRouter();
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false); // Quản lý trạng thái thu hẹp
   const [activeItem, setActiveItem] = useState<string>(path);
@@ -53,6 +55,7 @@ export const Sidebar: React.FC = ({}) => {
   };
   const handleLogout = async () => {
     try {
+      setLoading(true);
       await authApiRequest.logoutFromNextClientToNextServer();
       localStorage.removeItem("accessToken");
       localStorage.removeItem("refreshToken");
@@ -60,6 +63,8 @@ export const Sidebar: React.FC = ({}) => {
       // router.push('/login')
     } catch (error) {
       handleErrorApi({ error });
+    } finally {
+      setLoading(false);
     }
   };
   return (
@@ -76,7 +81,7 @@ export const Sidebar: React.FC = ({}) => {
             <Image
               width={300}
               height={300}
-              loading="lazy"
+              priority
               src="/sidebar/iconsidebar.png"
               className={styles.menuToggleIcon}
               alt=""
@@ -91,7 +96,7 @@ export const Sidebar: React.FC = ({}) => {
             <Image
               width={300}
               height={300}
-              loading="lazy"
+              priority
               src="/logo.png"
               className={styles.logoImage}
               alt={`Đắp Việt logo`}

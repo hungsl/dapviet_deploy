@@ -1,8 +1,0 @@
-.background {
-    background-image: url('/googleBackground.jpg'); /* Đường dẫn đến hình ảnh */
-    background-size: cover; /* Làm cho hình ảnh phủ toàn bộ phần tử */
-    background-position: center; /* Căn giữa hình ảnh */
-    background-repeat: no-repeat; /* Ngừng lặp lại hình ảnh */
-    height: 100vh; /* Chiều cao của phần tử, có thể thay đổi tùy thuộc vào yêu cầu */
-  }
-  

@@ -8,13 +8,14 @@ import {
   Wallet,
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ChartPie } from "./chart-pie";
-import { ChartLine } from "./chart-line";
+// import { ChartPie } from "./chart-pie";
+// import { ChartLine } from "./chart-line";
 import { useEffect, useState } from "react";
 import dashboardApiRequest from "@/apiRequests/dashboard";
 import { dataDashboard } from "../../types";
 import Link from "next/link";
 import { formatCurrency } from "@/lib/utils";
+import dynamic from "next/dynamic";
 
 // interface DashboardData {
 //   totalNewUsers: number;
@@ -33,6 +34,8 @@ import { formatCurrency } from "@/lib/utils";
 // interface DashboardProps {
 //   data: DashboardData;
 // }
+const ChartPie = dynamic(() => import("./chart-pie").then(mod => mod.ChartPie), { ssr: false });
+const ChartLine = dynamic(() => import("./chart-line").then(mod => mod.ChartLine), { ssr: false });
 
 export function Dashboard() {
   const [data, setData] = useState<dataDashboard>();

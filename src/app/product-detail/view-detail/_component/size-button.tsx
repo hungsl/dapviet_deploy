@@ -11,6 +11,7 @@ import { toast } from "@/hooks/use-toast";
 
 // import { Loader2 } from "lucide-react";
 import dynamic from "next/dynamic";
+import { usePopup } from "@/app/context/popup-provider";
 
 
 
@@ -31,6 +32,7 @@ export default function SizeButton({
   const [selectedSize, setSelectedSize] = useState("");
   const [quantity, setQuantity] = useState(1);
   const [loading, setLoading] = useState(false);
+  const { openPopup, setContent } = usePopup();
   useEffect(() => {
     // Lấy token từ localStorage
     const token = localStorage.getItem("accessToken");
@@ -104,6 +106,8 @@ export default function SizeButton({
         setLoading(false);
       }
     } else {
+      setContent('login');
+      openPopup();
       toast({
         variant: "destructive",
         description: "Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng.",

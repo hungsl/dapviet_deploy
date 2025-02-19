@@ -2,12 +2,13 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  min-height: 324px;
+  height: 100%;
   width: 100%;
   overflow: hidden;
   align-items: center;
   color: #ffffff;
   padding: 162px 80px 50px;
+  background-color: #fdfdfd;
   perspective: 2px;
 }
 .heroOverlay {
@@ -36,17 +37,18 @@
   position: absolute;
   inset: 0;
   height: 100%;
-  width: 100%;
+  width: 70%;
+  left: 15%;
   z-index: -1;
   object-fit: cover;
   object-position: 0 30%;
 }
 
 .contentWrapper {
-  position: relative;
   border-radius: 5px;
   display: flex;
   margin-left: 40px;
+  margin-top: 200px;
   flex-direction: column;
   align-items: start;
   justify-content: center;
@@ -106,6 +108,7 @@
     max-width: 100%;
     margin-top: 0px;
     padding: 100px 20px 0;
+    height: 150px;
     min-height: 0px;
   }
   .backgroundImage {

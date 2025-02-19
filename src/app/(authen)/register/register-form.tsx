@@ -23,7 +23,7 @@ import {
 import { useToast } from "@/hooks/use-toast";
 import authApiRequest from "@/apiRequests/auth";
 import { handleErrorApi } from "@/lib/utils";
-import { SocialLoginButton } from "@/components/buttonEffect/login-page/SocialLoginButton";
+// import { SocialLoginButton } from "@/components/buttonEffect/login-page/SocialLoginButton";
 import { usePopup } from "@/app/context/popup-provider";
 import PasswordInput from "@/components/common/password-input";
 import Link from "next/link";
@@ -186,14 +186,14 @@ export default function RegisterForm() {
       </div>
 
       <div className={styles.socialLoginSection}>
-        <div className={styles.socialLoginTitleContainer}>
+        {/* <div className={styles.socialLoginTitleContainer}>
           <p className={styles.socialLoginTitle}>Đăng ký bằng cách khác</p>
         </div>
         <SocialLoginButton
           provider="Google"
           icon="/login/google.png"
           message="Đăng ký bằng"
-        />
+        /> */}
         {/* <SocialLoginButton
           provider="Facebook"
           icon="/login/facebook.png"

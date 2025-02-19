@@ -12,13 +12,18 @@ export default function DapViet() {
             <div className={styles.mainImageWrapper}>
               <BrandImage
                 src="/homepage/aotrang.png"
+                // src="/homepage/header/hompage1PP.png"
+
+                // src="/homepage/header/HomepagePerson3.png"
                 alt="Traditional Vietnamese clothing showcase"
                 className={styles.mainImage}
               />
             </div>
             <div className={styles.sideImageWrapper}>
               <BrandImage
+              //  src="/homepage/aotrang.png"
                 src="/homepage/aoxanh2.png"
+                // src="/homepage/header/HomePagePerson2.png"
                 alt="Vietnamese fashion detail"
                 className={styles.sideImage}
               />

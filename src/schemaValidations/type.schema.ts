@@ -2,7 +2,7 @@
 import z from 'zod'
 
 export const CreateCollectionBody = z.object({
-  name: z.string().min(5,"tên không ngắn hơn 5 ký tự"),
+  name: z.string().min(5,"Tên không ngắn hơn 5 ký tự"),
   image: z
   .array(
     z.custom<File>((val) => val instanceof File, {
@@ -18,7 +18,7 @@ export const CreateCollectionBody = z.object({
 export type CreateCollectionBodyType = z.TypeOf<typeof CreateCollectionBody>
 
 export const UpdateCollectionBody = z.object({
-  name: z.string().min(5,"tên không ngắn hơn 5 ký tự"),
+  name: z.string().min(5,"Tên không ngắn hơn 5 ký tự"),
   image: z
   .array(
     z.custom<File>((val) => val instanceof File, {

@@ -246,7 +246,7 @@
   top:0%;
   width: 100%;
   object-fit: cover;
-  min-height: 650px;
+  min-height: 630px;
   aspect-ratio:  16 / 15;
   border-radius: 40px;
 }

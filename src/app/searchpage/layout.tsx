@@ -19,7 +19,7 @@ export default async function LayoutSearchpage({
       <Headers />
       <Hero
         // backgroundImageUrl="/searchpage/f1.jpeg"
-        backgroundImageUrl="/searchpage/anhnen.png"
+        backgroundImageUrl="/searchpage/searchpageHero.png"
         content={{
           title: "Khám Phá Việt Phục - Bản Sắc Giao Thoa",
           description:

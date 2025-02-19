@@ -7,7 +7,7 @@ const sizeSchema = z.object({
 });
 
 export const CreateProductBody = z.object({
-  name: z.string().min(5,"tên không ngắn hơn 5 ký tự"),
+  name: z.string().min(5,"Tên không ngắn hơn 5 ký tự"),
   pictures: z
   .array(
     z.custom<File>((val) => val instanceof File, {
@@ -48,7 +48,7 @@ export type CreateProductBodyType = z.TypeOf<typeof CreateProductBody>
 
 export const UpdateProductBody = z.object({
   id: z.string(),
-  name: z.string().min(5,"tên không ngắn hơn 5 ký tự"),
+  name: z.string().min(5,"Tên không ngắn hơn 5 ký tự"),
   pictures: z
   .array(
     z.custom<File>((val) => val instanceof File, {

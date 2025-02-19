@@ -2,8 +2,8 @@ import z from "zod";
 
 export const RegisterBody = z
   .object({
-    name: z.string().trim().min(2, "tên phải ít nhất 6 ký tự").max(256),
-    email: z.string().email("email không đúng định dạng"),
+    name: z.string().trim().min(2, "Tên phải ít nhất 6 ký tự").max(256),
+    email: z.string().email("Email không đúng định dạng"),
     password: z
       .string()
       .min(6, "Mật khẩu phải dài ít nhất 6 ký tự")
@@ -48,7 +48,7 @@ export type RegisterResType = z.TypeOf<typeof RegisterRes>;
 
 export const LoginGoogleBody = z
   .object({
-    email: z.string().email("email không đúng định dạng"),
+    email: z.string().email("Email không đúng định dạng"),
     name: z
     .string(),
     avatar: z.string()
@@ -59,7 +59,7 @@ export type LoginGoogleBodyType = z.TypeOf<typeof LoginGoogleBody>;
 
 export const LoginBody = z
   .object({
-    email: z.string().email("email không đúng định dạng"),
+    email: z.string().email("Email không đúng định dạng"),
     password: z
       .string()
       .min(6, "Mật khẩu phải dài ít nhất 6 ký tự")

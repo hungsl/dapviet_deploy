@@ -9,8 +9,8 @@ export const Hero: React.FC<HeroProps> = ({ backgroundImageUrl, content }) => {
     <section className={styles.hero}>
       <div className={styles.heroOverlay}></div>
       <Image
-        width={500}
-        height={500}
+        width={1000}
+        height={1000}
         quality={100}
         priority
         src={backgroundImageUrl}

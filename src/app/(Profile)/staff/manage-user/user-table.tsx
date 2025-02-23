@@ -32,7 +32,7 @@ export default function UserTable() {
         properties
       );
       setData(result.payload);
-      console.log(result.payload);
+      // console.log(result.payload);
       setTotalPages(result.payload.totalPage);
     } catch (error) {
       console.error("Error fetching products:", error);
@@ -45,7 +45,7 @@ export default function UserTable() {
 
   const handlePageChange = (newPage: number) => {
     if (newPage >= 1 && newPage <= totalPages) {
-      console.log(currentPage);
+      // console.log(currentPage);
       setCurrentPage(newPage);
     }
   };
@@ -69,7 +69,7 @@ export default function UserTable() {
         <select
           value={properties}
           onChange={(e) => setProperties(e.target.value)}
-          className="border border-gray-300 rounded px-2 py-1 mr-2"
+          className="border text-foreground border-gray-300 rounded px-2 py-1 mr-2"
         >
           <option value="id">Id</option>
           <option value="name">Tên người dùng</option>
@@ -79,7 +79,7 @@ export default function UserTable() {
         <select
           value={direction}
           onChange={(e) => setDirection(e.target.value)}
-          className="border border-gray-300 rounded px-2 py-1 mr-2"
+          className="border text-foreground border-gray-300 rounded px-2 py-1 mr-2"
         >
           <option value="ASC">Tăng dần</option>
           <option value="DESC">Giảm dần</option>
@@ -94,7 +94,7 @@ export default function UserTable() {
       <div className="scroll max-h-[650px] text-foreground">
         <table className={styles.table}>
           <thead>
-            <tr className={styles.tableRow}>
+            <tr className={`${styles.tableRow} text-black`}>
               <th className={styles.tableHead}>Hình ảnh</th>
               <th className={styles.tableHead}>Tên người dùng</th>
               <th className={styles.tableHead}>Email</th>
@@ -145,7 +145,7 @@ export default function UserTable() {
         </table>
       </div>
       {totalPages > 1 && (
-        <Pagination className="mt-10">
+        <Pagination className="mt-10 text-foreground">
           <PaginationContent>
             {/* Nút Previous */}
             <PaginationItem>

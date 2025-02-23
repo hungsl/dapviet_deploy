@@ -46,7 +46,7 @@ export default function ProductTable() {
         // accessToken
       );
       setData(result.payload);
-      console.log(result.payload);
+      // console.log(result.payload);
       setTotalPages(result.payload.totalPage);
     } catch (error) {
       console.error("Error fetching products:", error);
@@ -60,7 +60,7 @@ export default function ProductTable() {
 
   const handlePageChange = (newPage: number) => {
     if (newPage >= 1 && newPage <= totalPages) {
-      console.log(currentPage);
+      // console.log(currentPage);
       setCurrentPage(newPage);
     }
   };
@@ -86,7 +86,7 @@ export default function ProductTable() {
         <select
           value={properties}
           onChange={(e) => setProperties(e.target.value)}
-          className="border border-gray-300 rounded px-2 py-1 mr-2"
+          className="border border-gray-300 bg-background text-foreground rounded px-2 py-1 mr-2"
         >
           <option value="name">Tên sản phẩm</option>
           <option value="unitPrice">Giá sản phẩm</option>
@@ -95,7 +95,7 @@ export default function ProductTable() {
         <select
           value={direction}
           onChange={(e) => setDirection(e.target.value)}
-          className="border border-gray-300 rounded px-2 py-1 mr-2"
+          className="border border-gray-300 rounded px-2 py-1 mr-2 bg-background text-foreground"
         >
           <option value="ASC">Tăng dần</option>
           <option value="DESC">Giảm dần</option>
@@ -126,7 +126,7 @@ export default function ProductTable() {
 
         <table className={styles.table}>
           <thead>
-            <tr className={styles.tableRow}>
+            <tr className={`${styles.tableRow} text-black`}>
               <th className={styles.tableHead}>Hình ảnh</th>
               <th className={styles.tableHead}>Tên sản phẩm</th>
               <th className={styles.tableHead}>Đánh giá</th>
@@ -165,7 +165,7 @@ export default function ProductTable() {
                 <td className={`${styles.tableCell} ${styles.textCenter}`}>
                   <ButtonDelete
                     productId={product.id}
-                    // isDelete={product.deleted}
+                    isDelete={product.status === "DELETED"}
                   />
                   <Link
                     href={`/staff/manage-product/${product.id}`}
@@ -180,7 +180,7 @@ export default function ProductTable() {
         </table>
       </div>
       {totalPages > 1 && (
-        <Pagination className="mt-10">
+        <Pagination className="mt-10 text-foreground">
           <PaginationContent>
             {/* Nút Previous */}
             <PaginationItem>

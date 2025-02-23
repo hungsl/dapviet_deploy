@@ -220,7 +220,7 @@ export default function UpdateCollectionForm({
                 </FormControl>
                 <FormMessage />
                 <Button
-                  className="ml-4"
+                  className="ml-4 text-foreground"
                   variant="outline"
                   type="button"
                   onClick={() => imageInputRef.current?.click()}

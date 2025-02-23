@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function RegisterPopup() {
   return (
-    <div className={styles.loginPage}>
+    <div className={`${styles.loginPage} bg-background`}>
       <div className={styles.contentWrapper}>
         <div className={styles.loginSection}>
           <div className={styles.brandSection}>

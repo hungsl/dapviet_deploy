@@ -6,7 +6,7 @@ import { MenuItem } from "../customer/sidebar/menu-item";
 import Link from "next/link";
 import authApiRequest from "@/apiRequests/auth";
 import { handleErrorApi } from "@/lib/utils";
-import { ChevronDown, ChevronRight } from "lucide-react"; // Icon mở rộng nhóm
+import { AlignJustify, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react"; // Icon mở rộng nhóm
 import Image from "next/image";
 import { useLoading } from "@/app/context/loading-provider";
 
@@ -137,7 +137,7 @@ export default function SidebarStaff() {
   };
   return (
     <div
-      className={`${styles.sidebar} ${isSidebarCollapsed ? styles.collapsed : ""}`}
+      className={`${styles.sidebar}  bg-background  ${isSidebarCollapsed ? styles.collapsed : ""}`}
     >
       <div className={styles.sidebarContent}>
         <header className={styles.sidebarHeader}>
@@ -146,14 +146,25 @@ export default function SidebarStaff() {
             aria-label="Toggle menu"
             onClick={handleToggleSidebar}
           >
-            <Image
+            {/* <Image
               width={300}
               priority
               height={300}
               src="/sidebar/iconsidebar.png"
               className={styles.menuToggleIcon}
               alt=""
-            />
+            /> */}
+            {isSidebarCollapsed ? (
+              <>
+                <AlignJustify />
+                <ChevronRight />{" "}
+              </>
+            ) : (
+              <>
+                <AlignJustify />
+                <ChevronLeft />
+              </>
+            )}
           </button>
           <div
             className={`${styles.logoWrapper} ${isSidebarCollapsed ? styles.collapsed : ""}`}
@@ -171,14 +182,14 @@ export default function SidebarStaff() {
         </header>
 
         <nav className={styles.navigation}>
-          <div className={styles.mainMenu}>
+          <div className={`${styles.mainMenu} text-foreground`}>
             {menuItems.map((item, index) => (
               <React.Fragment key={index}>
                 {item.children ? (
                   <div>
                     <div
                       className={`${styles.groupItem} ${
-                        isGroupActive(item.groupId) ? styles.activeGroup : ""
+                        isGroupActive(item.groupId) ? `${styles.activeGroup } text-foreground` : ""
                       } ${expandedGroups[item.groupId] && styles.expandedGroup}`}
                       onClick={() => toggleGroup(item.groupId)}
                     >
@@ -196,8 +207,8 @@ export default function SidebarStaff() {
                       )}
                     </div>
                     {expandedGroups[item.groupId] && (
-                      <div className={`${styles.subMenu}`}>
-                        <div className={styles.borderSubMenu}>
+                      <div className={`${styles.subMenu} text-foreground`}>
+                        <div className={`${styles.borderSubMenu} `}>
                           {item.children.map((subItem) => (
                             <Link prefetch href={subItem.id} key={subItem.id}>
                               <MenuItem

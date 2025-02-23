@@ -3,7 +3,7 @@
     padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
-    background-color: #f9f9f9;
+    background-color: #f9f9f9 ;
     border-radius: 8px;
   }
   .table tbody {
@@ -162,6 +162,7 @@
     border: 1px solid #ddd;
     border-radius: 8px;
     min-height: 100px;
+    /* color: white; */
     margin-bottom: 20px;
   }
   
@@ -201,9 +202,9 @@
   border-bottom: 1px solid #ddd;
 }
 
-.tableRow:hover {
-  background-color: #f9f9f9; /* Hiệu ứng hover cho hàng */
-}
+/* .tableRow:hover {
+  background-color: #f9f9f9; 
+} */
 
 .tableHead {
   text-align: left;

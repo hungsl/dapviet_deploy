@@ -39,7 +39,7 @@ export default function CollectionTable() {
     <div className="scroll max-h-[600px] text-foreground">
       <table className={styles.table}>
         <thead>
-          <tr className={styles.tableRow}>
+          <tr className={`${styles.tableRow} text-black`}>
             <th className={styles.tableHead}>Mã sưu tập</th>
             <th className={styles.tableHead}>Hình ảnh</th>
             <th className={styles.tableHead}>Tên bộ sưu tập</th>

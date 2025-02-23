@@ -33,6 +33,7 @@
 .selectContent {
   overflow: auto;
   visibility: visible;
+  max-height: 300px;
   z-index: 110;
 }
 

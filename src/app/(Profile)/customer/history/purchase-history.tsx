@@ -86,7 +86,7 @@ export default function PurchaseHistoryTable() {
       </div>
       <table className={styles.table}>
         <thead>
-          <tr className={styles.tableRow}>
+          <tr className={`${styles.tableRow} text-black`}>
             <th className={styles.tableHead}>Hình ảnh</th>
             <th className={styles.tableHead}>Tên sản phẩm</th>
             <th className={styles.tableHead}>Phương thức thanh toán</th>
@@ -108,7 +108,7 @@ export default function PurchaseHistoryTable() {
         <tbody className="scroll">
           {data && data.data.length > 0 ? (
             data.data.map((item) => (
-              <tr key={item.orderDetailId} className={styles.tableRow}>
+              <tr key={item.orderDetailId} className={`${styles.tableRow} hover:bg-accent`}>
                 <td className={styles.Imgage}>
                   <Image
                     src={item.image}

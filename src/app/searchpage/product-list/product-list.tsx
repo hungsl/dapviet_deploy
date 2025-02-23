@@ -88,6 +88,7 @@ const  ProductList = () => {
         const result = await productApiRequest.products(params);
         setProductList(result.payload.data);
         setTotalPages(Math.ceil(result.payload.totalSize / 20));
+        setCurrentPage(1)
         // console.log("Fetched Products:", result);
       } catch (error) {
         console.error("Failed to fetch products:", error);

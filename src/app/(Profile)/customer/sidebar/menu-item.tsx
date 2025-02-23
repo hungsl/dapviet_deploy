@@ -48,7 +48,7 @@ export const MenuItem: React.FC<MenuItemProps> = ({
 
   return (
     <div
-      className={`${styles.menuItem} ${activeItem === id ? styles.active : ""}`}
+      className={`${styles.menuItem} ${activeItem === id ? `${styles.active} text-black` : ""}`}
       role="button"
       tabIndex={0}
       onClick={onClick}

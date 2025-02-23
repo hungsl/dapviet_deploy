@@ -52,7 +52,7 @@ export default function CreateSizeForm() {
   }
 
   return (
-    <div className={styles.createForm}>
+    <div className={`${styles.createForm} !bg-background`}>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit, (error) => console.log(error))}
@@ -64,7 +64,7 @@ export default function CreateSizeForm() {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="!text-black font-bold">
+                <FormLabel className="!text-foreground font-bold">
                   Số đo
                 </FormLabel>
                 <FormControl>

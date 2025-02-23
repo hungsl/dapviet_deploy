@@ -71,7 +71,7 @@ export function Dashboard() {
 
   return (
     <div className="space-y-4">
-      <h1 className="text-3xl font-bold">Bảng Điều Khiển</h1>
+      <h1 className="text-3xl text-foreground font-bold">Bảng Điều Khiển</h1>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Link href="/staff/manage-user">

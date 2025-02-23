@@ -8,6 +8,7 @@ import authApiRequest from "@/apiRequests/auth";
 import { handleErrorApi } from "@/lib/utils";
 import Image from "next/image";
 import { useLoading } from "@/app/context/loading-provider";
+import { AlignJustify, ChevronLeft, ChevronRight } from "lucide-react";
 
 export const Sidebar: React.FC = ({}) => {
   const path = usePathname();
@@ -78,14 +79,25 @@ export const Sidebar: React.FC = ({}) => {
             aria-label="Toggle menu"
             onClick={handleToggleSidebar}
           >
-            <Image
+            {/* <Image
               width={300}
               height={300}
               priority
               src="/sidebar/iconsidebar.png"
               className={styles.menuToggleIcon}
               alt=""
-            />
+            /> */}
+            {isSidebarCollapsed ? (
+              <>
+                <AlignJustify />
+                <ChevronRight />{" "}
+              </>
+            ) : (
+              <>
+                <AlignJustify />
+                <ChevronLeft />
+              </>
+            )}
           </button>
           <div
             className={`${styles.logoWrapper} ${isSidebarCollapsed ? styles.collapsed : ""}`}

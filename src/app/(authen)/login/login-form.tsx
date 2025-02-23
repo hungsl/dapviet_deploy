@@ -143,7 +143,7 @@ export default function LoginForm() {
     router.push("/forget-password");
   };
   return (
-    <div className={styles.loginForm}>
+    <div className={`${styles.loginForm}`}>
       {loading && <LoadingAnimation />}
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -152,7 +152,7 @@ export default function LoginForm() {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="!text-black font-bold mb-2">
+                <FormLabel className="!text-foreground font-bold mb-2">
                   {" "}
                   Địa chỉ Email
                 </FormLabel>
@@ -174,7 +174,7 @@ export default function LoginForm() {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="!text-black font-bold">
+                <FormLabel className="!text-foreground font-bold">
                   Mật khẩu
                 </FormLabel>
                 <FormControl>
@@ -198,7 +198,7 @@ export default function LoginForm() {
           <Button
             disabled={loadings}
             type="submit"
-            className={styles.loginButton}
+            className={`${styles.loginButton}`}
           >
             {loadings && <Loader2 className="animate-spin" />}
             Đăng Nhập

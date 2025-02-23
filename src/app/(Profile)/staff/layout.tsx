@@ -14,8 +14,8 @@ export default async function LayoutCustomer({
     return (
         <div className={styles.profileContainer}>
           <SidebarStaff />
-          <main className={`${styles.mainContent}`}>
-            <div className={`${styles.contentWrapper}`}>
+          <main className={`${styles.mainContent}  !bg-primary-foreground`}>
+            <div className={`${styles.contentWrapper} bg-background`}>
             {children}
             </div>
           </main>

@@ -322,7 +322,7 @@ export default function UpdateProductForm({
   };
 
   return (
-    <div className={styles.createForm}>
+    <div className={`${styles.createForm} !bg-background`}>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit, (errors) => {
@@ -336,7 +336,7 @@ export default function UpdateProductForm({
             name="pictures"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="!text-black font-bold">
+                <FormLabel className="!text-foreground font-bold">
                   Ảnh sản phẩm
                 </FormLabel>
                 <FormControl>
@@ -423,7 +423,7 @@ export default function UpdateProductForm({
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="!text-black font-bold">
+                    <FormLabel className="!text-foreground font-bold">
                       Tên sản phẩm
                     </FormLabel>
                     <FormControl>
@@ -440,7 +440,7 @@ export default function UpdateProductForm({
                 name="status"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="!text-black font-bold">
+                    <FormLabel className="!text-foreground font-bold">
                       Trạng thái
                     </FormLabel>
                     <FormControl>
@@ -469,7 +469,7 @@ export default function UpdateProductForm({
                 name="weight"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="!text-black font-bold">
+                    <FormLabel className="!text-foreground font-bold">
                       Trọng lượng (gam)
                     </FormLabel>
                     <FormControl>
@@ -486,7 +486,7 @@ export default function UpdateProductForm({
                 name="sizes"
                 render={() => (
                   <FormItem>
-                    <FormLabel className="!text-black font-bold">
+                    <FormLabel className="!text-foreground font-bold">
                       Kích cỡ
                     </FormLabel>
                     <FormControl>
@@ -574,7 +574,7 @@ export default function UpdateProductForm({
                 name="typeId"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="!text-black font-bold">
+                    <FormLabel className="!text-foreground font-bold">
                       Loại sản phẩm
                     </FormLabel>
                     <FormControl>
@@ -609,7 +609,7 @@ export default function UpdateProductForm({
                 name="collectionId"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="!text-black font-bold">
+                    <FormLabel className="!text-foreground font-bold">
                       Bộ sưu tập
                     </FormLabel>
                     <FormControl>
@@ -644,7 +644,7 @@ export default function UpdateProductForm({
                 name="unitPrice"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="!text-black font-bold">Giá</FormLabel>
+                    <FormLabel className="!text-foreground font-bold">Giá</FormLabel>
                     <FormControl>
                       <Input placeholder="VND" {...field} />
                     </FormControl>
@@ -659,7 +659,7 @@ export default function UpdateProductForm({
                 name="description"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="!text-black font-bold">
+                    <FormLabel className="!text-foreground font-bold">
                       Mô tả sản phẩm
                     </FormLabel>
                     <FormControl>

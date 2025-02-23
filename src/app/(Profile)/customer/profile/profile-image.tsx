@@ -54,7 +54,7 @@ export default function ProfileImage({ userData }: { userData : dataInfo }) {
         setLoading(false); // Đặt loading = false nếu có lỗi
         return;
       }
-      console.log("Uploading file:", imageUrl);
+      // console.log("Uploading file:", imageUrl);
       const body = {
         avatar: imageUrl,
       };
@@ -63,9 +63,9 @@ export default function ProfileImage({ userData }: { userData : dataInfo }) {
         const { data, error } = await deleteImage(userData.avatar);
         console.log(data);
         console.log(error);
-        console.log("URL xoa trong DB.");
+        // console.log("URL xoa trong DB.");
       } else {
-        console.log("URL Không có trong DB.");
+        // console.log("URL Không có trong DB.");
       }
       closeModal();
       router.refresh();

@@ -47,7 +47,7 @@ export const SocialLoginButton: React.FC<SocialLoginButtonProps> = ({
           {message} <span className="font-bold">{provider}</span>
         </div>
       </button> */}
-      <Link href="/login-google" className={styles.socialLoginButton}>
+      <Link href="/login-google" className={`${styles.socialLoginButton} hover:bg-accent`}>
         <Image
           width={300}
           height={300}
@@ -57,7 +57,7 @@ export const SocialLoginButton: React.FC<SocialLoginButtonProps> = ({
           className="object-contain shrink-0 aspect-square w-[30px]"
         />
         <div className="my-auto">
-          {message} <span className="font-bold">{provider}</span>
+          {message} <span className="font-bold text-foreground ">{provider}</span>
         </div>
       </Link>
       {/* <Button onClick={() => signOut()}>sigout</Button> */}

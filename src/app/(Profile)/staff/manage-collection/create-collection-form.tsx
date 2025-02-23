@@ -48,7 +48,7 @@ export default function CreateCollectionForm() {
         urls.push(imageUrl);
       }
       // console.log("Form Data:", values);
-      console.log('Uploaded Image URLs:', urls);
+      // console.log('Uploaded Image URLs:', urls);
       const {name, description} = values;
       const updateValue = {
         name,
@@ -78,7 +78,7 @@ export default function CreateCollectionForm() {
   };
 
   return (
-    <div className={styles.createForm}>
+    <div className={`${styles.createForm} !bg-background`}>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit, (error) => console.log(error))}
@@ -90,7 +90,7 @@ export default function CreateCollectionForm() {
             name="image"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="!text-black font-bold">Ảnh bộ sưu tập</FormLabel>
+                <FormLabel className="!text-foreground font-bold">Ảnh bộ sưu tập</FormLabel>
                 <FormControl>
                   <Input
                     type="file"
@@ -163,7 +163,7 @@ export default function CreateCollectionForm() {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="!text-black font-bold">Bộ sưu tập</FormLabel>
+                <FormLabel className="!text-foreground font-bold">Bộ sưu tập</FormLabel>
                 <FormControl>
                   <Input placeholder="Tên bộ sưu tập..." {...field} />
                 </FormControl>
@@ -179,7 +179,7 @@ export default function CreateCollectionForm() {
             name="description"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="!text-black font-bold">Mô tả</FormLabel>
+                <FormLabel className="!text-foreground font-bold">Mô tả</FormLabel>
                 <FormControl>
                   <Textarea placeholder="Mô tả về bộ sưu tập..."className="w-full h-32 resize-none border border-gray-300 p-2 rounded-lg" {...field} />
                 </FormControl>

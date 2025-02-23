@@ -47,7 +47,7 @@ export default function CategoryTable() {
 
   const handlePageChange = (newPage: number) => {
     if (newPage >= 1 && newPage <= totalPages) {
-      console.log(currentPage);
+      // console.log(currentPage);
       setCurrentPage(newPage);
     }
   };
@@ -90,7 +90,7 @@ export default function CategoryTable() {
       </div>
       <table className={styles.table}>
         <thead>
-          <tr className={styles.tableRow}>
+          <tr className={`${styles.tableRow} text-black`}>
             <th className={styles.tableHead}>Mã danh mục</th>
             <th className={styles.tableHead}>Tên danh mục</th>
             <th className={styles.tableHead}>Trạng thái</th>

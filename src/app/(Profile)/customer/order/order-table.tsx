@@ -25,7 +25,7 @@ export default function OrderTable() {
       try {
         const result = await orderApiRequest.ordersList();
         setData(result.payload); // Lưu kết quả trả về vào state `data`
-        console.log(result.payload);
+        // console.log(result.payload);
       } catch (err) {
         console.log("lỗi lấy danh sách đơn: ", err);
       }
@@ -81,7 +81,7 @@ export default function OrderTable() {
     <div className={`scroll ${styles.heightTable} text-foreground`}>
       <table className={styles.table}>
         <thead>
-          <tr className={styles.tableRow}>
+          <tr className={`${styles.tableRow} text-black`}>
             <th className={styles.tableHead}>Mã đơn hàng</th>
             <th className={styles.tableHead}>Người nhận</th>
             <th className={styles.tableHead}>Địa chỉ giao hàng</th>
@@ -103,7 +103,7 @@ export default function OrderTable() {
         <tbody>
           {data && data.data.length > 0 ? (
             data.data.map((order) => (
-              <tr key={order.orderId} className={styles.tableRow}>
+              <tr key={order.orderId} className={`${styles.tableRow} hover:bg-accent`}>
                 <td className={`${styles.tableCell} font-medium`}>
                   {order.orderId.length > 10
                     ? `${order.orderId.slice(0, 9)}…`

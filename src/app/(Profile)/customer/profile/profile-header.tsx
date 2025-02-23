@@ -57,7 +57,7 @@ export const ProfileHeader = () => {
   };
 
   const handleSave = async (value: UpdateProfileInfoType) => {
-    console.log(value);
+    // console.log(value);
     setLoading(true);
     try {
       const result = await accountApiRequest.updateMe(value);

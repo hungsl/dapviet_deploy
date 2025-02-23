@@ -151,9 +151,9 @@ export default function CreateUser() {
   }
   return (
     <div className={styles.formContainer}>
-      <div className={`${styles.formSection} text-foreground`}>
-        <div className={`${styles.hedform} text-foreground`}>
-          <div className={`${styles.sectionTitle} !text-foreground`}>
+      <div className={`${styles.formSection} text-black`}>
+        <div className={`${styles.hedform} text-black`}>
+          <div className={`${styles.sectionTitle} !text-black`}>
             Thông tin cá nhân
           </div>
           <h2 className={styles.sectionTitle}>Thông tin liên lạc</h2>

@@ -16,10 +16,29 @@ const roboto = Roboto({ subsets: ["vietnamese"], weight: ["100", "300"] });
 export const metadata: Metadata = {
   title: {
     template: "%s | Đắp Việt - Sản phẩm Việt phục truyền thống",
-    default: "Acme",
+    default: "Đắp Việt - Việt phục truyền thống",
   },
   description:
     "Đắp Việt cung cấp các bộ trang phục Việt phục, cổ phục Việt Nam mang đậm nét văn hóa truyền thống và ảnh hưởng từ các nền văn hóa khác như Trung Hoa và phương Tây. Khám phá các bộ sưu tập độc đáo của chúng tôi.",
+  keywords:
+    "Việt phục, Áo dài, Đắp Việt, Quần áo truyền thống, Áo dài cách tân, Cổ phục Việt Nam",
+  openGraph: {
+    title: "Đắp Việt - Việt phục truyền thống",
+    description:
+      "Khám phá bộ sưu tập Việt phục độc đáo của Đắp Việt. Chất lượng cao, giá tốt.",
+    url: "https://dapviet.shop",
+    siteName: "Đắp Việt",
+    images: [
+      {
+        url: "https://aekqgmlegdfbpjvohkqg.supabase.co/storage/v1/object/public/hung-pics//HomepagePerson3.png", // Thay bằng ảnh của bạn
+        width: 1200,
+        height: 630,
+        alt: "Đắp Việt - Việt phục truyền thống",
+      },
+    ],
+    type: "website",
+    locale: "vi_VN",
+  },
 };
 
 export default function RootLayout({

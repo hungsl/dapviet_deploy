@@ -77,9 +77,11 @@
 
 .socialIcon {
   font-size: 29px; /* Adjust the size as needed */
-  margin-top: 5px;
-  width: 30px;
+  width: auto;
+  padding: 0 5px;
   position: relative;
+  border-radius: 5px;
+  height: 36px;
   cursor: pointer;
   /* color: #000; */
 }
@@ -114,9 +116,9 @@
   transition: background-color 0.3s ease;
 }
 
-.dropdownItem:hover {
+/* .dropdownItem:hover {
   background-color: #f1f1f1;
-}
+} */
 
 .link {
   text-decoration: none;

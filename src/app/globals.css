@@ -8,6 +8,7 @@ body {
 
 @layer base {
   :root {
+    --hover: 39 79% 65%;
     --chart-1: 39 89% 57%;
     --chart-2: 240 60% 50%;
     --chart-3: 200 65% 45%;
@@ -41,6 +42,7 @@ body {
     --chart-5: 27 87% 67%;
   }
   .dark {
+    --hover: 39 70% 45%; 
     --chart-1: 39 80% 50%; /* Vàng tối */
     --chart-2: 240 50% 60%; /* Xanh dương tối */
     --chart-3: 200 55% 50%; /* Xanh biển tối */

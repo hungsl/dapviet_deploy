@@ -13,9 +13,9 @@ const Updatefeedback = ({ params }: { params: Promise<{ id: string }> }) => {
   const router  = useRouter()
   const searchParams = useSearchParams();
   const unwrappedParams = React.use(params);
-  console.log(unwrappedParams);
+  // console.log(unwrappedParams);
   const productId = searchParams.get("product");
-  console.log(productId);
+  // console.log(productId);
   useEffect(() => {
     if (!unwrappedParams && !productId) return;
     if (unwrappedParams && productId) {
@@ -35,7 +35,7 @@ const Updatefeedback = ({ params }: { params: Promise<{ id: string }> }) => {
   }
  
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} `}>
       <Button
         variant="ghost"
         onClick={handleBack}

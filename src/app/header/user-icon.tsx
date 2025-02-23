@@ -58,7 +58,7 @@ const UserDropdown: React.FC = () => {
           <Link
             prefetch
             href="/customer/profile"
-            className={styles.dropdownItem}
+            className={`${styles.dropdownItem} hover:bg-accent`}
           >
             Thông tin người dùng
           </Link>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import styles from "./popup-style.module.css"
+import { Input } from "../ui/input";
 interface PasswordInputProps {
   placeholder: string;
   field: any;
@@ -17,7 +18,7 @@ const PasswordInput: React.FC<PasswordInputProps> = ({ placeholder, field , clas
 
   return (
     <div className="relative">
-      <input
+      <Input
         type={showPassword ? "text" : "password"}
         placeholder={placeholder}
         {...field}

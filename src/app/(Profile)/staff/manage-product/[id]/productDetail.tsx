@@ -19,7 +19,7 @@ export function ProductDetail({ productId }: { productId: string }) {
       const fetchData = async () => {
         try {
           const result = await productApiRequest.productStaff(productId);
-          console.log("productdetail: ", result);
+          // console.log("productdetail: ", result);
           setData(result.payload);
         } catch (error) {
           console.log("lỗi lấy sản phẩm : ", error);

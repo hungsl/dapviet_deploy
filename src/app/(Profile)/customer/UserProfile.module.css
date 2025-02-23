@@ -101,12 +101,14 @@
 }
 .activeGroup,
 .menuItem.active {
+  color: #000;
   background-color: rgb(
     198,
     233,
     255
-  ) !important; /* Màu nền đậm hơn cho mục đang được chọn */
+  ) !important; 
 }
+
 
 .menuIcon {
   width: 24px;
@@ -141,10 +143,16 @@
   background: none;
   border: none;
   cursor: pointer;
+  display: flex;
+  width: 54px;
+}
+.menuToggle:hover{
+  background-color: rgba(188, 229, 255, 0.301);
 }
 
 .menuToggleIcon {
-  width: 24px;
+  width: 34px;
+  display: flex;
   height: 24px;
 }
 
@@ -189,6 +197,7 @@
 }
 .expandedGroup {
   background-color: #e3f2fd7e;
+  /* color: #000000; */
 }
 
 .groupItem:hover {
@@ -211,7 +220,7 @@
 }
 
 .subMenu .menuItem:hover {
-  background-color: #e3f2fd;
+  background-color: rgba(188, 229, 255, 0.301);
 }
 
 @media (max-width: 791px) {

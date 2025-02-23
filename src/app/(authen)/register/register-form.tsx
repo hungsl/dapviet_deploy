@@ -81,7 +81,7 @@ export default function RegisterForm() {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="!text-black font-bold">
+                <FormLabel className="!text-foreground font-bold">
                   Địa chỉ Email
                 </FormLabel>
                 <FormLabel  className="hidden">
@@ -104,7 +104,7 @@ export default function RegisterForm() {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="!text-black font-bold">
+                <FormLabel className="!text-foreground font-bold">
                   Tên người dùng
                 </FormLabel>
                 <FormControl>
@@ -124,7 +124,7 @@ export default function RegisterForm() {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="!text-black font-bold">
+                <FormLabel className="!text-foreground font-bold">
                   Mật khẩu
                 </FormLabel>
                 <FormControl>
@@ -145,7 +145,7 @@ export default function RegisterForm() {
             name="confirmPassword"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="!text-black font-bold">
+                <FormLabel className="!text-foreground font-bold">
                   Xác nhận mật khẩu
                 </FormLabel>
                 <FormControl>

@@ -10,15 +10,17 @@ import styles from "./Product.module.css";
 import { toast } from "@/hooks/use-toast";
 import productApiRequest from "@/apiRequests/product";
 import { useRouter } from "next/navigation";
+import { useAppContext } from "@/app/context/app-provider";
 
 export default function ButtonDelete({
   productId,
-  // isDelete
+  isDelete,
 }: {
   productId: string;
-  // isDelete: boolean;
+  isDelete: boolean;
 }) {
   const [open, setOpen] = useState(false);
+  const {isRefresh, setIsRefresh} = useAppContext()
   const handleClose = () => setOpen(false);
   const router = useRouter();
   const handleOpen = () => {
@@ -26,9 +28,7 @@ export default function ButtonDelete({
   };
   const handleDelete = async () => {
     try {
-      const result = await productApiRequest.deleteProductStaff(
-        productId,
-      );
+      const result = await productApiRequest.deleteProductStaff(productId);
       toast({
         description: result.payload.message,
         duration: 2000,
@@ -40,29 +40,36 @@ export default function ButtonDelete({
       router.refresh();
     }
   };
-  // const handleActive = async () => {
-  //   try {
-  //     const result = await productApiRequest.activeProductStaff(productId, accessToken);
-  //     toast({
-  //       description: result.payload.message,
-  //       duration: 2000,
-  //     });
-  //   } catch (error) {
-  //     console.log("lỗi khi Kích hoạt kích thước: ", error);
-  //   } finally {
-  //     setOpen(false);
-  //     router.refresh();
-  //   }
-  // }
+  const handleActive = async () => {
+    try {
+      const result = await productApiRequest.activeProductStaff(productId);
+      toast({
+        description: result.payload.message,
+        duration: 2000,
+      });
+    } catch (error) {
+      console.log("lỗi khi Kích hoạt kích thước: ", error);
+    } finally {
+      setOpen(false);
+      setIsRefresh(!isRefresh)
+      router.refresh();
+    }
+  };
   return (
     <>
-    
+      {isDelete ? (
+        <button onClick={() => handleActive()} className={styles.activateBtn}>
+          Kích hoạt
+        </button>
+      ) : (
         <button
+          disabled={isDelete}
           onClick={() => handleOpen()}
-          className={`${styles.deleteBtn} `}
+          className={`${styles.deleteBtn} ${isDelete && "disabled"}`}
         >
           Xóa
         </button>
+      )}
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Xác nhận xóa {productId}</DialogTitle>
         <DialogContent>

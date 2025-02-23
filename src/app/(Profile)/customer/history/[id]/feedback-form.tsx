@@ -68,7 +68,7 @@ export default function FeedbackForm({ id }: { id: string }) {
       <div className={styles.commentSection}>
         <label className={styles.ratingLabel}>Nhận xét của bạn:</label>
         <textarea
-          className={styles.commentInput}
+          className={`${styles.commentInput} !text-foreground`}
           value={content}
           onChange={handleCommentChange}
           placeholder="Hãy chia sẻ cảm nhận của bạn về sản phẩm này."

@@ -71,9 +71,18 @@ export default function CreateProductForm() {
             productApiRequest.collectionProductsStaff(),
             productApiRequest.sizeProductsStaff(),
           ]);
-        setTypes(typeResponse.payload.data);
-        setCollections(collectionResponse.payload.data);
-        setSizes(sizeResponse.payload.data);
+        const IsDeleteType = typeResponse.payload.data.filter(
+          (type) => !type.deleted
+        );
+        setTypes(IsDeleteType);
+        const IsDeleteCollections = collectionResponse.payload.data.filter(
+          (collection) => !collection.deleted
+        );
+        setCollections(IsDeleteCollections);
+        const IsDeleteSize = sizeResponse.payload.data.filter(
+          (size) => !size.deleted
+        );
+        setSizes(IsDeleteSize);
       } catch (error) {
         console.log("fail to get Detail Product: ", error);
       } finally {
@@ -166,7 +175,7 @@ export default function CreateProductForm() {
     index: number,
     field: { onChange: (value: string[]) => void }
   ) => {
-    console.log(File);
+    // console.log(File);
     if (previewUrls.length === 1) {
       field.onChange([]);
     }
@@ -174,7 +183,7 @@ export default function CreateProductForm() {
   };
 
   return (
-    <div className={styles.createForm}>
+    <div className={`${styles.createForm} !bg-background `}>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit, (error) => console.log(error))}
@@ -186,7 +195,7 @@ export default function CreateProductForm() {
             name="pictures"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="!text-black font-bold">
+                <FormLabel className="!text-foreground font-bold">
                   Ảnh sản phẩm
                 </FormLabel>
                 <FormControl>
@@ -278,7 +287,7 @@ export default function CreateProductForm() {
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="!text-black font-bold">
+                    <FormLabel className="!text-foreground font-bold">
                       Tên sản phẩm
                     </FormLabel>
                     <FormControl>
@@ -295,7 +304,7 @@ export default function CreateProductForm() {
                 name="status"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="!text-black font-bold">
+                    <FormLabel className="!text-foreground font-bold">
                       Trạng thái
                     </FormLabel>
                     <FormControl>
@@ -324,7 +333,7 @@ export default function CreateProductForm() {
                 name="weight"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="!text-black font-bold">
+                    <FormLabel className="!text-foreground font-bold">
                       Trọng lượng (gam)
                     </FormLabel>
                     <FormControl>
@@ -341,7 +350,7 @@ export default function CreateProductForm() {
                 name="sizes"
                 render={() => (
                   <FormItem>
-                    <FormLabel className="!text-black font-bold">
+                    <FormLabel className="!text-foreground font-bold">
                       Kích cỡ
                     </FormLabel>
                     <FormControl>
@@ -429,7 +438,7 @@ export default function CreateProductForm() {
                 name="typeId"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="!text-black font-bold">
+                    <FormLabel className="!text-foreground font-bold">
                       Loại sản phẩm
                     </FormLabel>
                     <FormControl>
@@ -441,7 +450,7 @@ export default function CreateProductForm() {
                         <SelectTrigger>
                           <SelectValue placeholder="Chọn loại sản phẩm" />
                         </SelectTrigger>
-                        <SelectContent className={styles.selectContent}>
+                        <SelectContent className={`${styles.selectContent}`}>
                           {types.map((type) => (
                             <SelectItem
                               className={styles.selectItem}
@@ -464,7 +473,7 @@ export default function CreateProductForm() {
                 name="collectionId"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="!text-black font-bold">
+                    <FormLabel className="!text-foreground font-bold">
                       Bộ sưu tập
                     </FormLabel>
                     <FormControl>
@@ -499,7 +508,7 @@ export default function CreateProductForm() {
                 name="unitPrice"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="!text-black font-bold">Giá</FormLabel>
+                    <FormLabel className="!text-foreground font-bold">Giá</FormLabel>
                     <FormControl>
                       <Input placeholder="VND" {...field} />
                     </FormControl>
@@ -514,7 +523,7 @@ export default function CreateProductForm() {
                 name="description"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="!text-black font-bold">
+                    <FormLabel className="!text-foreground font-bold">
                       Mô tả sản phẩm
                     </FormLabel>
                     <FormControl>

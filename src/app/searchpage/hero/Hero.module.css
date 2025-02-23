@@ -38,10 +38,12 @@
   inset: 0;
   height: 100%;
   width: 70%;
-  left: 15%;
   z-index: -1;
   object-fit: cover;
   object-position: 0 30%;
+  transform: translateX(-50%);
+  left: 50%;
+  object-position: center top; 
 }
 
 .contentWrapper {
@@ -111,9 +113,7 @@
     height: 150px;
     min-height: 0px;
   }
-  .backgroundImage {
-    object-position: center top; /* Căn chỉnh lên trên một chút cho hình ảnh nhỏ */
-  }
+
 
   .contentWrapper {
     padding-left: 20px;

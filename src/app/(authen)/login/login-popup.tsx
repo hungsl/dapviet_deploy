@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Suspense } from "react";
 export default function LoginPopup() {
   return (
-    <div className={styles.loginPage}>
+    <div className={`${styles.loginPage} bg-background`}>
       <div className={styles.contentWrapper}>
         <div className={styles.loginSection}>
           <div className={styles.brandSection}>

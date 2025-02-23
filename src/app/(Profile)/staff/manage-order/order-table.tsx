@@ -110,7 +110,7 @@ export default function OrderTable() {
         <select
           value={properties}
           onChange={(e) => setProperties(e.target.value)}
-          className="border border-gray-300 rounded px-2 py-1 mr-2"
+          className="border border-gray-300 text-foreground rounded px-2 py-1 mr-2"
         >
           <option value="id">ID</option>
           <option value="email">Email</option>
@@ -121,7 +121,7 @@ export default function OrderTable() {
         <select
           value={direction}
           onChange={(e) => setDirection(e.target.value)}
-          className="border border-gray-300 rounded px-2 py-1 mr-2"
+          className="border border-gray-300 rounded text-foreground px-2 py-1 mr-2"
         >
           <option value="ASC">Tăng dần</option>
           <option value="DESC">Giảm dần</option>
@@ -138,7 +138,7 @@ export default function OrderTable() {
 
         <table className={styles.table}>
           <thead>
-            <tr className={styles.tableRow}>
+            <tr className={`${styles.tableRow} text-black`}>
               <th className={styles.tableHead}>Mã đơn hàng</th>
               <th className={styles.tableHead}>Email</th>
               <th className={`${styles.tableHead} ${styles.textRight}`}>
@@ -204,7 +204,7 @@ export default function OrderTable() {
         </table>
       </div>
       {totalPages > 1 && (
-        <Pagination className="mt-10">
+        <Pagination className="mt-10 text-foreground">
           <PaginationContent>
             {/* Nút Previous */}
             <PaginationItem>

@@ -52,7 +52,7 @@ export default function CreateCateForm() {
   }
 
   return (
-    <div className={styles.createForm}>
+    <div className={`${styles.createForm} !bg-background`}>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit, (error) => console.log(error))}
@@ -64,7 +64,7 @@ export default function CreateCateForm() {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="!text-black font-bold">
+                <FormLabel className="!text-foreground font-bold">
                   Tên danh mục
                 </FormLabel>
                 <FormControl>

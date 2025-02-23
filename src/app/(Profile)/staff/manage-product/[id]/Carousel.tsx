@@ -49,7 +49,7 @@ export default function CarouselProductDetail({
       <div>
         <Button
           variant="outline"
-          className={`${styles.button} ${styles.prevButton} ${styles.preReleButton}`}
+          className={`${styles.button} ${styles.prevButton} ${styles.preReleButton} text-foreground`}
           onClick={handlePrev}
           disabled={currentIndex === 0}
         >
@@ -59,7 +59,7 @@ export default function CarouselProductDetail({
         {/* Nút Next */}
         <Button
           variant="outline"
-          className={`${styles.button} ${styles.nextButton} ${styles.nextReleButton}`}
+          className={`${styles.button} ${styles.nextButton} ${styles.nextReleButton} text-foreground`}
           onClick={handleNext}
           disabled={currentIndex + itemsPerPage >= productsImg.length}
         >

@@ -52,17 +52,15 @@ const productApiRequest = {
         `&direction=${params.direction || ""}` +
         `&properties=unitPrice`
     ),
-  productsStaff: (
-    params: {
-      search?: string;
-      page?: number;
-      size?: number;
-      direction?: string;
-      minPrice?: number;
-      maxPrice?: number;
-      properties?: string;
-    },
-  ) =>
+  productsStaff: (params: {
+    search?: string;
+    page?: number;
+    size?: number;
+    direction?: string;
+    minPrice?: number;
+    maxPrice?: number;
+    properties?: string;
+  }) =>
     http.get<ProductListResType>(
       `/products/staff?` +
         `search=${params.search || ""}` +
@@ -71,40 +69,22 @@ const productApiRequest = {
         `&page=${params.page || ""}` +
         `&size=${params.size || ""}` +
         `&direction=${params.direction || ""}` +
-        `&properties=${params.properties || ""}`,
+        `&properties=${params.properties || ""}`
     ),
 
-  sizeProductsStaff: () =>
-    http.get<TypesListResType>("/products/sizes/staff"),
-  typeProductsStaff: () =>
-    http.get<TypesListResType>("/products/types/staff"),
+  sizeProductsStaff: () => http.get<TypesListResType>("/products/sizes/staff"),
+  typeProductsStaff: () => http.get<TypesListResType>("/products/types/staff"),
   collectionProductsStaff: () =>
     http.get<collectionListResType>("/products/collections/staff"),
   productStaff: (id: string) =>
     http.get<ProductResType>(`/products/${id}/staff`),
-  updateProductStaff: (
-    id: string,
-    body: UpdateApiProductBodyType,
-  ) =>
+  updateProductStaff: (id: string, body: UpdateApiProductBodyType) =>
     http.put<ProductResType>(`/products/${id}/staff`, body),
   createProductStaff: (body: UpdateApiProductBodyType) =>
     http.post<ProductResType>(`/products/staff`, body),
   deleteProductStaff: (id: string) =>
-    http.delete<CartResType>(
-      `/products/${id}/staff`,
-      {},
-      
-    ),
-  activeProductStaff: (id: string, accessToken: string) =>
-    http.delete<CartResType>(
-      `/products/${id}/reactive/staff`,
-      {},
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      }
-    ),
-    
+    http.delete<CartResType>(`/products/${id}/staff`, {}),
+  activeProductStaff: (id: string) =>
+    http.put<CartResType>(`/products/${id}/reactive/staff`, {}),
 };
 export default productApiRequest;

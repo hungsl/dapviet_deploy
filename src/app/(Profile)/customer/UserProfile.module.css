@@ -137,8 +137,9 @@
 }
 
 .sidebar.collapsed {
-  width: 90px;
+  width: 110px;
 }
+
 .menuToggle {
   background: none;
   border: none;
@@ -227,6 +228,9 @@
   .mainContent,
   .contentWrapper {
     max-width: 100%;
+  }
+  .sidebar.collapsed {
+    width: 100px;
   }
   .menuLabel {
     display: none;

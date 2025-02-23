@@ -10,14 +10,14 @@ import { useAppContext } from "../context/app-provider";
 import NotificationView from "./notification/notification";
 
 export type HeaderProps = {
-  accountGoogle: any; 
+  accountGoogle: any;
 };
 // const NotificationView = dynamic(() => import('./notification/notification'), { ssr: false })
 
 export default function SocialIcons() {
   const { isLoggedIn, setIsLoggedIn } = useAppContext();
   const [loading, setLoading] = useState(true);
-  
+
   useEffect(() => {
     const storedToken = localStorage.getItem("accessToken");
     if (storedToken) {
@@ -25,10 +25,10 @@ export default function SocialIcons() {
     } else {
       setIsLoggedIn(false);
     }
-    setLoading(false)
+    setLoading(false);
   }, [setIsLoggedIn]);
   if (loading) {
-    return <div className={`w-[170px] ${styles.socialContainer}`}></div>; 
+    return <div className={`w-[170px] ${styles.socialContainer}`}></div>;
   }
   return (
     <>
@@ -40,7 +40,10 @@ export default function SocialIcons() {
           <ModeToggle />
         </div>
       ) : (
-        <AuthenButton />
+        <div className="flex gap-3">
+          <AuthenButton />
+          <ModeToggle />
+        </div>
       )}
     </>
   );

@@ -1,406 +1,416 @@
-  @keyframes subtleGradient {
-    0% {
-      background: rgb(242, 250, 255);
-    }
-    50% {
-      background: rgb(220, 240, 255);
-    }
-    100% {
-      background: rgb(242, 250, 255);
-    }
+@keyframes subtleGradient {
+  0% {
+    background: rgb(242, 250, 255, 0.589);
   }
-  .container {
-    animation: subtleGradient 5s infinite alternate;
-    position: relative;
-    padding: 0 75px 9px;
+  50% {
+    background: rgba(220, 240, 255, 0.589);
   }
-  
-  .container::before {
-    content: "";
-    position: absolute;
-    top: -50px;
-    left: -50px;
-    width: 200px;
-    height: 200px;
-    background: rgba(255, 215, 0, 0.2);
-    border-radius: 50%;
-    z-index: 0;
+  100% {
+    background: rgba(157, 217, 255, 0.589);
   }
-  
-  .container .content {
-    position: relative;
-    z-index: 1;
-  }
-  .content {
-    display: flex;
-    gap: 0px;
-  }
-  
-  .leftColumn {
-    width: 41%;
-  }
-  
-  .imageGroup {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .mainImageWrapper {
-    margin-top: 50px;
-    width: 38%;
-  }
-  .mainImageWrapper {
-    -webkit-animation: mainImageWrapper 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-            animation: mainImageWrapper 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-  }
-  @-webkit-keyframes mainImageWrapper {
-    0% {
-      -webkit-transform: scaleX(0);
-              transform: scaleX(0);
-      -webkit-transform-origin: 0% 0%;
-              transform-origin: 0% 0%;
-      opacity: 1;
-    }
-    100% {
-      -webkit-transform: scaleX(1);
-              transform: scaleX(1);
-      -webkit-transform-origin: 0% 0%;
-              transform-origin: 0% 0%;
-      opacity: 1;
-    }
-  }
-  @keyframes mainImageWrapper {
-    0% {
-      -webkit-transform: scaleX(0);
-              transform: scaleX(0);
-      -webkit-transform-origin: 0% 0%;
-              transform-origin: 0% 0%;
-      opacity: 1;
-    }
-    100% {
-      -webkit-transform: scaleX(1);
-              transform: scaleX(1);
-      -webkit-transform-origin: 0% 0%;
-              transform-origin: 0% 0%;
-      opacity: 1;
-    }
-  }
-  
-  .mainImage {
-    aspect-ratio: 0.53;
-    object-fit: contain;
-    width: 100%;
-  }
-  .brandTitle
-   {
-    -webkit-animation: brandTitle 2s linear infinite both;
-            animation: brandTitle 2s linear infinite both;
-  }
-  @-webkit-keyframes brandTitle {
-    0% {
-      -webkit-transform: translate(0);
-              transform: translate(0);
-    }
-    20% {
-      -webkit-transform: translate(-2px, 2px);
-              transform: translate(-2px, 2px);
-    }
-    40% {
-      -webkit-transform: translate(-2px, -2px);
-              transform: translate(-2px, -2px);
-    }
-    60% {
-      -webkit-transform: translate(2px, 2px);
-              transform: translate(2px, 2px);
-    }
-    80% {
-      -webkit-transform: translate(2px, -2px);
-              transform: translate(2px, -2px);
-    }
-    100% {
-      -webkit-transform: translate(0);
-              transform: translate(0);
-    }
-  }
-  @keyframes brandTitle {
-    0% {
-      -webkit-transform: translate(0);
-              transform: translate(0);
-    }
-    20% {
-      -webkit-transform: translate(-2px, 2px);
-              transform: translate(-2px, 2px);
-    }
-    40% {
-      -webkit-transform: translate(-2px, -2px);
-              transform: translate(-2px, -2px);
-    }
-    60% {
-      -webkit-transform: translate(2px, 2px);
-              transform: translate(2px, 2px);
-    }
-    80% {
-      -webkit-transform: translate(2px, -2px);
-              transform: translate(2px, -2px);
-    }
-    100% {
-      -webkit-transform: translate(0);
-              transform: translate(0);
-    }
-  }
-  
-  .sideImageWrapper {
-    width: 42%;
-  }
-  .sideImageWrapper {
-    -webkit-animation: sideImageWrapper 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-            animation: sideImageWrapper 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-  }
-  @-webkit-keyframes sideImageWrapper {
-    0% {
-      -webkit-transform: scaleX(0);
-              transform: scaleX(0);
-      opacity: 1;
-    }
-    100% {
-      -webkit-transform: scaleX(1);
-              transform: scaleX(1);
-      opacity: 1;
-    }
-  }
-  @keyframes sideImageWrapper {
-    0% {
-      -webkit-transform: scaleX(0);
-              transform: scaleX(0);
-      opacity: 1;
-    }
-    100% {
-      -webkit-transform: scaleX(1);
-              transform: scaleX(1);
-      opacity: 1;
-    }
-  }
-  
-  
-  .sideImage {
-    aspect-ratio: 0.36;
-    object-fit: contain;
-    width: 189px;
-    max-width: 100%;
-    flex-grow: 1;
-  }
-  
-  .rightColumn {
-    width: 59%;
-  }
-  
-  .brandSection {
-    width: 100%;
-  }
-  
-  .brandContainer {
-    display: flex;
-    gap: 20px;
-  }
-  
-  .brandContentWrapper {
-    width: 73%;
-    display: flex;
-    flex-direction: column;  /* Đảm bảo các phần tử con nằm theo chiều dọc */
-    justify-content: flex-end;  /* Căn dưới cùng */
+}
+.container {
+  animation: subtleGradient 5s infinite alternate;
+  position: relative;
+  padding: 0 75px 9px;
+}
+.backgroundImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -10;
+  object-fit: cover;
 }
 
-  
-  .brandContent {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-family: Inter, sans-serif;
-    justify-content: center;
-    margin: auto 0;
+.container::before {
+  content: "";
+  position: absolute;
+  top: -50px;
+  left: -50px;
+  width: 200px;
+  height: 200px;
+  background: rgba(255, 215, 0, 0.2);
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.container .content {
+  position: relative;
+  z-index: 1;
+}
+
+.content {
+  display: flex;
+  gap: 0px;
+}
+
+.leftColumn {
+  width: 41%;
+}
+
+.imageGroup {
+  display: flex;
+  justify-content: space-between;
+}
+
+.mainImageWrapper {
+  margin-top: 50px;
+  width: 38%;
+}
+.mainImageWrapper {
+  -webkit-animation: mainImageWrapper 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+    both;
+  animation: mainImageWrapper 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+@-webkit-keyframes mainImageWrapper {
+  0% {
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    -webkit-transform-origin: 0% 0%;
+    transform-origin: 0% 0%;
+    opacity: 1;
   }
-  
-  .brandHeader {
-    display: flex;
-    min-height: 100px;
-    width: 292px;
-    max-width: 100%;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  100% {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+    -webkit-transform-origin: 0% 0%;
+    transform-origin: 0% 0%;
+    opacity: 1;
   }
-  .brandDescription,
-  .brandHeader {
-    animation: brandHeader 0.9s both;
+}
+@keyframes mainImageWrapper {
+  0% {
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    -webkit-transform-origin: 0% 0%;
+    transform-origin: 0% 0%;
+    opacity: 1;
   }
-  @keyframes brandHeader {
-    0% {
-      transform: translateY(-45px);
-      animation-timing-function: ease-in;
-      opacity: 1;
-    }
-    24% {
-      opacity: 1;
-    }
-    40% {
-      transform: translateY(-24px);
-      animation-timing-function: ease-in;
-    }
-    65% {
-      transform: translateY(-12px);
-      animation-timing-function: ease-in;
-    }
-    82% {
-      transform: translateY(-6px);
-      animation-timing-function: ease-in;
-    }
-    93% {
-      transform: translateY(-4px);
-      animation-timing-function: ease-in;
-    }
-    25%,
-    55%,
-    75%,
-    87% {
-      transform: translateY(0px);
-      animation-timing-function: ease-out;
-    }
-    100% {
-      transform: translateY(0px);
-      animation-timing-function: ease-out;
-      opacity: 1;
-    }
+  100% {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+    -webkit-transform-origin: 0% 0%;
+    transform-origin: 0% 0%;
+    opacity: 1;
   }
-  
-  .brandTitle {
-    color: #000;
-    font-size: 50px;
-    font-weight: 800;
+}
+
+.mainImage {
+  aspect-ratio: 0.53;
+  object-fit: contain;
+  width: 100%;
+}
+.brandTitle {
+  -webkit-animation: brandTitle 2s linear infinite both;
+  animation: brandTitle 2s linear infinite both;
+}
+@-webkit-keyframes brandTitle {
+  0% {
+    -webkit-transform: translate(0);
+    transform: translate(0);
   }
-  
-  .brandSubtitle {
-    color: #000;
-    font-size: 20px;
-    font-weight: 300;
+  20% {
+    -webkit-transform: translate(-2px, 2px);
+    transform: translate(-2px, 2px);
   }
-  
-  .brandDivider {
-    width: 345px; 
-    height: 1px; 
-    background-color: #000; 
-    margin: 5px 0; 
+  40% {
+    -webkit-transform: translate(-2px, -2px);
+    transform: translate(-2px, -2px);
   }
-  .brandDescription {
-    border-radius: 0;
-    display: flex;
-    margin-top: 8px;
-    max-width: 100%;
-    width: 520px;
-    flex-direction: column;
-    font-size: 16px;
-    color: #000;
-    font-weight: 400;
-    text-align: center;
-    padding: 0 7px 31px;
+  60% {
+    -webkit-transform: translate(2px, 2px);
+    transform: translate(2px, 2px);
   }
-  
-  .descriptionText {
-    margin-top: 9px;
-    font-size: 17px;
+  80% {
+    -webkit-transform: translate(2px, -2px);
+    transform: translate(2px, -2px);
   }
-  
-  .decorativeImageWrapper {
-    margin-top: 50px;
-    width: 19%;
+  100% {
+    -webkit-transform: translate(0);
+    transform: translate(0);
   }
-  .decorativeImageWrapper {
-    -webkit-animation: decorativeImageWrapper 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-            animation: decorativeImageWrapper 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+@keyframes brandTitle {
+  0% {
+    -webkit-transform: translate(0);
+    transform: translate(0);
   }
-  @-webkit-keyframes decorativeImageWrapper {
-    0% {
-      -webkit-transform: scaleX(0);
-              transform: scaleX(0);
-      -webkit-transform-origin: 100% 100%;
-              transform-origin: 100% 100%;
-      opacity: 1;
-    }
-    100% {
-      -webkit-transform: scaleX(1);
-              transform: scaleX(1);
-      -webkit-transform-origin: 100% 100%;
-              transform-origin: 100% 100%;
-      opacity: 1;
-    }
+  20% {
+    -webkit-transform: translate(-2px, 2px);
+    transform: translate(-2px, 2px);
   }
-  @keyframes decorativeImageWrapper {
-    0% {
-      -webkit-transform: scaleX(0);
-              transform: scaleX(0);
-      -webkit-transform-origin: 100% 100%;
-              transform-origin: 100% 100%;
-      opacity: 1;
-    }
-    100% {
-      -webkit-transform: scaleX(1);
-              transform: scaleX(1);
-      -webkit-transform-origin: 100% 100%;
-              transform-origin: 100% 100%;
-      opacity: 1;
-    }
+  40% {
+    -webkit-transform: translate(-2px, -2px);
+    transform: translate(-2px, -2px);
   }
-  
-  .decorativeImage {
-    object-fit: contain;
-    max-width: 100%;
-    flex-grow: 1;
-    width: 300px
+  60% {
+    -webkit-transform: translate(2px, 2px);
+    transform: translate(2px, 2px);
   }
-  
-  /* Điện thoại phổ thông */
+  80% {
+    -webkit-transform: translate(2px, -2px);
+    transform: translate(2px, -2px);
+  }
+  100% {
+    -webkit-transform: translate(0);
+    transform: translate(0);
+  }
+}
+
+.sideImageWrapper {
+  width: 42%;
+}
+.sideImageWrapper {
+  -webkit-animation: sideImageWrapper 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+    both;
+  animation: sideImageWrapper 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+@-webkit-keyframes sideImageWrapper {
+  0% {
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+@keyframes sideImageWrapper {
+  0% {
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+.sideImage {
+  aspect-ratio: 0.36;
+  object-fit: contain;
+  width: 189px;
+  max-width: 100%;
+  flex-grow: 1;
+}
+
+.rightColumn {
+  width: 59%;
+}
+
+.brandSection {
+  width: 100%;
+}
+
+.brandContainer {
+  display: flex;
+  gap: 20px;
+}
+
+.brandContentWrapper {
+  width: 73%;
+  display: flex;
+  flex-direction: column; /* Đảm bảo các phần tử con nằm theo chiều dọc */
+  justify-content: flex-end; /* Căn dưới cùng */
+}
+
+.brandContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Inter, sans-serif;
+  justify-content: center;
+  margin: auto 0;
+}
+
+.brandHeader {
+  display: flex;
+  min-height: 100px;
+  width: 292px;
+  max-width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.brandDescription,
+.brandHeader {
+  animation: brandHeader 0.9s both;
+}
+@keyframes brandHeader {
+  0% {
+    transform: translateY(-45px);
+    animation-timing-function: ease-in;
+    opacity: 1;
+  }
+  24% {
+    opacity: 1;
+  }
+  40% {
+    transform: translateY(-24px);
+    animation-timing-function: ease-in;
+  }
+  65% {
+    transform: translateY(-12px);
+    animation-timing-function: ease-in;
+  }
+  82% {
+    transform: translateY(-6px);
+    animation-timing-function: ease-in;
+  }
+  93% {
+    transform: translateY(-4px);
+    animation-timing-function: ease-in;
+  }
+  25%,
+  55%,
+  75%,
+  87% {
+    transform: translateY(0px);
+    animation-timing-function: ease-out;
+  }
+  100% {
+    transform: translateY(0px);
+    animation-timing-function: ease-out;
+    opacity: 1;
+  }
+}
+
+.brandTitle {
+  color: #000;
+  font-size: 50px;
+  font-weight: 800;
+}
+
+.brandSubtitle {
+  color: #000;
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.brandDivider {
+  width: 345px;
+  height: 1px;
+  background-color: #000;
+  margin: 5px 0;
+}
+.brandDescription {
+  border-radius: 0;
+  display: flex;
+  margin-top: 8px;
+  max-width: 100%;
+  width: 520px;
+  flex-direction: column;
+  font-size: 16px;
+  color: #000;
+  font-weight: 400;
+  text-align: center;
+  padding: 0 7px 31px;
+}
+
+.descriptionText {
+  margin-top: 9px;
+  font-size: 17px;
+}
+
+.decorativeImageWrapper {
+  margin-top: 50px;
+  width: 19%;
+}
+.decorativeImageWrapper {
+  -webkit-animation: decorativeImageWrapper 0.5s
+    cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: decorativeImageWrapper 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+    both;
+}
+@-webkit-keyframes decorativeImageWrapper {
+  0% {
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    -webkit-transform-origin: 100% 100%;
+    transform-origin: 100% 100%;
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+    -webkit-transform-origin: 100% 100%;
+    transform-origin: 100% 100%;
+    opacity: 1;
+  }
+}
+@keyframes decorativeImageWrapper {
+  0% {
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    -webkit-transform-origin: 100% 100%;
+    transform-origin: 100% 100%;
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+    -webkit-transform-origin: 100% 100%;
+    transform-origin: 100% 100%;
+    opacity: 1;
+  }
+}
+
+.decorativeImage {
+  object-fit: contain;
+  max-width: 100%;
+  flex-grow: 1;
+  width: 300px;
+}
+
+/* Điện thoại phổ thông */
 @media (max-width: 760px) {
   .container {
     padding: 10px;
     flex-direction: column;
     gap: 15px;
   }
-  
+
   .brandSubtitle,
   .brandDescription,
-  .brandTitle{
+  .brandTitle {
     font-size: 10px;
     padding: 0;
   }
-  .descriptionText{
+  .descriptionText {
     font-size: 8px;
   }
-  
-  .imageGroup{
+
+  .imageGroup {
     gap: 5px;
   }
   .mainImageWrapper {
     margin-top: 0px;
     width: 70%;
   }
-  .brandContainer{
+  .brandContainer {
     gap: 5px;
   }
-  .sideImageWrapper{
+  .sideImageWrapper {
     width: 50%;
   }
-  .brandDescription{
+  .brandDescription {
     margin-top: 0px;
   }
-  .descriptionText{
+  .descriptionText {
     margin-top: 2px;
   }
-  .brandDivider{
+  .brandDivider {
     width: 100px;
   }
-  .brandHeader{
+  .brandHeader {
     min-height: 0px;
   }
-  .decorativeImageWrapper{
+  .decorativeImageWrapper {
     margin-top: 0px;
     width: 90%;
   }

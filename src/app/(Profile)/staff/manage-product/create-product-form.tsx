@@ -71,6 +71,7 @@ export default function CreateProductForm() {
             productApiRequest.collectionProductsStaff(),
             productApiRequest.sizeProductsStaff(),
           ]);
+          // console.log(typeResponse.payload.data)
         const IsDeleteType = typeResponse.payload.data.filter(
           (type) => !type.deleted
         );

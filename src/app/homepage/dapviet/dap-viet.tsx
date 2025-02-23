@@ -1,29 +1,33 @@
-import React from 'react';
-import styles from './DapViet.module.css';
-import { BrandDescription } from './brand-description';
-import { BrandImage } from './brand-image';
+import React from "react";
+import styles from "./DapViet.module.css";
+import { BrandDescription } from "./brand-description";
+import { BrandImage } from "./brand-image";
+import Image from "next/image";
 
 export default function DapViet() {
   return (
     <div className={styles.container}>
+       <Image
+          src="/homepage/background.png"
+          width={1000}
+          height={1000}
+          quality={100}
+          alt="trang-chu"
+          className={styles.backgroundImage}
+        />
       <div className={styles.content}>
         <div className={styles.leftColumn}>
           <div className={styles.imageGroup}>
             <div className={styles.mainImageWrapper}>
               <BrandImage
                 src="/homepage/aotrang.png"
-                // src="/homepage/header/hompage1PP.png"
-
-                // src="/homepage/header/HomepagePerson3.png"
                 alt="Traditional Vietnamese clothing showcase"
                 className={styles.mainImage}
               />
             </div>
             <div className={styles.sideImageWrapper}>
               <BrandImage
-              //  src="/homepage/aotrang.png"
                 src="/homepage/aoxanh2.png"
-                // src="/homepage/header/HomePagePerson2.png"
                 alt="Vietnamese fashion detail"
                 className={styles.sideImage}
               />
@@ -54,4 +58,4 @@ export default function DapViet() {
       </div>
     </div>
   );
-};
+}

@@ -21,7 +21,7 @@ const productApiRequest = {
     ),
   collectionItem: (id: string) =>
     http.get<CollectionResType>(`/products/collections/${id}`),
-  category: () => http.get<CategoryListResType>("/products/types"),
+  category: () => http.get<CategoryListResType>("/products/types?size=100"),
 
   product: (id: string) => http.get<ProductResType>(`/products/${id}`),
   topProducts: () => http.get<TopProductListResType>(`/products/top?size=10`),
@@ -72,10 +72,10 @@ const productApiRequest = {
         `&properties=${params.properties || ""}`
     ),
 
-  sizeProductsStaff: () => http.get<TypesListResType>("/products/sizes/staff"),
-  typeProductsStaff: () => http.get<TypesListResType>("/products/types/staff"),
+  sizeProductsStaff: () => http.get<TypesListResType>(`/products/sizes/staff?size=${100}`),
+  typeProductsStaff: () => http.get<TypesListResType>(`/products/types/staff?size=${100}`),
   collectionProductsStaff: () =>
-    http.get<collectionListResType>("/products/collections/staff"),
+    http.get<collectionListResType>(`/products/collections/staff?size=${100}`),
   productStaff: (id: string) =>
     http.get<ProductResType>(`/products/${id}/staff`),
   updateProductStaff: (id: string, body: UpdateApiProductBodyType) =>

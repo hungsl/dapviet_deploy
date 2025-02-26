@@ -32,7 +32,7 @@ export default function SizeButton({
   sizeQuantities: SizeQuantityResType;
   // productName: string;
 }) {
-  const { setIsRefresh, isRefresh } = useAppContext();
+  const { setIsRefresh, isRefresh, isLoggedIn } = useAppContext();
   const [accessToken, setAccessToken] = useState<string | null>(null);
   const [selectedSize, setSelectedSize] = useState("");
   const [quantity, setQuantity] = useState(1);
@@ -75,7 +75,7 @@ export default function SizeButton({
       });
       return;
     }
-    if (accessToken) {
+    if (accessToken || isLoggedIn) {
       const selectedProductQuantityId = Object.keys(sizeQuantities).find(
         (key) => sizeQuantities[key].size === selectedSize
       );

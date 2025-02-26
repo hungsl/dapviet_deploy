@@ -44,7 +44,7 @@ export default function RefreshToken() {
         new Date(expiresAt.getTime()),
         now
       );// tính xem còn hạn hay không
-      console.log("Còn lại:", remainingTime, "phút");
+      // console.log("Còn lại:", remainingTime, "phút");
       if (remainingTime < 10) {
         // console.log("refreshToken do hết thời gian");
         await refreshAccessToken(true); // khi mà token bị hết phiên cần load lại trang
@@ -114,7 +114,7 @@ export default function RefreshToken() {
           //có thời gian hết hạn rồi, check thời gian hết hạn với thời gian hiện tại để lấy ra số phút còn lại
           const now = new Date();
           const remainingTime = differenceInMinutes(new Date(expireTime), now);
-          console.log("Còn lại:", remainingTime, "phút");
+          // console.log("Còn lại:", remainingTime, "phút");
           if (remainingTime < 10) {
             await refreshAccessToken(false); // khi mà chỉ cần refresh token không cần load lại trang
           }

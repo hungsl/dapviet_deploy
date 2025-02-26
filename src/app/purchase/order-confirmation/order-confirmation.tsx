@@ -1,12 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./OrderConfimation.module.css";
 import Link from "next/link";
 import { usePopup } from "@/app/context/popup-provider";
 import Image from "next/image";
+import { useMutation } from "convex/react";
+import { api } from "../../../../convex/_generated/api";
+import { useAppContext } from "@/app/context/app-provider";
 
 export const SuccessOrder: React.FC = () => {
   const {closePopup} = usePopup();
-  
+    const triggerClick = useMutation(api.memory.triggerClick);
+    const {setIsRefresh, isRefresh} = useAppContext();
+  useEffect(() => {
+    triggerClick();
+    setIsRefresh(!isRefresh);
+  },[])
   return (
     <div className={styles.container}>
       <Image

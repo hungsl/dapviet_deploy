@@ -20,14 +20,16 @@ export default function DapViet() {
           <div className={styles.imageGroup}>
             <div className={styles.mainImageWrapper}>
               <BrandImage
-                src="/homepage/aotrang.png"
+                // src="/homepage/aotrang.png"
+                src="/homepage/hac2.png"
                 alt="Traditional Vietnamese clothing showcase"
                 className={styles.mainImage}
               />
             </div>
             <div className={styles.sideImageWrapper}>
               <BrandImage
-                src="/homepage/aoxanh2.png"
+                // src="/homepage/aoxanh2.png"
+                src="/homepage/hac.png"
                 alt="Vietnamese fashion detail"
                 className={styles.sideImage}
               />
@@ -46,11 +48,12 @@ export default function DapViet() {
                 />
               </div>
               <div className={styles.decorativeImageWrapper}>
-                <BrandImage
+                {/* <BrandImage
+                  // src="/homepage/aovang1.png"
                   src="/homepage/aovang1.png"
                   alt="Decorative Vietnamese pattern"
                   className={styles.decorativeImage}
-                />
+                /> */}
               </div>
             </div>
           </div>

@@ -154,7 +154,7 @@ export default function PurchaseHistoryTable() {
                         pathname: `/customer/history/${item.orderDetailId}`,
                         query: { product: item.productId },
                       }}
-                      className={styles.buttom}
+                      className={`${styles.buttom} whitespace-nowrap`}
                     >
                       Đánh Giá
                     </Link>

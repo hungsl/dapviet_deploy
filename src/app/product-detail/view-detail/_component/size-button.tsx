@@ -2,32 +2,37 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import styles from "../ProductDetail.module.css";
 // import IntroductionSize from "./introduction-size";
-import accountApiRequest from "@/apiRequests/account";
-// import { useAppContext } from "@/app/context/app-provider";
-import { useMutation } from "convex/react";
-import { api } from "../../../../../convex/_generated/api";
+// import accountApiRequest from "@/apiRequests/account";
+// // import { useAppContext } from "@/app/context/app-provider";
+// import { useMutation } from "convex/react";
+// import { api } from "../../../../../convex/_generated/api";
 import cartApiRequest from "@/apiRequests/cart";
 import { toast } from "@/hooks/use-toast";
 
 // import { Loader2 } from "lucide-react";
 import dynamic from "next/dynamic";
 import { usePopup } from "@/app/context/popup-provider";
+import { useAppContext } from "@/app/context/app-provider";
 
-
-
-const IntroductionSize = dynamic(() => import("./introduction-size"), { ssr: false });
-const Loader2 = dynamic(() => import("lucide-react").then(mod => mod.Loader2), { ssr: false });
+const IntroductionSize = dynamic(() => import("./introduction-size"), {
+  ssr: false,
+});
+const Loader2 = dynamic(
+  () => import("lucide-react").then((mod) => mod.Loader2),
+  { ssr: false }
+);
 
 const sizes = ["XXS", "XS", "S", "M", "L", "XL", "XXL", "XXXL"];
 type SizeQuantityResType = Record<string, { size: string; quantity: number }>;
 
 export default function SizeButton({
   sizeQuantities,
-  productName,
+  // productName,
 }: {
   sizeQuantities: SizeQuantityResType;
-  productName: string;
+  // productName: string;
 }) {
+  const { setIsRefresh, isRefresh } = useAppContext();
   const [accessToken, setAccessToken] = useState<string | null>(null);
   const [selectedSize, setSelectedSize] = useState("");
   const [quantity, setQuantity] = useState(1);
@@ -39,24 +44,27 @@ export default function SizeButton({
     setAccessToken(token);
   }, []);
   // const { accessToken } = useAppContext();
-  const [userId, setUserId] = useState("");
-  useEffect(() => {
-    const CallUser = async () => {
-      if (accessToken) {
-        try {
-          const result = await accountApiRequest.meClient();
-          // console.log(result)
-          setUserId(result.payload.data.id); // Set userId sau khi có kết quả
-        } catch (error) {
-          console.error("Error fetching user data:", error);
-        }
-      }
-    };
-    CallUser();
-  }, [accessToken]);
+  // const [userId, setUserId] = useState("");
+  // useEffect(() => {
+  //   const CallUser = async () => {
+  //     if (accessToken) {
+  //       try {
+  //         const result = await accountApiRequest.meClient();
+  //         // console.log(result)
+  //         setUserId(result.payload.data.id); // Set userId sau khi có kết quả
+  //       } catch (error) {
+  //         console.error("Error fetching user data:", error);
+  //       }
+  //     }
+  //   };
+  //   CallUser();
+  // }, [accessToken]);
 
-  const createNotification = useMutation(api.notification.createNotification);
+  // const createNotification = useMutation(api.notification.createNotification);
   const handleAddToCart = async () => {
+    // console.log("add to cart")
+    // triggerClick();
+
     // Tìm productQuantityId
     if (selectedSize === "") {
       toast({
@@ -82,19 +90,20 @@ export default function SizeButton({
           quantity: quantity, // Số lượng người dùng đã chọn
         };
 
-        console.log("Payload gửi lên API:", cartPayload);
+        // console.log("Payload gửi lên API:", cartPayload);
 
         const response = await cartApiRequest.addToCart(cartPayload);
         toast({
           title: response.payload.message,
           duration: 4000,
         });
+        setIsRefresh(!isRefresh);
         // Tạo thông báo sau khi thêm giỏ hàng thành công
-        const notificationText = `Sản phẩm ${productName} (${selectedSize}, ${quantity} chiếc) đã được thêm vào giỏ hàng.`;
-        createNotification({
-          text: notificationText,
-          token: userId,
-        });
+        // const notificationText = `Sản phẩm ${productName} (${selectedSize}, ${quantity} chiếc) đã được thêm vào giỏ hàng.`;
+        // createNotification({
+        //   text: notificationText,
+        //   token: userId,
+        // });
       } catch (error) {
         console.log("Lỗi thêm vào cart: ", error);
         toast({
@@ -106,7 +115,7 @@ export default function SizeButton({
         setLoading(false);
       }
     } else {
-      setContent('login');
+      setContent("login");
       openPopup();
       toast({
         variant: "destructive",
@@ -236,8 +245,13 @@ export default function SizeButton({
           className={styles.buyButton}
           onClick={handleAddToCart}
         >
-          {loading ? <div className="flex justify-center"><Loader2 className="animate-spin " /> </div>: <>Thêm vào giỏ hàng</>}
-          
+          {loading ? (
+            <div className="flex justify-center">
+              <Loader2 className="animate-spin " />{" "}
+            </div>
+          ) : (
+            <>Thêm vào giỏ hàng</>
+          )}
         </button>
       </div>
     </>

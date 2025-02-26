@@ -12,6 +12,30 @@
   align-items: center;
   height: 85vh;
 }
+
+.statusList {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.statusItem {
+  padding: 6px 12px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  white-space: nowrap;
+  border-radius: 4px;
+  background-color: #f0f0f0;
+  color: #333;
+  font-weight: bold;
+}
+
+.statusActive {
+  background-color: #ff5722; /* Màu nổi bật cho trạng thái hiện tại */
+  color: white;
+}
+
 .title {
   font-size: 1.125rem; /* 18px */
   font-weight: 600;
@@ -145,9 +169,13 @@
   background-color: #eafaf1;
 }
 
-.statusCancel{
-  color: red;
-  background-color: #eafaf1;
+.statusCancel {
+  color: white;
+  background-color: #e63946; /* Đỏ đậm */
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  
 }
 
 .statusUnknown {

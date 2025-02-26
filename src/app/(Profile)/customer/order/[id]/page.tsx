@@ -5,7 +5,14 @@ import { cookies } from "next/headers";
 import orderApiRequest from "@/apiRequests/order";
 import { redirect } from "next/navigation";
 import Image from "next/image";
-
+import {
+  FaBox,
+  FaTruck,
+  FaCheckCircle,
+  FaTimesCircle,
+  FaClock,
+  FaStore,
+} from "react-icons/fa";
 export default async function OrderDetail({
   params,
 }: {
@@ -48,6 +55,24 @@ export default async function OrderDetail({
         return styles.statusCancel;
       default:
         return styles.statusUnknown;
+    }
+  };
+  const getStatusIcon = (status: string) => {
+    switch (status) {
+      case "PENDING":
+        return <FaClock />;
+      case "AWAITING_PICKUP":
+        return <FaStore />;
+      case "AWAITING_DELIVERY":
+        return <FaBox />;
+      case "IN_TRANSIT":
+        return <FaTruck />;
+      case "DELIVERED":
+        return <FaCheckCircle />;
+      case "CANCELED":
+        return <FaTimesCircle />;
+      default:
+        return null;
     }
   };
   let order;
@@ -94,13 +119,39 @@ export default async function OrderDetail({
         <div className={styles.infoSection}>
           {/* Trạng thái đơn hàng */}
           <div className={styles.statusSection}>
-            <strong>Trạng thái đơn hàng:</strong>{" "}
-            <span
-              className={`${styles.statusValue} ${getStatusClass(order.status)}`}
-            >
-              {translateStatus(order.status)}
-            </span>
+            <strong>Trạng thái đơn hàng:</strong>
+            {order.status !== "CANCELED" ? (
+              <div className={styles.statusList}>
+                {[
+                  "PENDING",
+                  "AWAITING_PICKUP",
+                  "AWAITING_DELIVERY",
+                  "IN_TRANSIT",
+                  "DELIVERED",
+                ].map((status) => (
+                  <span
+                    key={status}
+                    className={`${styles.statusItem} ${
+                      order.status === status
+                        ? `${styles.statusActive} ${getStatusClass(status)}`
+                        : ""
+                    }`}
+                  >
+                    {getStatusIcon(status)}
+                    {translateStatus(status)}
+                  </span>
+                ))}
+              </div>
+            ) : (
+              <span
+                className={`${styles.statusItem} ${`${styles.statusActive} ${getStatusClass("CANCELED")}`}`}
+              >
+                {getStatusIcon("CANCELED")}
+                {translateStatus("CANCELED")}
+              </span>
+            )}
           </div>
+
           <div className={styles.infoItem}>
             <strong>OrderId:</strong>
             <span className={styles.infoValue}>

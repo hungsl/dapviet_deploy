@@ -13,6 +13,7 @@ import type {
   FilterApi,
   FunctionReference,
 } from "convex/server";
+import type * as memory from "../memory.js";
 import type * as notification from "../notification.js";
 
 /**
@@ -24,6 +25,7 @@ import type * as notification from "../notification.js";
  * ```
  */
 declare const fullApi: ApiFromModules<{
+  memory: typeof memory;
   notification: typeof notification;
 }>;
 export declare const api: FilterApi<

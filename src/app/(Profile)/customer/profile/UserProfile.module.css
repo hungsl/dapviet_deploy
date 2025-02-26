@@ -116,7 +116,6 @@
 
 .fieldLabel {
   font-size: 15px;
-  color: rgb(0, 0, 0);
   display: block;
   margin-bottom: 8px;
   margin-top: 20px;
@@ -125,6 +124,7 @@
 .fieldValue {
   font-size: 15px;
   color: rgb(0, 0, 0);
+  padding: 10px;
   width: 555px;
 }
 

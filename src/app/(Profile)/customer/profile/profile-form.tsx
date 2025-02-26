@@ -151,7 +151,7 @@ export default function ProfileForm({
                           onChange={(date) =>
                             field.onChange(date?.toISOString().split("T")[0])
                           }
-                          className={`${styles.fieldValue} text-[15px] bg-[rgb(249,249,251)] text-black border border-gray-200 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-400`}
+                          className={`${styles.fieldValue} text-[15px] bg-[rgb(249,249,251)] text-foreground border border-gray-200 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-400`}
                           dateFormat="yyyy-MM-dd"
                           placeholderText="Chọn ngày sinh"
                           maxDate={new Date()} // Ngăn chọn ngày trong tương lai
@@ -246,7 +246,7 @@ export default function ProfileForm({
                           }}
                           value={field.value || ""}
                         >
-                          <SelectTrigger className="bg-[rgb(249,249,251)] text-black">
+                          <SelectTrigger className="bg-[rgb(249,249,251)] text-black p-[10px]">
                             <SelectValue placeholder="Chọn thành phố" />
                           </SelectTrigger>
                           <SelectContent
@@ -285,7 +285,7 @@ export default function ProfileForm({
                             value={field.value || ""}
                             // disabled={!selectedProvinceId} // Disable nếu chưa chọn tỉnh
                           >
-                            <SelectTrigger className="bg-[rgb(249,249,251)] text-black">
+                            <SelectTrigger className="bg-[rgb(249,249,251)] text-black p-[10px]">
                               <SelectValue placeholder="Chọn quận/huyện" />
                             </SelectTrigger>
                             <SelectContent

@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
-const products : ProductProps[]= [
+const products: ProductProps[] = [
   // {
   //   id: "PD1",
   //   name: "Sản phẩm 1",
@@ -92,6 +92,7 @@ const products : ProductProps[]= [
 ];
 
 export default function DiscountedProducts() {
+  
   if (products.length === 0) {
     return (
       <div className="flex items-center justify-center">
@@ -108,7 +109,9 @@ export default function DiscountedProducts() {
             </p>
           </CardContent>
           <CardFooter className="flex justify-center">
-            <Button variant="outline">Email tôi khi có giảm giá</Button>
+            <Button variant="outline">
+              Email tôi khi có giảm giá
+            </Button>
           </CardFooter>
         </Card>
       </div>

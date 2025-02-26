@@ -153,6 +153,22 @@
   position: relative;
   /* color: #000; */
 }
+.cartBadge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
 .socialIconCart:hover {
   font-size: 23px;
   /* color: #000;  */

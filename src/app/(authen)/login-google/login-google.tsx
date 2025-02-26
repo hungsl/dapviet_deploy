@@ -6,7 +6,7 @@ export default function LoginGoogle() {
   useEffect(() => {
     const handleGoogleSignIn = async () => {
       try {
-        console.log("kick hoat login")
+        // console.log("kick hoat login")
         // Gọi signIn từ next-auth để đăng nhập với Google
         const result = await signIn("google", { redirect: false });
 
@@ -16,7 +16,7 @@ export default function LoginGoogle() {
         } else if (result?.ok) {
           // Đăng nhập thành công, bạn sẽ có session thông qua useSession
           // session.user sẽ có thông tin người dùng bao gồm email, name, image
-          console.log("thực thi api google login");
+          // console.log("thực thi api google login");
           // if (session?.user) {
           //   const { email, name, image } = session.user;
           //   console.log("set tên , email, ảnh vô api")

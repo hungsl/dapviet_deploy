@@ -7,4 +7,7 @@ export default defineSchema({
     text: v.string(),
     token: v.string(),
   }),
+  clickState: defineTable({
+    clicked: v.boolean(),
+  }),
 });

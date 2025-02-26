@@ -15,16 +15,19 @@ import { useRouter } from "next/navigation";
 import { useLoading } from "@/app/context/loading-provider";
 import dynamic from "next/dynamic";
 
-
-const MdEmail = dynamic(() => import("react-icons/md").then((mod) => mod.MdEmail), { ssr: false });
-const ProfileFormLazy = dynamic(() => import('./profile-form'), { ssr: false })
-const ProfileImage = dynamic(() => import('./profile-image'), { ssr: false })
+const MdEmail = dynamic(
+  () => import("react-icons/md").then((mod) => mod.MdEmail),
+  { ssr: false }
+);
+const ProfileFormLazy = dynamic(() => import("./profile-form"), { ssr: false });
+const ProfileImage = dynamic(() => import("./profile-image"), { ssr: false });
 
 export const ProfileHeader = () => {
   const [userData, setUserData] = useState<dataInfo>();
   const { openPopup, setContent } = usePopup();
   const router = useRouter();
   const [isEditing, setIsEditing] = useState(false);
+  const [isRefresh, setIsRefresh] = useState<boolean>(false);
   const { setLoading } = useLoading();
   const handleEdit = () => {
     setIsEditing(true);
@@ -50,7 +53,7 @@ export const ProfileHeader = () => {
       // console.log(data)
     }
     fetchData();
-  }, [isEditing]);
+  }, [isEditing, isRefresh]);
 
   const handleCancel = () => {
     setIsEditing(false); // Đóng ProfileForm
@@ -88,22 +91,27 @@ export const ProfileHeader = () => {
     setContent("changepassword");
     openPopup();
   };
-  if (!userData) return (
-    <div className="flex justify-center items-center h-screen">
+  if (!userData)
+    return (
+      <div className="flex justify-center items-center h-screen">
         <div className="w-16 h-16 border-4 border-t-4 border-blue-500 border-dotted rounded-full animate-spin"></div>
       </div>
-  );
+    );
   return (
     <>
       <div className={styles.headerContainer}>
         <div className={styles.userInfo}>
-          <ProfileImage userData={userData} />
+          <ProfileImage
+            userData={userData}
+            isRefresh={isRefresh}
+            setIsRefresh={setIsRefresh}
+          />
           <div className={styles.userDetails}>
             <div className={`${styles.userName} text-foreground`}>
               {userData.name}
             </div>
             <div className="flex gap-2">
-              <MdEmail  className={styles.iconEmail} color="skyblue"  />
+              <MdEmail className={styles.iconEmail} color="skyblue" />
               <div className={styles.userEmail}>{userData.email}</div>
             </div>
           </div>

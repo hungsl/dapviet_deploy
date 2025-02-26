@@ -158,7 +158,7 @@ export default function LoginForm() {
                 </FormLabel>
                 <FormControl>
                   <Input
-                    placeholder="example@gmail.com"
+                    placeholder="Email của bạn"
                     {...field}
                     className={styles.inputContainer}
                   />

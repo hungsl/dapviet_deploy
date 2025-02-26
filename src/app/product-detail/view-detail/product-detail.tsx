@@ -9,7 +9,6 @@ import { RxCross1 } from "react-icons/rx";
 import { IoMdCheckmark } from "react-icons/io";
 import Thumbnail from "./thumbnails";
 
-
 export default async function ProductDetail({
   data,
 }: {
@@ -71,10 +70,7 @@ export default async function ProductDetail({
               </div>
             </div>
 
-            <SizeButton
-              sizeQuantities={data.sizeQuantities}
-              productName={data.name}
-            />
+            <SizeButton sizeQuantities={data.sizeQuantities} />
 
             <div className={styles.deliveryOptions}>
               <DeliveryOption

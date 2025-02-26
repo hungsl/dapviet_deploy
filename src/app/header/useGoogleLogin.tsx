@@ -26,11 +26,11 @@ export default function UeGoogleLogin({ accountGoogle }: HeaderProps) {
   useEffect(() => {
     const callGoogleLogin = async () => {
       try {
-        console.log("dang chay login google");
+        // console.log("dang chay login google");
         setLoading(true);
         const { image, ...rest } = accountGoogle.user;
         const updatedAccountGoogle = { ...rest, avatar: image };
-        console.log("Updated AccountGoogle:", updatedAccountGoogle);
+        // console.log("Updated AccountGoogle:", updatedAccountGoogle);
         const result = await authApiRequest.loginByGoogle(updatedAccountGoogle);
         await authApiRequest.auth({
           accessToken: result.payload.data.accessToken,

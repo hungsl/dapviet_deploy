@@ -12,28 +12,27 @@ import RefreshToken from "@/components/refresh-token";
 // import Chat from "./chat/chat";
 
 const roboto = Roboto({ subsets: ["vietnamese"], weight: ["100", "300"] });
-
 export const metadata: Metadata = {
   title: {
-    template: "%s | Đắp Việt - Sản phẩm Việt phục truyền thống",
-    default: "Đắp Việt - Việt phục truyền thống",
+    template: "%s | Đắp Việt - Áo dài cách tân & Việt phục hiện đại",
+    default: "Đắp Việt - Áo dài cách tân & Việt phục hiện đại",
   },
   description:
-    "Đắp Việt cung cấp các bộ trang phục Việt phục, cổ phục Việt Nam mang đậm nét văn hóa truyền thống và ảnh hưởng từ các nền văn hóa khác như Trung Hoa và phương Tây. Khám phá các bộ sưu tập độc đáo của chúng tôi.",
+    "Đắp Việt chuyên cung cấp áo dài cách tân, mang vẻ đẹp truyền thống kết hợp phong cách hiện đại. Chất liệu cao cấp, thiết kế đa dạng, phù hợp cho mọi dịp lễ hội, sự kiện và đời thường.",
   keywords:
-    "Việt phục, Áo dài, Đắp Việt, Quần áo truyền thống, Áo dài cách tân, Cổ phục Việt Nam",
+    "Áo dài cách tân, Việt phục hiện đại, Đắp Việt, Quần áo truyền thống, Áo dài nữ, Áo dài nam, Áo dài đôi, Áo dài cưới, Áo dài trẻ em",
   openGraph: {
-    title: "Đắp Việt - Việt phục truyền thống",
+    title: "Đắp Việt - Áo dài cách tân & Việt phục hiện đại",
     description:
-      "Khám phá bộ sưu tập Việt phục độc đáo của Đắp Việt. Chất lượng cao, giá tốt.",
+      "Khám phá bộ sưu tập áo dài cách tân độc đáo tại Đắp Việt. Thiết kế sang trọng, phù hợp cho mọi dịp.",
     url: "https://dapviet.shop",
     siteName: "Đắp Việt",
     images: [
       {
-        url: "https://aekqgmlegdfbpjvohkqg.supabase.co/storage/v1/object/public/hung-pics//HomepagePerson3.png", // Thay bằng ảnh của bạn
-        width: 1200,
-        height: 630,
-        alt: "Đắp Việt - Việt phục truyền thống",
+        url: "https://aekqgmlegdfbpjvohkqg.supabase.co/storage/v1/object/public/hung-pics//HomepagePerson3.png",
+        width: 700,
+        height: 1200,
+        alt: "Đắp Việt - Áo dài cách tân & Việt phục hiện đại",
       },
     ],
     type: "website",

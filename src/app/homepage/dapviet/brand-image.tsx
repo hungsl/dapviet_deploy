@@ -9,7 +9,7 @@ export const BrandImage: React.FC<ImageProps> = ({ src, alt, className }) => (
     quality={100}
     src={src}
     alt={alt}
-    priority
+    priority={false}
     className={className}
   />
 );

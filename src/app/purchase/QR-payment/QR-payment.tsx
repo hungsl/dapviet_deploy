@@ -28,7 +28,7 @@ export const QrPayment: React.FC = () => {
   const [userId, setUserId] = useState("");
   const [body, setBody] = useState<CheckoutOrderType>();
   const { shippingFee, shippingMethod } = useAppContext();
-  const [seconds, setSeconds] = useState(300); // Cập nhật thời gian còn lại là 5 phút (300 giây)
+  const [seconds, setSeconds] = useState(180); // Cập nhật thời gian còn lại là 3 phút (180 giây)
   const { setLoading } = useLoading();
   const [description, setDiscription] = useState<string | null>("");
   const [isChecking, setIsChecking] = useState(false);
@@ -43,7 +43,7 @@ export const QrPayment: React.FC = () => {
     if (isPaymentSuccess) return;
     const interval = setInterval(() => {
       handleCheckPaid();
-    }, 2000);
+    }, 1000);
     return () => clearInterval(interval);
   }, [description, totalPrice, isPaymentSuccess, isChecking]);
 
@@ -54,7 +54,7 @@ export const QrPayment: React.FC = () => {
 
   // Cập nhật bộ đếm giây mỗi giây
   useEffect(() => {
-    if (seconds === 0) {
+    if (seconds <= 0) {
       setContent("fail");
       return;
     }
@@ -143,25 +143,14 @@ export const QrPayment: React.FC = () => {
       // });
       const data: { status: number; payload: TransactionsResponse } =
         await authApiRequest.QRpayment();
-      console.log(data.payload.transactions);
-      // const lastPaid = data.data.records[data.data.records.length - 1];
-      // const lastThreePaid = data.data.records.slice(-3);
-      // const isValid = lastThreePaid.some(
-      //   (record: { amount: number; description: string }) =>
-      //     record.amount >= totalPrice && record.description === description
-      // );
+      // console.log(data.payload.transactions);
       if (data && data.payload && data.payload) {
-        const lastThreePaid = data.payload.transactions.slice(-3);
-        const isValid = lastThreePaid.some(
+        const firstThreePaid = data.payload.transactions.slice(0, 3);
+        const isValid = firstThreePaid.some(
           (record: { amount_in: number; transaction_content: string }) =>
             Math.floor(record.amount_in) >= totalPrice &&
             record.transaction_content === description
         );
-        // console.log(lastPaid);
-        // console.log(lastThreePaid);
-        // console.log(totalPrice)
-        // console.log(description)
-        // console.log(myBank.Description);
         if (isValid) {
           try {
             setIsChecking(true);
@@ -183,7 +172,7 @@ export const QrPayment: React.FC = () => {
             //     description: (result as any).payload.message,
             //   });
             ///////////////////////////////////////
-            console.log(body)
+            // console.log(body)
             const result = await cartApiRequest.completeOrder(
               body as CheckoutOrderType
             );
@@ -191,7 +180,6 @@ export const QrPayment: React.FC = () => {
             toast({
               description: result.payload.message,
             });
-
             const notificationText = `Bạn đã thanh toán thành công, hóa đơn đặt hàng đã được gửi qua Email`;
 
             createNotification({
@@ -220,9 +208,7 @@ export const QrPayment: React.FC = () => {
       <div className={styles.wrapper}>
         <h1 className={styles.title}>Quét mã để thanh toán</h1>
         <p className={styles.description}>
-          <strong>
-            không thay đổi số tiền và nội dung để tránh sai xót thanh toán
-          </strong>
+          <strong>Kiểm tra kĩ số tiền và nội dung bên dưới!</strong>
         </p>
         {/* <img
           loading="lazy"

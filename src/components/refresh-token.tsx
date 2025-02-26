@@ -9,7 +9,7 @@ import { useAppContext } from "@/app/context/app-provider";
 
 export default function RefreshToken() {
   // const { setLoading } = useLoading();
-  const {setIsLoggedIn} = useAppContext() 
+  const { setIsLoggedIn } = useAppContext();
   // const [accessToken, setAccessToken] = useState<string | null>(null);
   const [refreshToken, setRefreshToken] = useState<string | null>(null);
   // const { refreshToken, accessToken, setAccessToken, setRefreshToken } =
@@ -33,29 +33,30 @@ export default function RefreshToken() {
   }, []);
   useEffect(() => {
     const fetchTokenExpireTime = async () => {
+      //chỉ chạy khi load trang
       // console.log("lấy expireTime")
       const response = await fetch("/api/token-exp");
       const accessTokenExpiresAt = await response.json();
-      const expiresAt = new Date(accessTokenExpiresAt.expireAt);
+      const expiresAt = new Date(accessTokenExpiresAt.expireAt);//lấy ra thời gian hết hạn
       setExpireTime(expiresAt.getTime());
       const now = new Date();
       const remainingTime = differenceInMinutes(
         new Date(expiresAt.getTime()),
         now
-      );
-      // console.log("Còn lại:", remainingTime, "phút");
+      );// tính xem còn hạn hay không
+      console.log("Còn lại:", remainingTime, "phút");
       if (remainingTime < 10) {
         // console.log("refreshToken do hết thời gian");
-        await refreshAccessToken();
+        await refreshAccessToken(true); // khi mà token bị hết phiên cần load lại trang
       }
     };
-    const refreshAccessToken = async () => {
+    const refreshAccessToken = async (timeout: boolean) => {
       if (!refreshToken) return;
       try {
         // console.log("refreshToken: ", refreshToken);
 
         const result = await authApiRequest.refreshToken({
-          auth: refreshToken,
+          auth: refreshToken ,
         });
         await authApiRequest.auth({
           accessToken: result.payload.data.accessToken,
@@ -67,13 +68,17 @@ export default function RefreshToken() {
         localStorage.setItem("refreshToken", result.payload.data.refreshToken);
         // Sau khi làm mới token, gọi API để lấy thời gian hết hạn
         await fetchTokenExpireTime();
+        if (timeout) {
+          window.location.reload();
+        }
       } catch (error) {
         // eslint-disable-line @typescript-eslint/no-unused-vars
+        console.log("Phiên của bạn đã hết hạn");
         await authApiRequest.logoutFromNextClientToNextServer();
         localStorage.removeItem("accessToken");
         localStorage.removeItem("refreshToken");
         setIsLoggedIn(false);
-        console.log("lỗi khi refreshToken: ", error)
+        console.log("lỗi khi refreshToken: ", error);
         toast({
           variant: "destructive",
           description: "Phiên của bạn đã hết hạn",
@@ -98,8 +103,7 @@ export default function RefreshToken() {
     // };
 
     const initializeExpireTime = async () => {
-      // Nếu chưa có accessToken, làm mới token trước
-      // console.log("Kiểm tra thời gian hết hạn");
+      // khởi tạo , lưu expiretime
       await fetchTokenExpireTime();
     };
     initializeExpireTime();
@@ -107,11 +111,12 @@ export default function RefreshToken() {
     const interval = setInterval(
       async () => {
         if (expireTime) {
+          //có thời gian hết hạn rồi, check thời gian hết hạn với thời gian hiện tại để lấy ra số phút còn lại
           const now = new Date();
           const remainingTime = differenceInMinutes(new Date(expireTime), now);
-          // console.log("Còn lại:", remainingTime, "phút");
+          console.log("Còn lại:", remainingTime, "phút");
           if (remainingTime < 10) {
-            await refreshAccessToken();
+            await refreshAccessToken(false); // khi mà chỉ cần refresh token không cần load lại trang
           }
         }
       },

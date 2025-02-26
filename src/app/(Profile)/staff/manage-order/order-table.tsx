@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/pagination";
 import ButtonCancel from "./button-cancel";
 import { useAppContext } from "@/app/context/app-provider";
+import { PackageX } from "lucide-react";
 
 export default function OrderTable() {
   const [data, setData] = useState<StaffOrdersListResType | null>(null);
@@ -24,8 +25,9 @@ export default function OrderTable() {
   const [currentPage, setCurrentPage] = useState(1);
   const [direction, setDirection] = useState("ASC");
   const [properties, setProperties] = useState("email");
+  const [status, setStatus] = useState("");
   const [totalPages, setTotalPages] = useState(1);
-  const {isRefresh} = useAppContext()
+  const { isRefresh } = useAppContext();
   // const { accessToken } = useAppContext();
   const fetchOrders = async () => {
     try {
@@ -34,19 +36,20 @@ export default function OrderTable() {
         currentPage,
         7,
         direction,
-        properties
+        properties,
+        status
       );
       setData(result.payload);
       // console.log(result.payload);
       setTotalPages(result.payload.totalPage);
     } catch (error) {
       console.error("Error fetching orders:", error);
-    } 
+    }
   };
 
   useEffect(() => {
     fetchOrders();
-  }, [currentPage,isRefresh]);
+  }, [currentPage, isRefresh]);
 
   const handlePageChange = (newPage: number) => {
     if (newPage >= 1 && newPage <= totalPages) {
@@ -91,10 +94,9 @@ export default function OrderTable() {
   };
   if (!data)
     return (
-    <div className="flex justify-center items-center h-screen flex-col relative">
+      <div className="flex justify-center items-center h-screen flex-col relative">
         <div className="absolute">Loading</div>
-        <div className="w-16 h-16 border-4 border-t-4 border-blue-500 border-dotted rounded-full animate-spin">
-        </div>
+        <div className="w-16 h-16 border-4 border-t-4 border-blue-500 border-dotted rounded-full animate-spin"></div>
       </div>
     );
   return (
@@ -107,14 +109,13 @@ export default function OrderTable() {
           onChange={(e) => setSearch(e.target.value)}
           className="border border-gray-300 rounded px-2 py-1 mr-2"
         />
+
         <select
           value={properties}
           onChange={(e) => setProperties(e.target.value)}
           className="border border-gray-300 text-foreground rounded px-2 py-1 mr-2"
         >
-          <option value="id">ID</option>
           <option value="email">Email</option>
-          <option value="shippingFee">Phí vận chuyển</option>
           <option value="shippingMethod">Phương thức vận chuyển</option>
           <option value="paymentMethod">Phương thức thanh toán</option>
         </select>
@@ -126,6 +127,19 @@ export default function OrderTable() {
           <option value="ASC">Tăng dần</option>
           <option value="DESC">Giảm dần</option>
         </select>
+        <select
+          value={status}
+          onChange={(e) => setStatus(e.target.value)}
+          className="border border-gray-300 text-foreground rounded px-2 py-1 mr-2"
+        >
+          <option value="">Trạng Thái</option>
+          <option value="PENDING">Đang xử lý</option>
+          <option value="AWAITING_PICKUP">Đợi lấy hàng</option>
+          <option value="AWAITING_DELIVERY">Đợi chuyển hàng</option>
+          <option value="IN_TRANSIT">Đang vận chuyển</option>
+          <option value="DELIVERED">Đã nhận</option>
+          <option value="CANCELED">Đã hủy</option>
+        </select>
         <button
           onClick={fetchOrders}
           className="bg-blue-500 text-white px-4 py-1 rounded"
@@ -135,73 +149,87 @@ export default function OrderTable() {
       </div>
       <div className={`scroll ${styles.heightTable} text-foreground`}>
         {/* Search and Filters */}
-
-        <table className={styles.table}>
-          <thead>
-            <tr className={`${styles.tableRow} text-black`}>
-              <th className={styles.tableHead}>Mã đơn hàng</th>
-              <th className={styles.tableHead}>Email</th>
-              <th className={`${styles.tableHead} ${styles.textRight}`}>
-                Giá sản phẩm
-              </th>
-              <th className={`${styles.tableHead} ${styles.textRight}`}>
+        {data.data.length === 0 ? (
+          <div className="flex flex-col items-center justify-center py-8 text-gray-500 mt-5">
+            <PackageX size={48} className="text-gray-400 mb-2" />
+            <p className="text-lg font-medium">Không có đơn hàng nào</p>
+            <p className="text-sm text-gray-400">Hãy kiểm tra lại sau.</p>
+          </div>
+        ) : (
+          <table className={styles.table}>
+            <thead>
+              <tr className={`${styles.tableRow} text-black`}>
+                <th className={styles.tableHead}>Mã đơn hàng</th>
+                <th className={styles.tableHead}>Email</th>
+                {/* <th className={`${styles.tableHead} ${styles.textRight}`}>
                 Phí vận chuyển
-              </th>
-              <th className={`${styles.tableHead} ${styles.textRight}`}>
-                Phương thức vận chuyển
-              </th>
-              {/* <th className={`${styles.tableHead} ${styles.textRight}`}>
-                Phương thức thanh toán
-              </th> */}
-              <th className={`${styles.tableHead} ${styles.textCenter}`}>
-                Trạng thái
-              </th>
-              <th className={`${styles.tableHead} ${styles.textCenter}`}>
-                Thao tác
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.data.map((order) => (
-              <tr key={order.id} className={styles.tableRow}>
-                <td className={`${styles.tableCell} font-medium`}>
-                  {order.id.length > 10 ? `${order.id.slice(0, 9)}…` : order.id}
-                </td>
-                <td className={styles.tableCell}>{order.email.length > 22 ? `${order.email.slice(0,22)}...`: order.email}</td>
-                <td className={`${styles.tableCell} ${styles.textRight}`}>
-                  {formatCurrency(order.productTotal)}
-                </td>
-                <td className={`${styles.tableCell} ${styles.textRight}`}>
-                  {formatCurrency(order.shippingFee)}
-                </td>
-                <td className={`${styles.tableCell} ${styles.textRight}`}>
-                  {order.shippingMethod}
-                </td>
-                {/* <td className={`${styles.tableCell} ${styles.textRight}`}>
-                  {order.paymentMethod}
-                </td> */}
-                <td className={`${styles.tableCell} ${styles.textCenter}  `}>
-                  <span
-                    className={`${styles.statusValue} ${getStatusClass(order.status)}`}
-                  >
-                    {translateStatus(order.status)}
-                  </span>
-                </td>
-                <td className={`${styles.tableCell} ${styles.textCenter}`}>
-                  {order.status !== "CANCELED" && (
-                    <ButtonCancel orderId={order.id} />
-                  )}
-                  <Link
-                    href={`/staff/manage-order/${order.id}`}
-                    className={styles.top}
-                  >
-                    Xem chi tiết
-                  </Link>
-                </td>
+                </th> */}
+                <th className={`${styles.tableHead} ${styles.textRight}`}>
+                  Phương thức vận chuyển
+                </th>
+                <th className={`${styles.tableHead} ${styles.textRight}`}>
+                  Phương thức thanh toán
+                </th>
+                <th className={`${styles.tableHead} ${styles.textCenter}`}>
+                  Trạng thái
+                </th>
+                <th className={`${styles.tableHead} ${styles.textRight}`}>
+                  Tổng giá tiền
+                </th>
+                <th className={`${styles.tableHead} ${styles.textCenter}`}>
+                  Thao tác
+                </th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {data.data.map((order) => (
+                <tr key={order.id} className={styles.tableRow}>
+                  <td className={`${styles.tableCell} font-medium`}>
+                    {order.id.length > 10
+                      ? `${order.id.slice(0, 9)}…`
+                      : order.id}
+                  </td>
+                  <td className={styles.tableCell}>
+                    {order.email.length > 22
+                      ? `${order.email.slice(0, 22)}...`
+                      : order.email}
+                  </td>
+                  {/* <td className={`${styles.tableCell} ${styles.textRight}`}>
+                  {formatCurrency(order.productTotal)}
+                </td> */}
+
+                  <td className={`${styles.tableCell} ${styles.textRight}`}>
+                    {order.shippingMethod}
+                  </td>
+                  <td className={`${styles.tableCell} ${styles.textRight}`}>
+                    {order.paymentMethod}
+                  </td>
+                  <td className={`${styles.tableCell} ${styles.textCenter}  `}>
+                    <span
+                      className={`${styles.statusValue} ${getStatusClass(order.status)}`}
+                    >
+                      {translateStatus(order.status)}
+                    </span>
+                  </td>
+                  <td className={`${styles.tableCell} ${styles.textRight}`}>
+                    {formatCurrency(order.shippingFee + order.productTotal)}
+                  </td>
+                  <td className={`${styles.tableCell} ${styles.textCenter}`}>
+                    {order.status !== "CANCELED" && (
+                      <ButtonCancel orderId={order.id} />
+                    )}
+                    <Link
+                      href={`/staff/manage-order/${order.id}`}
+                      className={styles.top}
+                    >
+                      Xem chi tiết
+                    </Link>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
       </div>
       {totalPages > 1 && (
         <Pagination className="mt-10 text-foreground">

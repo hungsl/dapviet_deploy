@@ -14,7 +14,6 @@ import styles from "./thumbnail.module.css";
 import { Expand } from "lucide-react";
 // import dynamic from "next/dynamic";
 
-
 // const Swiper = dynamic(() => import("swiper/react").then(mod => mod.Swiper), { ssr: false });
 // const SwiperClass = dynamic(() => import("swiper/react").then(mod => mod.), { ssr: false });
 // const SwiperSlide = dynamic(() => import("swiper/react").then(mod => mod.SwiperSlide), { ssr: false });
@@ -78,7 +77,7 @@ export default function Thumbnail({ images }: { images: string[] }) {
           onSwiper={setThumbsSwiper}
           loop={true}
           spaceBetween={12}
-          slidesPerView={4}
+          slidesPerView={images.length >= 4 ? 4 : images.length}
           freeMode={true}
           watchSlidesProgress={true}
           modules={[FreeMode, Navigation, Thumbs]}

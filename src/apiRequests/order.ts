@@ -9,8 +9,7 @@ import {
 } from "@/schemaValidations/order.schema";
 
 const orderApiRequest = {
-  ordersList: () =>
-    http.get<OrdersListResType>("orders/current?size=100"),
+  ordersList: () => http.get<OrdersListResType>("orders/current?size=100"),
   updateOrderAddress: (id: string, data: UpdateInfoOrderType) =>
     http.put<OrdersListResType>(`/orders/${id}/staff`, data),
 
@@ -28,10 +27,11 @@ const orderApiRequest = {
     page = 1,
     size = 10,
     direction = "",
-    properties = ""
+    properties = "",
+    status="",
   ) =>
     http.get<StaffOrdersListResType>(
-      `/orders/staff?search=${search}&page=${page}&size=${size}&direction=${direction}&properties=${properties}`
+      `/orders/staff?search=${search}&page=${page}&size=${size}&status=${status}&direction=${direction}&properties=${properties}`
     ),
   orderDetail: (id: string, accessToken: string) =>
     http.get<OrderDetailsResType>(`orders/${id}/order-details/current`, {
@@ -67,7 +67,9 @@ const orderApiRequest = {
         },
       }
     ),
-  transactionsList: () =>
-    http.get<TransactionsListResType>(`orders/transactions/current`),
+  transactionsList: (page = 1, size = 10, direction = "", properties = "") =>
+    http.get<TransactionsListResType>(
+      `orders/transactions/current?page=${page}&size=${size}&direction=${direction}&properties=${properties}`
+    ),
 };
 export default orderApiRequest;

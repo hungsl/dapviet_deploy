@@ -8,7 +8,14 @@ import Image from "next/image";
 import ButtonStatus from "./ButtonStatus";
 import { formatCurrency } from "@/lib/utils";
 import ButtonUpdateOrder from "./ButtonUpdateOrder";
-
+import {
+  FaBox,
+  FaTruck,
+  FaCheckCircle,
+  FaTimesCircle,
+  FaClock,
+  FaStore,
+} from "react-icons/fa";
 export default async function OrderDetail({
   params,
 }: {
@@ -25,9 +32,9 @@ export default async function OrderDetail({
       accessToken?.value || ""
     );
     order = result.payload.data;
-    console.log(order);
+    // console.log(order);
   } catch (error) {
-    console.log("lỗi lấy chi tiết đơn hàng: ", error)
+    console.log("lỗi lấy chi tiết đơn hàng: ", error);
     redirect("/homepage");
   }
   const translateStatus = (status: string) => {
@@ -42,8 +49,28 @@ export default async function OrderDetail({
         return "Đang vận chuyển";
       case "DELIVERED":
         return "Đã nhận";
+      case "CANCELED":
+        return "Đã hủy";
       default:
         return "Không xác định";
+    }
+  };
+  const getStatusIcon = (status: string) => {
+    switch (status) {
+      case "PENDING":
+        return <FaClock />;
+      case "AWAITING_PICKUP":
+        return <FaStore />;
+      case "AWAITING_DELIVERY":
+        return <FaBox />;
+      case "IN_TRANSIT":
+        return <FaTruck />;
+      case "DELIVERED":
+        return <FaCheckCircle />;
+      case "CANCELED":
+        return <FaTimesCircle />;
+      default:
+        return null;
     }
   };
   const getStatusClass = (status: string) => {
@@ -58,6 +85,8 @@ export default async function OrderDetail({
         return styles.statusInTransit;
       case "DELIVERED":
         return styles.statusDelivered;
+      case "CANCELED":
+        return styles.statusCancel;
       default:
         return styles.statusUnknown;
     }
@@ -87,17 +116,44 @@ export default async function OrderDetail({
             </svg>
             <span>Trở lại danh sách</span>
           </Link>
-          <ButtonUpdateOrder text="Chỉnh sửa địa chỉ"/>
+          <ButtonUpdateOrder text="Chỉnh sửa địa chỉ" />
           <h1 className="text-2xl font-bold mt-4">Chi tiết đơn hàng</h1>
         </div>
         {/* Trạng thái đơn hàng */}
         <div className={styles.statusSection}>
-          <strong>Trạng thái đơn hàng:</strong>{" "}
-          <span
-            className={`${styles.statusValue} ${getStatusClass(order.status)}`}
-          >
-            {translateStatus(order.status)}
-          </span>
+          <strong>Trạng thái đơn hàng:</strong>
+          {order.status !== "CANCELED" ? (
+            <div className={styles.statusList}>
+              {[
+                "PENDING",
+                "AWAITING_PICKUP",
+                "AWAITING_DELIVERY",
+                "IN_TRANSIT",
+                "DELIVERED",
+              ].map((status) => (
+                <span
+                  key={status}
+                  className={`${styles.statusItem} ${
+                    order.status === status
+                      ? `${styles.statusActive} ${getStatusClass(status)}`
+                      : ""
+                  }`}
+                >
+                  {getStatusIcon(status)}
+                  {translateStatus(status)}
+                </span>
+              ))}
+            </div>
+          ) : (
+            <div className={styles.statusList}>
+              <span
+                className={`${styles.statusItem} ${getStatusClass("CANCELED")}`}
+              >
+                {getStatusIcon("CANCELED")}
+                {translateStatus("CANCELED")}
+              </span>
+            </div>
+          )}
         </div>
         {/* Thông tin người nhận và giao hàng */}
         <div className={styles.infoSection}>

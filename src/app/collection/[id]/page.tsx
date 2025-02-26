@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import HeroSection from "../hero-section";
 import productApiRequest from "@/apiRequests/product";
 import CollectionProduct from "./collection-product";
+import { ProductList } from "../type";
 
 const CollectionPage = async ({
   params,
@@ -11,7 +12,7 @@ const CollectionPage = async ({
   params: Promise<{ id: string }>;
 }) => {
   let collection;
-  let products;
+  let products : ProductList;
   const unwrappedParams = await params;
   try {
     const result = await productApiRequest.collectionItem(unwrappedParams.id);
@@ -30,28 +31,12 @@ const CollectionPage = async ({
     console.log("Lỗi khi lấy bộ sưu tập:", error)
     redirect("/homepage");
   }
-  console.log(products)
+  // console.log(products)
   return (
     <>
       <HeroSection collection={collection} />
       <div className="container">
-          {/* <div className={styles.productList}>
-            <h2 className={styles.heading}>Our Products</h2>
-            <div className={styles.products}>
-              {products.map((product) => (
-                <div key={product.id} className={styles.productCard}>
-                  <img
-                    src={product.picture}
-                    alt={product.name}
-                    className={styles.productImage}
-                  />
-                  <h3 className={styles.productName}>{product.name}</h3>
-                  <p className={styles.productPrice}>${product.unitPrice}</p>
-                </div>
-              ))}
-            </div>
-          </div> */}
-          <CollectionProduct/>
+          <CollectionProduct products ={products}/>
       </div>
     </>
   );

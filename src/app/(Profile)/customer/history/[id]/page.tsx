@@ -17,9 +17,9 @@ export default function CreateFeedbackForm({
   const searchParams = useSearchParams();
   const unwrappedParams = React.use(params);
   const router = useRouter()
-  console.log(unwrappedParams);
+  // console.log(unwrappedParams);
   const productId = searchParams.get("product");
-  console.log(productId);
+  // console.log(productId);
   useEffect(() => {
     if (!unwrappedParams && !productId) return;
     if (unwrappedParams && productId) {

@@ -9,6 +9,10 @@ import { toast } from "@/hooks/use-toast";
 import { formatCurrency } from "@/lib/utils";
 // import LoadingAnimation from "@/components/common/LoadingAnimation";
 import { useLoading } from "@/app/context/loading-provider";
+import { useQuery } from "convex/react";
+import { api } from "../../../../convex/_generated/api";
+import { useAppContext } from "@/app/context/app-provider";
+import { ShoppingCart } from "lucide-react";
 
 export default function Cart() {
   const [cartItems, setCartItems] = useState<CartListResType>();
@@ -17,7 +21,8 @@ export default function Cart() {
   const [isDelete, setIsDelete] = useState<boolean>(false);
   const [isMaxItem, setIsMaxItem] = useState<boolean>(false);
   const [totalPrice, setTotalPrice] = useState<number>(0);
-
+  const state = useQuery(api.memory.getState);
+  const { setIsRefresh, isRefresh } = useAppContext();
   useEffect(() => {
     try {
       setLoading(true);
@@ -25,6 +30,7 @@ export default function Cart() {
         const result = await cartApiRequest.getListItemCart();
         setCartItems(result.payload);
         // console.log(result.payload);
+        console.log("cập nhật List: ");
         const totalPrice =
           result.payload?.data?.reduce((total, item) => {
             return total + item.unitPrice * item.quantity;
@@ -37,7 +43,7 @@ export default function Cart() {
     } finally {
       setLoading(false);
     }
-  }, [isDelete]);
+  }, [isDelete, state?.clicked]);
 
   const updateCartItems = async () => {
     try {
@@ -49,6 +55,7 @@ export default function Cart() {
           return total + item.unitPrice * item.quantity;
         }, 0) || 0;
       setTotalPrice(totalPrice);
+      setIsRefresh(!isRefresh);
     } catch (error) {
       console.error("Lỗi khi cập nhật giỏ hàng", error);
     } finally {
@@ -65,6 +72,7 @@ export default function Cart() {
       };
       await cartApiRequest.removefromCart(body);
       setIsDelete(!isDelete);
+      setIsRefresh(!isRefresh);
     } catch (error) {
       console.log("lỗi khi xóa khỏi cart: ", error);
       toast({
@@ -115,8 +123,11 @@ export default function Cart() {
                     />
                   ))
                 ) : (
-                  <p className={styles.emptyCartMessage}>
-                    Hiện chưa có sản phẩm trong giở hàng.
+                  <p className="flex flex-col items-center justify-center text-gray-500 py-6 h-[100%]">
+                    <ShoppingCart size={48} className="text-gray-400 mb-2" />
+                    <span className={styles.emptyCartMessage}>
+                      Hiện chưa có sản phẩm trong giỏ hàng.
+                    </span>
                   </p>
                 )}
               </div>

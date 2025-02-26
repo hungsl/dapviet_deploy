@@ -75,6 +75,7 @@ const request = async <Response>(
       )
     ) {
       console.log("refresh");
+      
     } else {
       const accessToken = localStorage.getItem("accessToken");
       if (accessToken) {

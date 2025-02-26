@@ -46,6 +46,12 @@ export default function SidebarStaff() {
     //   label: "Quản lý số đo",
     // },
     {
+      // icon: "/sidebar/quanlydonhang.png",
+      icon: "manage-order",
+      id: "/staff/manage-order",
+      label: "Quản lý đơn hàng",
+    },
+    {
       icon: "manage-product",
       label: "Sản phẩm",
       groupId: "products",
@@ -73,12 +79,7 @@ export default function SidebarStaff() {
       id: "/staff/manage-collection",
       label: "Quản lý bộ sưu tập",
     },
-    {
-      // icon: "/sidebar/quanlydonhang.png",
-      icon: "manage-order",
-      id: "/staff/manage-order",
-      label: "Quản lý đơn hàng",
-    },
+    
     // {
     //   // icon: "/sidebar/quanlydanhthu.png",
     //   icon: "manage-revenue",

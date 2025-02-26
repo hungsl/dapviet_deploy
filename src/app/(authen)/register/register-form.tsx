@@ -90,7 +90,7 @@ export default function RegisterForm() {
                 <FormControl>
                   <Input
                     className={styles.inputContainer}
-                    placeholder="example@gmail.com"
+                    placeholder="Email của bạn"
                     {...field}
                   />
                 </FormControl>

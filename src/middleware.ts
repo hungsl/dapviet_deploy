@@ -16,17 +16,20 @@ const privatePaths = [
   "/staff/manage-user",
   "/staff/manage-payment",
 ];
-const authPaths = ["/login", "/register",'/login-google'];
+const authPaths = ["/login", "/register", "/login-google"];
 // This function can be marked `async` if using `await` inside
 export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
   const accessToken = request.cookies.get("accessToken")?.value;
+  const refreshToken = request.cookies.get("refreshToken")?.value;
   //chua dang nhap
   if (pathname === "/") {
     return NextResponse.redirect(new URL("/homepage", request.url));
-  } else if (
+  }
+  if (
     privatePaths.some((path) => path.startsWith(pathname)) &&
-    !accessToken
+    !accessToken &&
+    !refreshToken
   ) {
     return NextResponse.redirect(new URL("/homepage", request.url));
   }

@@ -4,16 +4,22 @@ import styles from "./UserProfile.module.css";
 import { toast } from "@/hooks/use-toast";
 import accountApiRequest from "@/apiRequests/account";
 import { deleteImage, uploadImage } from "@/supabase/storage/client";
-import { useRouter } from "next/navigation";
 import { useLoading } from "@/app/context/loading-provider";
 import { dataInfo } from "./types";
 
-export default function ProfileImage({ userData }: { userData : dataInfo }) {
+export default function ProfileImage({
+  userData,
+  isRefresh,
+  setIsRefresh,
+}: {
+  userData: dataInfo;
+  isRefresh: boolean;
+  setIsRefresh: (isRefresh: boolean) => void;
+}) {
   const { setLoading } = useLoading();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [previewUrl, setPreviewUrl] = useState<string>("");
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const router = useRouter();
   const handleImageClick = () => {
     setIsModalOpen(true);
   };
@@ -68,7 +74,6 @@ export default function ProfileImage({ userData }: { userData : dataInfo }) {
         // console.log("URL Không có trong DB.");
       }
       closeModal();
-      router.refresh();
       toast({
         description: "Cập nhật ảnh thành công",
         duration: 3000,
@@ -76,6 +81,7 @@ export default function ProfileImage({ userData }: { userData : dataInfo }) {
     } catch (error) {
       console.error("Upload failed:", error);
     } finally {
+      setIsRefresh(!isRefresh);
       setLoading(false); // Đặt loading = false sau khi hoàn thành
     }
   };

@@ -23,7 +23,7 @@ export default function ButtonCancel() {
   return (
     <>
       <button className={styles.backButton} onClick={handleOpen} type="button">
-        Hủy
+        Hủy giao dịch
       </button>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Không rời khỏi trang này khi đang trong quá trình thực hiện giao dịch</DialogTitle>

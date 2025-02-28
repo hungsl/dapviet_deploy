@@ -38,7 +38,10 @@
       opacity: 1;
     }
   } */
-  
+  .title{
+    margin: 10px 0;
+
+  }
   .cardContainer {
     display: flex;
     width: 100%;
@@ -66,13 +69,20 @@
   }
   .actionButton {
     align-self: stretch;
-    border-radius: 20px;
+    border-radius: 25px;
     background-color: rgba(242, 250, 255, 1);
-    gap: 10px;
     padding: 12px 30px;
     cursor: pointer;
     border: none;
-    font: 400 20px Inter, sans-serif;
+    font: 400 20px "Inter", sans-serif;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .actionButton:hover {
+    background-color: rgba(220, 240, 255, 1);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
   }
   .preReleButton{
     position: absolute;

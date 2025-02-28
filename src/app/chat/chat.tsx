@@ -20,7 +20,7 @@ import {
   Loader2,
   ArrowDownCircleIcon,
 } from "lucide-react";
-import { RxChatBubble } from "react-icons/rx"
+import { RxChatBubble } from "react-icons/rx";
 import { motion, AnimatePresence } from "framer-motion";
 import { useChat } from "@ai-sdk/react";
 
@@ -40,6 +40,7 @@ export default function Chat() {
     reload,
   } = useChat({ api: "/api/openai" });
   const scrollRef = useRef<HTMLDivElement>(null);
+  // console.log((messages));
   // useEffect(() => {
   //   console.log("input: ",input)
   //   console.log("messages: ",messages)
@@ -61,7 +62,7 @@ export default function Chat() {
     };
   }, []);
   /* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable prefer-const */
+  /* eslint-disable prefer-const */
   useEffect(() => {
     let openTimeout: NodeJS.Timeout;
     // let closeTimeout: NodeJS.Timeout;
@@ -123,7 +124,7 @@ export default function Chat() {
             <Card className="border-2">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3">
                 <CardTitle className="text-lg font-bold">
-                Hỗ trợ với Đắp Việt AI
+                  Hỗ trợ với Đắp Việt AI
                 </CardTitle>
                 <Button
                   onClick={toggleChat}
@@ -138,9 +139,12 @@ export default function Chat() {
               <CardContent>
                 <ScrollArea className="h-[300px] pr-4">
                   {messages?.length === 0 && (
-                    <div className="w-full mt-32 text-gray-500 items-center justify-center flex gap-3">
-                     <RxChatBubble className="h-5 w-5 text-blue-500" />
-                     <span>Hãy hỏi Đắp Việt AI để nhận hỗ trợ !</span>
+                    <div className="flex flex-col">
+                      <div className="w-full mt-32 text-gray-800 items-center justify-center flex gap-3">
+                        <RxChatBubble className="h-5 w-5 text-blue-500" />
+                        <h6>Hãy hỏi Đắp Việt AI để nhận hỗ trợ !</h6>
+                      </div>
+                      <span className="text-gray-500 text-sm flex justify-center ml-4">Cuộc trò chuyện không được lưu trữ</span>
                     </div>
                   )}
                   {messages?.map((message, index) => (
@@ -206,7 +210,7 @@ export default function Chat() {
                   )}
                   {error && (
                     <div className="w-full items-center flex justify-center gap-3">
-                      <div>An error occured.</div>
+                      <div>Có lỗi !!!.</div>
                       <button
                         className="underline"
                         type="button"

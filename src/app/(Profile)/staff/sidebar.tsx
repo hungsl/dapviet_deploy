@@ -79,7 +79,6 @@ export default function SidebarStaff() {
       id: "/staff/manage-collection",
       label: "Quản lý bộ sưu tập",
     },
-    
     // {
     //   // icon: "/sidebar/quanlydanhthu.png",
     //   icon: "manage-revenue",
@@ -91,6 +90,12 @@ export default function SidebarStaff() {
       icon: "manage-user",
       id: "/staff/manage-user",
       label: "Quản lý người dùng",
+    },
+    {
+      // icon: "/sidebar/quanlybosuutap.png",
+      icon: "manage-botchat",
+      id: "/staff/manage-botchat",
+      label: "Lưu sản phẩm vào bộ nhớ AI",
     },
     // {
     //   icon: "manage-payment",

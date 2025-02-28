@@ -7,22 +7,22 @@ import Image from "next/image";
 export function FestivalGrid({ item }: { item: data }) {
   return (
     <>
-        <Image
-          width={500}
-          height={500}
-          src={item.images}
-          alt={item.name}
-          loading="lazy"
-          quality={100}
-          className={`${styles.cardImage} ${styles.wideImage}`}
-        />
-        <div className="text-center mt-4">
-          <h3 className={`text-lg font-semibold ${styles.title}`}>
-            {item.name}
-          </h3>
+      <Image
+        width={500}
+        height={500}
+        src={item.images}
+        alt={item.name}
+        loading="lazy"
+        quality={100}
+        className={`${styles.cardImage} ${styles.wideImage}`}
+      />
+      <div className="text-center mt-4">
+        <h3 className={`text-lg font-semibold ${styles.title}`}>{item.name}</h3>
+        <div className="mb-4">
           <Link href={`/collection/${item.id}`} className={styles.actionButton}>
             Xem Thêm
           </Link>
+        </div>
       </div>
     </>
   );

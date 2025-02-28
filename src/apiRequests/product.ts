@@ -72,8 +72,10 @@ const productApiRequest = {
         `&properties=${params.properties || ""}`
     ),
 
-  sizeProductsStaff: () => http.get<TypesListResType>(`/products/sizes/staff?size=${100}`),
-  typeProductsStaff: () => http.get<TypesListResType>(`/products/types/staff?size=${100}`),
+  sizeProductsStaff: () =>
+    http.get<TypesListResType>(`/products/sizes/staff?size=${100}`),
+  typeProductsStaff: () =>
+    http.get<TypesListResType>(`/products/types/staff?size=${100}`),
   collectionProductsStaff: () =>
     http.get<collectionListResType>(`/products/collections/staff?size=${100}`),
   productStaff: (id: string) =>
@@ -86,5 +88,6 @@ const productApiRequest = {
     http.delete<CartResType>(`/products/${id}/staff`, {}),
   activeProductStaff: (id: string) =>
     http.put<CartResType>(`/products/${id}/reactive/staff`, {}),
+  productsOpenAI: () => http.get<ProductListResType>(`/products?&size=100`),
 };
 export default productApiRequest;

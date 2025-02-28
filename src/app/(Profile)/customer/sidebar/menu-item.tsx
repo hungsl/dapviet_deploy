@@ -15,7 +15,8 @@ import {
   ClipboardList,
   Wallet,
   LogOut,
-  ChartLine
+  ChartLine,
+  MessageSquare
 } from "lucide-react"; // Import các icon từ Lucide
 
 // Tạo map giữa ID và các icon tương ứng
@@ -29,6 +30,7 @@ const iconMap: Record<string, React.ReactNode> = {
   "manage-revenue": <BarChart className={`${styles.menuIcon}`} />,
   "manage-user": <Users className={`${styles.menuIcon}`} />,
   "manage-payment": <CreditCard className={`${styles.menuIcon}`} />,
+  "manage-botchat": <MessageSquare className={`${styles.menuIcon}`} />,
   profile: <User className={`${styles.menuIcon}`} />, 
   history: <History className={`${styles.menuIcon}`} />, 
   order: <ClipboardList className={`${styles.menuIcon}`} />,

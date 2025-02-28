@@ -13,9 +13,30 @@ export default function ButtonTest({
   productId: string;
 }) {
   const handleTest = async (text: string, productId: string) => {
-    if (productId) {
+    if (productId && text === "Cập nhật sản phẩm") {
       try {
         const res = await fetch("/api/update-embeddings-P-id", {
+          method: "POST",
+          body: JSON.stringify(productId),
+          headers: { "Content-Type": "application/json" },
+        });
+        const response = res.ok ? await res.json() : null;
+        console.log(response);
+        toast({
+          variant: response === null ? "destructive" : "default",
+          title: response === null ? "Không Tìm thấy sản phẩm" : response.message,
+          duration: 4000
+        });
+      } catch (error) {
+        console.log(error)
+        toast({
+          variant: "destructive",
+          title: "Không Tìm thấy sản phẩm",
+        });
+      }
+    }else if(productId && text === "Xóa sản phẩm"){
+      try {
+        const res = await fetch("/api/delete-embeddings-P-id", {
           method: "POST",
           body: JSON.stringify(productId),
           headers: { "Content-Type": "application/json" },

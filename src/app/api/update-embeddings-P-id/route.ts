@@ -7,7 +7,12 @@ const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY! });
 export async function POST(req: Request) {
   try {
     const productId = await req.json();
-
+    
+    if (!productId) {
+      return new Response(JSON.stringify({ error: "Thiếu productId" }), {
+        status: 400,
+      });
+    }
     // Lấy sản phẩm từ database
     const res = await productApiRequest.product(productId);
 

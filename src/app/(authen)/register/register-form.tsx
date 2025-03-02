@@ -55,7 +55,7 @@ export default function RegisterForm() {
         description: result.payload.message,
         duration: 4000,
       });
-      router.push("/login");
+      router.push("/dang-nhap");
     } catch (error) {
       handleErrorApi({
         error,
@@ -174,8 +174,8 @@ export default function RegisterForm() {
       <div className={styles.registerPrompt}>
         <span>Đã có tài khoản?</span>
 
-        {path === "/register" ? (
-          <Link prefetch href="/login" className={styles.registerLink}>
+        {path === "/register" || path ==="/dang-ky" ? (
+          <Link prefetch href="/dang-nhap" className={styles.registerLink}>
             Đăng Nhập Ngay
           </Link>
         ) : (

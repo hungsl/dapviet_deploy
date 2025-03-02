@@ -13,7 +13,7 @@ interface ProductProps {
 
 export const ProductCard: React.FC<ProductProps> = ({ id, name, imageUrl, oldPrice, price} ) => {
   return (
-    <Link href={`/product-detail/${id}`} className={styles.productCard}>
+    <Link href={`/chi-tiet-san-pham/${id}`} className={styles.productCard}>
       <Image width={500} height={500} src={imageUrl} alt={name} className={styles.productImage} />
       <h3 className={styles.productName}>{name}</h3>
       <p className={styles.productPrice}>{price} VND</p>

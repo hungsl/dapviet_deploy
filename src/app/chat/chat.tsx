@@ -24,11 +24,27 @@ import { RxChatBubble } from "react-icons/rx";
 import { motion, AnimatePresence } from "framer-motion";
 import { useChat } from "@ai-sdk/react";
 
+interface Message {
+  role: "user" | "assistant" | "data" | "system"; // Thêm giá trị từ thư viện
+  content: string;
+}
+
 export default function Chat() {
-  const [isChatOpen, setIschatOpen] = useState(false);
+  const [isChatOpen, setIschatOpen] = useState<boolean>(() => {
+    if (typeof window !== "undefined") {
+      const savedChatState = sessionStorage.getItem("isChatOpen");
+      return savedChatState ? JSON.parse(savedChatState) : false;
+    }
+    return false;
+  });
   const [showChatIcon, setShowChatIcon] = useState(false);
   const chatIconRef = useRef<HTMLButtonElement>(null);
-
+  const [storedMessages, setStoredMessages] = useState<Message[]>(() => {
+    if (typeof window !== "undefined") {
+      const savedMessages = localStorage.getItem("chatHistory");
+      return savedMessages ? JSON.parse(savedMessages) : [];
+    }
+  });
   const {
     messages,
     input,
@@ -39,6 +55,28 @@ export default function Chat() {
     error,
     reload,
   } = useChat({ api: "/api/openai" });
+
+  useEffect(() => {
+    if (messages.length > 0) {
+      setStoredMessages(messages);
+    }
+  }, [messages]);
+  useEffect(() => {
+    //luu trang thai tin nhan
+    localStorage.setItem("chatHistory", JSON.stringify(storedMessages));
+  }, [storedMessages]);
+
+  useEffect(() => {
+    const savedChatState = sessionStorage.getItem("isChatOpen");
+    if (savedChatState !== null) {
+      setIschatOpen(JSON.parse(savedChatState)); // Chỉ cập nhật nếu có giá trị
+    }
+  }, []); // Chạy một lần khi component mount
+
+  useEffect(() => {
+    sessionStorage.setItem("isChatOpen", JSON.stringify(isChatOpen));
+  }, [isChatOpen]);
+
   const scrollRef = useRef<HTMLDivElement>(null);
   // console.log((messages));
   // useEffect(() => {
@@ -63,24 +101,15 @@ export default function Chat() {
   }, []);
   /* eslint-disable @typescript-eslint/no-unused-vars */
   /* eslint-disable prefer-const */
-  useEffect(() => {
-    let openTimeout: NodeJS.Timeout;
-    // let closeTimeout: NodeJS.Timeout;
-    openTimeout = setTimeout(() => {
-      setIschatOpen(true);
-      // closeTimeout = setTimeout(() => {
-      //   setIschatOpen(false);
-      // }, 1000);
-    }, 20000);
-    return () => {
-      if (openTimeout) clearTimeout(openTimeout);
-      // if (closeTimeout) clearTimeout(closeTimeout);
-    };
-  }, []);
 
   const toggleChat = () => {
-    setIschatOpen(!isChatOpen);
+    setIschatOpen((prev) => {
+      const newState = !prev;
+      sessionStorage.setItem("isChatOpen", JSON.stringify(newState)); // Cập nhật ngay khi toggle
+      return newState;
+    });
   };
+
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollIntoView({ behavior: "smooth" });
@@ -136,37 +165,46 @@ export default function Chat() {
                   <span className="sr-only"> Đóng chat</span>
                 </Button>
               </CardHeader>
+              {/* Nội dung chat */}
               <CardContent>
                 <ScrollArea className="h-[300px] pr-4">
-                  {messages?.length === 0 && (
+                  {/* Hiển thị khi không có tin nhắn */}
+                  {storedMessages.length === 0 && (
                     <div className="flex flex-col">
                       <div className="w-full mt-32 text-gray-800 items-center justify-center flex gap-3">
                         <RxChatBubble className="h-5 w-5 text-blue-500" />
-                        <h6>Hãy hỏi Đắp Việt AI để nhận hỗ trợ !</h6>
+                        <h6>Hãy hỏi Đắp Việt AI để nhận hỗ trợ!</h6>
                       </div>
-                      <span className="text-gray-500 text-sm flex justify-center ml-4">Cuộc trò chuyện không được lưu trữ</span>
+                      <span className="text-gray-500 text-sm flex justify-center ml-4">
+                        Cuộc trò chuyện không được lưu trữ
+                      </span>
                     </div>
                   )}
-                  {messages?.map((message, index) => (
+
+                  {/* Hiển thị danh sách tin nhắn */}
+                  {storedMessages.map((message: Message, index: number) => (
                     <div
                       key={index}
                       className={`mb-4 ${message.role === "user" ? "text-right" : "text-left"}`}
                     >
                       <div
-                        className={`inline-block p-4 rounded-lg ${message.role === "user" ? "bg-primary text-primary-foreground" : "bg-muted"}`}
+                        className={`inline-block p-4 rounded-lg ${
+                          message.role === "user"
+                            ? "bg-primary text-primary-foreground"
+                            : "bg-muted"
+                        }`}
                       >
                         <ReactMarkdown // eslint-disable-next-line react/no-children-prop
                           children={message.content}
                           remarkPlugins={[remarkGfm]}
                           components={{
                             code({
-                              node,
                               inline, // inline được ép kiểu là boolean nếu không chắc chắn
                               className,
                               children,
                               ...props
                             }: any) {
-                              return (inline as boolean) ? (
+                              return inline ? (
                                 <code
                                   {...props}
                                   className="bg-gray-200 px-1 rounded"
@@ -196,21 +234,25 @@ export default function Chat() {
                       </div>
                     </div>
                   ))}
+
+                  {/* Hiển thị loading khi đang tải */}
                   {isLoading && (
                     <div className="w-full items-center flex justify-center gap-3">
                       <Loader2 className="animate-spin h-5 w-5 text-primary" />
                       <button
                         className="underline"
                         type="button"
-                        onClick={() => stop()}
+                        onClick={stop}
                       >
                         Dừng
                       </button>
                     </div>
                   )}
+
+                  {/* Hiển thị lỗi nếu có */}
                   {error && (
                     <div className="w-full items-center flex justify-center gap-3">
-                      <div>Có lỗi !!!.</div>
+                      <div>Có lỗi xảy ra!</div>
                       <button
                         className="underline"
                         type="button"
@@ -220,6 +262,7 @@ export default function Chat() {
                       </button>
                     </div>
                   )}
+
                   <div ref={scrollRef}></div>
                 </ScrollArea>
               </CardContent>

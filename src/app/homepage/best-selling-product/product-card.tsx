@@ -14,7 +14,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 }) => {
   return (
     
-    <Link href={`/product-detail/${id}`} className={styles.gridColumn}>
+    <Link href={`/chi-tiet-san-pham/${id}`} className={styles.gridColumn}>
       <div className={styles.productCard}>
         <div className={styles.imageContainer}>
           <Image

@@ -25,7 +25,7 @@ function LogoutPage() {
     // signOut();
     if (accessTokenParams === accessToken)
       authApiRequest.logoutFromNextClientToNextServer(true).then((res) => {// eslint-disable-line @typescript-eslint/no-unused-vars
-        router.push(`/login?redirectFrom=${pathname}`);
+        router.push(`/dang-nhap?redirectFrom=${pathname}`);
       });
   }, [accessTokenParams]);
 

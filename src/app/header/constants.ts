@@ -1,10 +1,10 @@
 import { NavigationItem } from "./types";
 
 export const NAVIGATION_ITEMS: NavigationItem[] = [
-  { label: 'Trang chủ', href: '/homepage' },
-  { label: 'Sản phẩm', href: '/searchpage' },
-  { label: 'Giảm giá', href: '/sales' },
-  { label: 'Thông tin', href: '/about-us' },
-  { label: 'Liên hệ', href: '/contact' }
+  { label: 'Trang chủ', href: '/trang-chu' },
+  { label: 'Sản phẩm', href: '/kham-pha' },
+  { label: 'Giảm giá', href: '/giam-gia' },
+  { label: 'Thông tin', href: '/gioi-thieu' },
+  { label: 'Liên hệ', href: '/lien-lac' }
 ];
 

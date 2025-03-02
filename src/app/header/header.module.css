@@ -155,20 +155,21 @@
 }
 .cartBadge {
   position: absolute;
-  top: -4px;
+  top: -4px; /* Điều chỉnh vị trí */
   right: -4px;
-  background-color: red;
-  color: white;
-  font-size: 12px;
-  font-weight: bold;
-  width: 18px;
-  height: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  height: 16px;
+  width: 16px;
+  border-radius: 9999px; /* Hình tròn */
+  background-color: #dc2626; /* Màu đỏ */
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
+
 .socialIconCart:hover {
   font-size: 23px;
   /* color: #000;  */

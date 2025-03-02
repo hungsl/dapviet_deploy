@@ -60,7 +60,7 @@ export default function EmailForm() {
         <div className={styles.container}>
           <div className={styles.formWrapper}>
             {/* Nút quay lại */}
-            <Link href="/login" className={styles.backLink}>
+            <Link href="/dang-nhap" className={styles.backLink}>
               ← Quay lại đăng nhập
             </Link>
             <h1 className={styles.formTitle}>Quên mật khẩu</h1>

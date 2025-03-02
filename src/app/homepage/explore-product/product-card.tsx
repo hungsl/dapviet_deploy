@@ -45,7 +45,7 @@ export default function ProductCard() {
       {products.map((product: ProductCardProps, index: number) => (
         <Link
           prefetch
-          href={`/product-detail/${product.id}`}
+          href={`/chi-tiet-san-pham/${product.id}`}
           key={index}
           className={styles.productCard}
         >

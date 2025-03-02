@@ -3,6 +3,7 @@ import { CartResType } from "@/schemaValidations/cart";
 import { collectionResType } from "@/schemaValidations/collection.schema";
 import {
   CategoryListResType,
+  ProductForAIListResType,
   ProductListResType,
   ProductResType,
   TopProductListResType,
@@ -27,7 +28,7 @@ const productApiRequest = {
   topProducts: () => http.get<TopProductListResType>(`/products/top?size=10`),
   feedbackView: (id: string) =>
     http.get<ProductResType>(`products/${id}/feedbacks`),
-
+  productsForAI: () => http.get<ProductForAIListResType>('/products/AI?size=100'),
   products: (params: {
     sizes?: string[];
     types?: string[];

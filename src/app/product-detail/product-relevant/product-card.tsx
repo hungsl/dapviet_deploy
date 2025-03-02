@@ -12,7 +12,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   unitPrice,
 }) => {
   return (
-    <Link href={`/product-detail/${id}`} prefetch className={styles.card}>
+    <Link href={`/chi-tiet-san-pham/${id}`} prefetch className={styles.card}>
       <Image
         width={500}
         height={500}

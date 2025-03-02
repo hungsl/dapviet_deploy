@@ -24,7 +24,7 @@ export async function generateMetadata(
   const id = (await params).id;
   const result = await getDetail(id);
   const product = result.payload.data;
-  const url = envConfig.NEXT_PUBLIC_URL + "/product-detail/" + product.id;
+  const url = envConfig.NEXT_PUBLIC_URL + "/chi-tiet-san-pham/" + product.id;
   return {
     title: product.name,
     description: product.description,

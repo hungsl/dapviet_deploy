@@ -164,7 +164,7 @@ export default function OrderTable() {
                   <CardFooter>
                     <Button
                       variant="outline"
-                      onClick={() => router.push("/searchpage")}
+                      onClick={() => router.push("/kham-pha")}
                     >
                       Bắt đầu mua sắm
                     </Button>

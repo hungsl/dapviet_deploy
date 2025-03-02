@@ -9,10 +9,10 @@ export default function Header() {
     <div>
       <ul>
         <li>
-          <Link href='/login' >Login</Link>
+          <Link href='/dang-nhap' >Login</Link>
         </li>
         <li>
-          <Link href='/register' >Register</Link>
+          <Link href='/dang-ky' >Register</Link>
         </li>
         <li>
           <ButtonLogout />

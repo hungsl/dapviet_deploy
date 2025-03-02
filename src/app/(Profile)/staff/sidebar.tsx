@@ -134,7 +134,7 @@ export default function SidebarStaff() {
       await authApiRequest.logoutFromNextClientToNextServer();
       localStorage.removeItem("accessToken");
       localStorage.removeItem("refreshToken");
-      router.push("/homepage");
+      router.push("/trang-chu");
     } catch (error) {
       handleErrorApi({ error });
     }finally{

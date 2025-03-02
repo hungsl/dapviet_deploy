@@ -2,15 +2,16 @@
 import React from "react";
 // import ButtonTest from "./buttonTest";
 // import { Input } from "@/components/ui/input";
+// import productApiRequest from "@/apiRequests/product";
 
 export default function page() {
   // const [productId, setProductId] = useState<string>("");
   // useEffect(() => {
   //   const fetchProduct = async () => {
-  //     const res = await fetch("http://localhost:3000/api/products");
-  //     const products = res.ok ? await res.json() : [];
-  //     const productsfilter = Array.isArray(products?.payload?.data)
-  //       ? products.payload.data.map(
+  //     const res = await productApiRequest.productsForAI();
+  //     const products = res?.payload?.data;
+  //     const productsfilter = Array.isArray(products)
+  //       ? products.map(
   //           ({
   //             name,
   //             unitPrice,
@@ -26,7 +27,7 @@ export default function page() {
   //           })
   //         )
   //       : [];
-  //     console.log(productsfilter);
+  //     console.log(products);
   //   };
   //   fetchProduct();
   // }, []);

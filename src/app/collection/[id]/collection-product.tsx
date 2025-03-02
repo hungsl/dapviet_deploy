@@ -7,7 +7,6 @@ import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "./ListCollectionItem.css";
-import { BsDot } from "react-icons/bs";
 import Link from "next/link";
 import { formatCurrency } from "@/lib/utils";
 import { ProductList } from "../type";
@@ -15,7 +14,9 @@ import { ProductList } from "../type";
 interface CollectionProductProps {
   products: ProductList;
 }
-export default function CollectionProduct({ products }: CollectionProductProps) {
+export default function CollectionProduct({
+  products,
+}: CollectionProductProps) {
   // const images = [
   //   "https://aekqgmlegdfbpjvohkqg.supabase.co/storage/v1/object/public/hung-pics/078074bc-b755-4bf6-a0cf-38324478e2f7.jpeg",
   //   "https://aekqgmlegdfbpjvohkqg.supabase.co/storage/v1/object/public/hung-pics/efc91c3d-cf06-4a43-9f32-2fd320d3dc97.jpeg",
@@ -50,11 +51,13 @@ export default function CollectionProduct({ products }: CollectionProductProps) 
       >
         {products.map((product, index) => (
           <SwiperSlide className="card" key={index}>
-            <Link href="product-detail">
+            <Link href={`/chi-tiet-san-pham/${product.id}`}>
               <img src={product.picture} alt={`slide_image_${index}`} />
               <div className="product-info">
                 <h3 className="product-name">{product.name}</h3>
-                <p className="product-price text-red-500">{formatCurrency(product.unitPrice)}</p>
+                <p className="product-price text-red-500">
+                  {formatCurrency(product.unitPrice)}
+                </p>
               </div>
             </Link>
           </SwiperSlide>
@@ -62,10 +65,8 @@ export default function CollectionProduct({ products }: CollectionProductProps) 
 
         <div className="slider-controler">
           <div className="swiper-button-prev slider-arrow">
-            <BsDot />
           </div>
           <div className="swiper-button-next slider-arrow">
-            <BsDot />
           </div>
           <div className="swiper-pagination"></div>
         </div>

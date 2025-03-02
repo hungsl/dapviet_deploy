@@ -136,12 +136,6 @@ export default function Reviews({
               <div className={styles.ratingTitle}>Đánh Giá Tổng Quan</div>
               <div className={styles.ratingStats}>
                 <div className={styles.averageRating}>
-                  {/* <img
-                    loading="lazy"
-                    src="/productDetail/star.png"
-                    alt=""
-                    className={styles.ratingIcon}
-                  /> */}
                   <TiStarFullOutline color="#FFD700" />
                   <div className={styles.ratingNumber}>{avgRating}</div>
                 </div>

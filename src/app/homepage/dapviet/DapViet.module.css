@@ -225,7 +225,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: Inter, sans-serif;
+  font-weight: bolder;
   justify-content: center;
   margin: auto 0;
 }
@@ -284,8 +284,14 @@
 
 .brandTitle {
   color: #000;
-  font-size: 50px;
-  font-weight: 800;
+  font-weight: 900;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  font-style: italic;
+  font-size: 3rem;
+  font-weight: 900;
+  background: linear-gradient(45deg, #ff6b6b, #ffb52e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .brandSubtitle {

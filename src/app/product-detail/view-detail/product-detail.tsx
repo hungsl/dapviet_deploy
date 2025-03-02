@@ -27,7 +27,7 @@ export default async function ProductDetail({
               <h2 className={styles.descriptionTitle}>Mô Tả Sản Phẩm</h2>
               <div className={styles.divider} />
             </div>
-            <p className={styles.descriptionText}>{data.description}</p>
+            <p className={styles.descriptionText} dangerouslySetInnerHTML={{ __html: data.description }} />
           </div>
         </section>
 
@@ -42,27 +42,11 @@ export default async function ProductDetail({
               <div className={styles.stockStatus}>
                 {data.status === "IN_STOCK" ? (
                   <>
-                    {/* <Image
-                      width={300}
-                      height={300}
-                      priority
-                      src="/productDetail/tick.png"
-                      alt="Còn hàng"
-                      className={styles.stockIcon}
-                    /> */}
                     <IoMdCheckmark className={styles.checkmark} size={20} />
                     <span>Còn hàng</span>
                   </>
                 ) : (
                   <>
-                    {/* <Image
-                      width={300}
-                      priority
-                      height={300}
-                      src="/productDetail/outstock.png"
-                      alt="Hết hàng"
-                      className={styles.stockIcon}
-                    /> */}
                     <RxCross1 className={styles.cross} size={20} />
                     <span>Hết hàng</span>
                   </>

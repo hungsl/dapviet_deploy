@@ -25,16 +25,16 @@ export const Footer: React.FC = () => {
   ];
 
   const aboutLinks = [
-    { text: "Thông tin" , address: "/about-us#contactInfo"},
-    { text: "Địa chỉ", className: styles.workAddress , address: "/about-us#contactInfo" },
-    { text: "Liên lạc", className: styles.contact , address: "/about-us#contactInfo"},
+    { text: "Thông tin" , address: "/gioi-thieu#contactInfo"},
+    { text: "Địa chỉ", className: styles.workAddress , address: "/gioi-thieu#contactInfo" },
+    { text: "Liên lạc", className: styles.contact , address: "/gioi-thieu#contactInfo"},
   ];
 
   const helpLinks = [
-    { text: "Hỏi Đáp" , address: "/about-us#question"},
-    { text: "Giao hàng", className: styles.delivery , address: "/about-us#question"},
-    { text: "Thanh toán", className: styles.payment  , address: "/about-us#question"},
-    { text: "Hoàn trả", className: styles.returns , address: "/about-us#question" },
+    { text: "Hỏi Đáp" , address: "/gioi-thieu#question"},
+    { text: "Giao hàng", className: styles.delivery , address: "/gioi-thieu#question"},
+    { text: "Thanh toán", className: styles.payment  , address: "/gioi-thieu#question"},
+    { text: "Hoàn trả", className: styles.returns , address: "/gioi-thieu#question" },
   ];
 
   return (

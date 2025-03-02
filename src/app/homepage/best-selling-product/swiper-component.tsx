@@ -4,9 +4,9 @@ import { ProductCard } from "./product-card";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-
+import "swiper/css/autoplay"; 
 // modules
-import { Pagination, Navigation } from "swiper/modules";
+import { Pagination, Navigation, Autoplay } from "swiper/modules";
 import { ProductCardProps } from "./types";
 import "./swiper.css";
 import {
@@ -45,12 +45,12 @@ const SwiperComponent = () => {
       scrollbar={{ draggable: true }}
       className="w-[100%]"
       loop={true}
-      modules={[Pagination, Navigation]}
-      //   style={{
-      //     "--swiper-navigation-color": "#ffffff",
-      //     "--swiper-pagination-color": "#ffffff",
-      //     "--swiper-pagination-bottom": "0px",
-      //   }}
+      autoplay={{
+        delay: 3000, 
+        disableOnInteraction: false, // Không tắt autoplay khi người dùng tương tác
+        pauseOnMouseEnter: true, // Dừng autoplay khi hover vào Swiper
+      }}
+      modules={[Pagination, Navigation, Autoplay]}
     >
       {dataList.map((item: ProductCardProps, index: number) => (
         <SwiperSlide key={index}>

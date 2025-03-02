@@ -21,7 +21,7 @@ export default function RegisterPopup() {
             </div>
             <div className={styles.brandContent}>
               <h1 className={styles.brandTitle}>
-                <a href="/homepage" className={styles.link}>
+                <a href="/trang-chu" className={styles.link}>
                   Đắp Việt
                 </a>
               </h1>

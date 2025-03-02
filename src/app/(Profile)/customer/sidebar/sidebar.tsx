@@ -60,7 +60,7 @@ export const Sidebar: React.FC = ({}) => {
       await authApiRequest.logoutFromNextClientToNextServer();
       localStorage.removeItem("accessToken");
       localStorage.removeItem("refreshToken");
-      router.push("/homepage");
+      router.push("/trang-chu");
       // router.push('/login')
     } catch (error) {
       handleErrorApi({ error });
@@ -102,7 +102,7 @@ export const Sidebar: React.FC = ({}) => {
           <div
             className={`${styles.logoWrapper} ${isSidebarCollapsed ? styles.collapsed : ""}`}
           >
-            <Link prefetch href={"/homepage"} className={styles.logoText}>
+            <Link prefetch href={"trang-chu"} className={styles.logoText}>
               Đắp Việt
             </Link>
             <Image

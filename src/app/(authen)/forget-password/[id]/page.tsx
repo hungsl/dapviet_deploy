@@ -70,7 +70,7 @@ export default function ResetPasswordForm({
         <div className={styles.container}>
           <div className={styles.formWrapper}>
             {/* Nút quay lại */}
-            <Link href="/login" className={styles.backLink}>
+            <Link href="/dang-nhap" className={styles.backLink}>
               ← Quay lại đăng nhập
             </Link>
             <h1 className={styles.formTitle}>Cập nhật mật khẩu</h1>

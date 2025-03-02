@@ -133,7 +133,7 @@ const request = async <Response>(
         } finally {
           localStorage.removeItem("accessToken");
           localStorage.removeItem("refreshToken");
-          location.href = "/homepage";
+          location.href = "/trang-chu";
         }
       } else {
         const sessionToken = (options?.headers as any).Authorization.split(

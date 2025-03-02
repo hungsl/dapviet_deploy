@@ -85,7 +85,7 @@ export default async function OrderDetail({
     order = result.payload.data;
   } catch (error) {
     console.log("lỗi lấy chi tiết đơn hàng: ", error);
-    redirect("/homepage");
+    redirect("/trang-chu");
   }
   return (
     <div className={`${styles.parent} scroll`}>

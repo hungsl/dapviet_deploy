@@ -3,11 +3,21 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  /* background: #fff; */
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+  padding-bottom: 10px;
+}
+
+.card:hover {
+  transform: translateY(-5px); /* Nhấc card lên khi hover */
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2); /* Tăng độ đổ bóng */
 }
 
 .productImage {
   width: 100%; /* Hoặc một kích thước cụ thể ví dụ: 300px */
-  height: 500px; /* Đặt chiều cao cố định để đảm bảo đồng đều */
+  height: 600px; /* Đặt chiều cao cố định để đảm bảo đồng đều */
   display: block; /* Đảm bảo ảnh không bị inline */
   object-fit: cover; /* Cắt ảnh theo kích thước khung */
   object-position: center; /* Đặt tâm ảnh trong khung */

@@ -42,7 +42,7 @@ body {
     --chart-5: 27 87% 67%;
   }
   .dark {
-    --hover: 39 70% 45%; 
+    --hover: 39 70% 45%;
     --chart-1: 39 80% 50%; /* Vàng tối */
     --chart-2: 240 50% 60%; /* Xanh dương tối */
     --chart-3: 200 55% 50%; /* Xanh biển tối */
@@ -167,6 +167,43 @@ body {
     color: #9ca3af; /* Màu chữ nhạt hơn */
     border: 1px solid #d1d5db; /* Màu viền đồng bộ với nền */
     opacity: 0.6; /* Giảm độ đậm của nút */
+  }
+  /* Nút điều hướng với nền trắng và bóng đổ */
+  .swiper-button-prev,
+  .swiper-button-next {
+    background-color: white;
+    color: black;
+    width: 45px  !important;
+    height: 45px !important;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+  }
+
+  /* Thu nhỏ icon ">" */
+  .swiper-button-prev::after,
+  .swiper-button-next::after {
+    font-size: 20px !important;
+    font-weight: bold;
+    color: black;
+  }
+
+  /* Hiệu ứng hover */
+  .swiper-button-prev:hover,
+  .swiper-button-next:hover {
+    background-color: #f5f5f5;
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+    transform: scale(1.1);
+  }
+  
+  @media (max-width: 768px) { /* Ẩn khi màn hình nhỏ hơn 768px (tablet, mobile) */
+    .swiper-button-prev,
+    .swiper-button-next {
+      display: none !important;
+    }
   }
 }
 @layer utilities {

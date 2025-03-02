@@ -43,7 +43,7 @@ export async function POST(req: Request) {
     const { messages } = await req.json();
 
     const userQuery = messages[messages.length - 1].content; // Lấy câu hỏi cuối cùng của user
-
+    console.log(userQuery)
     // Chuyển câu hỏi của user thành embeddings
     const queryEmbeddingRes = await openaiEmbed.embeddings.create({
       model: "text-embedding-ada-002",
@@ -54,7 +54,7 @@ export async function POST(req: Request) {
     // Tìm kiếm sản phẩm phù hợp trong Pinecone
     const searchResults = await pineconeIndex.query({
       vector: queryVector, // So sánh vector của câu hỏi với database
-      topK: 5, // Lấy 5 kết quả phù hợp (gồm sản phẩm và nội dung web)
+      topK: 3, // Lấy 5 kết quả phù hợp (gồm sản phẩm và nội dung web)
       includeMetadata: true, // Lấy luôn metadata
     });
 
@@ -75,21 +75,21 @@ export async function POST(req: Request) {
     const productList = productMatches
       .map(
         (match) =>
-          `Tên: ${match.metadata?.name} | Giá: ${match.metadata?.price} VND | 🔗 [Xem sản phẩm](${match.metadata?.link})`//không cần mô tả vì đã kiếm được sản phẩm phù hợp rồi không cần tốn thêm tiền cho chat
+          `Tên sản phẩm: ${match.metadata?.name} | Mô tả: ${match.metadata?.description} | Giá: ${match.metadata?.price} VND | 🔗 [Xem sản phẩm](${match.metadata?.link})`//không cần mô tả vì đã kiếm được sản phẩm phù hợp rồi không cần tốn thêm tiền cho chat
       )
       .join("\n");
 
     // console.log(productList);
-    // Cập nhật context chatbot với danh sách sản phẩm
-    
     const updatedMessages = [
       {
         role: "system",
-        content: `${websiteInfo} - Những sản phẩm phù hợp:\n\n${productList}.`,
+        content: `Thông tin hữu ích từ website:\n${websiteInfo}\n\n` +
+                 `Chỉ được phép cung cấp sản phẩm kèm link này, không tự tạo sản phẩm nào khác web:\n\n${productList}`,
       },
       ...messages,
     ];
-    console.log(updatedMessages)
+    
+    // console.log(updatedMessages)
     const stream = await streamText({
       model: openai("gpt-3.5-turbo"),
       messages: updatedMessages,

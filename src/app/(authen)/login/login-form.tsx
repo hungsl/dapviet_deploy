@@ -104,7 +104,7 @@ export default function LoginForm() {
       // setRefreshToken(result.payload.data.refreshToken);
       localStorage.setItem("accessToken", result.payload.data.accessToken);
       localStorage.setItem("refreshToken", result.payload.data.refreshToken);
-      if (path !== "/login") {
+      if (path !== "/dang-nhap" && path !== "/login" ) {
         // router.refresh()
         if (
           result.payload.message ===
@@ -121,7 +121,7 @@ export default function LoginForm() {
         ) {
           router.push("/staff/dashboard");
         } else {
-          router.push("/homepage");
+          router.push("/trang-chu");
         }
       }
     } catch (error) {
@@ -208,7 +208,7 @@ export default function LoginForm() {
       <div className={styles.registerPrompt}>
         <span>Chưa có tài khoản?</span>
         {path === "/login" ? (
-          <Link prefetch href="/register" className={styles.registerLink}>
+          <Link prefetch href="/dang-ky" className={styles.registerLink}>
             Đăng ký ngay
           </Link>
         ) : (

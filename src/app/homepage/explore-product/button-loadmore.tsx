@@ -5,7 +5,7 @@ import { FaArrowRightLong } from "react-icons/fa6";
 
 export default function ButtonLoadMore() {
   return (
-    <Link prefetch href='/searchpage' className={styles.loadMore}>
+    <Link prefetch href='/kham-pha' className={styles.loadMore}>
         <span className={styles.loadMoreText}>Xem Thêm</span>
         <FaArrowRightLong />
       </Link>

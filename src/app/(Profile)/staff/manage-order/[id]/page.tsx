@@ -35,7 +35,7 @@ export default async function OrderDetail({
     // console.log(order);
   } catch (error) {
     console.log("lỗi lấy chi tiết đơn hàng: ", error);
-    redirect("/homepage");
+    redirect("/trang-chu");
   }
   const translateStatus = (status: string) => {
     switch (status) {

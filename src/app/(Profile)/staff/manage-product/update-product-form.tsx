@@ -133,7 +133,7 @@ export default function UpdateProductForm({
             productApiRequest.sizeProductsStaff()
           ]);
   
-          console.log("productDetail:", productResult);
+          // console.log("productDetail:", productResult);
   
           // Dữ liệu API
           const data = productResult.payload.data;
@@ -281,7 +281,7 @@ export default function UpdateProductForm({
         typeId: values.typeId,
         sizeQuantities: sizeQuantities,
       };
-      console.log(body);
+      // console.log(body);
       const result = await productApiRequest.updateProductStaff(
         values.id,
         body

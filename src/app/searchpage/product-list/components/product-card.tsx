@@ -14,7 +14,7 @@ export default function ProductCard({
   unitPrice,
 }: ProductCardProps) {
   return (
-    <Link href={`/product-detail/${id}`} className={styles.productCard}>
+    <Link href={`/chi-tiet-san-pham/${id}`} className={styles.productCard}>
       <div className={styles.imageContainer}>
         <Image
           width={500}

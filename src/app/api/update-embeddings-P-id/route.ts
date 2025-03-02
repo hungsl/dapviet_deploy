@@ -29,7 +29,7 @@ export async function POST(req: Request) {
       model: "text-embedding-ada-002",
       input: `${product.name} ${product.description} ${product.unitPrice}`,
     });
-
+    console.log(`${product.name} ${product.description} ${product.unitPrice}`)
     const vector = embeddingRes.data[0].embedding;
 
     // Lưu embeddings vào Pinecone
@@ -39,9 +39,9 @@ export async function POST(req: Request) {
         values: vector,
         metadata: {
           name: product.name,
-          description:product.description,
+          description: product.description,
           price: product.unitPrice,
-          link: `https://www.dapviet.shop/product-detail/${product.id}`,
+          link: `https://www.dapviet.shop/chi-tiet-san-pham/${product.id}`,
         },
       },
     ]);

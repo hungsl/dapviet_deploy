@@ -8,9 +8,9 @@ export default function ButtonType({ type }: { type: string }) {
 
   const handleNavigate = () => {
     if (type === "login") {
-      router.push("/login");
+      router.push("/dang-nhap");
     } else if (type === "register") {
-      router.push("/register");
+      router.push("/dang-ky");
     } else if(type === "google"){
       router.push("/"); 
     } else{

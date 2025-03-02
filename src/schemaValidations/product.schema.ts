@@ -132,6 +132,23 @@ export const ProductListRes = z.object({
   totalPage: z.number(),
   message: z.string().nullable(),
 });
+export const ProductForAIListRes = z.object({
+  data: z.array(
+    z.object({
+      id: z.string(),
+      name: z.string(),
+      unitPrice: z.number(),
+      picture: z.string().url(),
+      rating: z.number(),
+      description: z.string()
+    })
+  ),
+  size: z.number(),
+  page: z.number(),
+  totalSize: z.number(),
+  totalPage: z.number(),
+  message: z.string().nullable(),
+});
 
 export const TopProductListRes = z.object({
   data: z.array(
@@ -163,6 +180,7 @@ export const cartListData = z.array(
 export type cartListDataType = z.TypeOf<typeof cartListData>;
 
 export type ProductListResType = z.TypeOf<typeof ProductListRes>;
+export type ProductForAIListResType = z.TypeOf<typeof ProductForAIListRes>;
 export type TopProductListResType = z.TypeOf<typeof TopProductListRes>;
 
 export const CategoryListRes = z.object({

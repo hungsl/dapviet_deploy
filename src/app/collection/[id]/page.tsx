@@ -29,7 +29,7 @@ const CollectionPage = async ({
     products = product.payload.data;
   } catch (error) {
     console.log("Lỗi khi lấy bộ sưu tập:", error)
-    redirect("/homepage");
+    redirect("/trang-chu");
   }
   // console.log(products)
   return (

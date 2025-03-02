@@ -63,14 +63,14 @@ export default function UeGoogleLogin({ accountGoogle }: HeaderProps) {
         //   setLoading(false);
         // } else {
         //   console.log('move to homepage')
-        //   router.push("/homepage");
+        //   router.push("trang-chu");
         //   setTimeout(() => {
         //     signOut({ redirect: false });
         //   }, 2000);
         //   // console.log("move to homepage");
         //   setLoading(false);
         // }
-        router.push('/homepage')
+        router.push('/trang-chu')
         signOut({ redirect: false });
       }
     };

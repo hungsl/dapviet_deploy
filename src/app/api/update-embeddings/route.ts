@@ -1,3 +1,4 @@
+import productApiRequest from "@/apiRequests/product";
 import { pineconeIndex } from "@/lib/pinecone";
 import OpenAI from "openai";
 
@@ -8,20 +9,23 @@ export async function POST(req: Request) {
     // const { productId } = await req.json();
     console.log(req)
     // Lấy sản phẩm từ database
-    const res = await fetch("http://localhost:3000/api/products");
-    const response = res.ok ? await res.json() : null;
-    const products = response?.payload?.data;
-
+    // const res = await fetch("http://localhost:3000/api/products");
+    // const response = res.ok ? await res.json() : null;
+    // const products = response?.payload?.data;
+    const res = await productApiRequest.productsForAI();
+    const products = res?.payload?.data;
+    // console.log(products)
     if (!products) {
       return new Response(JSON.stringify({ error: "Sản phẩm không tồn tại" }), {
         status: 404,
       });
     }
+
     for (const product of products) {
       // Tạo embeddings từ mô tả sản phẩm
       const embeddingRes = await openai.embeddings.create({
         model: "text-embedding-ada-002", // Model OpenAI để tạo embeddings
-        input: `${product.name}  ${product.description} ${product.description}`, // Chuyển tên + mô tả sản phẩm thành vector // cần description để tìm kiếm
+        input: `${product.name} ${product.description} ${product.unitPrice}`, // Chuyển tên + mô tả sản phẩm thành vector // cần description để tìm kiếm
       });
 
       const vector = embeddingRes.data[0].embedding; // Lấy vector embeddings từ API OpenAI
@@ -35,8 +39,9 @@ export async function POST(req: Request) {
           values: vector, // Vector embeddings đã tạo
           metadata: {
             name: product.name, // Lưu metadata để hiển thị khi tìm kiếm
+            description: product.description,
             price: product.unitPrice,//không cần description vì bên chat không lấy
-            link: `https://www.dapviet.shop/product-detail/${product.id}`,
+            link: `https://www.dapviet.shop/chi-tiet-san-pham/${product.id}`,
           },
         },
       ]);

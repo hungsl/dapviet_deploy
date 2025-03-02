@@ -9,9 +9,9 @@
 .swiperMain {
   height: auto;
   width: 100%;
-  border-radius: 0.5rem; /* 8px rounded */
   overflow: hidden;
-  background-color: #e8f8ff8e;
+  /* background-color: #e8f8ff8e; */
+  /* background: white; */
   margin-bottom: 0;
 }
 
@@ -58,7 +58,8 @@
   width: 100%;
   border-radius: 0.5rem;
   overflow: hidden;
-  background-color: #e8f8ff;
+  /* background-color: #e8f8ff; */
+  /* background-color: white; */
 }
 
 .thumbItem {

@@ -255,32 +255,12 @@
   border: 0;
 }
 
-@media (max-width: 998px) {
-  .cartContainer {
-    max-width: 100%;
-    margin-top: 40px;
-    height: auto;
-  }
-
-  .cartLayout {
-  }
-
-  .cartItemsColumn,
-  .summaryColumn {
-  }
-  .cartItemsList {
-    height: 550px;
-  }
-  .cartItem {
-    max-width: 100px;
-  }
-}
-
 @media (max-width: 480px) {
   .cartContainer {
     max-width: 100%;
     margin-top: 0px;
-    height: auto;
+    border-radius: 0;
+    height: 100vh;
   }
   .summaryContainer{
     width: 100%;

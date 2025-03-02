@@ -3,15 +3,16 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
-import { FreeMode, Navigation, Thumbs } from "swiper/modules";
+import { Autoplay, FreeMode, Navigation, Thumbs, Zoom, Keyboard } from "swiper/modules";
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
-
+import "swiper/css/autoplay";
 import styles from "./thumbnail.module.css";
-import { Expand } from "lucide-react";
+import "swiper/css/zoom";
+import { SquareX } from "lucide-react";
 // import dynamic from "next/dynamic";
 
 // const Swiper = dynamic(() => import("swiper/react").then(mod => mod.Swiper), { ssr: false });
@@ -21,16 +22,15 @@ import { Expand } from "lucide-react";
 export default function Thumbnail({ images }: { images: string[] }) {
   const [isOpen, setIsOpen] = useState(false);
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperClass | null>(null);
-  const [currentImage, setCurrentImage] = useState("");
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  const openModal = (image: string) => {
-    setCurrentImage(image);
+  const openModal = (index: number) => {
+    setCurrentIndex(index);
     setIsOpen(true);
   };
 
   const closeModal = () => {
     setIsOpen(false);
-    setCurrentImage("");
   };
 
   return (
@@ -42,13 +42,20 @@ export default function Thumbnail({ images }: { images: string[] }) {
         thumbs={{
           swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
         }}
-        modules={[FreeMode, Navigation, Thumbs]}
+        speed={1000}
+        autoplay={{
+          delay: 5000,
+          disableOnInteraction: false, // Không tắt autoplay khi người dùng tương tác
+          pauseOnMouseEnter: true, // Dừng autoplay khi hover vào Swiper
+        }}
+        modules={[FreeMode, Navigation, Thumbs, Autoplay]}
         className={`${styles.swiperMain} custom-main-swiper`}
       >
         {images.map((image, index) => (
           <SwiperSlide key={index}>
-            <div className={styles.slideItem}>
+            <div className={`${styles.slideItem}`}>
               <Image
+                onClick={() => openModal(index)}
                 width={500}
                 height={500}
                 quality={100}
@@ -58,14 +65,14 @@ export default function Thumbnail({ images }: { images: string[] }) {
                 className={styles.slideImage}
               />
               {/* Expand button */}
-              <div
+              {/* <div
                 className="absolute bottom-4 right-4 bg-white p-1 rounded-md  cursor-pointer transform transition-transform duration-300 ease-in-out hover:scale-110 hover:bg-gray-200"
                 onClick={(e) => {
                   openModal(image);
                 }}
               >
                 <Expand className="h-8 w-8 text-gray-800" />
-              </div>
+              </div> */}
             </div>
           </SwiperSlide>
         ))}
@@ -90,7 +97,7 @@ export default function Thumbnail({ images }: { images: string[] }) {
                   width={300}
                   height={300}
                   quality={60}
-                  priority
+                  loading="lazy"
                   src={image}
                   alt={image}
                   className={styles.thumbImage}
@@ -102,29 +109,48 @@ export default function Thumbnail({ images }: { images: string[] }) {
       )}
 
       {/* Modal hiển thị ảnh lớn */}
+      {/* Modal hiển thị ảnh lớn */}
       {isOpen && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50"
-          onClick={closeModal}
-        >
-          {/* Nội dung Modal */}
-          <div className="relative">
+        <div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50" onClick={closeModal}>
+          <div className="relative w-[100%] max-w-[620px] h-[100%] !bg-white/100 bg-opacity-50" onClick={(e) => e.stopPropagation()} >
             {/* Nút đóng */}
             <button
               onClick={closeModal}
-              className="absolute top-4 right-4 text-white text-3xl font-bold"
+              className="absolute top-4 right-4 z-50 items-center justify-center text-white bg-red-400 hover:bg-red-600  p-1 rounded-lg text-xl font-bold shadow-md transition duration-300 block md:hidden"
             >
-              &times;
+              <SquareX />
             </button>
-            {/* Ảnh lớn */}
-            <Image
-              src={currentImage}
-              quality={100}
-              alt="Full Size Image"
-              width={900}
-              height={900}
-              className={styles.modelImage}
-            />
+            {/* Swiper trong Modal */}
+            <Swiper
+              initialSlide={currentIndex} // Bắt đầu từ ảnh đang mở
+              loop={true}
+              spaceBetween={10}
+              navigation={true}
+              zoom={true}
+              keyboard= {{
+                enabled: true,
+                onlyInViewport: true,
+                pageUpDown: true
+              }}
+              modules={[FreeMode, Navigation, Thumbs, Autoplay, Zoom, Keyboard]}
+              className={`${styles.swiperMain} custom-main-swiper`}
+            >
+              {images.map((image, index) => (
+                <SwiperSlide key={index}>
+                  <div className="swiper-zoom-container">
+                    <Image
+                      width={900}
+                      height={900}
+                      quality={100}
+                      loading="lazy"
+                      src={image}
+                      alt={`Modal Image ${index}`}
+                      className={styles.modelImage}
+                    />
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </div>
         </div>
       )}

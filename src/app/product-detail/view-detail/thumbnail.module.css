@@ -7,10 +7,17 @@
 
 /* Swiper container */
 .swiperMain {
-  height: auto;
+  height: 100%;
   width: 100%;
   overflow: hidden;
   /* background-color: #e8f8ff8e; */
+  /* background: white; */
+  margin-bottom: 0;
+}
+.PopupMain {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
   /* background: white; */
   margin-bottom: 0;
 }
@@ -32,13 +39,15 @@
   object-position: center;
   border-radius: 0.25rem; /* 4px rounded */
 }
-.modelImage{
-  height:100vh;
+.modelImage {
+  max-height: 80vh;  /* Giới hạn chiều cao modal */
+  max-width: 80vw;   /* Giới hạn chiều rộng */
   display: block;
-  width: auto;
-  object-fit: cover;
+  width: auto;       /* Đảm bảo không méo ảnh */
+  height: auto;
+  object-fit: contain; /* Hiển thị toàn bộ ảnh */
   object-position: center;
-  border-radius: 0.25rem; 
+  border-radius: 0.25rem;
 }
 
 .productImage {

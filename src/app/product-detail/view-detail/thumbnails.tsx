@@ -3,7 +3,14 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
-import { Autoplay, FreeMode, Navigation, Thumbs, Zoom, Keyboard } from "swiper/modules";
+import {
+  Autoplay,
+  FreeMode,
+  Navigation,
+  Thumbs,
+  Zoom,
+  Keyboard,
+} from "swiper/modules";
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import "swiper/css";
 import "swiper/css/free-mode";
@@ -111,8 +118,14 @@ export default function Thumbnail({ images }: { images: string[] }) {
       {/* Modal hiển thị ảnh lớn */}
       {/* Modal hiển thị ảnh lớn */}
       {isOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50" onClick={closeModal}>
-          <div className="relative w-[100%] max-w-[620px] h-[100%] !bg-white/100 bg-opacity-50" onClick={(e) => e.stopPropagation()} >
+        <div
+          className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50"
+          onClick={closeModal}
+        >
+          <div
+            className="relative w-[auto] max-w-[70%] h-[100%] !bg-white/100 bg-opacity-50"
+            onClick={(e) => e.stopPropagation()}
+          >
             {/* Nút đóng */}
             <button
               onClick={closeModal}
@@ -127,13 +140,13 @@ export default function Thumbnail({ images }: { images: string[] }) {
               spaceBetween={10}
               navigation={true}
               zoom={true}
-              keyboard= {{
+              keyboard={{
                 enabled: true,
                 onlyInViewport: true,
-                pageUpDown: true
+                pageUpDown: true,
               }}
               modules={[FreeMode, Navigation, Thumbs, Autoplay, Zoom, Keyboard]}
-              className={`${styles.swiperMain} custom-main-swiper`}
+              className={`${styles.PopupMain} custom-main-swiper`}
             >
               {images.map((image, index) => (
                 <SwiperSlide key={index}>

@@ -7,8 +7,9 @@ import { datalist, FestivalCardProps } from "./types";
 import dynamic from "next/dynamic";
 // import SwiperComponent from "./swiper-festival";
 
-
-const SwiperComponent = dynamic(() => import("./swiper-festival"), { ssr: false });
+const SwiperComponent = dynamic(() => import("./swiper-festival"), {
+  ssr: false,
+});
 export default function FestivalCards() {
   const [data, setData] = useState<datalist>();
 
@@ -35,7 +36,6 @@ export default function FestivalCards() {
       <>
         <h1 className={styles.festivalTitle}>Bộ Sưu Tập Lễ Hội</h1>
         <div className="flex justify-center items-center h-screen flex-col relative">
-          
           <div className="w-16 h-16 border-4 border-t-4 border-blue-500 border-dotted rounded-full animate-spin"></div>
           <p className="mt-4 text-gray-500">Đang tải dữ liệu...</p>
         </div>
@@ -46,8 +46,11 @@ export default function FestivalCards() {
     <>
       <h1 className={styles.festivalTitle}>Bộ Sưu Tập Lễ Hội</h1>
       <div className={styles.cardsContainer}>
-        {/* <Carousel cards={data.cards} /> */}
-        <SwiperComponent cards={data.cards} />
+        {data.cards && data.cards.length > 0 ? (
+          <SwiperComponent cards={data.cards} />
+        ) : (
+          <p className={styles.emptyMessage}>Oops! Hiện chưa có trang phục nào cho bộ sưu tập! 🏮</p>
+        )}
       </div>
     </>
   );

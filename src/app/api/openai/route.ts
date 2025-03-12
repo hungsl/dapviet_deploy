@@ -89,7 +89,7 @@ export async function POST(req: Request) {
       ...messages,
     ];
     
-    // console.log(updatedMessages)
+    console.log(updatedMessages)
     const stream = await streamText({
       model: openai("gpt-3.5-turbo"),
       messages: updatedMessages,

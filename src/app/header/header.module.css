@@ -13,23 +13,6 @@
   padding: 10px;
   border-radius: 5px;
 }
-.header {
-  -webkit-animation: slide-in-fwd-center 1s
-    cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-  animation: slide-in-fwd-center 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-}
-@-webkit-keyframes slide-in-fwd-center {
-  0% {
-    -webkit-transform: translateZ(-1400px);
-    transform: translateZ(-1400px);
-    opacity: 0;
-  }
-  100% {
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-    opacity: 1;
-  }
-}
 @keyframes slide-in-fwd-center {
   0% {
     -webkit-transform: translateZ(-1400px);
@@ -124,19 +107,42 @@
   text-decoration: none;
   font-size: larger;
   font-weight: normal;
+  position: relative;
 }
-.link:hover {
+.link::before{
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-bottom: 2px solid black;
+  transform: scale(0);
+  transform-origin: bottom;
+  transition: all 0.5s;
+}
+.link:hover::before {
   /* color: rgb(0, 0, 0); */
   font-size: larger;
+  transform: scale(1);
   text-decoration: underline;
-  font-weight: bold;
+  border-bottom: 2px solid black;
 }
+
 .activeLink {
   /* color: rgb(0, 0, 0); */
   font-size: larger;
-  text-decoration: underline;
+  border-bottom: 2px solid black;
+  position: relative;
   font-weight: bold;
 }
+.activeLink::before{
+  content: "";
+  position: absolute;
+  border-bottom: 2px solid black;
+}
+
+
+
+
 .socialIconNotify {
   position: relative;
   font-size: 26px;

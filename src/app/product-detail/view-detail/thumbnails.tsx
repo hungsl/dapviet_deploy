@@ -114,22 +114,19 @@ export default function Thumbnail({ images }: { images: string[] }) {
           ))}
         </Swiper>
       )}
-
-      {/* Modal hiển thị ảnh lớn */}
-      {/* Modal hiển thị ảnh lớn */}
       {isOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50"
           onClick={closeModal}
         >
           <div
-            className="relative w-[auto] max-w-[70%] h-[100%] !bg-white/100 bg-opacity-50"
+            className="relative w-[auto] max-w-[100%] h-[100%] bg-opacity-50"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Nút đóng */}
             <button
               onClick={closeModal}
-              className="absolute top-4 right-4 z-50 items-center justify-center text-white bg-red-400 hover:bg-red-600  p-1 rounded-lg text-xl font-bold shadow-md transition duration-300 block md:hidden"
+              className="absolute top-4 right-4 z-50 items-center justify-center text-white bg-red-400 hover:bg-red-600  p-1 rounded-lg text-xl font-bold shadow-md transition duration-300 block"
             >
               <SquareX />
             </button>

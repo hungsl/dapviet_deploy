@@ -4,37 +4,57 @@ import { FooterSection } from "./footer-section";
 import { SocialMediaIcon } from "./social-media-icon";
 import FooterRight from "./footer-copyright";
 import Image from "next/image";
+import { faFacebook } from "@fortawesome/free-brands-svg-icons";
+import { faYoutube } from "@fortawesome/free-brands-svg-icons";
+import { faTiktok } from "@fortawesome/free-brands-svg-icons";
 
 export const Footer: React.FC = () => {
   const socialMedia = [
     {
-      src: "/homepage/benefit-login/facebook.png",
-      alt: "Facebook",
-      href: "https://www.facebook.com/DongQuanTram.HongNhienVu?mibextid=kFxxJD"
+      src: faFacebook,
+      href: "https://www.facebook.com/DongQuanTram.HongNhienVu?mibextid=kFxxJD",
     },
     {
-      src: "/homepage/footer/iconyoutube.png",
-      alt: "YouTube",
-      href: "https://www.youtube.com/"
+      src: faYoutube,
+      href: "https://www.youtube.com/",
     },
     {
-      src: "/homepage/footer/iconTiktok.png",
-      alt: "Social Media Icon",
-      href: "https://www.tiktok.com/@elysian.raiment?_t=ZS-8t240NGgHWq&_r=1"
+      src: faTiktok,
+      href: "https://www.tiktok.com/@elysian.raiment?_t=ZS-8t240NGgHWq&_r=1",
     },
   ];
 
   const aboutLinks = [
-    { text: "Thông tin" , address: "/gioi-thieu#contactInfo"},
-    { text: "Địa chỉ", className: styles.workAddress , address: "/gioi-thieu#contactInfo" },
-    { text: "Liên lạc", className: styles.contact , address: "/gioi-thieu#contactInfo"},
+    { text: "Thông tin", address: "/gioi-thieu#contactInfo" },
+    {
+      text: "Địa chỉ",
+      className: styles.workAddress,
+      address: "/gioi-thieu#contactInfo",
+    },
+    {
+      text: "Liên lạc",
+      className: styles.contact,
+      address: "/gioi-thieu#contactInfo",
+    },
   ];
 
   const helpLinks = [
-    { text: "Hỏi Đáp" , address: "/gioi-thieu#question"},
-    { text: "Giao hàng", className: styles.delivery , address: "/gioi-thieu#question"},
-    { text: "Thanh toán", className: styles.payment  , address: "/gioi-thieu#question"},
-    { text: "Hoàn trả", className: styles.returns , address: "/gioi-thieu#question" },
+    { text: "Hỏi Đáp", address: "/gioi-thieu#question" },
+    {
+      text: "Giao hàng",
+      className: styles.delivery,
+      address: "/gioi-thieu#question",
+    },
+    {
+      text: "Thanh toán",
+      className: styles.payment,
+      address: "/gioi-thieu#question",
+    },
+    {
+      text: "Hoàn trả",
+      className: styles.returns,
+      address: "/gioi-thieu#question",
+    },
   ];
 
   return (
@@ -45,12 +65,18 @@ export const Footer: React.FC = () => {
             <div className={styles.brandColumn}>
               <div className={styles.brandInfo}>
                 <div className={styles.brandLogo}>
-                  <Image width={100} height={100} src="/logo.png" alt="logo" className="logo" />
+                  <Image
+                    width={100}
+                    height={100}
+                    src="/logo.png"
+                    alt="logo"
+                    className="logo"
+                  />
                 </div>
               </div>
             </div>
 
-            <FooterSection title="Giới thiệu" links={aboutLinks}/>
+            <FooterSection title="Giới thiệu" links={aboutLinks} />
             <FooterSection title="Trợ Giúp" links={helpLinks} />
 
             <div className={styles.socialColumn}>
@@ -73,7 +99,7 @@ export const Footer: React.FC = () => {
             <Link href="/" className={styles.privacy}>Chính sách bảo mật</Link> */}
           </div>
         </div>
-      <FooterRight />
+        <FooterRight />
       </footer>
     </>
   );

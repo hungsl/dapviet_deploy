@@ -1,6 +1,7 @@
+import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
+
 export interface SocialMediaProps {
-    src: string;
-    alt: string;
+    src: IconDefinition;
     href: string
   }
   

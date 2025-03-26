@@ -35,7 +35,7 @@
   margin-top: 54px;
   padding: 20px;
   width: 100%;
-  background: #fff;
+  /* background: #fff; */
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
@@ -49,7 +49,6 @@
 .descriptionTitle {
   font-size: 24px; /* Cỡ chữ lớn */
   font-weight: bolder; /* Chữ đậm */
-  /* color: #000000; Màu xanh nhẹ đẹp mắt */
   border-bottom: 2px solid; /* Đường gạch dưới */
   padding-bottom: 4px; /* Khoảng cách với đường gạch dưới */
   margin-bottom: 12px; /* Khoảng cách với phần bên dưới */
@@ -60,7 +59,7 @@
 .descriptionText {
   font-size: 16px;
   line-height: 1.8;
-  color: #444;
+  /* color: #444; */
   margin-top: 10px;
   white-space: pre-line;
 }

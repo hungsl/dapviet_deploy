@@ -14,15 +14,15 @@ import RefreshToken from "@/components/refresh-token";
 const roboto = Roboto({ subsets: ["vietnamese"], weight: ["100", "300"] });
 export const metadata: Metadata = {
   title: {
-    template: "%s | Đắp Việt - Áo dài cách tân & Việt phục hiện đại",
-    default: "Đắp Việt - Áo dài cách tân & Việt phục hiện đại",
+    template: "%s | Đắp Việt - Việt Phục Cách Tân",
+    default: "Đắp Việt - Việt Phục Cách Tân",
   },
   description:
     "Đắp Việt chuyên cung cấp áo dài cách tân, mang vẻ đẹp truyền thống kết hợp phong cách hiện đại. Chất liệu cao cấp, thiết kế đa dạng, phù hợp cho mọi dịp lễ hội, sự kiện và đời thường.",
   keywords:
     "Áo dài cách tân, Việt phục hiện đại, Đắp Việt, Quần áo truyền thống, Áo dài nữ, Áo dài nam, Áo dài đôi, Áo dài cưới, Áo dài trẻ em",
   openGraph: {
-    title: "Đắp Việt - Áo dài cách tân & Việt phục hiện đại",
+    title: "Đắp Việt - Việt Phục Cách Tân",
     description:
       "Khám phá bộ sưu tập áo dài cách tân độc đáo tại Đắp Việt. Thiết kế sang trọng, phù hợp cho mọi dịp.",
     url: "https://dapviet.shop",
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
         url: "https://aekqgmlegdfbpjvohkqg.supabase.co/storage/v1/object/public/hung-pics//HomepagePerson3.png",
         width: 700,
         height: 1200,
-        alt: "Đắp Việt - Áo dài cách tân & Việt phục hiện đại",
+        alt: "Đắp Việt - Việt Phục Cách Tân",
       },
     ],
     type: "website",

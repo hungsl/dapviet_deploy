@@ -1,237 +1,304 @@
 .footer {
-    display: flex;
-    margin-top: 216px;
-    width: 100%;
-    flex-direction: column;
-    background-color: #e7fcffe3;
-    padding-top: 40px;
+  display: flex;
+  margin-top: 216px;
+  width: 100%;
+  flex-direction: column;
+  background-color: #e7fcffe3;
+  padding-top: 40px;
+}
+
+.footerContent {
+  width: 100%;
+}
+
+.footerColumns {
+  gap: 100px;
+  display: flex;
+}
+
+.brandColumn {
+  display: flex;
+  flex-direction: column;
+  line-height: normal;
+  width: 24%;
+}
+
+.brandInfo {
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  align-items: center;
+  font-family: Inter, sans-serif;
+  color: #000;
+  justify-content: start;
+  margin: auto 0;
+}
+
+.brandName {
+  font-size: 32px;
+  font-weight: 500;
+}
+
+.brandLogo {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.footerSection {
+  display: flex;
+  flex-direction: column;
+  font:
+    16px Inter,
+    sans-serif;
+}
+
+.sectionTitle {
+  color: rgba(0, 0, 0, 1);
+  font-weight: 600;
+  align-self: start;
+}
+
+.linkContainer {
+  display: flex;
+  margin-top: 11px;
+  flex-direction: column;
+  color: #000;
+  font-weight: 400;
+  justify-content: start;
+}
+
+.footerLink {
+  margin-top: 10px;
+}
+.footerLink:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.footerLink:first-child {
+  margin-top: 0;
+}
+
+.socialColumn {
+  display: flex;
+  flex-direction: column;
+  line-height: normal;
+  width: 38%;
+  margin-left: 20px;
+}
+
+.socialContent {
+  display: flex;
+  width: 100%;
+  align-items: end;
+  gap: 6px;
+}
+
+.socialContainer {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+}
+
+.followUs {
+  color: rgba(0, 0, 0, 1);
+  align-self: start;
+  font:
+    600 16px Inter,
+    sans-serif;
+}
+
+.socialIcons {
+  display: flex;
+  margin-top: 11px;
+  width: 100%;
+  gap: 6px;
+}
+
+.socialIconWrapper {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  /* ///////////////////// */
+  border: 2px solid var(--bg-color);
+  border-radius: 50%;
+  transition: color 0.3s;
+}
+
+.socialIcon {
+  object-fit: contain;
+  padding: 5px;
+  object-position: center;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  color: var(--bg-color);
+  transition: all 0.5s;
+}
+
+.socialIconWrapper:nth-child(1) {
+  --bg-color: #1877f2;
+} /* Facebook */
+.socialIconWrapper:nth-child(2) {
+  --bg-color: #e1306c;
+} /* Instagram */
+.socialIconWrapper:nth-child(3) {
+  --bg-color: #000000;
+} /* X (Twitter) */
+.socialIconWrapper:nth-child(4) {
+  --bg-color: #ff0000;
+} /* YouTube */
+
+.socialIconWrapper:before,
+.socialIconWrapper::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  transition: all 0.5s;
+  opacity: 0;
+  z-index: 0;
+}
+
+.socialIconWrapper:hover .socialIcon {
+  color: white;
+}
+.socialIconWrapper::before {
+  background-color: var(--bg-color);
+}
+.socialIconWrapper::after {
+  background-color: transparent;
+  border: 3px dashed var(--bg-color);
+  box-sizing: border-box;
+}
+.socialIconWrapper:hover:before {
+  opacity: 1;
+  transform: scale(0.7);
+}
+.socialIconWrapper:hover .socialIcon{
+  transform: scale(0.7);
+}
+.socialIconWrapper:hover:after {
+  opacity: 1;
+  animation: rotating 10s linear infinite;
+}
+@keyframes rotating {
+  0% {
+    transform: scale(0.92) rotate(0deg);
   }
-  
-  .footerContent {
-    width: 100%;
+  100% {
+    transform: scale(0.92) rotate(360deg);
   }
-  
-  .footerColumns {
-    gap: 100px;
-    display: flex;
-  }
-  
-  .brandColumn {
-    display: flex;
-    flex-direction: column;
-    line-height: normal;
-    width: 24%;
-  }
-  
-  .brandInfo {
-    display: flex;
-    flex-direction: column;
-    align-self: stretch;
-    align-items: center;
-    font-family: Inter, sans-serif;
-    color: #000;
-    justify-content: start;
-    margin: auto 0;
-  }
-  
-  .brandName {
-    font-size: 32px;
-    font-weight: 500;
-  }
-  
-  .brandLogo {
-    font-size: 16px;
-    font-weight: 400;
-  }
-  
-  .footerSection {
-    display: flex;
-    flex-direction: column;
-    font: 16px Inter, sans-serif;
-  }
-  
-  .sectionTitle {
-    color: rgba(0, 0, 0, 1);
-    font-weight: 600;
-    align-self: start;
-  }
-  
-  .linkContainer {
-    display: flex;
-    margin-top: 11px;
-    flex-direction: column;
-    color: #000;
-    font-weight: 400;
-    justify-content: start;
-  }
-  
-  .footerLink {
-    margin-top: 10px;
-  }
-  .footerLink:hover{
-    text-decoration: underline;
-    cursor: pointer;
-  }
-  
-  .footerLink:first-child {
-    margin-top: 0;
-  }
-  
-  .socialColumn {
-    display: flex;
-    flex-direction: column;
-    line-height: normal;
-    width: 38%;
-    margin-left: 20px;
-  }
-  
-  .socialContent {
-    display: flex;
-    width: 100%;
-    align-items: end;
-    gap: 6px;
-  }
-  
-  .socialContainer {
-    align-self: stretch;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .followUs {
-    color: rgba(0, 0, 0, 1);
-    align-self: start;
-    font: 600 16px Inter, sans-serif;
-  }
-  
-  .socialIcons {
-    display: flex;
-    margin-top: 11px;
-    width: 100%;
-    gap: 6px;
-  }
-  
-  
-  .socialIconWrapper {
-    display: flex;
-    width: 36px;
-    align-items: start;
-    gap: 10px;
-    justify-content: start;
-  }
-  
-  .socialIcon {
-    aspect-ratio: 1;
-    object-fit: contain;
-    object-position: center;
-    width: 36px;
-    background-color: var(--primary, #f7f6f0);
-    border-radius: 50%;
-    height: 36px;
-  }
-  .socialIcon:hover{
-    transform: scale(1.02);
-    cursor: pointer;
-  }
-  
-  .footerBottom {
-    display: flex;
-    margin-top: 17px;
-    align-items: center;
-    gap: 20px;
-    color: rgba(0, 0, 0, 1);
-    justify-content: end;
-    font: 600 16px Inter, sans-serif;
-  }
-  
-  @media (max-width: 991px) {
-    .footer {
-      max-width: 100%;
-      margin: 40px 10px 0 0;
-    }
-  
-    .footerColumns {
-      align-items: stretch;
-      gap: 0;
-    }
-  
-    .brandColumn,
-    .socialColumn {
-    }
-  
-    .brandInfo,
-    .footerSection,
-    .socialContent {
-      margin-top: 40px;
-    }
+}
+
+.footerBottom {
+  display: flex;
+  margin-top: 17px;
+  align-items: center;
+  gap: 20px;
+  color: rgba(0, 0, 0, 1);
+  justify-content: end;
+  font:
+    600 16px Inter,
+    sans-serif;
+}
+
+@media (max-width: 991px) {
+  .footer {
+    max-width: 100%;
+    margin: 40px 10px 0 0;
   }
 
+  .footerColumns {
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .brandColumn,
+  .socialColumn {
+  }
+
+  .brandInfo,
+  .footerSection,
+  .socialContent {
+    margin-top: 40px;
+  }
+}
+
+.footerContainer {
+  background: #000;
+  display: flex;
+  margin-top: 12px;
+  width: 100%;
+  flex-direction: column;
+  overflow: hidden;
+  align-items: center;
+  color: #fff;
+  justify-content: center;
+  padding: 17px 70px;
+  font:
+    400 16px Inter,
+    sans-serif;
+}
+
+@media (max-width: 991px) {
   .footerContainer {
-    background: #000;
-    display: flex;
-    margin-top: 12px;
-    width: 100%;
-    flex-direction: column;
-    overflow: hidden;
-    align-items: center;
-    color: #fff;
-    justify-content: center;
-    padding: 17px 70px;
-    font: 400 16px Inter, sans-serif;
+    max-width: 100%;
+    padding: 0 20px;
   }
-  
-  @media (max-width: 991px) {
-    .footerContainer {
-      max-width: 100%;
-      padding: 0 20px;
-    }
+}
+
+.copyrightWrapper {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  justify-content: center;
+}
+
+.copyrightIcon {
+  aspect-ratio: 1;
+  object-fit: contain;
+  height: 10px;
+  object-position: center;
+  width: 24px;
+}
+
+.copyrightText {
+  align-self: stretch;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+@media (max-width: 991px) {
+  .footerSection {
+    font-size: 10px;
   }
-  
-  .copyrightWrapper {
-    display: flex;
-    align-items: center;
-    gap: 2px;
-    justify-content: center;
+  .brandColumn {
+    width: 50px;
+    margin-right: 10px;
   }
-  
-  .copyrightIcon {
-    aspect-ratio: 1;
-    object-fit: contain;
-    height: 10px;
-    object-position: center;
-    width: 24px;
+  .followUs,
+  .footerContainer {
+    font-size: 10px;
   }
-  
-  .copyrightText {
-    align-self: stretch;
+  .socialIcon {
+    width: 20px;
   }
-  
-  .visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    border: 0;
+  .footerSection {
+    width: 20%;
   }
-  @media (max-width: 991px) {
-    .footerSection{
-      font-size: 10px;
-    }
-    .brandColumn{
-      width: 50px;
-      margin-right: 10px;
-    }
-    .followUs,
-    .footerContainer{
-      font-size: 10px;
-    }
-    .socialIcon{
-      width: 20px;
-    }
-    .footerSection{
-      width: 20%;
-    }
-  }
+}

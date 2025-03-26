@@ -159,6 +159,7 @@ export default function CheckoutForm() {
       } catch (error) {
         console.log("Error fetching data: ", error);
       } finally {
+        setLoading(false);
       }
     };
   
